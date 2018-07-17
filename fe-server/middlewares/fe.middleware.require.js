@@ -4,7 +4,7 @@ global.requireL1 = function(path) {
 }
 
 global.requireL2 = function(path,req) {
-var L2PathPrefix = __dirname + '/../legislations/fe';
+    var L2PathPrefix = __dirname + '/../legislations/fe';
     return require(L2PathPrefix + path);
 }
 

@@ -4,11 +4,13 @@
             "fe" :{
                 "appPath": "./fe-server/apps/fe.js",
                 "vhost"  : "fe.localhost",
-                "config":""
+                "session":"require(\"./fe-server/legislations/fe/clients/fe/config/session.js\")",
+                "policies":"require(\"./fe-server/legislations/fe/clients/fe/config/policies.js\")"
             },
             "shopclues" :{
                 "appPath": "./fe-server/apps/shopclues.js",
-                "vhost"  : "shopclues.localhost"
+                "vhost"  : "shopclues.localhost",
+                "policies":"./fe-server/legislations/fe/clients/shopclues/config"
             }
         }
 } 

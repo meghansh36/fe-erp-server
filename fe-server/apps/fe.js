@@ -2,8 +2,8 @@
 const moduleAlias = require('module-alias')
 moduleAlias.addAliases({
   '@L3RootFe':'../legislations/fe/clients/fe',
-  '@L3MainFe':'../legislations/fe/clients/fe/main',
-  '@L3ProcessFe':'../legislations/fe/clients/fe/main/process',
+  // '@L3MainFe':'../legislations/fe/clients/fe/main',
+  // '@L3ProcessFe':'../legislations/fe/clients/fe/main/process',
 });
 moduleAlias()
 var express = require('express');
@@ -122,7 +122,7 @@ app.use(express.static(path.join('../'+__dirname, "dist")));
 //     // models.sequelize.sync({ force: true });
 // }
 
-
+console.log(global.FE);
 
 // const sequelize = new Sequelize('mysql://chiragbansal:>G?3"qS/@dev-mumbai.cyvlbltrfdzs.ap-south-1.rds.amazonaws.com:3306/dev');
 
