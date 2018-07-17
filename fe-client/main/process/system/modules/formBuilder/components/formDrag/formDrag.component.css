@@ -1,0 +1,17 @@
+.component-listItem {
+    padding: 5px 10px;
+}
+
+.component-listItem:hover {
+    cursor: pointer;
+    background-color: rgb(172, 172, 172);
+}
+
+.material-icons.md-18 {
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.no_show {
+    display: none;
+}

@@ -1,0 +1,27 @@
+<!-- <div class="fe-field fe-text TXT form-group " [formGroup]="group">
+    <label for="{{ id }}">{{ config.label }}</label>
+    &nbsp;
+    <a href="{{defaultValue}}">{{label}}</a>
+</div> -->
+
+<div [ngClass]="defaultClasses.fieldMainWrapperClasses" [formGroup]="group" [ngStyle]="style.fieldMainWrapperStyle">
+        <div [ngClass]="defaultClasses.fieldWrapperClasses" [ngStyle]="defaultClasses.fieldWrapperStyle">
+            <div [ngClass]="defaultClasses.fieldLabelContainerClasses" [ngStyle]="style.fieldLabelContainerStyle">
+                <div class="label">
+                    <label for="{{ id }}" [ngClass]="defaultClasses.labelClasses" [ngStyle]="defaultClasses.labelStyle">{{ label }}</label>
+                </div>
+                <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="defaultClasses.fieldDescWrapperStyle" *ngIf="description">
+                    <span [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+                        <i class="material-icons " placement="right" [ngbTooltip]="description"> help</i>
+                    </span>
+                </div>
+            </div>
+            <div [ngClass]="defaultClasses.nestedFieldContainerClasses" [ngStyle]="style.nestedFieldContainerStyle">
+                <div [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
+                    <a href="{{defaultValue}}" [ngClass]="defaultClasses.fieldClasses"  [ngStyle]="defaultClasses.fieldStyle" 
+                    [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" 
+                    [attr.id]="id">{{label}}</a>
+                </div>
+            </div>
+        </div>
+    </div>

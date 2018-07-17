@@ -1,0 +1,14 @@
+{
+    "clients":
+        {
+            "fe" :{
+                "appPath": "./fe-server/apps/fe.js",
+                "vhost"  : "fe.localhost",
+                "config":""
+            },
+            "shopclues" :{
+                "appPath": "./fe-server/apps/shopclues.js",
+                "vhost"  : "shopclues.localhost"
+            }
+        }
+} 

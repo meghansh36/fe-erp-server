@@ -1,0 +1,8 @@
+<div class="form-components">
+  <ul class="list-group" [dragula]='"bag-one"' id="not_copy">
+    <!-- <li class="list-group-item component-listItem" *ngFor="let component of elementList; let i = index" dnd-draggable [dragEnabled]="true" [dragData]="component"> -->
+    <li class="list-group-item component-listItem" *ngFor="let component of elementList; let i = index" [attr.componentName]= 'component.componentName' >
+      <i class="material-icons md-18">{{component.icon}}</i>{{component.label}}
+    </li>
+  </ul>
+</div>

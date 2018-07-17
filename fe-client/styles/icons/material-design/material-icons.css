@@ -1,0 +1,3770 @@
+@font-face {
+	font-family: "Material Design Iconic";
+	font-style: normal;
+	font-weight: normal;
+	src: url("./material-design.eot?v=2.2.0");
+	src: url("./material-design.eot?#iefix&v=2.2.0") format("embedded-opentype"), url("./material-design.woff2?v=2.2.0") format("woff2"), url("./material-design.woff?v=2.2.0") format("woff"), url("./material-design.ttf?v=2.2.0") format("truetype"), url("./material-design.svg?v=2.2.0#material-design") format("svg");
+}
+
+
+[class^="md-"], [class*=" md-"] {
+	position: relative;
+	display: inline-block;
+	font-family: "Material Design Iconic";
+	font-style: normal;
+	font-weight: normal;
+	transform: translate(0, 0);
+	-webkit-transform: translate(0, 0);
+	text-rendering: auto;
+	speak: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;  /* Preferred icon size */
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+
+	/* Support for all WebKit browsers. */
+	-webkit-font-smoothing: antialiased;
+	/* Support for Safari and Chrome. */
+	text-rendering: optimizeLegibility;
+
+	/* Support for Firefox. */
+	-moz-osx-font-smoothing: grayscale;
+
+	/* Support for IE. */
+	font-feature-settings: 'liga';
+}
+
+
+/*name : 3d rotation, id : ic_3d_rotation, keywords : [action,3d,rotation], content : 3d_rotation, codepoint : E84D*/
+.md-3d_rotation::after{
+	content:"3d_rotation";
+}
+/*name : accessibility, id : ic_accessibility, keywords : [action,accessibility], content : accessibility, codepoint : E84E*/
+.md-accessibility::after{
+	content:"accessibility";
+}
+/*name : accessible, id : ic_accessible, keywords : [action,accessible], content : accessible, codepoint : E914*/
+.md-accessible::after{
+	content:"accessible";
+}
+/*name : account balance, id : ic_account_balance, keywords : [action,account,balance], content : account_balance, codepoint : E84F*/
+.md-account_balance::after{
+	content:"account_balance";
+}
+/*name : account balance wallet, id : ic_account_balance_wallet, keywords : [action,account,balance,wallet], content : account_balance_wallet, codepoint : E850*/
+.md-account_balance_wallet::after{
+	content:"account_balance_wallet";
+}
+/*name : account box, id : ic_account_box, keywords : [action,account,box], content : account_box, codepoint : E851*/
+.md-account_box::after{
+	content:"account_box";
+}
+/*name : account circle, id : ic_account_circle, keywords : [action,account,circle], content : account_circle, codepoint : E853*/
+.md-account_circle::after{
+	content:"account_circle";
+}
+/*name : add shopping cart, id : ic_add_shopping_cart, keywords : [action,add,shopping,cart], content : add_shopping_cart, codepoint : E854*/
+.md-add_shopping_cart::after{
+	content:"add_shopping_cart";
+}
+/*name : alarm, id : ic_alarm, keywords : [action,alarm], content : alarm, codepoint : E855*/
+.md-alarm::after{
+	content:"alarm";
+}
+/*name : alarm add, id : ic_alarm_add, keywords : [action,alarm,add], content : alarm_add, codepoint : E856*/
+.md-alarm_add::after{
+	content:"alarm_add";
+}
+/*name : alarm off, id : ic_alarm_off, keywords : [action,alarm,off], content : alarm_off, codepoint : E857*/
+.md-alarm_off::after{
+	content:"alarm_off";
+}
+/*name : alarm on, id : ic_alarm_on, keywords : [action,alarm,on], content : alarm_on, codepoint : E858*/
+.md-alarm_on::after{
+	content:"alarm_on";
+}
+/*name : all out, id : ic_all_out, keywords : [action,all,out], content : all_out, codepoint : E90B*/
+.md-all_out::after{
+	content:"all_out";
+}
+/*name : android, id : ic_android, keywords : [action,android], content : android, codepoint : E859*/
+.md-android::after{
+	content:"android";
+}
+/*name : announcement, id : ic_announcement, keywords : [action,announcement], content : announcement, codepoint : E85A*/
+.md-announcement::after{
+	content:"announcement";
+}
+/*name : aspect ratio, id : ic_aspect_ratio, keywords : [action,aspect,ratio], content : aspect_ratio, codepoint : E85B*/
+.md-aspect_ratio::after{
+	content:"aspect_ratio";
+}
+/*name : assessment, id : ic_assessment, keywords : [action,assessment], content : assessment, codepoint : E85C*/
+.md-assessment::after{
+	content:"assessment";
+}
+/*name : assignment, id : ic_assignment, keywords : [action,assignment], content : assignment, codepoint : E85D*/
+.md-assignment::after{
+	content:"assignment";
+}
+/*name : assignment ind, id : ic_assignment_ind, keywords : [action,assignment,ind], content : assignment_ind, codepoint : E85E*/
+.md-assignment_ind::after{
+	content:"assignment_ind";
+}
+/*name : assignment late, id : ic_assignment_late, keywords : [action,assignment,late], content : assignment_late, codepoint : E85F*/
+.md-assignment_late::after{
+	content:"assignment_late";
+}
+/*name : assignment return, id : ic_assignment_return, keywords : [action,assignment,return], content : assignment_return, codepoint : E860*/
+.md-assignment_return::after{
+	content:"assignment_return";
+}
+/*name : assignment returned, id : ic_assignment_returned, keywords : [action,assignment,returned], content : assignment_returned, codepoint : E861*/
+.md-assignment_returned::after{
+	content:"assignment_returned";
+}
+/*name : assignment turned in, id : ic_assignment_turned_in, keywords : [action,assignment,turned,in], content : assignment_turned_in, codepoint : E862*/
+.md-assignment_turned_in::after{
+	content:"assignment_turned_in";
+}
+/*name : autorenew, id : ic_autorenew, keywords : [action,autorenew], content : autorenew, codepoint : E863*/
+.md-autorenew::after{
+	content:"autorenew";
+}
+/*name : backup, id : ic_backup, keywords : [action,backup], content : backup, codepoint : E864*/
+.md-backup::after{
+	content:"backup";
+}
+/*name : book, id : ic_book, keywords : [action,book], content : book, codepoint : E865*/
+.md-book::after{
+	content:"book";
+}
+/*name : bookmark, id : ic_bookmark, keywords : [action,bookmark], content : bookmark, codepoint : E866*/
+.md-bookmark::after{
+	content:"bookmark";
+}
+/*name : bookmark border, id : ic_bookmark_border, keywords : [action,bookmark,border], content : bookmark_border, codepoint : E867*/
+.md-bookmark_border::after{
+	content:"bookmark_border";
+}
+/*name : bug report, id : ic_bug_report, keywords : [action,bug,report], content : bug_report, codepoint : E868*/
+.md-bug_report::after{
+	content:"bug_report";
+}
+/*name : build, id : ic_build, keywords : [action,build], content : build, codepoint : E869*/
+.md-build::after{
+	content:"build";
+}
+/*name : cached, id : ic_cached, keywords : [action,cached], content : cached, codepoint : E86A*/
+.md-cached::after{
+	content:"cached";
+}
+/*name : camera enhance, id : ic_camera_enhance, keywords : [action,camera,enhance], content : camera_enhance, codepoint : E8FC*/
+.md-camera_enhance::after{
+	content:"camera_enhance";
+}
+/*name : card giftcard, id : ic_card_giftcard, keywords : [action,card,giftcard], content : card_giftcard, codepoint : E8F6*/
+.md-card_giftcard::after{
+	content:"card_giftcard";
+}
+/*name : card membership, id : ic_card_membership, keywords : [action,card,membership], content : card_membership, codepoint : E8F7*/
+.md-card_membership::after{
+	content:"card_membership";
+}
+/*name : card travel, id : ic_card_travel, keywords : [action,card,travel], content : card_travel, codepoint : E8F8*/
+.md-card_travel::after{
+	content:"card_travel";
+}
+/*name : change history, id : ic_change_history, keywords : [action,change,history], content : change_history, codepoint : E86B*/
+.md-change_history::after{
+	content:"change_history";
+}
+/*name : check circle, id : ic_check_circle, keywords : [action,check,circle], content : check_circle, codepoint : E86C*/
+.md-check_circle::after{
+	content:"check_circle";
+}
+/*name : chrome reader mode, id : ic_chrome_reader_mode, keywords : [action,chrome,reader,mode], content : chrome_reader_mode, codepoint : E86D*/
+.md-chrome_reader_mode::after{
+	content:"chrome_reader_mode";
+}
+/*name : class, id : ic_class, keywords : [action,class], content : class, codepoint : E86E*/
+.md-class::after{
+	content:"class";
+}
+/*name : code, id : ic_code, keywords : [action,code], content : code, codepoint : E86F*/
+.md-code::after{
+	content:"code";
+}
+/*name : compare arrows, id : ic_compare_arrows, keywords : [action,compare,arrows], content : compare_arrows, codepoint : E915*/
+.md-compare_arrows::after{
+	content:"compare_arrows";
+}
+/*name : copyright, id : ic_copyright, keywords : [action,copyright], content : copyright, codepoint : E90C*/
+.md-copyright::after{
+	content:"copyright";
+}
+/*name : credit card, id : ic_credit_card, keywords : [action,credit,card], content : credit_card, codepoint : E870*/
+.md-credit_card::after{
+	content:"credit_card";
+}
+/*name : dashboard, id : ic_dashboard, keywords : [action,dashboard], content : dashboard, codepoint : E871*/
+.md-dashboard::after{
+	content:"dashboard";
+}
+/*name : date range, id : ic_date_range, keywords : [action,date,range], content : date_range, codepoint : E916*/
+.md-date_range::after{
+	content:"date_range";
+}
+/*name : delete, id : ic_delete, keywords : [action,delete], content : delete, codepoint : E872*/
+.md-delete::after{
+	content:"delete";
+}
+/*name : delete forever, id : ic_delete_forever, keywords : [action,delete,forever], content : delete_forever, codepoint : E92B*/
+.md-delete_forever::after{
+	content:"delete_forever";
+}
+/*name : description, id : ic_description, keywords : [action,description], content : description, codepoint : E873*/
+.md-description::after{
+	content:"description";
+}
+/*name : dns, id : ic_dns, keywords : [action,dns], content : dns, codepoint : E875*/
+.md-dns::after{
+	content:"dns";
+}
+/*name : done, id : ic_done, keywords : [action,done], content : done, codepoint : E876*/
+.md-done::after{
+	content:"done";
+}
+/*name : done all, id : ic_done_all, keywords : [action,done,all], content : done_all, codepoint : E877*/
+.md-done_all::after{
+	content:"done_all";
+}
+/*name : donut large, id : ic_donut_large, keywords : [action,donut,large], content : donut_large, codepoint : E917*/
+.md-donut_large::after{
+	content:"donut_large";
+}
+/*name : donut small, id : ic_donut_small, keywords : [action,donut,small], content : donut_small, codepoint : E918*/
+.md-donut_small::after{
+	content:"donut_small";
+}
+/*name : eject, id : ic_eject, keywords : [action,eject], content : eject, codepoint : E8FB*/
+.md-eject::after{
+	content:"eject";
+}
+/*name : euro symbol, id : ic_euro_symbol, keywords : [action,euro,symbol], content : euro_symbol, codepoint : E926*/
+.md-euro_symbol::after{
+	content:"euro_symbol";
+}
+/*name : event, id : ic_event, keywords : [action,event], content : event, codepoint : E878*/
+.md-event::after{
+	content:"event";
+}
+/*name : event seat, id : ic_event_seat, keywords : [action,event,seat], content : event_seat, codepoint : E903*/
+.md-event_seat::after{
+	content:"event_seat";
+}
+/*name : exit to app, id : ic_exit_to_app, keywords : [action,exit,to,app], content : exit_to_app, codepoint : E879*/
+.md-exit_to_app::after{
+	content:"exit_to_app";
+}
+/*name : explore, id : ic_explore, keywords : [action,explore], content : explore, codepoint : E87A*/
+.md-explore::after{
+	content:"explore";
+}
+/*name : extension, id : ic_extension, keywords : [action,extension], content : extension, codepoint : E87B*/
+.md-extension::after{
+	content:"extension";
+}
+/*name : face, id : ic_face, keywords : [action,face], content : face, codepoint : E87C*/
+.md-face::after{
+	content:"face";
+}
+/*name : favorite, id : ic_favorite, keywords : [action,favorite], content : favorite, codepoint : E87D*/
+.md-favorite::after{
+	content:"favorite";
+}
+/*name : favorite border, id : ic_favorite_border, keywords : [action,favorite,border], content : favorite_border, codepoint : E87E*/
+.md-favorite_border::after{
+	content:"favorite_border";
+}
+/*name : feedback, id : ic_feedback, keywords : [action,feedback], content : feedback, codepoint : E87F*/
+.md-feedback::after{
+	content:"feedback";
+}
+/*name : find in page, id : ic_find_in_page, keywords : [action,find,in,page], content : find_in_page, codepoint : E880*/
+.md-find_in_page::after{
+	content:"find_in_page";
+}
+/*name : find replace, id : ic_find_replace, keywords : [action,find,replace], content : find_replace, codepoint : E881*/
+.md-find_replace::after{
+	content:"find_replace";
+}
+/*name : fingerprint, id : ic_fingerprint, keywords : [action,fingerprint], content : fingerprint, codepoint : E90D*/
+.md-fingerprint::after{
+	content:"fingerprint";
+}
+/*name : flight land, id : ic_flight_land, keywords : [action,flight,land], content : flight_land, codepoint : E904*/
+.md-flight_land::after{
+	content:"flight_land";
+}
+/*name : flight takeoff, id : ic_flight_takeoff, keywords : [action,flight,takeoff], content : flight_takeoff, codepoint : E905*/
+.md-flight_takeoff::after{
+	content:"flight_takeoff";
+}
+/*name : flip to back, id : ic_flip_to_back, keywords : [action,flip,to,back], content : flip_to_back, codepoint : E882*/
+.md-flip_to_back::after{
+	content:"flip_to_back";
+}
+/*name : flip to front, id : ic_flip_to_front, keywords : [action,flip,to,front], content : flip_to_front, codepoint : E883*/
+.md-flip_to_front::after{
+	content:"flip_to_front";
+}
+/*name : g translate, id : ic_g_translate, keywords : [action,translate], content : g_translate, codepoint : E927*/
+.md-g_translate::after{
+	content:"g_translate";
+}
+/*name : gavel, id : ic_gavel, keywords : [action,gavel], content : gavel, codepoint : E90E*/
+.md-gavel::after{
+	content:"gavel";
+}
+/*name : get app, id : ic_get_app, keywords : [action,get,app], content : get_app, codepoint : E884*/
+.md-get_app::after{
+	content:"get_app";
+}
+/*name : gif, id : ic_gif, keywords : [action,gif], content : gif, codepoint : E908*/
+.md-gif::after{
+	content:"gif";
+}
+/*name : grade, id : ic_grade, keywords : [action,grade], content : grade, codepoint : E885*/
+.md-grade::after{
+	content:"grade";
+}
+/*name : group work, id : ic_group_work, keywords : [action,group,work], content : group_work, codepoint : E886*/
+.md-group_work::after{
+	content:"group_work";
+}
+/*name : help, id : ic_help, keywords : [action,help], content : help, codepoint : E887*/
+.md-help::after{
+	content:"help";
+}
+/*name : help outline, id : ic_help_outline, keywords : [action,help,outline], content : help_outline, codepoint : E8FD*/
+.md-help_outline::after{
+	content:"help_outline";
+}
+/*name : highlight off, id : ic_highlight_off, keywords : [action,highlight,off], content : highlight_off, codepoint : E888*/
+.md-highlight_off::after{
+	content:"highlight_off";
+}
+/*name : history, id : ic_history, keywords : [action,history], content : history, codepoint : E889*/
+.md-history::after{
+	content:"history";
+}
+/*name : home, id : ic_home, keywords : [action,home], content : home, codepoint : E88A*/
+.md-home::after{
+	content:"home";
+}
+/*name : hourglass empty, id : ic_hourglass_empty, keywords : [action,hourglass,empty], content : hourglass_empty, codepoint : E88B*/
+.md-hourglass_empty::after{
+	content:"hourglass_empty";
+}
+/*name : hourglass full, id : ic_hourglass_full, keywords : [action,hourglass,full], content : hourglass_full, codepoint : E88C*/
+.md-hourglass_full::after{
+	content:"hourglass_full";
+}
+/*name : http, id : ic_http, keywords : [action,http], content : http, codepoint : E902*/
+.md-http::after{
+	content:"http";
+}
+/*name : https, id : ic_https, keywords : [action,https], content : https, codepoint : E88D*/
+.md-https::after{
+	content:"https";
+}
+/*name : important devices, id : ic_important_devices, keywords : [action,important,devices], content : important_devices, codepoint : E912*/
+.md-important_devices::after{
+	content:"important_devices";
+}
+/*name : info, id : ic_info, keywords : [action,info], content : info, codepoint : E88E*/
+.md-info::after{
+	content:"info";
+}
+/*name : info outline, id : ic_info_outline, keywords : [action,info,outline], content : info_outline, codepoint : E88F*/
+.md-info_outline::after{
+	content:"info_outline";
+}
+/*name : input, id : ic_input, keywords : [action,input], content : input, codepoint : E890*/
+.md-input::after{
+	content:"input";
+}
+/*name : invert colors, id : ic_invert_colors, keywords : [action,invert,colors], content : invert_colors, codepoint : E891*/
+.md-invert_colors::after{
+	content:"invert_colors";
+}
+/*name : label, id : ic_label, keywords : [action,label], content : label, codepoint : E892*/
+.md-label::after{
+	content:"label";
+}
+/*name : label outline, id : ic_label_outline, keywords : [action,label,outline], content : label_outline, codepoint : E893*/
+.md-label_outline::after{
+	content:"label_outline";
+}
+/*name : language, id : ic_language, keywords : [action,language], content : language, codepoint : E894*/
+.md-language::after{
+	content:"language";
+}
+/*name : launch, id : ic_launch, keywords : [action,launch], content : launch, codepoint : E895*/
+.md-launch::after{
+	content:"launch";
+}
+/*name : lightbulb outline, id : ic_lightbulb_outline, keywords : [action,lightbulb,outline], content : lightbulb_outline, codepoint : E90F*/
+.md-lightbulb_outline::after{
+	content:"lightbulb_outline";
+}
+/*name : line style, id : ic_line_style, keywords : [action,line,style], content : line_style, codepoint : E919*/
+.md-line_style::after{
+	content:"line_style";
+}
+/*name : line weight, id : ic_line_weight, keywords : [action,line,weight], content : line_weight, codepoint : E91A*/
+.md-line_weight::after{
+	content:"line_weight";
+}
+/*name : list, id : ic_list, keywords : [action,list], content : list, codepoint : E896*/
+.md-list::after{
+	content:"list";
+}
+/*name : lock, id : ic_lock, keywords : [action,lock], content : lock, codepoint : E897*/
+.md-lock::after{
+	content:"lock";
+}
+/*name : lock open, id : ic_lock_open, keywords : [action,lock,open], content : lock_open, codepoint : E898*/
+.md-lock_open::after{
+	content:"lock_open";
+}
+/*name : lock outline, id : ic_lock_outline, keywords : [action,lock,outline], content : lock_outline, codepoint : E899*/
+.md-lock_outline::after{
+	content:"lock_outline";
+}
+/*name : loyalty, id : ic_loyalty, keywords : [action,loyalty], content : loyalty, codepoint : E89A*/
+.md-loyalty::after{
+	content:"loyalty";
+}
+/*name : markunread mailbox, id : ic_markunread_mailbox, keywords : [action,markunread,mailbox], content : markunread_mailbox, codepoint : E89B*/
+.md-markunread_mailbox::after{
+	content:"markunread_mailbox";
+}
+/*name : motorcycle, id : ic_motorcycle, keywords : [action,motorcycle], content : motorcycle, codepoint : E91B*/
+.md-motorcycle::after{
+	content:"motorcycle";
+}
+/*name : note add, id : ic_note_add, keywords : [action,note,add], content : note_add, codepoint : E89C*/
+.md-note_add::after{
+	content:"note_add";
+}
+/*name : offline pin, id : ic_offline_pin, keywords : [action,offline,pin], content : offline_pin, codepoint : E90A*/
+.md-offline_pin::after{
+	content:"offline_pin";
+}
+/*name : opacity, id : ic_opacity, keywords : [action,opacity], content : opacity, codepoint : E91C*/
+.md-opacity::after{
+	content:"opacity";
+}
+/*name : open in browser, id : ic_open_in_browser, keywords : [action,open,in,browser], content : open_in_browser, codepoint : E89D*/
+.md-open_in_browser::after{
+	content:"open_in_browser";
+}
+/*name : open in new, id : ic_open_in_new, keywords : [action,open,in,new], content : open_in_new, codepoint : E89E*/
+.md-open_in_new::after{
+	content:"open_in_new";
+}
+/*name : open with, id : ic_open_with, keywords : [action,open,with], content : open_with, codepoint : E89F*/
+.md-open_with::after{
+	content:"open_with";
+}
+/*name : pageview, id : ic_pageview, keywords : [action,pageview], content : pageview, codepoint : E8A0*/
+.md-pageview::after{
+	content:"pageview";
+}
+/*name : pan tool, id : ic_pan_tool, keywords : [action,pan,tool], content : pan_tool, codepoint : E925*/
+.md-pan_tool::after{
+	content:"pan_tool";
+}
+/*name : payment, id : ic_payment, keywords : [action,payment], content : payment, codepoint : E8A1*/
+.md-payment::after{
+	content:"payment";
+}
+/*name : perm camera mic, id : ic_perm_camera_mic, keywords : [action,perm,camera,mic], content : perm_camera_mic, codepoint : E8A2*/
+.md-perm_camera_mic::after{
+	content:"perm_camera_mic";
+}
+/*name : perm contact calendar, id : ic_perm_contact_calendar, keywords : [action,perm,contact,calendar], content : perm_contact_calendar, codepoint : E8A3*/
+.md-perm_contact_calendar::after{
+	content:"perm_contact_calendar";
+}
+/*name : perm data setting, id : ic_perm_data_setting, keywords : [action,perm,data,setting], content : perm_data_setting, codepoint : E8A4*/
+.md-perm_data_setting::after{
+	content:"perm_data_setting";
+}
+/*name : perm device information, id : ic_perm_device_information, keywords : [action,perm,device,information], content : perm_device_information, codepoint : E8A5*/
+.md-perm_device_information::after{
+	content:"perm_device_information";
+}
+/*name : perm identity, id : ic_perm_identity, keywords : [action,perm,identity], content : perm_identity, codepoint : E8A6*/
+.md-perm_identity::after{
+	content:"perm_identity";
+}
+/*name : perm media, id : ic_perm_media, keywords : [action,perm,media], content : perm_media, codepoint : E8A7*/
+.md-perm_media::after{
+	content:"perm_media";
+}
+/*name : perm phone msg, id : ic_perm_phone_msg, keywords : [action,perm,phone,msg], content : perm_phone_msg, codepoint : E8A8*/
+.md-perm_phone_msg::after{
+	content:"perm_phone_msg";
+}
+/*name : perm scan wifi, id : ic_perm_scan_wifi, keywords : [action,perm,scan,wifi], content : perm_scan_wifi, codepoint : E8A9*/
+.md-perm_scan_wifi::after{
+	content:"perm_scan_wifi";
+}
+/*name : pets, id : ic_pets, keywords : [action,pets], content : pets, codepoint : E91D*/
+.md-pets::after{
+	content:"pets";
+}
+/*name : picture in picture, id : ic_picture_in_picture, keywords : [action,picture,in,picture], content : picture_in_picture, codepoint : E8AA*/
+.md-picture_in_picture::after{
+	content:"picture_in_picture";
+}
+/*name : picture in picture alt, id : ic_picture_in_picture_alt, keywords : [action,picture,in,picture,alt], content : picture_in_picture_alt, codepoint : E911*/
+.md-picture_in_picture_alt::after{
+	content:"picture_in_picture_alt";
+}
+/*name : play for work, id : ic_play_for_work, keywords : [action,play,work], content : play_for_work, codepoint : E906*/
+.md-play_for_work::after{
+	content:"play_for_work";
+}
+/*name : polymer, id : ic_polymer, keywords : [action,polymer], content : polymer, codepoint : E8AB*/
+.md-polymer::after{
+	content:"polymer";
+}
+/*name : power settings new, id : ic_power_settings_new, keywords : [action,power,settings,new], content : power_settings_new, codepoint : E8AC*/
+.md-power_settings_new::after{
+	content:"power_settings_new";
+}
+/*name : pregnant woman, id : ic_pregnant_woman, keywords : [action,pregnant,woman], content : pregnant_woman, codepoint : E91E*/
+.md-pregnant_woman::after{
+	content:"pregnant_woman";
+}
+/*name : print, id : ic_print, keywords : [action,print], content : print, codepoint : E8AD*/
+.md-print::after{
+	content:"print";
+}
+/*name : query builder, id : ic_query_builder, keywords : [action,query,builder], content : query_builder, codepoint : E8AE*/
+.md-query_builder::after{
+	content:"query_builder";
+}
+/*name : question answer, id : ic_question_answer, keywords : [action,question,answer], content : question_answer, codepoint : E8AF*/
+.md-question_answer::after{
+	content:"question_answer";
+}
+/*name : receipt, id : ic_receipt, keywords : [action,receipt], content : receipt, codepoint : E8B0*/
+.md-receipt::after{
+	content:"receipt";
+}
+/*name : record voice over, id : ic_record_voice_over, keywords : [action,record,voice,over], content : record_voice_over, codepoint : E91F*/
+.md-record_voice_over::after{
+	content:"record_voice_over";
+}
+/*name : redeem, id : ic_redeem, keywords : [action,redeem], content : redeem, codepoint : E8B1*/
+.md-redeem::after{
+	content:"redeem";
+}
+/*name : remove shopping cart, id : ic_remove_shopping_cart, keywords : [action,remove,shopping,cart], content : remove_shopping_cart, codepoint : E928*/
+.md-remove_shopping_cart::after{
+	content:"remove_shopping_cart";
+}
+/*name : reorder, id : ic_reorder, keywords : [action,reorder], content : reorder, codepoint : E8FE*/
+.md-reorder::after{
+	content:"reorder";
+}
+/*name : report problem, id : ic_report_problem, keywords : [action,report,problem], content : report_problem, codepoint : E8B2*/
+.md-report_problem::after{
+	content:"report_problem";
+}
+/*name : restore, id : ic_restore, keywords : [action,restore], content : restore, codepoint : E8B3*/
+.md-restore::after{
+	content:"restore";
+}
+/*name : restore page, id : ic_restore_page, keywords : [action,restore,page], content : restore_page, codepoint : E929*/
+.md-restore_page::after{
+	content:"restore_page";
+}
+/*name : room, id : ic_room, keywords : [action,room], content : room, codepoint : E8B4*/
+.md-room::after{
+	content:"room";
+}
+/*name : rounded corner, id : ic_rounded_corner, keywords : [action,rounded,corner], content : rounded_corner, codepoint : E920*/
+.md-rounded_corner::after{
+	content:"rounded_corner";
+}
+/*name : rowing, id : ic_rowing, keywords : [action,rowing], content : rowing, codepoint : E921*/
+.md-rowing::after{
+	content:"rowing";
+}
+/*name : schedule, id : ic_schedule, keywords : [action,schedule], content : schedule, codepoint : E8B5*/
+.md-schedule::after{
+	content:"schedule";
+}
+/*name : search, id : ic_search, keywords : [action,search], content : search, codepoint : E8B6*/
+.md-search::after{
+	content:"search";
+}
+/*name : settings, id : ic_settings, keywords : [action,settings], content : settings, codepoint : E8B8*/
+.md-settings::after{
+	content:"settings";
+}
+/*name : settings applications, id : ic_settings_applications, keywords : [action,settings,applications], content : settings_applications, codepoint : E8B9*/
+.md-settings_applications::after{
+	content:"settings_applications";
+}
+/*name : settings backup restore, id : ic_settings_backup_restore, keywords : [action,settings,backup,restore], content : settings_backup_restore, codepoint : E8BA*/
+.md-settings_backup_restore::after{
+	content:"settings_backup_restore";
+}
+/*name : settings bluetooth, id : ic_settings_bluetooth, keywords : [action,settings,bluetooth], content : settings_bluetooth, codepoint : E8BB*/
+.md-settings_bluetooth::after{
+	content:"settings_bluetooth";
+}
+/*name : settings brightness, id : ic_settings_brightness, keywords : [action,settings,brightness], content : settings_brightness, codepoint : E8BD*/
+.md-settings_brightness::after{
+	content:"settings_brightness";
+}
+/*name : settings cell, id : ic_settings_cell, keywords : [action,settings,cell], content : settings_cell, codepoint : E8BC*/
+.md-settings_cell::after{
+	content:"settings_cell";
+}
+/*name : settings ethernet, id : ic_settings_ethernet, keywords : [action,settings,ethernet], content : settings_ethernet, codepoint : E8BE*/
+.md-settings_ethernet::after{
+	content:"settings_ethernet";
+}
+/*name : settings input antenna, id : ic_settings_input_antenna, keywords : [action,settings,input,antenna], content : settings_input_antenna, codepoint : E8BF*/
+.md-settings_input_antenna::after{
+	content:"settings_input_antenna";
+}
+/*name : settings input component, id : ic_settings_input_component, keywords : [action,settings,input,component], content : settings_input_component, codepoint : E8C0*/
+.md-settings_input_component::after{
+	content:"settings_input_component";
+}
+/*name : settings input composite, id : ic_settings_input_composite, keywords : [action,settings,input,composite], content : settings_input_composite, codepoint : E8C1*/
+.md-settings_input_composite::after{
+	content:"settings_input_composite";
+}
+/*name : settings input hdmi, id : ic_settings_input_hdmi, keywords : [action,settings,input,hdmi], content : settings_input_hdmi, codepoint : E8C2*/
+.md-settings_input_hdmi::after{
+	content:"settings_input_hdmi";
+}
+/*name : settings input svideo, id : ic_settings_input_svideo, keywords : [action,settings,input,svideo], content : settings_input_svideo, codepoint : E8C3*/
+.md-settings_input_svideo::after{
+	content:"settings_input_svideo";
+}
+/*name : settings overscan, id : ic_settings_overscan, keywords : [action,settings,overscan], content : settings_overscan, codepoint : E8C4*/
+.md-settings_overscan::after{
+	content:"settings_overscan";
+}
+/*name : settings phone, id : ic_settings_phone, keywords : [action,settings,phone], content : settings_phone, codepoint : E8C5*/
+.md-settings_phone::after{
+	content:"settings_phone";
+}
+/*name : settings power, id : ic_settings_power, keywords : [action,settings,power], content : settings_power, codepoint : E8C6*/
+.md-settings_power::after{
+	content:"settings_power";
+}
+/*name : settings remote, id : ic_settings_remote, keywords : [action,settings,remote], content : settings_remote, codepoint : E8C7*/
+.md-settings_remote::after{
+	content:"settings_remote";
+}
+/*name : settings voice, id : ic_settings_voice, keywords : [action,settings,voice], content : settings_voice, codepoint : E8C8*/
+.md-settings_voice::after{
+	content:"settings_voice";
+}
+/*name : shop, id : ic_shop, keywords : [action,shop], content : shop, codepoint : E8C9*/
+.md-shop::after{
+	content:"shop";
+}
+/*name : shop two, id : ic_shop_two, keywords : [action,shop,two], content : shop_two, codepoint : E8CA*/
+.md-shop_two::after{
+	content:"shop_two";
+}
+/*name : shopping basket, id : ic_shopping_basket, keywords : [action,shopping,basket], content : shopping_basket, codepoint : E8CB*/
+.md-shopping_basket::after{
+	content:"shopping_basket";
+}
+/*name : shopping cart, id : ic_shopping_cart, keywords : [action,shopping,cart], content : shopping_cart, codepoint : E8CC*/
+.md-shopping_cart::after{
+	content:"shopping_cart";
+}
+/*name : speaker notes, id : ic_speaker_notes, keywords : [action,speaker,notes], content : speaker_notes, codepoint : E8CD*/
+.md-speaker_notes::after{
+	content:"speaker_notes";
+}
+/*name : speaker notes off, id : ic_speaker_notes_off, keywords : [action,speaker,notes,off], content : speaker_notes_off, codepoint : E92A*/
+.md-speaker_notes_off::after{
+	content:"speaker_notes_off";
+}
+/*name : spellcheck, id : ic_spellcheck, keywords : [action,spellcheck], content : spellcheck, codepoint : E8CE*/
+.md-spellcheck::after{
+	content:"spellcheck";
+}
+/*name : star rate, id : ic_star_rate, keywords : [action,star,rate], content : star_rate, codepoint : E8CF*/
+.md-star_rate::after{
+	content:"star_rate";
+}
+/*name : stars, id : ic_stars, keywords : [action,stars], content : stars, codepoint : E8D0*/
+.md-stars::after{
+	content:"stars";
+}
+/*name : store, id : ic_store, keywords : [action,store], content : store, codepoint : E8D1*/
+.md-store::after{
+	content:"store";
+}
+/*name : subject, id : ic_subject, keywords : [action,subject], content : subject, codepoint : E8D2*/
+.md-subject::after{
+	content:"subject";
+}
+/*name : supervisor account, id : ic_supervisor_account, keywords : [action,supervisor,account], content : supervisor_account, codepoint : E8D3*/
+.md-supervisor_account::after{
+	content:"supervisor_account";
+}
+/*name : swap horiz, id : ic_swap_horiz, keywords : [action,swap,horiz], content : swap_horiz, codepoint : E8D4*/
+.md-swap_horiz::after{
+	content:"swap_horiz";
+}
+/*name : swap vert, id : ic_swap_vert, keywords : [action,swap,vert], content : swap_vert, codepoint : E8D5*/
+.md-swap_vert::after{
+	content:"swap_vert";
+}
+/*name : swap vertical circle, id : ic_swap_vertical_circle, keywords : [action,swap,vertical,circle], content : swap_vertical_circle, codepoint : E8D6*/
+.md-swap_vertical_circle::after{
+	content:"swap_vertical_circle";
+}
+/*name : system update alt, id : ic_system_update_alt, keywords : [action,system,update,alt], content : system_update_alt, codepoint : E8D7*/
+.md-system_update_alt::after{
+	content:"system_update_alt";
+}
+/*name : tab, id : ic_tab, keywords : [action,tab], content : tab, codepoint : E8D8*/
+.md-tab::after{
+	content:"tab";
+}
+/*name : tab unselected, id : ic_tab_unselected, keywords : [action,tab,unselected], content : tab_unselected, codepoint : E8D9*/
+.md-tab_unselected::after{
+	content:"tab_unselected";
+}
+/*name : theaters, id : ic_theaters, keywords : [action,theaters], content : theaters, codepoint : E8DA*/
+.md-theaters::after{
+	content:"theaters";
+}
+/*name : thumb down, id : ic_thumb_down, keywords : [action,thumb,down], content : thumb_down, codepoint : E8DB*/
+.md-thumb_down::after{
+	content:"thumb_down";
+}
+/*name : thumb up, id : ic_thumb_up, keywords : [action,thumb,up], content : thumb_up, codepoint : E8DC*/
+.md-thumb_up::after{
+	content:"thumb_up";
+}
+/*name : thumbs up down, id : ic_thumbs_up_down, keywords : [action,thumbs,up,down], content : thumbs_up_down, codepoint : E8DD*/
+.md-thumbs_up_down::after{
+	content:"thumbs_up_down";
+}
+/*name : timeline, id : ic_timeline, keywords : [action,timeline], content : timeline, codepoint : E922*/
+.md-timeline::after{
+	content:"timeline";
+}
+/*name : toc, id : ic_toc, keywords : [action,toc], content : toc, codepoint : E8DE*/
+.md-toc::after{
+	content:"toc";
+}
+/*name : today, id : ic_today, keywords : [action,today], content : today, codepoint : E8DF*/
+.md-today::after{
+	content:"today";
+}
+/*name : toll, id : ic_toll, keywords : [action,toll], content : toll, codepoint : E8E0*/
+.md-toll::after{
+	content:"toll";
+}
+/*name : touch app, id : ic_touch_app, keywords : [action,touch,app], content : touch_app, codepoint : E913*/
+.md-touch_app::after{
+	content:"touch_app";
+}
+/*name : track changes, id : ic_track_changes, keywords : [action,track,changes], content : track_changes, codepoint : E8E1*/
+.md-track_changes::after{
+	content:"track_changes";
+}
+/*name : translate, id : ic_translate, keywords : [action,translate], content : translate, codepoint : E8E2*/
+.md-translate::after{
+	content:"translate";
+}
+/*name : trending down, id : ic_trending_down, keywords : [action,trending,down], content : trending_down, codepoint : E8E3*/
+.md-trending_down::after{
+	content:"trending_down";
+}
+/*name : trending flat, id : ic_trending_flat, keywords : [action,trending,flat], content : trending_flat, codepoint : E8E4*/
+.md-trending_flat::after{
+	content:"trending_flat";
+}
+/*name : trending up, id : ic_trending_up, keywords : [action,trending,up], content : trending_up, codepoint : E8E5*/
+.md-trending_up::after{
+	content:"trending_up";
+}
+/*name : turned in, id : ic_turned_in, keywords : [action,turned,in], content : turned_in, codepoint : E8E6*/
+.md-turned_in::after{
+	content:"turned_in";
+}
+/*name : turned in not, id : ic_turned_in_not, keywords : [action,turned,in,not], content : turned_in_not, codepoint : E8E7*/
+.md-turned_in_not::after{
+	content:"turned_in_not";
+}
+/*name : update, id : ic_update, keywords : [action,update], content : update, codepoint : E923*/
+.md-update::after{
+	content:"update";
+}
+/*name : verified user, id : ic_verified_user, keywords : [action,verified,user], content : verified_user, codepoint : E8E8*/
+.md-verified_user::after{
+	content:"verified_user";
+}
+/*name : view agenda, id : ic_view_agenda, keywords : [action,view,agenda], content : view_agenda, codepoint : E8E9*/
+.md-view_agenda::after{
+	content:"view_agenda";
+}
+/*name : view array, id : ic_view_array, keywords : [action,view,array], content : view_array, codepoint : E8EA*/
+.md-view_array::after{
+	content:"view_array";
+}
+/*name : view carousel, id : ic_view_carousel, keywords : [action,view,carousel], content : view_carousel, codepoint : E8EB*/
+.md-view_carousel::after{
+	content:"view_carousel";
+}
+/*name : view column, id : ic_view_column, keywords : [action,view,column], content : view_column, codepoint : E8EC*/
+.md-view_column::after{
+	content:"view_column";
+}
+/*name : view day, id : ic_view_day, keywords : [action,view,day], content : view_day, codepoint : E8ED*/
+.md-view_day::after{
+	content:"view_day";
+}
+/*name : view headline, id : ic_view_headline, keywords : [action,view,headline], content : view_headline, codepoint : E8EE*/
+.md-view_headline::after{
+	content:"view_headline";
+}
+/*name : view list, id : ic_view_list, keywords : [action,view,list], content : view_list, codepoint : E8EF*/
+.md-view_list::after{
+	content:"view_list";
+}
+/*name : view module, id : ic_view_module, keywords : [action,view,module], content : view_module, codepoint : E8F0*/
+.md-view_module::after{
+	content:"view_module";
+}
+/*name : view quilt, id : ic_view_quilt, keywords : [action,view,quilt], content : view_quilt, codepoint : E8F1*/
+.md-view_quilt::after{
+	content:"view_quilt";
+}
+/*name : view stream, id : ic_view_stream, keywords : [action,view,stream], content : view_stream, codepoint : E8F2*/
+.md-view_stream::after{
+	content:"view_stream";
+}
+/*name : view week, id : ic_view_week, keywords : [action,view,week], content : view_week, codepoint : E8F3*/
+.md-view_week::after{
+	content:"view_week";
+}
+/*name : visibility, id : ic_visibility, keywords : [action,visibility], content : visibility, codepoint : E8F4*/
+.md-visibility::after{
+	content:"visibility";
+}
+/*name : visibility off, id : ic_visibility_off, keywords : [action,visibility,off], content : visibility_off, codepoint : E8F5*/
+.md-visibility_off::after{
+	content:"visibility_off";
+}
+/*name : watch later, id : ic_watch_later, keywords : [action,watch,later], content : watch_later, codepoint : E924*/
+.md-watch_later::after{
+	content:"watch_later";
+}
+/*name : work, id : ic_work, keywords : [action,work], content : work, codepoint : E8F9*/
+.md-work::after{
+	content:"work";
+}
+/*name : youtube searched for, id : ic_youtube_searched_for, keywords : [action,youtube,searched], content : youtube_searched_for, codepoint : E8FA*/
+.md-youtube_searched_for::after{
+	content:"youtube_searched_for";
+}
+/*name : zoom in, id : ic_zoom_in, keywords : [action,zoom,in], content : zoom_in, codepoint : E8FF*/
+.md-zoom_in::after{
+	content:"zoom_in";
+}
+/*name : zoom out, id : ic_zoom_out, keywords : [action,zoom,out], content : zoom_out, codepoint : E900*/
+.md-zoom_out::after{
+	content:"zoom_out";
+}
+/*name : add alert, id : ic_add_alert, keywords : [alert,add,alert], content : add_alert, codepoint : E003*/
+.md-add_alert::after{
+	content:"add_alert";
+}
+/*name : error, id : ic_error, keywords : [alert,error], content : error, codepoint : E000*/
+.md-error::after{
+	content:"error";
+}
+/*name : error outline, id : ic_error_outline, keywords : [alert,error,outline], content : error_outline, codepoint : E001*/
+.md-error_outline::after{
+	content:"error_outline";
+}
+/*name : warning, id : ic_warning, keywords : [alert,warning], content : warning, codepoint : E002*/
+.md-warning::after{
+	content:"warning";
+}
+/*name : add to queue, id : ic_add_to_queue, keywords : [av,add,to,queue], content : add_to_queue, codepoint : E05C*/
+.md-add_to_queue::after{
+	content:"add_to_queue";
+}
+/*name : airplay, id : ic_airplay, keywords : [av,airplay], content : airplay, codepoint : E055*/
+.md-airplay::after{
+	content:"airplay";
+}
+/*name : album, id : ic_album, keywords : [av,album], content : album, codepoint : E019*/
+.md-album::after{
+	content:"album";
+}
+/*name : art track, id : ic_art_track, keywords : [av,art,track], content : art_track, codepoint : E060*/
+.md-art_track::after{
+	content:"art_track";
+}
+/*name : av timer, id : ic_av_timer, keywords : [av,av,timer], content : av_timer, codepoint : E01B*/
+.md-av_timer::after{
+	content:"av_timer";
+}
+/*name : branding watermark, id : ic_branding_watermark, keywords : [av,branding,watermark], content : branding_watermark, codepoint : E06B*/
+.md-branding_watermark::after{
+	content:"branding_watermark";
+}
+/*name : call to action, id : ic_call_to_action, keywords : [av,call,to,action], content : call_to_action, codepoint : E06C*/
+.md-call_to_action::after{
+	content:"call_to_action";
+}
+/*name : closed caption, id : ic_closed_caption, keywords : [av,closed,caption], content : closed_caption, codepoint : E01C*/
+.md-closed_caption::after{
+	content:"closed_caption";
+}
+/*name : equalizer, id : ic_equalizer, keywords : [av,equalizer], content : equalizer, codepoint : E01D*/
+.md-equalizer::after{
+	content:"equalizer";
+}
+/*name : explicit, id : ic_explicit, keywords : [av,explicit], content : explicit, codepoint : E01E*/
+.md-explicit::after{
+	content:"explicit";
+}
+/*name : fast forward, id : ic_fast_forward, keywords : [av,fast,forward], content : fast_forward, codepoint : E01F*/
+.md-fast_forward::after{
+	content:"fast_forward";
+}
+/*name : fast rewind, id : ic_fast_rewind, keywords : [av,fast,rewind], content : fast_rewind, codepoint : E020*/
+.md-fast_rewind::after{
+	content:"fast_rewind";
+}
+/*name : featured play list, id : ic_featured_play_list, keywords : [av,featured,play,list], content : featured_play_list, codepoint : E06D*/
+.md-featured_play_list::after{
+	content:"featured_play_list";
+}
+/*name : featured video, id : ic_featured_video, keywords : [av,featured,video], content : featured_video, codepoint : E06E*/
+.md-featured_video::after{
+	content:"featured_video";
+}
+/*name : fiber dvr, id : ic_fiber_dvr, keywords : [av,fiber,dvr], content : fiber_dvr, codepoint : E05D*/
+.md-fiber_dvr::after{
+	content:"fiber_dvr";
+}
+/*name : fiber manual record, id : ic_fiber_manual_record, keywords : [av,fiber,manual,record], content : fiber_manual_record, codepoint : E061*/
+.md-fiber_manual_record::after{
+	content:"fiber_manual_record";
+}
+/*name : fiber new, id : ic_fiber_new, keywords : [av,fiber,new], content : fiber_new, codepoint : E05E*/
+.md-fiber_new::after{
+	content:"fiber_new";
+}
+/*name : fiber pin, id : ic_fiber_pin, keywords : [av,fiber,pin], content : fiber_pin, codepoint : E06A*/
+.md-fiber_pin::after{
+	content:"fiber_pin";
+}
+/*name : fiber smart record, id : ic_fiber_smart_record, keywords : [av,fiber,smart,record], content : fiber_smart_record, codepoint : E062*/
+.md-fiber_smart_record::after{
+	content:"fiber_smart_record";
+}
+/*name : forward 10, id : ic_forward_10, keywords : [av,forward,10], content : forward_10, codepoint : E056*/
+.md-forward_10::after{
+	content:"forward_10";
+}
+/*name : forward 30, id : ic_forward_30, keywords : [av,forward,30], content : forward_30, codepoint : E057*/
+.md-forward_30::after{
+	content:"forward_30";
+}
+/*name : forward 5, id : ic_forward_5, keywords : [av,forward], content : forward_5, codepoint : E058*/
+.md-forward_5::after{
+	content:"forward_5";
+}
+/*name : games, id : ic_games, keywords : [av,games], content : games, codepoint : E021*/
+.md-games::after{
+	content:"games";
+}
+/*name : hd, id : ic_hd, keywords : [av,hd], content : hd, codepoint : E052*/
+.md-hd::after{
+	content:"hd";
+}
+/*name : hearing, id : ic_hearing, keywords : [av,hearing], content : hearing, codepoint : E023*/
+.md-hearing::after{
+	content:"hearing";
+}
+/*name : high quality, id : ic_high_quality, keywords : [av,high,quality], content : high_quality, codepoint : E024*/
+.md-high_quality::after{
+	content:"high_quality";
+}
+/*name : library add, id : ic_library_add, keywords : [av,library,add], content : library_add, codepoint : E02E*/
+.md-library_add::after{
+	content:"library_add";
+}
+/*name : library books, id : ic_library_books, keywords : [av,library,books], content : library_books, codepoint : E02F*/
+.md-library_books::after{
+	content:"library_books";
+}
+/*name : library music, id : ic_library_music, keywords : [av,library,music], content : library_music, codepoint : E030*/
+.md-library_music::after{
+	content:"library_music";
+}
+/*name : loop, id : ic_loop, keywords : [av,loop], content : loop, codepoint : E028*/
+.md-loop::after{
+	content:"loop";
+}
+/*name : mic, id : ic_mic, keywords : [av,mic], content : mic, codepoint : E029*/
+.md-mic::after{
+	content:"mic";
+}
+/*name : mic none, id : ic_mic_none, keywords : [av,mic,none], content : mic_none, codepoint : E02A*/
+.md-mic_none::after{
+	content:"mic_none";
+}
+/*name : mic off, id : ic_mic_off, keywords : [av,mic,off], content : mic_off, codepoint : E02B*/
+.md-mic_off::after{
+	content:"mic_off";
+}
+/*name : movie, id : ic_movie, keywords : [av,movie], content : movie, codepoint : E02C*/
+.md-movie::after{
+	content:"movie";
+}
+/*name : music video, id : ic_music_video, keywords : [av,music,video], content : music_video, codepoint : E063*/
+.md-music_video::after{
+	content:"music_video";
+}
+/*name : new releases, id : ic_new_releases, keywords : [av,new,releases], content : new_releases, codepoint : E031*/
+.md-new_releases::after{
+	content:"new_releases";
+}
+/*name : not interested, id : ic_not_interested, keywords : [av,not,interested], content : not_interested, codepoint : E033*/
+.md-not_interested::after{
+	content:"not_interested";
+}
+/*name : note, id : ic_note, keywords : [av,note], content : note, codepoint : E06F*/
+.md-note::after{
+	content:"note";
+}
+/*name : pause, id : ic_pause, keywords : [av,pause], content : pause, codepoint : E034*/
+.md-pause::after{
+	content:"pause";
+}
+/*name : pause circle filled, id : ic_pause_circle_filled, keywords : [av,pause,circle,filled], content : pause_circle_filled, codepoint : E035*/
+.md-pause_circle_filled::after{
+	content:"pause_circle_filled";
+}
+/*name : pause circle outline, id : ic_pause_circle_outline, keywords : [av,pause,circle,outline], content : pause_circle_outline, codepoint : E036*/
+.md-pause_circle_outline::after{
+	content:"pause_circle_outline";
+}
+/*name : play arrow, id : ic_play_arrow, keywords : [av,play,arrow], content : play_arrow, codepoint : E037*/
+.md-play_arrow::after{
+	content:"play_arrow";
+}
+/*name : play circle filled, id : ic_play_circle_filled, keywords : [av,play,circle,filled], content : play_circle_filled, codepoint : E038*/
+.md-play_circle_filled::after{
+	content:"play_circle_filled";
+}
+/*name : play circle outline, id : ic_play_circle_outline, keywords : [av,play,circle,outline], content : play_circle_outline, codepoint : E039*/
+.md-play_circle_outline::after{
+	content:"play_circle_outline";
+}
+/*name : playlist add, id : ic_playlist_add, keywords : [av,playlist,add], content : playlist_add, codepoint : E03B*/
+.md-playlist_add::after{
+	content:"playlist_add";
+}
+/*name : playlist add check, id : ic_playlist_add_check, keywords : [av,playlist,add,check], content : playlist_add_check, codepoint : E065*/
+.md-playlist_add_check::after{
+	content:"playlist_add_check";
+}
+/*name : playlist play, id : ic_playlist_play, keywords : [av,playlist,play], content : playlist_play, codepoint : E05F*/
+.md-playlist_play::after{
+	content:"playlist_play";
+}
+/*name : queue, id : ic_queue, keywords : [av,queue], content : queue, codepoint : E03C*/
+.md-queue::after{
+	content:"queue";
+}
+/*name : queue music, id : ic_queue_music, keywords : [av,queue,music], content : queue_music, codepoint : E03D*/
+.md-queue_music::after{
+	content:"queue_music";
+}
+/*name : queue play next, id : ic_queue_play_next, keywords : [av,queue,play,next], content : queue_play_next, codepoint : E066*/
+.md-queue_play_next::after{
+	content:"queue_play_next";
+}
+/*name : radio, id : ic_radio, keywords : [av,radio], content : radio, codepoint : E03E*/
+.md-radio::after{
+	content:"radio";
+}
+/*name : recent actors, id : ic_recent_actors, keywords : [av,recent,actors], content : recent_actors, codepoint : E03F*/
+.md-recent_actors::after{
+	content:"recent_actors";
+}
+/*name : remove from queue, id : ic_remove_from_queue, keywords : [av,remove,from,queue], content : remove_from_queue, codepoint : E067*/
+.md-remove_from_queue::after{
+	content:"remove_from_queue";
+}
+/*name : repeat, id : ic_repeat, keywords : [av,repeat], content : repeat, codepoint : E040*/
+.md-repeat::after{
+	content:"repeat";
+}
+/*name : repeat one, id : ic_repeat_one, keywords : [av,repeat,one], content : repeat_one, codepoint : E041*/
+.md-repeat_one::after{
+	content:"repeat_one";
+}
+/*name : replay, id : ic_replay, keywords : [av,replay], content : replay, codepoint : E042*/
+.md-replay::after{
+	content:"replay";
+}
+/*name : replay 10, id : ic_replay_10, keywords : [av,replay,10], content : replay_10, codepoint : E059*/
+.md-replay_10::after{
+	content:"replay_10";
+}
+/*name : replay 30, id : ic_replay_30, keywords : [av,replay,30], content : replay_30, codepoint : E05A*/
+.md-replay_30::after{
+	content:"replay_30";
+}
+/*name : replay 5, id : ic_replay_5, keywords : [av,replay], content : replay_5, codepoint : E05B*/
+.md-replay_5::after{
+	content:"replay_5";
+}
+/*name : shuffle, id : ic_shuffle, keywords : [av,shuffle], content : shuffle, codepoint : E043*/
+.md-shuffle::after{
+	content:"shuffle";
+}
+/*name : skip next, id : ic_skip_next, keywords : [av,skip,next], content : skip_next, codepoint : E044*/
+.md-skip_next::after{
+	content:"skip_next";
+}
+/*name : skip previous, id : ic_skip_previous, keywords : [av,skip,previous], content : skip_previous, codepoint : E045*/
+.md-skip_previous::after{
+	content:"skip_previous";
+}
+/*name : slow motion video, id : ic_slow_motion_video, keywords : [av,slow,motion,video], content : slow_motion_video, codepoint : E068*/
+.md-slow_motion_video::after{
+	content:"slow_motion_video";
+}
+/*name : snooze, id : ic_snooze, keywords : [av,snooze], content : snooze, codepoint : E046*/
+.md-snooze::after{
+	content:"snooze";
+}
+/*name : sort by alpha, id : ic_sort_by_alpha, keywords : [av,sort,by,alpha], content : sort_by_alpha, codepoint : E053*/
+.md-sort_by_alpha::after{
+	content:"sort_by_alpha";
+}
+/*name : stop, id : ic_stop, keywords : [av,stop], content : stop, codepoint : E047*/
+.md-stop::after{
+	content:"stop";
+}
+/*name : subscriptions, id : ic_subscriptions, keywords : [av,subscriptions], content : subscriptions, codepoint : E064*/
+.md-subscriptions::after{
+	content:"subscriptions";
+}
+/*name : subtitles, id : ic_subtitles, keywords : [av,subtitles], content : subtitles, codepoint : E048*/
+.md-subtitles::after{
+	content:"subtitles";
+}
+/*name : surround sound, id : ic_surround_sound, keywords : [av,surround,sound], content : surround_sound, codepoint : E049*/
+.md-surround_sound::after{
+	content:"surround_sound";
+}
+/*name : video call, id : ic_video_call, keywords : [av,video,call], content : video_call, codepoint : E070*/
+.md-video_call::after{
+	content:"video_call";
+}
+/*name : video label, id : ic_video_label, keywords : [av,video,label], content : video_label, codepoint : E071*/
+.md-video_label::after{
+	content:"video_label";
+}
+/*name : video library, id : ic_video_library, keywords : [av,video,library], content : video_library, codepoint : E04A*/
+.md-video_library::after{
+	content:"video_library";
+}
+/*name : videocam, id : ic_videocam, keywords : [av,videocam], content : videocam, codepoint : E04B*/
+.md-videocam::after{
+	content:"videocam";
+}
+/*name : videocam off, id : ic_videocam_off, keywords : [av,videocam,off], content : videocam_off, codepoint : E04C*/
+.md-videocam_off::after{
+	content:"videocam_off";
+}
+/*name : volume down, id : ic_volume_down, keywords : [av,volume,down], content : volume_down, codepoint : E04D*/
+.md-volume_down::after{
+	content:"volume_down";
+}
+/*name : volume mute, id : ic_volume_mute, keywords : [av,volume,mute], content : volume_mute, codepoint : E04E*/
+.md-volume_mute::after{
+	content:"volume_mute";
+}
+/*name : volume off, id : ic_volume_off, keywords : [av,volume,off], content : volume_off, codepoint : E04F*/
+.md-volume_off::after{
+	content:"volume_off";
+}
+/*name : volume up, id : ic_volume_up, keywords : [av,volume,up], content : volume_up, codepoint : E050*/
+.md-volume_up::after{
+	content:"volume_up";
+}
+/*name : web, id : ic_web, keywords : [av,web], content : web, codepoint : E051*/
+.md-web::after{
+	content:"web";
+}
+/*name : web asset, id : ic_web_asset, keywords : [av,web,asset], content : web_asset, codepoint : E069*/
+.md-web_asset::after{
+	content:"web_asset";
+}
+/*name : business, id : ic_business, keywords : [communication,business], content : business, codepoint : E0AF*/
+.md-business::after{
+	content:"business";
+}
+/*name : call, id : ic_call, keywords : [communication,call], content : call, codepoint : E0B0*/
+.md-call::after{
+	content:"call";
+}
+/*name : call end, id : ic_call_end, keywords : [communication,call,end], content : call_end, codepoint : E0B1*/
+.md-call_end::after{
+	content:"call_end";
+}
+/*name : call made, id : ic_call_made, keywords : [communication,call,made], content : call_made, codepoint : E0B2*/
+.md-call_made::after{
+	content:"call_made";
+}
+/*name : call merge, id : ic_call_merge, keywords : [communication,call,merge], content : call_merge, codepoint : E0B3*/
+.md-call_merge::after{
+	content:"call_merge";
+}
+/*name : call missed, id : ic_call_missed, keywords : [communication,call,missed], content : call_missed, codepoint : E0B4*/
+.md-call_missed::after{
+	content:"call_missed";
+}
+/*name : call missed outgoing, id : ic_call_missed_outgoing, keywords : [communication,call,missed,outgoing], content : call_missed_outgoing, codepoint : E0E4*/
+.md-call_missed_outgoing::after{
+	content:"call_missed_outgoing";
+}
+/*name : call received, id : ic_call_received, keywords : [communication,call,received], content : call_received, codepoint : E0B5*/
+.md-call_received::after{
+	content:"call_received";
+}
+/*name : call split, id : ic_call_split, keywords : [communication,call,split], content : call_split, codepoint : E0B6*/
+.md-call_split::after{
+	content:"call_split";
+}
+/*name : chat, id : ic_chat, keywords : [communication,chat], content : chat, codepoint : E0B7*/
+.md-chat::after{
+	content:"chat";
+}
+/*name : chat bubble, id : ic_chat_bubble, keywords : [communication,chat,bubble], content : chat_bubble, codepoint : E0CA*/
+.md-chat_bubble::after{
+	content:"chat_bubble";
+}
+/*name : chat bubble outline, id : ic_chat_bubble_outline, keywords : [communication,chat,bubble,outline], content : chat_bubble_outline, codepoint : E0CB*/
+.md-chat_bubble_outline::after{
+	content:"chat_bubble_outline";
+}
+/*name : clear all, id : ic_clear_all, keywords : [communication,clear,all], content : clear_all, codepoint : E0B8*/
+.md-clear_all::after{
+	content:"clear_all";
+}
+/*name : comment, id : ic_comment, keywords : [communication,comment], content : comment, codepoint : E0B9*/
+.md-comment::after{
+	content:"comment";
+}
+/*name : contact mail, id : ic_contact_mail, keywords : [communication,contact,mail], content : contact_mail, codepoint : E0D0*/
+.md-contact_mail::after{
+	content:"contact_mail";
+}
+/*name : contact phone, id : ic_contact_phone, keywords : [communication,contact,phone], content : contact_phone, codepoint : E0CF*/
+.md-contact_phone::after{
+	content:"contact_phone";
+}
+/*name : contacts, id : ic_contacts, keywords : [communication,contacts], content : contacts, codepoint : E0BA*/
+.md-contacts::after{
+	content:"contacts";
+}
+/*name : dialer sip, id : ic_dialer_sip, keywords : [communication,dialer,sip], content : dialer_sip, codepoint : E0BB*/
+.md-dialer_sip::after{
+	content:"dialer_sip";
+}
+/*name : dialpad, id : ic_dialpad, keywords : [communication,dialpad], content : dialpad, codepoint : E0BC*/
+.md-dialpad::after{
+	content:"dialpad";
+}
+/*name : email, id : ic_email, keywords : [communication,email], content : email, codepoint : E0BE*/
+.md-email::after{
+	content:"email";
+}
+/*name : forum, id : ic_forum, keywords : [communication,forum], content : forum, codepoint : E0BF*/
+.md-forum::after{
+	content:"forum";
+}
+/*name : import contacts, id : ic_import_contacts, keywords : [communication,import,contacts], content : import_contacts, codepoint : E0E0*/
+.md-import_contacts::after{
+	content:"import_contacts";
+}
+/*name : import export, id : ic_import_export, keywords : [communication,import,export], content : import_export, codepoint : E0C3*/
+.md-import_export::after{
+	content:"import_export";
+}
+/*name : invert colors off, id : ic_invert_colors_off, keywords : [communication,invert,colors,off], content : invert_colors_off, codepoint : E0C4*/
+.md-invert_colors_off::after{
+	content:"invert_colors_off";
+}
+/*name : live help, id : ic_live_help, keywords : [communication,live,help], content : live_help, codepoint : E0C6*/
+.md-live_help::after{
+	content:"live_help";
+}
+/*name : location off, id : ic_location_off, keywords : [communication,location,off], content : location_off, codepoint : E0C7*/
+.md-location_off::after{
+	content:"location_off";
+}
+/*name : location on, id : ic_location_on, keywords : [communication,location,on], content : location_on, codepoint : E0C8*/
+.md-location_on::after{
+	content:"location_on";
+}
+/*name : mail outline, id : ic_mail_outline, keywords : [communication,mail,outline], content : mail_outline, codepoint : E0E1*/
+.md-mail_outline::after{
+	content:"mail_outline";
+}
+/*name : message, id : ic_message, keywords : [communication,message], content : message, codepoint : E0C9*/
+.md-message::after{
+	content:"message";
+}
+/*name : no sim, id : ic_no_sim, keywords : [communication,no,sim], content : no_sim, codepoint : E0CC*/
+.md-no_sim::after{
+	content:"no_sim";
+}
+/*name : phone, id : ic_phone, keywords : [communication,phone], content : phone, codepoint : E0CD*/
+.md-phone::after{
+	content:"phone";
+}
+/*name : phonelink erase, id : ic_phonelink_erase, keywords : [communication,phonelink,erase], content : phonelink_erase, codepoint : E0DB*/
+.md-phonelink_erase::after{
+	content:"phonelink_erase";
+}
+/*name : phonelink lock, id : ic_phonelink_lock, keywords : [communication,phonelink,lock], content : phonelink_lock, codepoint : E0DC*/
+.md-phonelink_lock::after{
+	content:"phonelink_lock";
+}
+/*name : phonelink ring, id : ic_phonelink_ring, keywords : [communication,phonelink,ring], content : phonelink_ring, codepoint : E0DD*/
+.md-phonelink_ring::after{
+	content:"phonelink_ring";
+}
+/*name : phonelink setup, id : ic_phonelink_setup, keywords : [communication,phonelink,setup], content : phonelink_setup, codepoint : E0DE*/
+.md-phonelink_setup::after{
+	content:"phonelink_setup";
+}
+/*name : portable wifi off, id : ic_portable_wifi_off, keywords : [communication,portable,wifi,off], content : portable_wifi_off, codepoint : E0CE*/
+.md-portable_wifi_off::after{
+	content:"portable_wifi_off";
+}
+/*name : present to all, id : ic_present_to_all, keywords : [communication,present,to,all], content : present_to_all, codepoint : E0DF*/
+.md-present_to_all::after{
+	content:"present_to_all";
+}
+/*name : ring volume, id : ic_ring_volume, keywords : [communication,ring,volume], content : ring_volume, codepoint : E0D1*/
+.md-ring_volume::after{
+	content:"ring_volume";
+}
+/*name : rss feed, id : ic_rss_feed, keywords : [communication,rss,feed], content : rss_feed, codepoint : E0E5*/
+.md-rss_feed::after{
+	content:"rss_feed";
+}
+/*name : screen share, id : ic_screen_share, keywords : [communication,screen,share], content : screen_share, codepoint : E0E2*/
+.md-screen_share::after{
+	content:"screen_share";
+}
+/*name : speaker phone, id : ic_speaker_phone, keywords : [communication,speaker,phone], content : speaker_phone, codepoint : E0D2*/
+.md-speaker_phone::after{
+	content:"speaker_phone";
+}
+/*name : stay current landscape, id : ic_stay_current_landscape, keywords : [communication,stay,current,landscape], content : stay_current_landscape, codepoint : E0D3*/
+.md-stay_current_landscape::after{
+	content:"stay_current_landscape";
+}
+/*name : stay current portrait, id : ic_stay_current_portrait, keywords : [communication,stay,current,portrait], content : stay_current_portrait, codepoint : E0D4*/
+.md-stay_current_portrait::after{
+	content:"stay_current_portrait";
+}
+/*name : stay primary landscape, id : ic_stay_primary_landscape, keywords : [communication,stay,primary,landscape], content : stay_primary_landscape, codepoint : E0D5*/
+.md-stay_primary_landscape::after{
+	content:"stay_primary_landscape";
+}
+/*name : stay primary portrait, id : ic_stay_primary_portrait, keywords : [communication,stay,primary,portrait], content : stay_primary_portrait, codepoint : E0D6*/
+.md-stay_primary_portrait::after{
+	content:"stay_primary_portrait";
+}
+/*name : stop screen share, id : ic_stop_screen_share, keywords : [communication,stop,screen,share], content : stop_screen_share, codepoint : E0E3*/
+.md-stop_screen_share::after{
+	content:"stop_screen_share";
+}
+/*name : swap calls, id : ic_swap_calls, keywords : [communication,swap,calls], content : swap_calls, codepoint : E0D7*/
+.md-swap_calls::after{
+	content:"swap_calls";
+}
+/*name : textsms, id : ic_textsms, keywords : [communication,textsms], content : textsms, codepoint : E0D8*/
+.md-textsms::after{
+	content:"textsms";
+}
+/*name : voicemail, id : ic_voicemail, keywords : [communication,voicemail], content : voicemail, codepoint : E0D9*/
+.md-voicemail::after{
+	content:"voicemail";
+}
+/*name : vpn key, id : ic_vpn_key, keywords : [communication,vpn,key], content : vpn_key, codepoint : E0DA*/
+.md-vpn_key::after{
+	content:"vpn_key";
+}
+/*name : add, id : ic_add, keywords : [content,add], content : add, codepoint : E145*/
+.md-add::after{
+	content:"add";
+}
+/*name : add box, id : ic_add_box, keywords : [content,add,box], content : add_box, codepoint : E146*/
+.md-add_box::after{
+	content:"add_box";
+}
+/*name : add circle, id : ic_add_circle, keywords : [content,add,circle], content : add_circle, codepoint : E147*/
+.md-add_circle::after{
+	content:"add_circle";
+}
+/*name : add circle outline, id : ic_add_circle_outline, keywords : [content,add,circle,outline], content : add_circle_outline, codepoint : E148*/
+.md-add_circle_outline::after{
+	content:"add_circle_outline";
+}
+/*name : archive, id : ic_archive, keywords : [content,archive], content : archive, codepoint : E149*/
+.md-archive::after{
+	content:"archive";
+}
+/*name : backspace, id : ic_backspace, keywords : [content,backspace], content : backspace, codepoint : E14A*/
+.md-backspace::after{
+	content:"backspace";
+}
+/*name : block, id : ic_block, keywords : [content,block], content : block, codepoint : E14B*/
+.md-block::after{
+	content:"block";
+}
+/*name : clear, id : ic_clear, keywords : [content,clear], content : clear, codepoint : E14C*/
+.md-clear::after{
+	content:"clear";
+}
+/*name : content copy, id : ic_content_copy, keywords : [content,content,copy], content : content_copy, codepoint : E14D*/
+.md-content_copy::after{
+	content:"content_copy";
+}
+/*name : content cut, id : ic_content_cut, keywords : [content,content,cut], content : content_cut, codepoint : E14E*/
+.md-content_cut::after{
+	content:"content_cut";
+}
+/*name : content paste, id : ic_content_paste, keywords : [content,content,paste], content : content_paste, codepoint : E14F*/
+.md-content_paste::after{
+	content:"content_paste";
+}
+/*name : create, id : ic_create, keywords : [content,create], content : create, codepoint : E150*/
+.md-create::after{
+	content:"create";
+}
+/*name : delete sweep, id : ic_delete_sweep, keywords : [content,delete,sweep], content : delete_sweep, codepoint : E16C*/
+.md-delete_sweep::after{
+	content:"delete_sweep";
+}
+/*name : drafts, id : ic_drafts, keywords : [content,drafts], content : drafts, codepoint : E151*/
+.md-drafts::after{
+	content:"drafts";
+}
+/*name : filter list, id : ic_filter_list, keywords : [content,filter,list], content : filter_list, codepoint : E152*/
+.md-filter_list::after{
+	content:"filter_list";
+}
+/*name : flag, id : ic_flag, keywords : [content,flag], content : flag, codepoint : E153*/
+.md-flag::after{
+	content:"flag";
+}
+/*name : font download, id : ic_font_download, keywords : [content,font,download], content : font_download, codepoint : E167*/
+.md-font_download::after{
+	content:"font_download";
+}
+/*name : forward, id : ic_forward, keywords : [content,forward], content : forward, codepoint : E154*/
+.md-forward::after{
+	content:"forward";
+}
+/*name : gesture, id : ic_gesture, keywords : [content,gesture], content : gesture, codepoint : E155*/
+.md-gesture::after{
+	content:"gesture";
+}
+/*name : inbox, id : ic_inbox, keywords : [content,inbox], content : inbox, codepoint : E156*/
+.md-inbox::after{
+	content:"inbox";
+}
+/*name : link, id : ic_link, keywords : [content,link], content : link, codepoint : E157*/
+.md-link::after{
+	content:"link";
+}
+/*name : low priority, id : ic_low_priority, keywords : [content,low,priority], content : low_priority, codepoint : E16D*/
+.md-low_priority::after{
+	content:"low_priority";
+}
+/*name : mail, id : ic_mail, keywords : [content,mail], content : mail, codepoint : E158*/
+.md-mail::after{
+	content:"mail";
+}
+/*name : markunread, id : ic_markunread, keywords : [content,markunread], content : markunread, codepoint : E159*/
+.md-markunread::after{
+	content:"markunread";
+}
+/*name : move to inbox, id : ic_move_to_inbox, keywords : [content,move,to,inbox], content : move_to_inbox, codepoint : E168*/
+.md-move_to_inbox::after{
+	content:"move_to_inbox";
+}
+/*name : next week, id : ic_next_week, keywords : [content,next,week], content : next_week, codepoint : E16A*/
+.md-next_week::after{
+	content:"next_week";
+}
+/*name : redo, id : ic_redo, keywords : [content,redo], content : redo, codepoint : E15A*/
+.md-redo::after{
+	content:"redo";
+}
+/*name : remove, id : ic_remove, keywords : [content,remove], content : remove, codepoint : E15B*/
+.md-remove::after{
+	content:"remove";
+}
+/*name : remove circle, id : ic_remove_circle, keywords : [content,remove,circle], content : remove_circle, codepoint : E15C*/
+.md-remove_circle::after{
+	content:"remove_circle";
+}
+/*name : remove circle outline, id : ic_remove_circle_outline, keywords : [content,remove,circle,outline], content : remove_circle_outline, codepoint : E15D*/
+.md-remove_circle_outline::after{
+	content:"remove_circle_outline";
+}
+/*name : reply, id : ic_reply, keywords : [content,reply], content : reply, codepoint : E15E*/
+.md-reply::after{
+	content:"reply";
+}
+/*name : reply all, id : ic_reply_all, keywords : [content,reply,all], content : reply_all, codepoint : E15F*/
+.md-reply_all::after{
+	content:"reply_all";
+}
+/*name : report, id : ic_report, keywords : [content,report], content : report, codepoint : E160*/
+.md-report::after{
+	content:"report";
+}
+/*name : save, id : ic_save, keywords : [content,save], content : save, codepoint : E161*/
+.md-save::after{
+	content:"save";
+}
+/*name : select all, id : ic_select_all, keywords : [content,select,all], content : select_all, codepoint : E162*/
+.md-select_all::after{
+	content:"select_all";
+}
+/*name : send, id : ic_send, keywords : [content,send], content : send, codepoint : E163*/
+.md-send::after{
+	content:"send";
+}
+/*name : sort, id : ic_sort, keywords : [content,sort], content : sort, codepoint : E164*/
+.md-sort::after{
+	content:"sort";
+}
+/*name : text format, id : ic_text_format, keywords : [content,text,format], content : text_format, codepoint : E165*/
+.md-text_format::after{
+	content:"text_format";
+}
+/*name : unarchive, id : ic_unarchive, keywords : [content,unarchive], content : unarchive, codepoint : E169*/
+.md-unarchive::after{
+	content:"unarchive";
+}
+/*name : undo, id : ic_undo, keywords : [content,undo], content : undo, codepoint : E166*/
+.md-undo::after{
+	content:"undo";
+}
+/*name : weekend, id : ic_weekend, keywords : [content,weekend], content : weekend, codepoint : E16B*/
+.md-weekend::after{
+	content:"weekend";
+}
+/*name : access alarm, id : ic_access_alarm, keywords : [device,access,alarm], content : access_alarm, codepoint : E190*/
+.md-access_alarm::after{
+	content:"access_alarm";
+}
+/*name : access alarms, id : ic_access_alarms, keywords : [device,access,alarms], content : access_alarms, codepoint : E191*/
+.md-access_alarms::after{
+	content:"access_alarms";
+}
+/*name : access time, id : ic_access_time, keywords : [device,access,time], content : access_time, codepoint : E192*/
+.md-access_time::after{
+	content:"access_time";
+}
+/*name : add alarm, id : ic_add_alarm, keywords : [device,add,alarm], content : add_alarm, codepoint : E193*/
+.md-add_alarm::after{
+	content:"add_alarm";
+}
+/*name : airplanemode active, id : ic_airplanemode_active, keywords : [device,airplanemode,active], content : airplanemode_active, codepoint : E195*/
+.md-airplanemode_active::after{
+	content:"airplanemode_active";
+}
+/*name : airplanemode inactive, id : ic_airplanemode_inactive, keywords : [device,airplanemode,inactive], content : airplanemode_inactive, codepoint : E194*/
+.md-airplanemode_inactive::after{
+	content:"airplanemode_inactive";
+}
+/*name : battery alert, id : ic_battery_alert, keywords : [device,battery,alert], content : battery_alert, codepoint : E19C*/
+.md-battery_alert::after{
+	content:"battery_alert";
+}
+/*name : battery charging full, id : ic_battery_charging_full, keywords : [device,battery,charging,full], content : battery_charging_full, codepoint : E1A3*/
+.md-battery_charging_full::after{
+	content:"battery_charging_full";
+}
+/*name : battery full, id : ic_battery_full, keywords : [device,battery,full], content : battery_full, codepoint : E1A4*/
+.md-battery_full::after{
+	content:"battery_full";
+}
+/*name : battery std, id : ic_battery_std, keywords : [device,battery,std], content : battery_std, codepoint : E1A5*/
+.md-battery_std::after{
+	content:"battery_std";
+}
+/*name : battery unknown, id : ic_battery_unknown, keywords : [device,battery,unknown], content : battery_unknown, codepoint : E1A6*/
+.md-battery_unknown::after{
+	content:"battery_unknown";
+}
+/*name : bluetooth, id : ic_bluetooth, keywords : [device,bluetooth], content : bluetooth, codepoint : E1A7*/
+.md-bluetooth::after{
+	content:"bluetooth";
+}
+/*name : bluetooth connected, id : ic_bluetooth_connected, keywords : [device,bluetooth,connected], content : bluetooth_connected, codepoint : E1A8*/
+.md-bluetooth_connected::after{
+	content:"bluetooth_connected";
+}
+/*name : bluetooth disabled, id : ic_bluetooth_disabled, keywords : [device,bluetooth,disabled], content : bluetooth_disabled, codepoint : E1A9*/
+.md-bluetooth_disabled::after{
+	content:"bluetooth_disabled";
+}
+/*name : bluetooth searching, id : ic_bluetooth_searching, keywords : [device,bluetooth,searching], content : bluetooth_searching, codepoint : E1AA*/
+.md-bluetooth_searching::after{
+	content:"bluetooth_searching";
+}
+/*name : brightness auto, id : ic_brightness_auto, keywords : [device,brightness,auto], content : brightness_auto, codepoint : E1AB*/
+.md-brightness_auto::after{
+	content:"brightness_auto";
+}
+/*name : brightness high, id : ic_brightness_high, keywords : [device,brightness,high], content : brightness_high, codepoint : E1AC*/
+.md-brightness_high::after{
+	content:"brightness_high";
+}
+/*name : brightness low, id : ic_brightness_low, keywords : [device,brightness,low], content : brightness_low, codepoint : E1AD*/
+.md-brightness_low::after{
+	content:"brightness_low";
+}
+/*name : brightness medium, id : ic_brightness_medium, keywords : [device,brightness,medium], content : brightness_medium, codepoint : E1AE*/
+.md-brightness_medium::after{
+	content:"brightness_medium";
+}
+/*name : data usage, id : ic_data_usage, keywords : [device,data,usage], content : data_usage, codepoint : E1AF*/
+.md-data_usage::after{
+	content:"data_usage";
+}
+/*name : developer mode, id : ic_developer_mode, keywords : [device,developer,mode], content : developer_mode, codepoint : E1B0*/
+.md-developer_mode::after{
+	content:"developer_mode";
+}
+/*name : devices, id : ic_devices, keywords : [device,devices], content : devices, codepoint : E1B1*/
+.md-devices::after{
+	content:"devices";
+}
+/*name : dvr, id : ic_dvr, keywords : [device,dvr], content : dvr, codepoint : E1B2*/
+.md-dvr::after{
+	content:"dvr";
+}
+/*name : gps fixed, id : ic_gps_fixed, keywords : [device,gps,fixed], content : gps_fixed, codepoint : E1B3*/
+.md-gps_fixed::after{
+	content:"gps_fixed";
+}
+/*name : gps not fixed, id : ic_gps_not_fixed, keywords : [device,gps,not,fixed], content : gps_not_fixed, codepoint : E1B4*/
+.md-gps_not_fixed::after{
+	content:"gps_not_fixed";
+}
+/*name : gps off, id : ic_gps_off, keywords : [device,gps,off], content : gps_off, codepoint : E1B5*/
+.md-gps_off::after{
+	content:"gps_off";
+}
+/*name : graphic eq, id : ic_graphic_eq, keywords : [device,graphic,eq], content : graphic_eq, codepoint : E1B8*/
+.md-graphic_eq::after{
+	content:"graphic_eq";
+}
+/*name : location disabled, id : ic_location_disabled, keywords : [device,location,disabled], content : location_disabled, codepoint : E1B6*/
+.md-location_disabled::after{
+	content:"location_disabled";
+}
+/*name : location searching, id : ic_location_searching, keywords : [device,location,searching], content : location_searching, codepoint : E1B7*/
+.md-location_searching::after{
+	content:"location_searching";
+}
+/*name : network cell, id : ic_network_cell, keywords : [device,network,cell], content : network_cell, codepoint : E1B9*/
+.md-network_cell::after{
+	content:"network_cell";
+}
+/*name : network wifi, id : ic_network_wifi, keywords : [device,network,wifi], content : network_wifi, codepoint : E1BA*/
+.md-network_wifi::after{
+	content:"network_wifi";
+}
+/*name : nfc, id : ic_nfc, keywords : [device,nfc], content : nfc, codepoint : E1BB*/
+.md-nfc::after{
+	content:"nfc";
+}
+/*name : screen lock landscape, id : ic_screen_lock_landscape, keywords : [device,screen,lock,landscape], content : screen_lock_landscape, codepoint : E1BE*/
+.md-screen_lock_landscape::after{
+	content:"screen_lock_landscape";
+}
+/*name : screen lock portrait, id : ic_screen_lock_portrait, keywords : [device,screen,lock,portrait], content : screen_lock_portrait, codepoint : E1BF*/
+.md-screen_lock_portrait::after{
+	content:"screen_lock_portrait";
+}
+/*name : screen lock rotation, id : ic_screen_lock_rotation, keywords : [device,screen,lock,rotation], content : screen_lock_rotation, codepoint : E1C0*/
+.md-screen_lock_rotation::after{
+	content:"screen_lock_rotation";
+}
+/*name : screen rotation, id : ic_screen_rotation, keywords : [device,screen,rotation], content : screen_rotation, codepoint : E1C1*/
+.md-screen_rotation::after{
+	content:"screen_rotation";
+}
+/*name : sd storage, id : ic_sd_storage, keywords : [device,sd,storage], content : sd_storage, codepoint : E1C2*/
+.md-sd_storage::after{
+	content:"sd_storage";
+}
+/*name : settings system daydream, id : ic_settings_system_daydream, keywords : [device,settings,system,daydream], content : settings_system_daydream, codepoint : E1C3*/
+.md-settings_system_daydream::after{
+	content:"settings_system_daydream";
+}
+/*name : signal cellular 4 bar, id : ic_signal_cellular_4_bar, keywords : [device,signal,cellular,bar], content : signal_cellular_4_bar, codepoint : E1C8*/
+.md-signal_cellular_4_bar::after{
+	content:"signal_cellular_4_bar";
+}
+/*name : signal cellular connected no internet 4 bar, id : ic_signal_cellular_connected_no_internet_4_bar, keywords : [device,signal,cellular,connected,no,internet,bar], content : signal_cellular_connected_no_internet_4_bar, codepoint : E1CD*/
+.md-signal_cellular_connected_no_internet_4_bar::after{
+	content:"signal_cellular_connected_no_internet_4_bar";
+}
+/*name : signal cellular no sim, id : ic_signal_cellular_no_sim, keywords : [device,signal,cellular,no,sim], content : signal_cellular_no_sim, codepoint : E1CE*/
+.md-signal_cellular_no_sim::after{
+	content:"signal_cellular_no_sim";
+}
+/*name : signal cellular null, id : ic_signal_cellular_null, keywords : [device,signal,cellular,null], content : signal_cellular_null, codepoint : E1CF*/
+.md-signal_cellular_null::after{
+	content:"signal_cellular_null";
+}
+/*name : signal cellular off, id : ic_signal_cellular_off, keywords : [device,signal,cellular,off], content : signal_cellular_off, codepoint : E1D0*/
+.md-signal_cellular_off::after{
+	content:"signal_cellular_off";
+}
+/*name : signal wifi 4 bar, id : ic_signal_wifi_4_bar, keywords : [device,signal,wifi,bar], content : signal_wifi_4_bar, codepoint : E1D8*/
+.md-signal_wifi_4_bar::after{
+	content:"signal_wifi_4_bar";
+}
+/*name : signal wifi 4 bar lock, id : ic_signal_wifi_4_bar_lock, keywords : [device,signal,wifi,bar,lock], content : signal_wifi_4_bar_lock, codepoint : E1D9*/
+.md-signal_wifi_4_bar_lock::after{
+	content:"signal_wifi_4_bar_lock";
+}
+/*name : signal wifi off, id : ic_signal_wifi_off, keywords : [device,signal,wifi,off], content : signal_wifi_off, codepoint : E1DA*/
+.md-signal_wifi_off::after{
+	content:"signal_wifi_off";
+}
+/*name : storage, id : ic_storage, keywords : [device,storage], content : storage, codepoint : E1DB*/
+.md-storage::after{
+	content:"storage";
+}
+/*name : usb, id : ic_usb, keywords : [device,usb], content : usb, codepoint : E1E0*/
+.md-usb::after{
+	content:"usb";
+}
+/*name : wallpaper, id : ic_wallpaper, keywords : [device,wallpaper], content : wallpaper, codepoint : E1BC*/
+.md-wallpaper::after{
+	content:"wallpaper";
+}
+/*name : widgets, id : ic_widgets, keywords : [device,widgets], content : widgets, codepoint : E1BD*/
+.md-widgets::after{
+	content:"widgets";
+}
+/*name : wifi lock, id : ic_wifi_lock, keywords : [device,wifi,lock], content : wifi_lock, codepoint : E1E1*/
+.md-wifi_lock::after{
+	content:"wifi_lock";
+}
+/*name : wifi tethering, id : ic_wifi_tethering, keywords : [device,wifi,tethering], content : wifi_tethering, codepoint : E1E2*/
+.md-wifi_tethering::after{
+	content:"wifi_tethering";
+}
+/*name : attach file, id : ic_attach_file, keywords : [editor,attach,file], content : attach_file, codepoint : E226*/
+.md-attach_file::after{
+	content:"attach_file";
+}
+/*name : attach money, id : ic_attach_money, keywords : [editor,attach,money], content : attach_money, codepoint : E227*/
+.md-attach_money::after{
+	content:"attach_money";
+}
+/*name : border all, id : ic_border_all, keywords : [editor,border,all], content : border_all, codepoint : E228*/
+.md-border_all::after{
+	content:"border_all";
+}
+/*name : border bottom, id : ic_border_bottom, keywords : [editor,border,bottom], content : border_bottom, codepoint : E229*/
+.md-border_bottom::after{
+	content:"border_bottom";
+}
+/*name : border clear, id : ic_border_clear, keywords : [editor,border,clear], content : border_clear, codepoint : E22A*/
+.md-border_clear::after{
+	content:"border_clear";
+}
+/*name : border color, id : ic_border_color, keywords : [editor,border,color], content : border_color, codepoint : E22B*/
+.md-border_color::after{
+	content:"border_color";
+}
+/*name : border horizontal, id : ic_border_horizontal, keywords : [editor,border,horizontal], content : border_horizontal, codepoint : E22C*/
+.md-border_horizontal::after{
+	content:"border_horizontal";
+}
+/*name : border inner, id : ic_border_inner, keywords : [editor,border,inner], content : border_inner, codepoint : E22D*/
+.md-border_inner::after{
+	content:"border_inner";
+}
+/*name : border left, id : ic_border_left, keywords : [editor,border,left], content : border_left, codepoint : E22E*/
+.md-border_left::after{
+	content:"border_left";
+}
+/*name : border outer, id : ic_border_outer, keywords : [editor,border,outer], content : border_outer, codepoint : E22F*/
+.md-border_outer::after{
+	content:"border_outer";
+}
+/*name : border right, id : ic_border_right, keywords : [editor,border,right], content : border_right, codepoint : E230*/
+.md-border_right::after{
+	content:"border_right";
+}
+/*name : border style, id : ic_border_style, keywords : [editor,border,style], content : border_style, codepoint : E231*/
+.md-border_style::after{
+	content:"border_style";
+}
+/*name : border top, id : ic_border_top, keywords : [editor,border,top], content : border_top, codepoint : E232*/
+.md-border_top::after{
+	content:"border_top";
+}
+/*name : border vertical, id : ic_border_vertical, keywords : [editor,border,vertical], content : border_vertical, codepoint : E233*/
+.md-border_vertical::after{
+	content:"border_vertical";
+}
+/*name : bubble chart, id : ic_bubble_chart, keywords : [editor,bubble,chart], content : bubble_chart, codepoint : E6DD*/
+.md-bubble_chart::after{
+	content:"bubble_chart";
+}
+/*name : drag handle, id : ic_drag_handle, keywords : [editor,drag,handle], content : drag_handle, codepoint : E25D*/
+.md-drag_handle::after{
+	content:"drag_handle";
+}
+/*name : format align center, id : ic_format_align_center, keywords : [editor,format,align,center], content : format_align_center, codepoint : E234*/
+.md-format_align_center::after{
+	content:"format_align_center";
+}
+/*name : format align justify, id : ic_format_align_justify, keywords : [editor,format,align,justify], content : format_align_justify, codepoint : E235*/
+.md-format_align_justify::after{
+	content:"format_align_justify";
+}
+/*name : format align left, id : ic_format_align_left, keywords : [editor,format,align,left], content : format_align_left, codepoint : E236*/
+.md-format_align_left::after{
+	content:"format_align_left";
+}
+/*name : format align right, id : ic_format_align_right, keywords : [editor,format,align,right], content : format_align_right, codepoint : E237*/
+.md-format_align_right::after{
+	content:"format_align_right";
+}
+/*name : format bold, id : ic_format_bold, keywords : [editor,format,bold], content : format_bold, codepoint : E238*/
+.md-format_bold::after{
+	content:"format_bold";
+}
+/*name : format clear, id : ic_format_clear, keywords : [editor,format,clear], content : format_clear, codepoint : E239*/
+.md-format_clear::after{
+	content:"format_clear";
+}
+/*name : format color fill, id : ic_format_color_fill, keywords : [editor,format,color,fill], content : format_color_fill, codepoint : E23A*/
+.md-format_color_fill::after{
+	content:"format_color_fill";
+}
+/*name : format color reset, id : ic_format_color_reset, keywords : [editor,format,color,reset], content : format_color_reset, codepoint : E23B*/
+.md-format_color_reset::after{
+	content:"format_color_reset";
+}
+/*name : format color text, id : ic_format_color_text, keywords : [editor,format,color,text], content : format_color_text, codepoint : E23C*/
+.md-format_color_text::after{
+	content:"format_color_text";
+}
+/*name : format indent decrease, id : ic_format_indent_decrease, keywords : [editor,format,indent,decrease], content : format_indent_decrease, codepoint : E23D*/
+.md-format_indent_decrease::after{
+	content:"format_indent_decrease";
+}
+/*name : format indent increase, id : ic_format_indent_increase, keywords : [editor,format,indent,increase], content : format_indent_increase, codepoint : E23E*/
+.md-format_indent_increase::after{
+	content:"format_indent_increase";
+}
+/*name : format italic, id : ic_format_italic, keywords : [editor,format,italic], content : format_italic, codepoint : E23F*/
+.md-format_italic::after{
+	content:"format_italic";
+}
+/*name : format line spacing, id : ic_format_line_spacing, keywords : [editor,format,line,spacing], content : format_line_spacing, codepoint : E240*/
+.md-format_line_spacing::after{
+	content:"format_line_spacing";
+}
+/*name : format list bulleted, id : ic_format_list_bulleted, keywords : [editor,format,list,bulleted], content : format_list_bulleted, codepoint : E241*/
+.md-format_list_bulleted::after{
+	content:"format_list_bulleted";
+}
+/*name : format list numbered, id : ic_format_list_numbered, keywords : [editor,format,list,numbered], content : format_list_numbered, codepoint : E242*/
+.md-format_list_numbered::after{
+	content:"format_list_numbered";
+}
+/*name : format paint, id : ic_format_paint, keywords : [editor,format,paint], content : format_paint, codepoint : E243*/
+.md-format_paint::after{
+	content:"format_paint";
+}
+/*name : format quote, id : ic_format_quote, keywords : [editor,format,quote], content : format_quote, codepoint : E244*/
+.md-format_quote::after{
+	content:"format_quote";
+}
+/*name : format shapes, id : ic_format_shapes, keywords : [editor,format,shapes], content : format_shapes, codepoint : E25E*/
+.md-format_shapes::after{
+	content:"format_shapes";
+}
+/*name : format size, id : ic_format_size, keywords : [editor,format,size], content : format_size, codepoint : E245*/
+.md-format_size::after{
+	content:"format_size";
+}
+/*name : format strikethrough, id : ic_format_strikethrough, keywords : [editor,format,strikethrough], content : format_strikethrough, codepoint : E246*/
+.md-format_strikethrough::after{
+	content:"format_strikethrough";
+}
+/*name : format textdirection l to r, id : ic_format_textdirection_l_to_r, keywords : [editor,format,textdirection,to], content : format_textdirection_l_to_r, codepoint : E247*/
+.md-format_textdirection_l_to_r::after{
+	content:"format_textdirection_l_to_r";
+}
+/*name : format textdirection r to l, id : ic_format_textdirection_r_to_l, keywords : [editor,format,textdirection,to], content : format_textdirection_r_to_l, codepoint : E248*/
+.md-format_textdirection_r_to_l::after{
+	content:"format_textdirection_r_to_l";
+}
+/*name : format underlined, id : ic_format_underlined, keywords : [editor,format,underlined], content : format_underlined, codepoint : E249*/
+.md-format_underlined::after{
+	content:"format_underlined";
+}
+/*name : functions, id : ic_functions, keywords : [editor,functions], content : functions, codepoint : E24A*/
+.md-functions::after{
+	content:"functions";
+}
+/*name : highlight, id : ic_highlight, keywords : [editor,highlight], content : highlight, codepoint : E25F*/
+.md-highlight::after{
+	content:"highlight";
+}
+/*name : insert chart, id : ic_insert_chart, keywords : [editor,insert,chart], content : insert_chart, codepoint : E24B*/
+.md-insert_chart::after{
+	content:"insert_chart";
+}
+/*name : insert comment, id : ic_insert_comment, keywords : [editor,insert,comment], content : insert_comment, codepoint : E24C*/
+.md-insert_comment::after{
+	content:"insert_comment";
+}
+/*name : insert drive file, id : ic_insert_drive_file, keywords : [editor,insert,drive,file], content : insert_drive_file, codepoint : E24D*/
+.md-insert_drive_file::after{
+	content:"insert_drive_file";
+}
+/*name : insert emoticon, id : ic_insert_emoticon, keywords : [editor,insert,emoticon], content : insert_emoticon, codepoint : E24E*/
+.md-insert_emoticon::after{
+	content:"insert_emoticon";
+}
+/*name : insert invitation, id : ic_insert_invitation, keywords : [editor,insert,invitation], content : insert_invitation, codepoint : E24F*/
+.md-insert_invitation::after{
+	content:"insert_invitation";
+}
+/*name : insert link, id : ic_insert_link, keywords : [editor,insert,link], content : insert_link, codepoint : E250*/
+.md-insert_link::after{
+	content:"insert_link";
+}
+/*name : insert photo, id : ic_insert_photo, keywords : [editor,insert,photo], content : insert_photo, codepoint : E251*/
+.md-insert_photo::after{
+	content:"insert_photo";
+}
+/*name : linear scale, id : ic_linear_scale, keywords : [editor,linear,scale], content : linear_scale, codepoint : E260*/
+.md-linear_scale::after{
+	content:"linear_scale";
+}
+/*name : merge type, id : ic_merge_type, keywords : [editor,merge,type], content : merge_type, codepoint : E252*/
+.md-merge_type::after{
+	content:"merge_type";
+}
+/*name : mode comment, id : ic_mode_comment, keywords : [editor,mode,comment], content : mode_comment, codepoint : E253*/
+.md-mode_comment::after{
+	content:"mode_comment";
+}
+/*name : mode edit, id : ic_mode_edit, keywords : [editor,mode,edit], content : mode_edit, codepoint : E254*/
+.md-mode_edit::after{
+	content:"mode_edit";
+}
+/*name : monetization on, id : ic_monetization_on, keywords : [editor,monetization,on], content : monetization_on, codepoint : E263*/
+.md-monetization_on::after{
+	content:"monetization_on";
+}
+/*name : money off, id : ic_money_off, keywords : [editor,money,off], content : money_off, codepoint : E25C*/
+.md-money_off::after{
+	content:"money_off";
+}
+/*name : multiline chart, id : ic_multiline_chart, keywords : [editor,multiline,chart], content : multiline_chart, codepoint : E6DF*/
+.md-multiline_chart::after{
+	content:"multiline_chart";
+}
+/*name : pie chart, id : ic_pie_chart, keywords : [editor,pie,chart], content : pie_chart, codepoint : E6C4*/
+.md-pie_chart::after{
+	content:"pie_chart";
+}
+/*name : pie chart outlined, id : ic_pie_chart_outlined, keywords : [editor,pie,chart,outlined], content : pie_chart_outlined, codepoint : E6C5*/
+.md-pie_chart_outlined::after{
+	content:"pie_chart_outlined";
+}
+/*name : publish, id : ic_publish, keywords : [editor,publish], content : publish, codepoint : E255*/
+.md-publish::after{
+	content:"publish";
+}
+/*name : short text, id : ic_short_text, keywords : [editor,short,text], content : short_text, codepoint : E261*/
+.md-short_text::after{
+	content:"short_text";
+}
+/*name : show chart, id : ic_show_chart, keywords : [editor,show,chart], content : show_chart, codepoint : E6E1*/
+.md-show_chart::after{
+	content:"show_chart";
+}
+/*name : space bar, id : ic_space_bar, keywords : [editor,space,bar], content : space_bar, codepoint : E256*/
+.md-space_bar::after{
+	content:"space_bar";
+}
+/*name : strikethrough s, id : ic_strikethrough_s, keywords : [editor,strikethrough], content : strikethrough_s, codepoint : E257*/
+.md-strikethrough_s::after{
+	content:"strikethrough_s";
+}
+/*name : text fields, id : ic_text_fields, keywords : [editor,text,fields], content : text_fields, codepoint : E262*/
+.md-text_fields::after{
+	content:"text_fields";
+}
+/*name : title, id : ic_title, keywords : [editor,title], content : title, codepoint : E264*/
+.md-title::after{
+	content:"title";
+}
+/*name : vertical align bottom, id : ic_vertical_align_bottom, keywords : [editor,vertical,align,bottom], content : vertical_align_bottom, codepoint : E258*/
+.md-vertical_align_bottom::after{
+	content:"vertical_align_bottom";
+}
+/*name : vertical align center, id : ic_vertical_align_center, keywords : [editor,vertical,align,center], content : vertical_align_center, codepoint : E259*/
+.md-vertical_align_center::after{
+	content:"vertical_align_center";
+}
+/*name : vertical align top, id : ic_vertical_align_top, keywords : [editor,vertical,align,top], content : vertical_align_top, codepoint : E25A*/
+.md-vertical_align_top::after{
+	content:"vertical_align_top";
+}
+/*name : wrap text, id : ic_wrap_text, keywords : [editor,wrap,text], content : wrap_text, codepoint : E25B*/
+.md-wrap_text::after{
+	content:"wrap_text";
+}
+/*name : attachment, id : ic_attachment, keywords : [file,attachment], content : attachment, codepoint : E2BC*/
+.md-attachment::after{
+	content:"attachment";
+}
+/*name : cloud, id : ic_cloud, keywords : [file,cloud], content : cloud, codepoint : E2BD*/
+.md-cloud::after{
+	content:"cloud";
+}
+/*name : cloud circle, id : ic_cloud_circle, keywords : [file,cloud,circle], content : cloud_circle, codepoint : E2BE*/
+.md-cloud_circle::after{
+	content:"cloud_circle";
+}
+/*name : cloud done, id : ic_cloud_done, keywords : [file,cloud,done], content : cloud_done, codepoint : E2BF*/
+.md-cloud_done::after{
+	content:"cloud_done";
+}
+/*name : cloud download, id : ic_cloud_download, keywords : [file,cloud,download], content : cloud_download, codepoint : E2C0*/
+.md-cloud_download::after{
+	content:"cloud_download";
+}
+/*name : cloud off, id : ic_cloud_off, keywords : [file,cloud,off], content : cloud_off, codepoint : E2C1*/
+.md-cloud_off::after{
+	content:"cloud_off";
+}
+/*name : cloud queue, id : ic_cloud_queue, keywords : [file,cloud,queue], content : cloud_queue, codepoint : E2C2*/
+.md-cloud_queue::after{
+	content:"cloud_queue";
+}
+/*name : cloud upload, id : ic_cloud_upload, keywords : [file,cloud,upload], content : cloud_upload, codepoint : E2C3*/
+.md-cloud_upload::after{
+	content:"cloud_upload";
+}
+/*name : create new folder, id : ic_create_new_folder, keywords : [file,create,new,folder], content : create_new_folder, codepoint : E2CC*/
+.md-create_new_folder::after{
+	content:"create_new_folder";
+}
+/*name : file download, id : ic_file_download, keywords : [file,file,download], content : file_download, codepoint : E2C4*/
+.md-file_download::after{
+	content:"file_download";
+}
+/*name : file upload, id : ic_file_upload, keywords : [file,file,upload], content : file_upload, codepoint : E2C6*/
+.md-file_upload::after{
+	content:"file_upload";
+}
+/*name : folder, id : ic_folder, keywords : [file,folder], content : folder, codepoint : E2C7*/
+.md-folder::after{
+	content:"folder";
+}
+/*name : folder open, id : ic_folder_open, keywords : [file,folder,open], content : folder_open, codepoint : E2C8*/
+.md-folder_open::after{
+	content:"folder_open";
+}
+/*name : folder shared, id : ic_folder_shared, keywords : [file,folder,shared], content : folder_shared, codepoint : E2C9*/
+.md-folder_shared::after{
+	content:"folder_shared";
+}
+/*name : cast, id : ic_cast, keywords : [hardware,cast], content : cast, codepoint : E307*/
+.md-cast::after{
+	content:"cast";
+}
+/*name : cast connected, id : ic_cast_connected, keywords : [hardware,cast,connected], content : cast_connected, codepoint : E308*/
+.md-cast_connected::after{
+	content:"cast_connected";
+}
+/*name : computer, id : ic_computer, keywords : [hardware,computer], content : computer, codepoint : E30A*/
+.md-computer::after{
+	content:"computer";
+}
+/*name : desktop mac, id : ic_desktop_mac, keywords : [hardware,desktop,mac], content : desktop_mac, codepoint : E30B*/
+.md-desktop_mac::after{
+	content:"desktop_mac";
+}
+/*name : desktop windows, id : ic_desktop_windows, keywords : [hardware,desktop,windows], content : desktop_windows, codepoint : E30C*/
+.md-desktop_windows::after{
+	content:"desktop_windows";
+}
+/*name : developer board, id : ic_developer_board, keywords : [hardware,developer,board], content : developer_board, codepoint : E30D*/
+.md-developer_board::after{
+	content:"developer_board";
+}
+/*name : device hub, id : ic_device_hub, keywords : [hardware,device,hub], content : device_hub, codepoint : E335*/
+.md-device_hub::after{
+	content:"device_hub";
+}
+/*name : devices other, id : ic_devices_other, keywords : [hardware,devices,other], content : devices_other, codepoint : E337*/
+.md-devices_other::after{
+	content:"devices_other";
+}
+/*name : dock, id : ic_dock, keywords : [hardware,dock], content : dock, codepoint : E30E*/
+.md-dock::after{
+	content:"dock";
+}
+/*name : gamepad, id : ic_gamepad, keywords : [hardware,gamepad], content : gamepad, codepoint : E30F*/
+.md-gamepad::after{
+	content:"gamepad";
+}
+/*name : headset, id : ic_headset, keywords : [hardware,headset], content : headset, codepoint : E310*/
+.md-headset::after{
+	content:"headset";
+}
+/*name : headset mic, id : ic_headset_mic, keywords : [hardware,headset,mic], content : headset_mic, codepoint : E311*/
+.md-headset_mic::after{
+	content:"headset_mic";
+}
+/*name : keyboard, id : ic_keyboard, keywords : [hardware,keyboard], content : keyboard, codepoint : E312*/
+.md-keyboard::after{
+	content:"keyboard";
+}
+/*name : keyboard arrow down, id : ic_keyboard_arrow_down, keywords : [hardware,keyboard,arrow,down], content : keyboard_arrow_down, codepoint : E313*/
+.md-keyboard_arrow_down::after{
+	content:"keyboard_arrow_down";
+}
+/*name : keyboard arrow left, id : ic_keyboard_arrow_left, keywords : [hardware,keyboard,arrow,left], content : keyboard_arrow_left, codepoint : E314*/
+.md-keyboard_arrow_left::after{
+	content:"keyboard_arrow_left";
+}
+/*name : keyboard arrow right, id : ic_keyboard_arrow_right, keywords : [hardware,keyboard,arrow,right], content : keyboard_arrow_right, codepoint : E315*/
+.md-keyboard_arrow_right::after{
+	content:"keyboard_arrow_right";
+}
+/*name : keyboard arrow up, id : ic_keyboard_arrow_up, keywords : [hardware,keyboard,arrow,up], content : keyboard_arrow_up, codepoint : E316*/
+.md-keyboard_arrow_up::after{
+	content:"keyboard_arrow_up";
+}
+/*name : keyboard backspace, id : ic_keyboard_backspace, keywords : [hardware,keyboard,backspace], content : keyboard_backspace, codepoint : E317*/
+.md-keyboard_backspace::after{
+	content:"keyboard_backspace";
+}
+/*name : keyboard capslock, id : ic_keyboard_capslock, keywords : [hardware,keyboard,capslock], content : keyboard_capslock, codepoint : E318*/
+.md-keyboard_capslock::after{
+	content:"keyboard_capslock";
+}
+/*name : keyboard hide, id : ic_keyboard_hide, keywords : [hardware,keyboard,hide], content : keyboard_hide, codepoint : E31A*/
+.md-keyboard_hide::after{
+	content:"keyboard_hide";
+}
+/*name : keyboard return, id : ic_keyboard_return, keywords : [hardware,keyboard,return], content : keyboard_return, codepoint : E31B*/
+.md-keyboard_return::after{
+	content:"keyboard_return";
+}
+/*name : keyboard tab, id : ic_keyboard_tab, keywords : [hardware,keyboard,tab], content : keyboard_tab, codepoint : E31C*/
+.md-keyboard_tab::after{
+	content:"keyboard_tab";
+}
+/*name : keyboard voice, id : ic_keyboard_voice, keywords : [hardware,keyboard,voice], content : keyboard_voice, codepoint : E31D*/
+.md-keyboard_voice::after{
+	content:"keyboard_voice";
+}
+/*name : laptop, id : ic_laptop, keywords : [hardware,laptop], content : laptop, codepoint : E31E*/
+.md-laptop::after{
+	content:"laptop";
+}
+/*name : laptop chromebook, id : ic_laptop_chromebook, keywords : [hardware,laptop,chromebook], content : laptop_chromebook, codepoint : E31F*/
+.md-laptop_chromebook::after{
+	content:"laptop_chromebook";
+}
+/*name : laptop mac, id : ic_laptop_mac, keywords : [hardware,laptop,mac], content : laptop_mac, codepoint : E320*/
+.md-laptop_mac::after{
+	content:"laptop_mac";
+}
+/*name : laptop windows, id : ic_laptop_windows, keywords : [hardware,laptop,windows], content : laptop_windows, codepoint : E321*/
+.md-laptop_windows::after{
+	content:"laptop_windows";
+}
+/*name : memory, id : ic_memory, keywords : [hardware,memory], content : memory, codepoint : E322*/
+.md-memory::after{
+	content:"memory";
+}
+/*name : mouse, id : ic_mouse, keywords : [hardware,mouse], content : mouse, codepoint : E323*/
+.md-mouse::after{
+	content:"mouse";
+}
+/*name : phone android, id : ic_phone_android, keywords : [hardware,phone,android], content : phone_android, codepoint : E324*/
+.md-phone_android::after{
+	content:"phone_android";
+}
+/*name : phone iphone, id : ic_phone_iphone, keywords : [hardware,phone,iphone], content : phone_iphone, codepoint : E325*/
+.md-phone_iphone::after{
+	content:"phone_iphone";
+}
+/*name : phonelink, id : ic_phonelink, keywords : [hardware,phonelink], content : phonelink, codepoint : E326*/
+.md-phonelink::after{
+	content:"phonelink";
+}
+/*name : phonelink off, id : ic_phonelink_off, keywords : [hardware,phonelink,off], content : phonelink_off, codepoint : E327*/
+.md-phonelink_off::after{
+	content:"phonelink_off";
+}
+/*name : power input, id : ic_power_input, keywords : [hardware,power,input], content : power_input, codepoint : E336*/
+.md-power_input::after{
+	content:"power_input";
+}
+/*name : router, id : ic_router, keywords : [hardware,router], content : router, codepoint : E328*/
+.md-router::after{
+	content:"router";
+}
+/*name : scanner, id : ic_scanner, keywords : [hardware,scanner], content : scanner, codepoint : E329*/
+.md-scanner::after{
+	content:"scanner";
+}
+/*name : security, id : ic_security, keywords : [hardware,security], content : security, codepoint : E32A*/
+.md-security::after{
+	content:"security";
+}
+/*name : sim card, id : ic_sim_card, keywords : [hardware,sim,card], content : sim_card, codepoint : E32B*/
+.md-sim_card::after{
+	content:"sim_card";
+}
+/*name : smartphone, id : ic_smartphone, keywords : [hardware,smartphone], content : smartphone, codepoint : E32C*/
+.md-smartphone::after{
+	content:"smartphone";
+}
+/*name : speaker, id : ic_speaker, keywords : [hardware,speaker], content : speaker, codepoint : E32D*/
+.md-speaker::after{
+	content:"speaker";
+}
+/*name : speaker group, id : ic_speaker_group, keywords : [hardware,speaker,group], content : speaker_group, codepoint : E32E*/
+.md-speaker_group::after{
+	content:"speaker_group";
+}
+/*name : tablet, id : ic_tablet, keywords : [hardware,tablet], content : tablet, codepoint : E32F*/
+.md-tablet::after{
+	content:"tablet";
+}
+/*name : tablet android, id : ic_tablet_android, keywords : [hardware,tablet,android], content : tablet_android, codepoint : E330*/
+.md-tablet_android::after{
+	content:"tablet_android";
+}
+/*name : tablet mac, id : ic_tablet_mac, keywords : [hardware,tablet,mac], content : tablet_mac, codepoint : E331*/
+.md-tablet_mac::after{
+	content:"tablet_mac";
+}
+/*name : toys, id : ic_toys, keywords : [hardware,toys], content : toys, codepoint : E332*/
+.md-toys::after{
+	content:"toys";
+}
+/*name : tv, id : ic_tv, keywords : [hardware,tv], content : tv, codepoint : E333*/
+.md-tv::after{
+	content:"tv";
+}
+/*name : videogame asset, id : ic_videogame_asset, keywords : [hardware,videogame,asset], content : videogame_asset, codepoint : E338*/
+.md-videogame_asset::after{
+	content:"videogame_asset";
+}
+/*name : watch, id : ic_watch, keywords : [hardware,watch], content : watch, codepoint : E334*/
+.md-watch::after{
+	content:"watch";
+}
+/*name : add a photo, id : ic_add_a_photo, keywords : [image,add,photo], content : add_a_photo, codepoint : E439*/
+.md-add_a_photo::after{
+	content:"add_a_photo";
+}
+/*name : add to photos, id : ic_add_to_photos, keywords : [image,add,to,photos], content : add_to_photos, codepoint : E39D*/
+.md-add_to_photos::after{
+	content:"add_to_photos";
+}
+/*name : adjust, id : ic_adjust, keywords : [image,adjust], content : adjust, codepoint : E39E*/
+.md-adjust::after{
+	content:"adjust";
+}
+/*name : assistant, id : ic_assistant, keywords : [image,assistant], content : assistant, codepoint : E39F*/
+.md-assistant::after{
+	content:"assistant";
+}
+/*name : assistant photo, id : ic_assistant_photo, keywords : [image,assistant,photo], content : assistant_photo, codepoint : E3A0*/
+.md-assistant_photo::after{
+	content:"assistant_photo";
+}
+/*name : audiotrack, id : ic_audiotrack, keywords : [image,audiotrack], content : audiotrack, codepoint : E3A1*/
+.md-audiotrack::after{
+	content:"audiotrack";
+}
+/*name : blur circular, id : ic_blur_circular, keywords : [image,blur,circular], content : blur_circular, codepoint : E3A2*/
+.md-blur_circular::after{
+	content:"blur_circular";
+}
+/*name : blur linear, id : ic_blur_linear, keywords : [image,blur,linear], content : blur_linear, codepoint : E3A3*/
+.md-blur_linear::after{
+	content:"blur_linear";
+}
+/*name : blur off, id : ic_blur_off, keywords : [image,blur,off], content : blur_off, codepoint : E3A4*/
+.md-blur_off::after{
+	content:"blur_off";
+}
+/*name : blur on, id : ic_blur_on, keywords : [image,blur,on], content : blur_on, codepoint : E3A5*/
+.md-blur_on::after{
+	content:"blur_on";
+}
+/*name : brightness 1, id : ic_brightness_1, keywords : [image,brightness], content : brightness_1, codepoint : E3A6*/
+.md-brightness_1::after{
+	content:"brightness_1";
+}
+/*name : brightness 2, id : ic_brightness_2, keywords : [image,brightness], content : brightness_2, codepoint : E3A7*/
+.md-brightness_2::after{
+	content:"brightness_2";
+}
+/*name : brightness 3, id : ic_brightness_3, keywords : [image,brightness], content : brightness_3, codepoint : E3A8*/
+.md-brightness_3::after{
+	content:"brightness_3";
+}
+/*name : brightness 4, id : ic_brightness_4, keywords : [image,brightness], content : brightness_4, codepoint : E3A9*/
+.md-brightness_4::after{
+	content:"brightness_4";
+}
+/*name : brightness 5, id : ic_brightness_5, keywords : [image,brightness], content : brightness_5, codepoint : E3AA*/
+.md-brightness_5::after{
+	content:"brightness_5";
+}
+/*name : brightness 6, id : ic_brightness_6, keywords : [image,brightness], content : brightness_6, codepoint : E3AB*/
+.md-brightness_6::after{
+	content:"brightness_6";
+}
+/*name : brightness 7, id : ic_brightness_7, keywords : [image,brightness], content : brightness_7, codepoint : E3AC*/
+.md-brightness_7::after{
+	content:"brightness_7";
+}
+/*name : broken image, id : ic_broken_image, keywords : [image,broken,image], content : broken_image, codepoint : E3AD*/
+.md-broken_image::after{
+	content:"broken_image";
+}
+/*name : brush, id : ic_brush, keywords : [image,brush], content : brush, codepoint : E3AE*/
+.md-brush::after{
+	content:"brush";
+}
+/*name : burst mode, id : ic_burst_mode, keywords : [image,burst,mode], content : burst_mode, codepoint : E43C*/
+.md-burst_mode::after{
+	content:"burst_mode";
+}
+/*name : camera, id : ic_camera, keywords : [image,camera], content : camera, codepoint : E3AF*/
+.md-camera::after{
+	content:"camera";
+}
+/*name : camera alt, id : ic_camera_alt, keywords : [image,camera,alt], content : camera_alt, codepoint : E3B0*/
+.md-camera_alt::after{
+	content:"camera_alt";
+}
+/*name : camera front, id : ic_camera_front, keywords : [image,camera,front], content : camera_front, codepoint : E3B1*/
+.md-camera_front::after{
+	content:"camera_front";
+}
+/*name : camera rear, id : ic_camera_rear, keywords : [image,camera,rear], content : camera_rear, codepoint : E3B2*/
+.md-camera_rear::after{
+	content:"camera_rear";
+}
+/*name : camera roll, id : ic_camera_roll, keywords : [image,camera,roll], content : camera_roll, codepoint : E3B3*/
+.md-camera_roll::after{
+	content:"camera_roll";
+}
+/*name : center focus strong, id : ic_center_focus_strong, keywords : [image,center,focus,strong], content : center_focus_strong, codepoint : E3B4*/
+.md-center_focus_strong::after{
+	content:"center_focus_strong";
+}
+/*name : center focus weak, id : ic_center_focus_weak, keywords : [image,center,focus,weak], content : center_focus_weak, codepoint : E3B5*/
+.md-center_focus_weak::after{
+	content:"center_focus_weak";
+}
+/*name : collections, id : ic_collections, keywords : [image,collections], content : collections, codepoint : E3B6*/
+.md-collections::after{
+	content:"collections";
+}
+/*name : collections bookmark, id : ic_collections_bookmark, keywords : [image,collections,bookmark], content : collections_bookmark, codepoint : E431*/
+.md-collections_bookmark::after{
+	content:"collections_bookmark";
+}
+/*name : color lens, id : ic_color_lens, keywords : [image,color,lens], content : color_lens, codepoint : E3B7*/
+.md-color_lens::after{
+	content:"color_lens";
+}
+/*name : colorize, id : ic_colorize, keywords : [image,colorize], content : colorize, codepoint : E3B8*/
+.md-colorize::after{
+	content:"colorize";
+}
+/*name : compare, id : ic_compare, keywords : [image,compare], content : compare, codepoint : E3B9*/
+.md-compare::after{
+	content:"compare";
+}
+/*name : control point, id : ic_control_point, keywords : [image,control,point], content : control_point, codepoint : E3BA*/
+.md-control_point::after{
+	content:"control_point";
+}
+/*name : control point duplicate, id : ic_control_point_duplicate, keywords : [image,control,point,duplicate], content : control_point_duplicate, codepoint : E3BB*/
+.md-control_point_duplicate::after{
+	content:"control_point_duplicate";
+}
+/*name : crop, id : ic_crop, keywords : [image,crop], content : crop, codepoint : E3BE*/
+.md-crop::after{
+	content:"crop";
+}
+/*name : crop 16 9, id : ic_crop_16_9, keywords : [image,crop,16], content : crop_16_9, codepoint : E3BC*/
+.md-crop_16_9::after{
+	content:"crop_16_9";
+}
+/*name : crop 3 2, id : ic_crop_3_2, keywords : [image,crop], content : crop_3_2, codepoint : E3BD*/
+.md-crop_3_2::after{
+	content:"crop_3_2";
+}
+/*name : crop 5 4, id : ic_crop_5_4, keywords : [image,crop], content : crop_5_4, codepoint : E3BF*/
+.md-crop_5_4::after{
+	content:"crop_5_4";
+}
+/*name : crop 7 5, id : ic_crop_7_5, keywords : [image,crop], content : crop_7_5, codepoint : E3C0*/
+.md-crop_7_5::after{
+	content:"crop_7_5";
+}
+/*name : crop din, id : ic_crop_din, keywords : [image,crop,din], content : crop_din, codepoint : E3C1*/
+.md-crop_din::after{
+	content:"crop_din";
+}
+/*name : crop free, id : ic_crop_free, keywords : [image,crop,free], content : crop_free, codepoint : E3C2*/
+.md-crop_free::after{
+	content:"crop_free";
+}
+/*name : crop landscape, id : ic_crop_landscape, keywords : [image,crop,landscape], content : crop_landscape, codepoint : E3C3*/
+.md-crop_landscape::after{
+	content:"crop_landscape";
+}
+/*name : crop original, id : ic_crop_original, keywords : [image,crop,original], content : crop_original, codepoint : E3C4*/
+.md-crop_original::after{
+	content:"crop_original";
+}
+/*name : crop portrait, id : ic_crop_portrait, keywords : [image,crop,portrait], content : crop_portrait, codepoint : E3C5*/
+.md-crop_portrait::after{
+	content:"crop_portrait";
+}
+/*name : crop rotate, id : ic_crop_rotate, keywords : [image,crop,rotate], content : crop_rotate, codepoint : E437*/
+.md-crop_rotate::after{
+	content:"crop_rotate";
+}
+/*name : crop square, id : ic_crop_square, keywords : [image,crop,square], content : crop_square, codepoint : E3C6*/
+.md-crop_square::after{
+	content:"crop_square";
+}
+/*name : dehaze, id : ic_dehaze, keywords : [image,dehaze], content : dehaze, codepoint : E3C7*/
+.md-dehaze::after{
+	content:"dehaze";
+}
+/*name : details, id : ic_details, keywords : [image,details], content : details, codepoint : E3C8*/
+.md-details::after{
+	content:"details";
+}
+/*name : edit, id : ic_edit, keywords : [image,edit], content : edit, codepoint : E3C9*/
+.md-edit::after{
+	content:"edit";
+}
+/*name : exposure, id : ic_exposure, keywords : [image,exposure], content : exposure, codepoint : E3CA*/
+.md-exposure::after{
+	content:"exposure";
+}
+/*name : exposure neg 1, id : ic_exposure_neg_1, keywords : [image,exposure,neg], content : exposure_neg_1, codepoint : E3CB*/
+.md-exposure_neg_1::after{
+	content:"exposure_neg_1";
+}
+/*name : exposure neg 2, id : ic_exposure_neg_2, keywords : [image,exposure,neg], content : exposure_neg_2, codepoint : E3CC*/
+.md-exposure_neg_2::after{
+	content:"exposure_neg_2";
+}
+/*name : exposure plus 1, id : ic_exposure_plus_1, keywords : [image,exposure,plus], content : exposure_plus_1, codepoint : E3CD*/
+.md-exposure_plus_1::after{
+	content:"exposure_plus_1";
+}
+/*name : exposure plus 2, id : ic_exposure_plus_2, keywords : [image,exposure,plus], content : exposure_plus_2, codepoint : E3CE*/
+.md-exposure_plus_2::after{
+	content:"exposure_plus_2";
+}
+/*name : exposure zero, id : ic_exposure_zero, keywords : [image,exposure,zero], content : exposure_zero, codepoint : E3CF*/
+.md-exposure_zero::after{
+	content:"exposure_zero";
+}
+/*name : filter, id : ic_filter, keywords : [image,filter], content : filter, codepoint : E3D3*/
+.md-filter::after{
+	content:"filter";
+}
+/*name : filter 1, id : ic_filter_1, keywords : [image,filter], content : filter_1, codepoint : E3D0*/
+.md-filter_1::after{
+	content:"filter_1";
+}
+/*name : filter 2, id : ic_filter_2, keywords : [image,filter], content : filter_2, codepoint : E3D1*/
+.md-filter_2::after{
+	content:"filter_2";
+}
+/*name : filter 3, id : ic_filter_3, keywords : [image,filter], content : filter_3, codepoint : E3D2*/
+.md-filter_3::after{
+	content:"filter_3";
+}
+/*name : filter 4, id : ic_filter_4, keywords : [image,filter], content : filter_4, codepoint : E3D4*/
+.md-filter_4::after{
+	content:"filter_4";
+}
+/*name : filter 5, id : ic_filter_5, keywords : [image,filter], content : filter_5, codepoint : E3D5*/
+.md-filter_5::after{
+	content:"filter_5";
+}
+/*name : filter 6, id : ic_filter_6, keywords : [image,filter], content : filter_6, codepoint : E3D6*/
+.md-filter_6::after{
+	content:"filter_6";
+}
+/*name : filter 7, id : ic_filter_7, keywords : [image,filter], content : filter_7, codepoint : E3D7*/
+.md-filter_7::after{
+	content:"filter_7";
+}
+/*name : filter 8, id : ic_filter_8, keywords : [image,filter], content : filter_8, codepoint : E3D8*/
+.md-filter_8::after{
+	content:"filter_8";
+}
+/*name : filter 9, id : ic_filter_9, keywords : [image,filter], content : filter_9, codepoint : E3D9*/
+.md-filter_9::after{
+	content:"filter_9";
+}
+/*name : filter 9 plus, id : ic_filter_9_plus, keywords : [image,filter,plus], content : filter_9_plus, codepoint : E3DA*/
+.md-filter_9_plus::after{
+	content:"filter_9_plus";
+}
+/*name : filter b and w, id : ic_filter_b_and_w, keywords : [image,filter], content : filter_b_and_w, codepoint : E3DB*/
+.md-filter_b_and_w::after{
+	content:"filter_b_and_w";
+}
+/*name : filter center focus, id : ic_filter_center_focus, keywords : [image,filter,center,focus], content : filter_center_focus, codepoint : E3DC*/
+.md-filter_center_focus::after{
+	content:"filter_center_focus";
+}
+/*name : filter drama, id : ic_filter_drama, keywords : [image,filter,drama], content : filter_drama, codepoint : E3DD*/
+.md-filter_drama::after{
+	content:"filter_drama";
+}
+/*name : filter frames, id : ic_filter_frames, keywords : [image,filter,frames], content : filter_frames, codepoint : E3DE*/
+.md-filter_frames::after{
+	content:"filter_frames";
+}
+/*name : filter hdr, id : ic_filter_hdr, keywords : [image,filter,hdr], content : filter_hdr, codepoint : E3DF*/
+.md-filter_hdr::after{
+	content:"filter_hdr";
+}
+/*name : filter none, id : ic_filter_none, keywords : [image,filter,none], content : filter_none, codepoint : E3E0*/
+.md-filter_none::after{
+	content:"filter_none";
+}
+/*name : filter tilt shift, id : ic_filter_tilt_shift, keywords : [image,filter,tilt,shift], content : filter_tilt_shift, codepoint : E3E2*/
+.md-filter_tilt_shift::after{
+	content:"filter_tilt_shift";
+}
+/*name : filter vintage, id : ic_filter_vintage, keywords : [image,filter,vintage], content : filter_vintage, codepoint : E3E3*/
+.md-filter_vintage::after{
+	content:"filter_vintage";
+}
+/*name : flare, id : ic_flare, keywords : [image,flare], content : flare, codepoint : E3E4*/
+.md-flare::after{
+	content:"flare";
+}
+/*name : flash auto, id : ic_flash_auto, keywords : [image,flash,auto], content : flash_auto, codepoint : E3E5*/
+.md-flash_auto::after{
+	content:"flash_auto";
+}
+/*name : flash off, id : ic_flash_off, keywords : [image,flash,off], content : flash_off, codepoint : E3E6*/
+.md-flash_off::after{
+	content:"flash_off";
+}
+/*name : flash on, id : ic_flash_on, keywords : [image,flash,on], content : flash_on, codepoint : E3E7*/
+.md-flash_on::after{
+	content:"flash_on";
+}
+/*name : flip, id : ic_flip, keywords : [image,flip], content : flip, codepoint : E3E8*/
+.md-flip::after{
+	content:"flip";
+}
+/*name : gradient, id : ic_gradient, keywords : [image,gradient], content : gradient, codepoint : E3E9*/
+.md-gradient::after{
+	content:"gradient";
+}
+/*name : grain, id : ic_grain, keywords : [image,grain], content : grain, codepoint : E3EA*/
+.md-grain::after{
+	content:"grain";
+}
+/*name : grid off, id : ic_grid_off, keywords : [image,grid,off], content : grid_off, codepoint : E3EB*/
+.md-grid_off::after{
+	content:"grid_off";
+}
+/*name : grid on, id : ic_grid_on, keywords : [image,grid,on], content : grid_on, codepoint : E3EC*/
+.md-grid_on::after{
+	content:"grid_on";
+}
+/*name : hdr off, id : ic_hdr_off, keywords : [image,hdr,off], content : hdr_off, codepoint : E3ED*/
+.md-hdr_off::after{
+	content:"hdr_off";
+}
+/*name : hdr on, id : ic_hdr_on, keywords : [image,hdr,on], content : hdr_on, codepoint : E3EE*/
+.md-hdr_on::after{
+	content:"hdr_on";
+}
+/*name : hdr strong, id : ic_hdr_strong, keywords : [image,hdr,strong], content : hdr_strong, codepoint : E3F1*/
+.md-hdr_strong::after{
+	content:"hdr_strong";
+}
+/*name : hdr weak, id : ic_hdr_weak, keywords : [image,hdr,weak], content : hdr_weak, codepoint : E3F2*/
+.md-hdr_weak::after{
+	content:"hdr_weak";
+}
+/*name : healing, id : ic_healing, keywords : [image,healing], content : healing, codepoint : E3F3*/
+.md-healing::after{
+	content:"healing";
+}
+/*name : image, id : ic_image, keywords : [image,image], content : image, codepoint : E3F4*/
+.md-image::after{
+	content:"image";
+}
+/*name : image aspect ratio, id : ic_image_aspect_ratio, keywords : [image,image,aspect,ratio], content : image_aspect_ratio, codepoint : E3F5*/
+.md-image_aspect_ratio::after{
+	content:"image_aspect_ratio";
+}
+/*name : iso, id : ic_iso, keywords : [image,iso], content : iso, codepoint : E3F6*/
+.md-iso::after{
+	content:"iso";
+}
+/*name : landscape, id : ic_landscape, keywords : [image,landscape], content : landscape, codepoint : E3F7*/
+.md-landscape::after{
+	content:"landscape";
+}
+/*name : leak add, id : ic_leak_add, keywords : [image,leak,add], content : leak_add, codepoint : E3F8*/
+.md-leak_add::after{
+	content:"leak_add";
+}
+/*name : leak remove, id : ic_leak_remove, keywords : [image,leak,remove], content : leak_remove, codepoint : E3F9*/
+.md-leak_remove::after{
+	content:"leak_remove";
+}
+/*name : lens, id : ic_lens, keywords : [image,lens], content : lens, codepoint : E3FA*/
+.md-lens::after{
+	content:"lens";
+}
+/*name : linked camera, id : ic_linked_camera, keywords : [image,linked,camera], content : linked_camera, codepoint : E438*/
+.md-linked_camera::after{
+	content:"linked_camera";
+}
+/*name : looks, id : ic_looks, keywords : [image,looks], content : looks, codepoint : E3FC*/
+.md-looks::after{
+	content:"looks";
+}
+/*name : looks 3, id : ic_looks_3, keywords : [image,looks], content : looks_3, codepoint : E3FB*/
+.md-looks_3::after{
+	content:"looks_3";
+}
+/*name : looks 4, id : ic_looks_4, keywords : [image,looks], content : looks_4, codepoint : E3FD*/
+.md-looks_4::after{
+	content:"looks_4";
+}
+/*name : looks 5, id : ic_looks_5, keywords : [image,looks], content : looks_5, codepoint : E3FE*/
+.md-looks_5::after{
+	content:"looks_5";
+}
+/*name : looks 6, id : ic_looks_6, keywords : [image,looks], content : looks_6, codepoint : E3FF*/
+.md-looks_6::after{
+	content:"looks_6";
+}
+/*name : looks one, id : ic_looks_one, keywords : [image,looks,one], content : looks_one, codepoint : E400*/
+.md-looks_one::after{
+	content:"looks_one";
+}
+/*name : looks two, id : ic_looks_two, keywords : [image,looks,two], content : looks_two, codepoint : E401*/
+.md-looks_two::after{
+	content:"looks_two";
+}
+/*name : loupe, id : ic_loupe, keywords : [image,loupe], content : loupe, codepoint : E402*/
+.md-loupe::after{
+	content:"loupe";
+}
+/*name : monochrome photos, id : ic_monochrome_photos, keywords : [image,monochrome,photos], content : monochrome_photos, codepoint : E403*/
+.md-monochrome_photos::after{
+	content:"monochrome_photos";
+}
+/*name : movie creation, id : ic_movie_creation, keywords : [image,movie,creation], content : movie_creation, codepoint : E404*/
+.md-movie_creation::after{
+	content:"movie_creation";
+}
+/*name : movie filter, id : ic_movie_filter, keywords : [image,movie,filter], content : movie_filter, codepoint : E43A*/
+.md-movie_filter::after{
+	content:"movie_filter";
+}
+/*name : music note, id : ic_music_note, keywords : [image,music,note], content : music_note, codepoint : E405*/
+.md-music_note::after{
+	content:"music_note";
+}
+/*name : nature, id : ic_nature, keywords : [image,nature], content : nature, codepoint : E406*/
+.md-nature::after{
+	content:"nature";
+}
+/*name : nature people, id : ic_nature_people, keywords : [image,nature,people], content : nature_people, codepoint : E407*/
+.md-nature_people::after{
+	content:"nature_people";
+}
+/*name : navigate before, id : ic_navigate_before, keywords : [image,navigate,before], content : navigate_before, codepoint : E408*/
+.md-navigate_before::after{
+	content:"navigate_before";
+}
+/*name : navigate next, id : ic_navigate_next, keywords : [image,navigate,next], content : navigate_next, codepoint : E409*/
+.md-navigate_next::after{
+	content:"navigate_next";
+}
+/*name : palette, id : ic_palette, keywords : [image,palette], content : palette, codepoint : E40A*/
+.md-palette::after{
+	content:"palette";
+}
+/*name : panorama, id : ic_panorama, keywords : [image,panorama], content : panorama, codepoint : E40B*/
+.md-panorama::after{
+	content:"panorama";
+}
+/*name : panorama fish eye, id : ic_panorama_fish_eye, keywords : [image,panorama,fish,eye], content : panorama_fish_eye, codepoint : E40C*/
+.md-panorama_fish_eye::after{
+	content:"panorama_fish_eye";
+}
+/*name : panorama horizontal, id : ic_panorama_horizontal, keywords : [image,panorama,horizontal], content : panorama_horizontal, codepoint : E40D*/
+.md-panorama_horizontal::after{
+	content:"panorama_horizontal";
+}
+/*name : panorama vertical, id : ic_panorama_vertical, keywords : [image,panorama,vertical], content : panorama_vertical, codepoint : E40E*/
+.md-panorama_vertical::after{
+	content:"panorama_vertical";
+}
+/*name : panorama wide angle, id : ic_panorama_wide_angle, keywords : [image,panorama,wide,angle], content : panorama_wide_angle, codepoint : E40F*/
+.md-panorama_wide_angle::after{
+	content:"panorama_wide_angle";
+}
+/*name : photo, id : ic_photo, keywords : [image,photo], content : photo, codepoint : E410*/
+.md-photo::after{
+	content:"photo";
+}
+/*name : photo album, id : ic_photo_album, keywords : [image,photo,album], content : photo_album, codepoint : E411*/
+.md-photo_album::after{
+	content:"photo_album";
+}
+/*name : photo camera, id : ic_photo_camera, keywords : [image,photo,camera], content : photo_camera, codepoint : E412*/
+.md-photo_camera::after{
+	content:"photo_camera";
+}
+/*name : photo filter, id : ic_photo_filter, keywords : [image,photo,filter], content : photo_filter, codepoint : E43B*/
+.md-photo_filter::after{
+	content:"photo_filter";
+}
+/*name : photo library, id : ic_photo_library, keywords : [image,photo,library], content : photo_library, codepoint : E413*/
+.md-photo_library::after{
+	content:"photo_library";
+}
+/*name : photo size select actual, id : ic_photo_size_select_actual, keywords : [image,photo,size,select,actual], content : photo_size_select_actual, codepoint : E432*/
+.md-photo_size_select_actual::after{
+	content:"photo_size_select_actual";
+}
+/*name : photo size select large, id : ic_photo_size_select_large, keywords : [image,photo,size,select,large], content : photo_size_select_large, codepoint : E433*/
+.md-photo_size_select_large::after{
+	content:"photo_size_select_large";
+}
+/*name : photo size select small, id : ic_photo_size_select_small, keywords : [image,photo,size,select,small], content : photo_size_select_small, codepoint : E434*/
+.md-photo_size_select_small::after{
+	content:"photo_size_select_small";
+}
+/*name : picture as pdf, id : ic_picture_as_pdf, keywords : [image,picture,as,pdf], content : picture_as_pdf, codepoint : E415*/
+.md-picture_as_pdf::after{
+	content:"picture_as_pdf";
+}
+/*name : portrait, id : ic_portrait, keywords : [image,portrait], content : portrait, codepoint : E416*/
+.md-portrait::after{
+	content:"portrait";
+}
+/*name : remove red eye, id : ic_remove_red_eye, keywords : [image,remove,red,eye], content : remove_red_eye, codepoint : E417*/
+.md-remove_red_eye::after{
+	content:"remove_red_eye";
+}
+/*name : rotate 90 degrees ccw, id : ic_rotate_90_degrees_ccw, keywords : [image,rotate,90,degrees,ccw], content : rotate_90_degrees_ccw, codepoint : E418*/
+.md-rotate_90_degrees_ccw::after{
+	content:"rotate_90_degrees_ccw";
+}
+/*name : rotate left, id : ic_rotate_left, keywords : [image,rotate,left], content : rotate_left, codepoint : E419*/
+.md-rotate_left::after{
+	content:"rotate_left";
+}
+/*name : rotate right, id : ic_rotate_right, keywords : [image,rotate,right], content : rotate_right, codepoint : E41A*/
+.md-rotate_right::after{
+	content:"rotate_right";
+}
+/*name : slideshow, id : ic_slideshow, keywords : [image,slideshow], content : slideshow, codepoint : E41B*/
+.md-slideshow::after{
+	content:"slideshow";
+}
+/*name : straighten, id : ic_straighten, keywords : [image,straighten], content : straighten, codepoint : E41C*/
+.md-straighten::after{
+	content:"straighten";
+}
+/*name : style, id : ic_style, keywords : [image,style], content : style, codepoint : E41D*/
+.md-style::after{
+	content:"style";
+}
+/*name : switch camera, id : ic_switch_camera, keywords : [image,switch,camera], content : switch_camera, codepoint : E41E*/
+.md-switch_camera::after{
+	content:"switch_camera";
+}
+/*name : switch video, id : ic_switch_video, keywords : [image,switch,video], content : switch_video, codepoint : E41F*/
+.md-switch_video::after{
+	content:"switch_video";
+}
+/*name : tag faces, id : ic_tag_faces, keywords : [image,tag,faces], content : tag_faces, codepoint : E420*/
+.md-tag_faces::after{
+	content:"tag_faces";
+}
+/*name : texture, id : ic_texture, keywords : [image,texture], content : texture, codepoint : E421*/
+.md-texture::after{
+	content:"texture";
+}
+/*name : timelapse, id : ic_timelapse, keywords : [image,timelapse], content : timelapse, codepoint : E422*/
+.md-timelapse::after{
+	content:"timelapse";
+}
+/*name : timer, id : ic_timer, keywords : [image,timer], content : timer, codepoint : E425*/
+.md-timer::after{
+	content:"timer";
+}
+/*name : timer 10, id : ic_timer_10, keywords : [image,timer,10], content : timer_10, codepoint : E423*/
+.md-timer_10::after{
+	content:"timer_10";
+}
+/*name : timer 3, id : ic_timer_3, keywords : [image,timer], content : timer_3, codepoint : E424*/
+.md-timer_3::after{
+	content:"timer_3";
+}
+/*name : timer off, id : ic_timer_off, keywords : [image,timer,off], content : timer_off, codepoint : E426*/
+.md-timer_off::after{
+	content:"timer_off";
+}
+/*name : tonality, id : ic_tonality, keywords : [image,tonality], content : tonality, codepoint : E427*/
+.md-tonality::after{
+	content:"tonality";
+}
+/*name : transform, id : ic_transform, keywords : [image,transform], content : transform, codepoint : E428*/
+.md-transform::after{
+	content:"transform";
+}
+/*name : tune, id : ic_tune, keywords : [image,tune], content : tune, codepoint : E429*/
+.md-tune::after{
+	content:"tune";
+}
+/*name : view comfy, id : ic_view_comfy, keywords : [image,view,comfy], content : view_comfy, codepoint : E42A*/
+.md-view_comfy::after{
+	content:"view_comfy";
+}
+/*name : view compact, id : ic_view_compact, keywords : [image,view,compact], content : view_compact, codepoint : E42B*/
+.md-view_compact::after{
+	content:"view_compact";
+}
+/*name : vignette, id : ic_vignette, keywords : [image,vignette], content : vignette, codepoint : E435*/
+.md-vignette::after{
+	content:"vignette";
+}
+/*name : wb auto, id : ic_wb_auto, keywords : [image,wb,auto], content : wb_auto, codepoint : E42C*/
+.md-wb_auto::after{
+	content:"wb_auto";
+}
+/*name : wb cloudy, id : ic_wb_cloudy, keywords : [image,wb,cloudy], content : wb_cloudy, codepoint : E42D*/
+.md-wb_cloudy::after{
+	content:"wb_cloudy";
+}
+/*name : wb incandescent, id : ic_wb_incandescent, keywords : [image,wb,incandescent], content : wb_incandescent, codepoint : E42E*/
+.md-wb_incandescent::after{
+	content:"wb_incandescent";
+}
+/*name : wb iridescent, id : ic_wb_iridescent, keywords : [image,wb,iridescent], content : wb_iridescent, codepoint : E436*/
+.md-wb_iridescent::after{
+	content:"wb_iridescent";
+}
+/*name : wb sunny, id : ic_wb_sunny, keywords : [image,wb,sunny], content : wb_sunny, codepoint : E430*/
+.md-wb_sunny::after{
+	content:"wb_sunny";
+}
+/*name : add location, id : ic_add_location, keywords : [maps,add,location], content : add_location, codepoint : E567*/
+.md-add_location::after{
+	content:"add_location";
+}
+/*name : beenhere, id : ic_beenhere, keywords : [maps,beenhere], content : beenhere, codepoint : E52D*/
+.md-beenhere::after{
+	content:"beenhere";
+}
+/*name : directions, id : ic_directions, keywords : [maps,directions], content : directions, codepoint : E52E*/
+.md-directions::after{
+	content:"directions";
+}
+/*name : directions bike, id : ic_directions_bike, keywords : [maps,directions,bike], content : directions_bike, codepoint : E52F*/
+.md-directions_bike::after{
+	content:"directions_bike";
+}
+/*name : directions boat, id : ic_directions_boat, keywords : [maps,directions,boat], content : directions_boat, codepoint : E532*/
+.md-directions_boat::after{
+	content:"directions_boat";
+}
+/*name : directions bus, id : ic_directions_bus, keywords : [maps,directions,bus], content : directions_bus, codepoint : E530*/
+.md-directions_bus::after{
+	content:"directions_bus";
+}
+/*name : directions car, id : ic_directions_car, keywords : [maps,directions,car], content : directions_car, codepoint : E531*/
+.md-directions_car::after{
+	content:"directions_car";
+}
+/*name : directions railway, id : ic_directions_railway, keywords : [maps,directions,railway], content : directions_railway, codepoint : E534*/
+.md-directions_railway::after{
+	content:"directions_railway";
+}
+/*name : directions run, id : ic_directions_run, keywords : [maps,directions,run], content : directions_run, codepoint : E566*/
+.md-directions_run::after{
+	content:"directions_run";
+}
+/*name : directions subway, id : ic_directions_subway, keywords : [maps,directions,subway], content : directions_subway, codepoint : E533*/
+.md-directions_subway::after{
+	content:"directions_subway";
+}
+/*name : directions transit, id : ic_directions_transit, keywords : [maps,directions,transit], content : directions_transit, codepoint : E535*/
+.md-directions_transit::after{
+	content:"directions_transit";
+}
+/*name : directions walk, id : ic_directions_walk, keywords : [maps,directions,walk], content : directions_walk, codepoint : E536*/
+.md-directions_walk::after{
+	content:"directions_walk";
+}
+/*name : edit location, id : ic_edit_location, keywords : [maps,edit,location], content : edit_location, codepoint : E568*/
+.md-edit_location::after{
+	content:"edit_location";
+}
+/*name : ev station, id : ic_ev_station, keywords : [maps,ev,station], content : ev_station, codepoint : E56D*/
+.md-ev_station::after{
+	content:"ev_station";
+}
+/*name : flight, id : ic_flight, keywords : [maps,flight], content : flight, codepoint : E539*/
+.md-flight::after{
+	content:"flight";
+}
+/*name : hotel, id : ic_hotel, keywords : [maps,hotel], content : hotel, codepoint : E53A*/
+.md-hotel::after{
+	content:"hotel";
+}
+/*name : layers, id : ic_layers, keywords : [maps,layers], content : layers, codepoint : E53B*/
+.md-layers::after{
+	content:"layers";
+}
+/*name : layers clear, id : ic_layers_clear, keywords : [maps,layers,clear], content : layers_clear, codepoint : E53C*/
+.md-layers_clear::after{
+	content:"layers_clear";
+}
+/*name : local activity, id : ic_local_activity, keywords : [maps,local,activity], content : local_activity, codepoint : E53F*/
+.md-local_activity::after{
+	content:"local_activity";
+}
+/*name : local airport, id : ic_local_airport, keywords : [maps,local,airport], content : local_airport, codepoint : E53D*/
+.md-local_airport::after{
+	content:"local_airport";
+}
+/*name : local atm, id : ic_local_atm, keywords : [maps,local,atm], content : local_atm, codepoint : E53E*/
+.md-local_atm::after{
+	content:"local_atm";
+}
+/*name : local bar, id : ic_local_bar, keywords : [maps,local,bar], content : local_bar, codepoint : E540*/
+.md-local_bar::after{
+	content:"local_bar";
+}
+/*name : local cafe, id : ic_local_cafe, keywords : [maps,local,cafe], content : local_cafe, codepoint : E541*/
+.md-local_cafe::after{
+	content:"local_cafe";
+}
+/*name : local car wash, id : ic_local_car_wash, keywords : [maps,local,car,wash], content : local_car_wash, codepoint : E542*/
+.md-local_car_wash::after{
+	content:"local_car_wash";
+}
+/*name : local convenience store, id : ic_local_convenience_store, keywords : [maps,local,convenience,store], content : local_convenience_store, codepoint : E543*/
+.md-local_convenience_store::after{
+	content:"local_convenience_store";
+}
+/*name : local dining, id : ic_local_dining, keywords : [maps,local,dining], content : local_dining, codepoint : E556*/
+.md-local_dining::after{
+	content:"local_dining";
+}
+/*name : local drink, id : ic_local_drink, keywords : [maps,local,drink], content : local_drink, codepoint : E544*/
+.md-local_drink::after{
+	content:"local_drink";
+}
+/*name : local florist, id : ic_local_florist, keywords : [maps,local,florist], content : local_florist, codepoint : E545*/
+.md-local_florist::after{
+	content:"local_florist";
+}
+/*name : local gas station, id : ic_local_gas_station, keywords : [maps,local,gas,station], content : local_gas_station, codepoint : E546*/
+.md-local_gas_station::after{
+	content:"local_gas_station";
+}
+/*name : local grocery store, id : ic_local_grocery_store, keywords : [maps,local,grocery,store], content : local_grocery_store, codepoint : E547*/
+.md-local_grocery_store::after{
+	content:"local_grocery_store";
+}
+/*name : local hospital, id : ic_local_hospital, keywords : [maps,local,hospital], content : local_hospital, codepoint : E548*/
+.md-local_hospital::after{
+	content:"local_hospital";
+}
+/*name : local hotel, id : ic_local_hotel, keywords : [maps,local,hotel], content : local_hotel, codepoint : E549*/
+.md-local_hotel::after{
+	content:"local_hotel";
+}
+/*name : local laundry service, id : ic_local_laundry_service, keywords : [maps,local,laundry,service], content : local_laundry_service, codepoint : E54A*/
+.md-local_laundry_service::after{
+	content:"local_laundry_service";
+}
+/*name : local library, id : ic_local_library, keywords : [maps,local,library], content : local_library, codepoint : E54B*/
+.md-local_library::after{
+	content:"local_library";
+}
+/*name : local mall, id : ic_local_mall, keywords : [maps,local,mall], content : local_mall, codepoint : E54C*/
+.md-local_mall::after{
+	content:"local_mall";
+}
+/*name : local movies, id : ic_local_movies, keywords : [maps,local,movies], content : local_movies, codepoint : E54D*/
+.md-local_movies::after{
+	content:"local_movies";
+}
+/*name : local offer, id : ic_local_offer, keywords : [maps,local,offer], content : local_offer, codepoint : E54E*/
+.md-local_offer::after{
+	content:"local_offer";
+}
+/*name : local parking, id : ic_local_parking, keywords : [maps,local,parking], content : local_parking, codepoint : E54F*/
+.md-local_parking::after{
+	content:"local_parking";
+}
+/*name : local pharmacy, id : ic_local_pharmacy, keywords : [maps,local,pharmacy], content : local_pharmacy, codepoint : E550*/
+.md-local_pharmacy::after{
+	content:"local_pharmacy";
+}
+/*name : local phone, id : ic_local_phone, keywords : [maps,local,phone], content : local_phone, codepoint : E551*/
+.md-local_phone::after{
+	content:"local_phone";
+}
+/*name : local pizza, id : ic_local_pizza, keywords : [maps,local,pizza], content : local_pizza, codepoint : E552*/
+.md-local_pizza::after{
+	content:"local_pizza";
+}
+/*name : local play, id : ic_local_play, keywords : [maps,local,play], content : local_play, codepoint : E553*/
+.md-local_play::after{
+	content:"local_play";
+}
+/*name : local post office, id : ic_local_post_office, keywords : [maps,local,post,office], content : local_post_office, codepoint : E554*/
+.md-local_post_office::after{
+	content:"local_post_office";
+}
+/*name : local printshop, id : ic_local_printshop, keywords : [maps,local,printshop], content : local_printshop, codepoint : E555*/
+.md-local_printshop::after{
+	content:"local_printshop";
+}
+/*name : local see, id : ic_local_see, keywords : [maps,local,see], content : local_see, codepoint : E557*/
+.md-local_see::after{
+	content:"local_see";
+}
+/*name : local shipping, id : ic_local_shipping, keywords : [maps,local,shipping], content : local_shipping, codepoint : E558*/
+.md-local_shipping::after{
+	content:"local_shipping";
+}
+/*name : local taxi, id : ic_local_taxi, keywords : [maps,local,taxi], content : local_taxi, codepoint : E559*/
+.md-local_taxi::after{
+	content:"local_taxi";
+}
+/*name : map, id : ic_map, keywords : [maps,map], content : map, codepoint : E55B*/
+.md-map::after{
+	content:"map";
+}
+/*name : my location, id : ic_my_location, keywords : [maps,my,location], content : my_location, codepoint : E55C*/
+.md-my_location::after{
+	content:"my_location";
+}
+/*name : navigation, id : ic_navigation, keywords : [maps,navigation], content : navigation, codepoint : E55D*/
+.md-navigation::after{
+	content:"navigation";
+}
+/*name : near me, id : ic_near_me, keywords : [maps,near,me], content : near_me, codepoint : E569*/
+.md-near_me::after{
+	content:"near_me";
+}
+/*name : person pin, id : ic_person_pin, keywords : [maps,person,pin], content : person_pin, codepoint : E55A*/
+.md-person_pin::after{
+	content:"person_pin";
+}
+/*name : person pin circle, id : ic_person_pin_circle, keywords : [maps,person,pin,circle], content : person_pin_circle, codepoint : E56A*/
+.md-person_pin_circle::after{
+	content:"person_pin_circle";
+}
+/*name : pin drop, id : ic_pin_drop, keywords : [maps,pin,drop], content : pin_drop, codepoint : E55E*/
+.md-pin_drop::after{
+	content:"pin_drop";
+}
+/*name : place, id : ic_place, keywords : [maps,place], content : place, codepoint : E55F*/
+.md-place::after{
+	content:"place";
+}
+/*name : rate review, id : ic_rate_review, keywords : [maps,rate,review], content : rate_review, codepoint : E560*/
+.md-rate_review::after{
+	content:"rate_review";
+}
+/*name : restaurant, id : ic_restaurant, keywords : [maps,restaurant], content : restaurant, codepoint : E56C*/
+.md-restaurant::after{
+	content:"restaurant";
+}
+/*name : restaurant menu, id : ic_restaurant_menu, keywords : [maps,restaurant,menu], content : restaurant_menu, codepoint : E561*/
+.md-restaurant_menu::after{
+	content:"restaurant_menu";
+}
+/*name : satellite, id : ic_satellite, keywords : [maps,satellite], content : satellite, codepoint : E562*/
+.md-satellite::after{
+	content:"satellite";
+}
+/*name : store mall directory, id : ic_store_mall_directory, keywords : [maps,store,mall,directory], content : store_mall_directory, codepoint : E563*/
+.md-store_mall_directory::after{
+	content:"store_mall_directory";
+}
+/*name : streetview, id : ic_streetview, keywords : [maps,streetview], content : streetview, codepoint : E56E*/
+.md-streetview::after{
+	content:"streetview";
+}
+/*name : subway, id : ic_subway, keywords : [maps,subway], content : subway, codepoint : E56F*/
+.md-subway::after{
+	content:"subway";
+}
+/*name : terrain, id : ic_terrain, keywords : [maps,terrain], content : terrain, codepoint : E564*/
+.md-terrain::after{
+	content:"terrain";
+}
+/*name : traffic, id : ic_traffic, keywords : [maps,traffic], content : traffic, codepoint : E565*/
+.md-traffic::after{
+	content:"traffic";
+}
+/*name : train, id : ic_train, keywords : [maps,train], content : train, codepoint : E570*/
+.md-train::after{
+	content:"train";
+}
+/*name : tram, id : ic_tram, keywords : [maps,tram], content : tram, codepoint : E571*/
+.md-tram::after{
+	content:"tram";
+}
+/*name : transfer within a station, id : ic_transfer_within_a_station, keywords : [maps,transfer,within,station], content : transfer_within_a_station, codepoint : E572*/
+.md-transfer_within_a_station::after{
+	content:"transfer_within_a_station";
+}
+/*name : zoom out map, id : ic_zoom_out_map, keywords : [maps,zoom,out,map], content : zoom_out_map, codepoint : E56B*/
+.md-zoom_out_map::after{
+	content:"zoom_out_map";
+}
+/*name : apps, id : ic_apps, keywords : [navigation,apps], content : apps, codepoint : E5C3*/
+.md-apps::after{
+	content:"apps";
+}
+/*name : arrow back, id : ic_arrow_back, keywords : [navigation,arrow,back], content : arrow_back, codepoint : E5C4*/
+.md-arrow_back::after{
+	content:"arrow_back";
+}
+/*name : arrow downward, id : ic_arrow_downward, keywords : [navigation,arrow,downward], content : arrow_downward, codepoint : E5DB*/
+.md-arrow_downward::after{
+	content:"arrow_downward";
+}
+/*name : arrow drop down, id : ic_arrow_drop_down, keywords : [navigation,arrow,drop,down], content : arrow_drop_down, codepoint : E5C5*/
+.md-arrow_drop_down::after{
+	content:"arrow_drop_down";
+}
+/*name : arrow drop down circle, id : ic_arrow_drop_down_circle, keywords : [navigation,arrow,drop,down,circle], content : arrow_drop_down_circle, codepoint : E5C6*/
+.md-arrow_drop_down_circle::after{
+	content:"arrow_drop_down_circle";
+}
+/*name : arrow drop up, id : ic_arrow_drop_up, keywords : [navigation,arrow,drop,up], content : arrow_drop_up, codepoint : E5C7*/
+.md-arrow_drop_up::after{
+	content:"arrow_drop_up";
+}
+/*name : arrow forward, id : ic_arrow_forward, keywords : [navigation,arrow,forward], content : arrow_forward, codepoint : E5C8*/
+.md-arrow_forward::after{
+	content:"arrow_forward";
+}
+/*name : arrow upward, id : ic_arrow_upward, keywords : [navigation,arrow,upward], content : arrow_upward, codepoint : E5D8*/
+.md-arrow_upward::after{
+	content:"arrow_upward";
+}
+/*name : cancel, id : ic_cancel, keywords : [navigation,cancel], content : cancel, codepoint : E5C9*/
+.md-cancel::after{
+	content:"cancel";
+}
+/*name : check, id : ic_check, keywords : [navigation,check], content : check, codepoint : E5CA*/
+.md-check::after{
+	content:"check";
+}
+/*name : chevron left, id : ic_chevron_left, keywords : [navigation,chevron,left], content : chevron_left, codepoint : E5CB*/
+.md-chevron_left::after{
+	content:"chevron_left";
+}
+/*name : chevron right, id : ic_chevron_right, keywords : [navigation,chevron,right], content : chevron_right, codepoint : E5CC*/
+.md-chevron_right::after{
+	content:"chevron_right";
+}
+/*name : close, id : ic_close, keywords : [navigation,close], content : close, codepoint : E5CD*/
+.md-close::after{
+	content:"close";
+}
+/*name : expand less, id : ic_expand_less, keywords : [navigation,expand,less], content : expand_less, codepoint : E5CE*/
+.md-expand_less::after{
+	content:"expand_less";
+}
+/*name : expand more, id : ic_expand_more, keywords : [navigation,expand,more], content : expand_more, codepoint : E5CF*/
+.md-expand_more::after{
+	content:"expand_more";
+}
+/*name : first page, id : ic_first_page, keywords : [navigation,first,page], content : first_page, codepoint : E5DC*/
+.md-first_page::after{
+	content:"first_page";
+}
+/*name : fullscreen, id : ic_fullscreen, keywords : [navigation,fullscreen], content : fullscreen, codepoint : E5D0*/
+.md-fullscreen::after{
+	content:"fullscreen";
+}
+/*name : fullscreen exit, id : ic_fullscreen_exit, keywords : [navigation,fullscreen,exit], content : fullscreen_exit, codepoint : E5D1*/
+.md-fullscreen_exit::after{
+	content:"fullscreen_exit";
+}
+/*name : last page, id : ic_last_page, keywords : [navigation,last,page], content : last_page, codepoint : E5DD*/
+.md-last_page::after{
+	content:"last_page";
+}
+/*name : menu, id : ic_menu, keywords : [navigation,menu], content : menu, codepoint : E5D2*/
+.md-menu::after{
+	content:"menu";
+}
+/*name : more horiz, id : ic_more_horiz, keywords : [navigation,more,horiz], content : more_horiz, codepoint : E5D3*/
+.md-more_horiz::after{
+	content:"more_horiz";
+}
+/*name : more vert, id : ic_more_vert, keywords : [navigation,more,vert], content : more_vert, codepoint : E5D4*/
+.md-more_vert::after{
+	content:"more_vert";
+}
+/*name : refresh, id : ic_refresh, keywords : [navigation,refresh], content : refresh, codepoint : E5D5*/
+.md-refresh::after{
+	content:"refresh";
+}
+/*name : subdirectory arrow left, id : ic_subdirectory_arrow_left, keywords : [navigation,subdirectory,arrow,left], content : subdirectory_arrow_left, codepoint : E5D9*/
+.md-subdirectory_arrow_left::after{
+	content:"subdirectory_arrow_left";
+}
+/*name : subdirectory arrow right, id : ic_subdirectory_arrow_right, keywords : [navigation,subdirectory,arrow,right], content : subdirectory_arrow_right, codepoint : E5DA*/
+.md-subdirectory_arrow_right::after{
+	content:"subdirectory_arrow_right";
+}
+/*name : adb, id : ic_adb, keywords : [notification,adb], content : adb, codepoint : E60E*/
+.md-adb::after{
+	content:"adb";
+}
+/*name : airline seat flat, id : ic_airline_seat_flat, keywords : [notification,airline,seat,flat], content : airline_seat_flat, codepoint : E630*/
+.md-airline_seat_flat::after{
+	content:"airline_seat_flat";
+}
+/*name : airline seat flat angled, id : ic_airline_seat_flat_angled, keywords : [notification,airline,seat,flat,angled], content : airline_seat_flat_angled, codepoint : E631*/
+.md-airline_seat_flat_angled::after{
+	content:"airline_seat_flat_angled";
+}
+/*name : airline seat individual suite, id : ic_airline_seat_individual_suite, keywords : [notification,airline,seat,individual,suite], content : airline_seat_individual_suite, codepoint : E632*/
+.md-airline_seat_individual_suite::after{
+	content:"airline_seat_individual_suite";
+}
+/*name : airline seat legroom extra, id : ic_airline_seat_legroom_extra, keywords : [notification,airline,seat,legroom,extra], content : airline_seat_legroom_extra, codepoint : E633*/
+.md-airline_seat_legroom_extra::after{
+	content:"airline_seat_legroom_extra";
+}
+/*name : airline seat legroom normal, id : ic_airline_seat_legroom_normal, keywords : [notification,airline,seat,legroom,normal], content : airline_seat_legroom_normal, codepoint : E634*/
+.md-airline_seat_legroom_normal::after{
+	content:"airline_seat_legroom_normal";
+}
+/*name : airline seat legroom reduced, id : ic_airline_seat_legroom_reduced, keywords : [notification,airline,seat,legroom,reduced], content : airline_seat_legroom_reduced, codepoint : E635*/
+.md-airline_seat_legroom_reduced::after{
+	content:"airline_seat_legroom_reduced";
+}
+/*name : airline seat recline extra, id : ic_airline_seat_recline_extra, keywords : [notification,airline,seat,recline,extra], content : airline_seat_recline_extra, codepoint : E636*/
+.md-airline_seat_recline_extra::after{
+	content:"airline_seat_recline_extra";
+}
+/*name : airline seat recline normal, id : ic_airline_seat_recline_normal, keywords : [notification,airline,seat,recline,normal], content : airline_seat_recline_normal, codepoint : E637*/
+.md-airline_seat_recline_normal::after{
+	content:"airline_seat_recline_normal";
+}
+/*name : bluetooth audio, id : ic_bluetooth_audio, keywords : [notification,bluetooth,audio], content : bluetooth_audio, codepoint : E60F*/
+.md-bluetooth_audio::after{
+	content:"bluetooth_audio";
+}
+/*name : confirmation number, id : ic_confirmation_number, keywords : [notification,confirmation,number], content : confirmation_number, codepoint : E638*/
+.md-confirmation_number::after{
+	content:"confirmation_number";
+}
+/*name : disc full, id : ic_disc_full, keywords : [notification,disc,full], content : disc_full, codepoint : E610*/
+.md-disc_full::after{
+	content:"disc_full";
+}
+/*name : do not disturb, id : ic_do_not_disturb, keywords : [notification,do,not,disturb], content : do_not_disturb, codepoint : E612*/
+.md-do_not_disturb::after{
+	content:"do_not_disturb";
+}
+/*name : do not disturb alt, id : ic_do_not_disturb_alt, keywords : [notification,do,not,disturb,alt], content : do_not_disturb_alt, codepoint : E611*/
+.md-do_not_disturb_alt::after{
+	content:"do_not_disturb_alt";
+}
+/*name : do not disturb off, id : ic_do_not_disturb_off, keywords : [notification,do,not,disturb,off], content : do_not_disturb_off, codepoint : E643*/
+.md-do_not_disturb_off::after{
+	content:"do_not_disturb_off";
+}
+/*name : do not disturb on, id : ic_do_not_disturb_on, keywords : [notification,do,not,disturb,on], content : do_not_disturb_on, codepoint : E644*/
+.md-do_not_disturb_on::after{
+	content:"do_not_disturb_on";
+}
+/*name : drive eta, id : ic_drive_eta, keywords : [notification,drive,eta], content : drive_eta, codepoint : E613*/
+.md-drive_eta::after{
+	content:"drive_eta";
+}
+/*name : enhanced encryption, id : ic_enhanced_encryption, keywords : [notification,enhanced,encryption], content : enhanced_encryption, codepoint : E63F*/
+.md-enhanced_encryption::after{
+	content:"enhanced_encryption";
+}
+/*name : event available, id : ic_event_available, keywords : [notification,event,available], content : event_available, codepoint : E614*/
+.md-event_available::after{
+	content:"event_available";
+}
+/*name : event busy, id : ic_event_busy, keywords : [notification,event,busy], content : event_busy, codepoint : E615*/
+.md-event_busy::after{
+	content:"event_busy";
+}
+/*name : event note, id : ic_event_note, keywords : [notification,event,note], content : event_note, codepoint : E616*/
+.md-event_note::after{
+	content:"event_note";
+}
+/*name : folder special, id : ic_folder_special, keywords : [notification,folder,special], content : folder_special, codepoint : E617*/
+.md-folder_special::after{
+	content:"folder_special";
+}
+/*name : live tv, id : ic_live_tv, keywords : [notification,live,tv], content : live_tv, codepoint : E639*/
+.md-live_tv::after{
+	content:"live_tv";
+}
+/*name : mms, id : ic_mms, keywords : [notification,mms], content : mms, codepoint : E618*/
+.md-mms::after{
+	content:"mms";
+}
+/*name : more, id : ic_more, keywords : [notification,more], content : more, codepoint : E619*/
+.md-more::after{
+	content:"more";
+}
+/*name : network check, id : ic_network_check, keywords : [notification,network,check], content : network_check, codepoint : E640*/
+.md-network_check::after{
+	content:"network_check";
+}
+/*name : network locked, id : ic_network_locked, keywords : [notification,network,locked], content : network_locked, codepoint : E61A*/
+.md-network_locked::after{
+	content:"network_locked";
+}
+/*name : no encryption, id : ic_no_encryption, keywords : [notification,no,encryption], content : no_encryption, codepoint : E641*/
+.md-no_encryption::after{
+	content:"no_encryption";
+}
+/*name : ondemand video, id : ic_ondemand_video, keywords : [notification,ondemand,video], content : ondemand_video, codepoint : E63A*/
+.md-ondemand_video::after{
+	content:"ondemand_video";
+}
+/*name : personal video, id : ic_personal_video, keywords : [notification,personal,video], content : personal_video, codepoint : E63B*/
+.md-personal_video::after{
+	content:"personal_video";
+}
+/*name : phone bluetooth speaker, id : ic_phone_bluetooth_speaker, keywords : [notification,phone,bluetooth,speaker], content : phone_bluetooth_speaker, codepoint : E61B*/
+.md-phone_bluetooth_speaker::after{
+	content:"phone_bluetooth_speaker";
+}
+/*name : phone forwarded, id : ic_phone_forwarded, keywords : [notification,phone,forwarded], content : phone_forwarded, codepoint : E61C*/
+.md-phone_forwarded::after{
+	content:"phone_forwarded";
+}
+/*name : phone in talk, id : ic_phone_in_talk, keywords : [notification,phone,in,talk], content : phone_in_talk, codepoint : E61D*/
+.md-phone_in_talk::after{
+	content:"phone_in_talk";
+}
+/*name : phone locked, id : ic_phone_locked, keywords : [notification,phone,locked], content : phone_locked, codepoint : E61E*/
+.md-phone_locked::after{
+	content:"phone_locked";
+}
+/*name : phone missed, id : ic_phone_missed, keywords : [notification,phone,missed], content : phone_missed, codepoint : E61F*/
+.md-phone_missed::after{
+	content:"phone_missed";
+}
+/*name : phone paused, id : ic_phone_paused, keywords : [notification,phone,paused], content : phone_paused, codepoint : E620*/
+.md-phone_paused::after{
+	content:"phone_paused";
+}
+/*name : power, id : ic_power, keywords : [notification,power], content : power, codepoint : E63C*/
+.md-power::after{
+	content:"power";
+}
+/*name : priority high, id : ic_priority_high, keywords : [notification,priority,high], content : priority_high, codepoint : E645*/
+.md-priority_high::after{
+	content:"priority_high";
+}
+/*name : sd card, id : ic_sd_card, keywords : [notification,sd,card], content : sd_card, codepoint : E623*/
+.md-sd_card::after{
+	content:"sd_card";
+}
+/*name : sim card alert, id : ic_sim_card_alert, keywords : [notification,sim,card,alert], content : sim_card_alert, codepoint : E624*/
+.md-sim_card_alert::after{
+	content:"sim_card_alert";
+}
+/*name : sms, id : ic_sms, keywords : [notification,sms], content : sms, codepoint : E625*/
+.md-sms::after{
+	content:"sms";
+}
+/*name : sms failed, id : ic_sms_failed, keywords : [notification,sms,failed], content : sms_failed, codepoint : E626*/
+.md-sms_failed::after{
+	content:"sms_failed";
+}
+/*name : sync, id : ic_sync, keywords : [notification,sync], content : sync, codepoint : E627*/
+.md-sync::after{
+	content:"sync";
+}
+/*name : sync disabled, id : ic_sync_disabled, keywords : [notification,sync,disabled], content : sync_disabled, codepoint : E628*/
+.md-sync_disabled::after{
+	content:"sync_disabled";
+}
+/*name : sync problem, id : ic_sync_problem, keywords : [notification,sync,problem], content : sync_problem, codepoint : E629*/
+.md-sync_problem::after{
+	content:"sync_problem";
+}
+/*name : system update, id : ic_system_update, keywords : [notification,system,update], content : system_update, codepoint : E62A*/
+.md-system_update::after{
+	content:"system_update";
+}
+/*name : tap and play, id : ic_tap_and_play, keywords : [notification,tap,play], content : tap_and_play, codepoint : E62B*/
+.md-tap_and_play::after{
+	content:"tap_and_play";
+}
+/*name : time to leave, id : ic_time_to_leave, keywords : [notification,time,to,leave], content : time_to_leave, codepoint : E62C*/
+.md-time_to_leave::after{
+	content:"time_to_leave";
+}
+/*name : vibration, id : ic_vibration, keywords : [notification,vibration], content : vibration, codepoint : E62D*/
+.md-vibration::after{
+	content:"vibration";
+}
+/*name : voice chat, id : ic_voice_chat, keywords : [notification,voice,chat], content : voice_chat, codepoint : E62E*/
+.md-voice_chat::after{
+	content:"voice_chat";
+}
+/*name : vpn lock, id : ic_vpn_lock, keywords : [notification,vpn,lock], content : vpn_lock, codepoint : E62F*/
+.md-vpn_lock::after{
+	content:"vpn_lock";
+}
+/*name : wc, id : ic_wc, keywords : [notification,wc], content : wc, codepoint : E63D*/
+.md-wc::after{
+	content:"wc";
+}
+/*name : wifi, id : ic_wifi, keywords : [notification,wifi], content : wifi, codepoint : E63E*/
+.md-wifi::after{
+	content:"wifi";
+}
+/*name : ac unit, id : ic_ac_unit, keywords : [places,ac,unit], content : ac_unit, codepoint : EB3B*/
+.md-ac_unit::after{
+	content:"ac_unit";
+}
+/*name : airport shuttle, id : ic_airport_shuttle, keywords : [places,airport,shuttle], content : airport_shuttle, codepoint : EB3C*/
+.md-airport_shuttle::after{
+	content:"airport_shuttle";
+}
+/*name : all inclusive, id : ic_all_inclusive, keywords : [places,all,inclusive], content : all_inclusive, codepoint : EB3D*/
+.md-all_inclusive::after{
+	content:"all_inclusive";
+}
+/*name : beach access, id : ic_beach_access, keywords : [places,beach,access], content : beach_access, codepoint : EB3E*/
+.md-beach_access::after{
+	content:"beach_access";
+}
+/*name : business center, id : ic_business_center, keywords : [places,business,center], content : business_center, codepoint : EB3F*/
+.md-business_center::after{
+	content:"business_center";
+}
+/*name : casino, id : ic_casino, keywords : [places,casino], content : casino, codepoint : EB40*/
+.md-casino::after{
+	content:"casino";
+}
+/*name : child care, id : ic_child_care, keywords : [places,child,care], content : child_care, codepoint : EB41*/
+.md-child_care::after{
+	content:"child_care";
+}
+/*name : child friendly, id : ic_child_friendly, keywords : [places,child,friendly], content : child_friendly, codepoint : EB42*/
+.md-child_friendly::after{
+	content:"child_friendly";
+}
+/*name : fitness center, id : ic_fitness_center, keywords : [places,fitness,center], content : fitness_center, codepoint : EB43*/
+.md-fitness_center::after{
+	content:"fitness_center";
+}
+/*name : free breakfast, id : ic_free_breakfast, keywords : [places,free,breakfast], content : free_breakfast, codepoint : EB44*/
+.md-free_breakfast::after{
+	content:"free_breakfast";
+}
+/*name : golf course, id : ic_golf_course, keywords : [places,golf,course], content : golf_course, codepoint : EB45*/
+.md-golf_course::after{
+	content:"golf_course";
+}
+/*name : hot tub, id : ic_hot_tub, keywords : [places,hot,tub], content : hot_tub, codepoint : EB46*/
+.md-hot_tub::after{
+	content:"hot_tub";
+}
+/*name : kitchen, id : ic_kitchen, keywords : [places,kitchen], content : kitchen, codepoint : EB47*/
+.md-kitchen::after{
+	content:"kitchen";
+}
+/*name : pool, id : ic_pool, keywords : [places,pool], content : pool, codepoint : EB48*/
+.md-pool::after{
+	content:"pool";
+}
+/*name : room service, id : ic_room_service, keywords : [places,room,service], content : room_service, codepoint : EB49*/
+.md-room_service::after{
+	content:"room_service";
+}
+/*name : rv hookup, id : ic_rv_hookup, keywords : [places,rv,hookup], content : rv_hookup, codepoint : E642*/
+.md-rv_hookup::after{
+	content:"rv_hookup";
+}
+/*name : smoke free, id : ic_smoke_free, keywords : [places,smoke,free], content : smoke_free, codepoint : EB4A*/
+.md-smoke_free::after{
+	content:"smoke_free";
+}
+/*name : smoking rooms, id : ic_smoking_rooms, keywords : [places,smoking,rooms], content : smoking_rooms, codepoint : EB4B*/
+.md-smoking_rooms::after{
+	content:"smoking_rooms";
+}
+/*name : spa, id : ic_spa, keywords : [places,spa], content : spa, codepoint : EB4C*/
+.md-spa::after{
+	content:"spa";
+}
+/*name : cake, id : ic_cake, keywords : [social,cake], content : cake, codepoint : E7E9*/
+.md-cake::after{
+	content:"cake";
+}
+/*name : domain, id : ic_domain, keywords : [social,domain], content : domain, codepoint : E7EE*/
+.md-domain::after{
+	content:"domain";
+}
+/*name : group, id : ic_group, keywords : [social,group], content : group, codepoint : E7EF*/
+.md-group::after{
+	content:"group";
+}
+/*name : group add, id : ic_group_add, keywords : [social,group,add], content : group_add, codepoint : E7F0*/
+.md-group_add::after{
+	content:"group_add";
+}
+/*name : location city, id : ic_location_city, keywords : [social,location,city], content : location_city, codepoint : E7F1*/
+.md-location_city::after{
+	content:"location_city";
+}
+/*name : mood, id : ic_mood, keywords : [social,mood], content : mood, codepoint : E7F2*/
+.md-mood::after{
+	content:"mood";
+}
+/*name : mood bad, id : ic_mood_bad, keywords : [social,mood,bad], content : mood_bad, codepoint : E7F3*/
+.md-mood_bad::after{
+	content:"mood_bad";
+}
+/*name : notifications, id : ic_notifications, keywords : [social,notifications], content : notifications, codepoint : E7F4*/
+.md-notifications::after{
+	content:"notifications";
+}
+/*name : notifications active, id : ic_notifications_active, keywords : [social,notifications,active], content : notifications_active, codepoint : E7F7*/
+.md-notifications_active::after{
+	content:"notifications_active";
+}
+/*name : notifications none, id : ic_notifications_none, keywords : [social,notifications,none], content : notifications_none, codepoint : E7F5*/
+.md-notifications_none::after{
+	content:"notifications_none";
+}
+/*name : notifications off, id : ic_notifications_off, keywords : [social,notifications,off], content : notifications_off, codepoint : E7F6*/
+.md-notifications_off::after{
+	content:"notifications_off";
+}
+/*name : notifications paused, id : ic_notifications_paused, keywords : [social,notifications,paused], content : notifications_paused, codepoint : E7F8*/
+.md-notifications_paused::after{
+	content:"notifications_paused";
+}
+/*name : pages, id : ic_pages, keywords : [social,pages], content : pages, codepoint : E7F9*/
+.md-pages::after{
+	content:"pages";
+}
+/*name : party mode, id : ic_party_mode, keywords : [social,party,mode], content : party_mode, codepoint : E7FA*/
+.md-party_mode::after{
+	content:"party_mode";
+}
+/*name : people, id : ic_people, keywords : [social,people], content : people, codepoint : E7FB*/
+.md-people::after{
+	content:"people";
+}
+/*name : people outline, id : ic_people_outline, keywords : [social,people,outline], content : people_outline, codepoint : E7FC*/
+.md-people_outline::after{
+	content:"people_outline";
+}
+/*name : person, id : ic_person, keywords : [social,person], content : person, codepoint : E7FD*/
+.md-person::after{
+	content:"person";
+}
+/*name : person add, id : ic_person_add, keywords : [social,person,add], content : person_add, codepoint : E7FE*/
+.md-person_add::after{
+	content:"person_add";
+}
+/*name : person outline, id : ic_person_outline, keywords : [social,person,outline], content : person_outline, codepoint : E7FF*/
+.md-person_outline::after{
+	content:"person_outline";
+}
+/*name : plus one, id : ic_plus_one, keywords : [social,plus,one], content : plus_one, codepoint : E800*/
+.md-plus_one::after{
+	content:"plus_one";
+}
+/*name : poll, id : ic_poll, keywords : [social,poll], content : poll, codepoint : E801*/
+.md-poll::after{
+	content:"poll";
+}
+/*name : public, id : ic_public, keywords : [social,public], content : public, codepoint : E80B*/
+.md-public::after{
+	content:"public";
+}
+/*name : school, id : ic_school, keywords : [social,school], content : school, codepoint : E80C*/
+.md-school::after{
+	content:"school";
+}
+/*name : sentiment dissatisfied, id : ic_sentiment_dissatisfied, keywords : [social,sentiment,dissatisfied], content : sentiment_dissatisfied, codepoint : E811*/
+.md-sentiment_dissatisfied::after{
+	content:"sentiment_dissatisfied";
+}
+/*name : sentiment neutral, id : ic_sentiment_neutral, keywords : [social,sentiment,neutral], content : sentiment_neutral, codepoint : E812*/
+.md-sentiment_neutral::after{
+	content:"sentiment_neutral";
+}
+/*name : sentiment satisfied, id : ic_sentiment_satisfied, keywords : [social,sentiment,satisfied], content : sentiment_satisfied, codepoint : E813*/
+.md-sentiment_satisfied::after{
+	content:"sentiment_satisfied";
+}
+/*name : sentiment very dissatisfied, id : ic_sentiment_very_dissatisfied, keywords : [social,sentiment,very,dissatisfied], content : sentiment_very_dissatisfied, codepoint : E814*/
+.md-sentiment_very_dissatisfied::after{
+	content:"sentiment_very_dissatisfied";
+}
+/*name : sentiment very satisfied, id : ic_sentiment_very_satisfied, keywords : [social,sentiment,very,satisfied], content : sentiment_very_satisfied, codepoint : E815*/
+.md-sentiment_very_satisfied::after{
+	content:"sentiment_very_satisfied";
+}
+/*name : share, id : ic_share, keywords : [social,share], content : share, codepoint : E80D*/
+.md-share::after{
+	content:"share";
+}
+/*name : whatshot, id : ic_whatshot, keywords : [social,whatshot], content : whatshot, codepoint : E80E*/
+.md-whatshot::after{
+	content:"whatshot";
+}
+/*name : check box, id : ic_check_box, keywords : [toggle,check,box], content : check_box, codepoint : E834*/
+.md-check_box::after{
+	content:"check_box";
+}
+/*name : check box outline blank, id : ic_check_box_outline_blank, keywords : [toggle,check,box,outline,blank], content : check_box_outline_blank, codepoint : E835*/
+.md-check_box_outline_blank::after{
+	content:"check_box_outline_blank";
+}
+/*name : indeterminate check box, id : ic_indeterminate_check_box, keywords : [toggle,indeterminate,check,box], content : indeterminate_check_box, codepoint : E909*/
+.md-indeterminate_check_box::after{
+	content:"indeterminate_check_box";
+}
+/*name : radio button checked, id : ic_radio_button_checked, keywords : [toggle,radio,button,checked], content : radio_button_checked, codepoint : E837*/
+.md-radio_button_checked::after{
+	content:"radio_button_checked";
+}
+/*name : radio button unchecked, id : ic_radio_button_unchecked, keywords : [toggle,radio,button,unchecked], content : radio_button_unchecked, codepoint : E836*/
+.md-radio_button_unchecked::after{
+	content:"radio_button_unchecked";
+}
+/*name : star, id : ic_star, keywords : [toggle,star], content : star, codepoint : E838*/
+.md-star::after{
+	content:"star";
+}
+/*name : star border, id : ic_star_border, keywords : [toggle,star,border], content : star_border, codepoint : E83A*/
+.md-star_border::after{
+	content:"star_border";
+}
+/*name : star half, id : ic_star_half, keywords : [toggle,star,half], content : star_half, codepoint : E839*/
+.md-star_half::after{
+	content:"star_half";
+}

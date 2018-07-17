@@ -1,0 +1,823 @@
+<!-- <ng-template #content let-c="close" let-d="dismiss" >  -->
+<div class="modal-header">
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <div class="container-fluid">
+    <form (ngSubmit)='onSubmit(f.value)' #f='ngForm'>
+      <div class="row">
+        <div class="col-md-8">
+
+          <ngb-tabset>
+            <ngb-tab title='Display'>
+              <ng-template ngbTabContent>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-10">
+
+                      <!-- Label for Flexiele -->
+                      <label for="flexieleLabel" class='requiredClass mt-3'>Flexiele Label</label>
+                      <input type="text" class="form-control" id='flexieleLabel' placeholder="text" required ngModel name='flexieleLabel' [(ngModel)]='componentData.flexieleLabel'
+                        #flexieleLabel='ngModel'>
+                      <div class="alert alert-danger" *ngIf='flexieleLabel.touched && flexieleLabel.invalid'>FlexieleLabel is required.</div>
+
+
+
+
+                      <!-- Label -->
+                      <div *ngIf='instance.applicableProperties.label'>
+                        <label for="label" class='requiredClass mt-2'>Label</label>
+                        <input type="text" class="form-control" id='label' placeholder="text" ngModel required name='label' [(ngModel)]='componentData.label'
+                          (ngModelChange)='update($event)' #label='ngModel'>
+
+                        <div *ngIf='!componentData.label'>
+                          <div class="alert alert-danger" *ngIf='label.touched && label.invalid'>Label is required.</div>
+                        </div>
+
+
+
+                        <!-- Hide Label CheckBox -->
+
+                        <div class="form-check mb-2 mt-3">
+                          <input name='hideLabel' class="form-check-input" type="checkbox" value="hide" id="hideLabel" name='hideLabel' [(ngModel)]='componentData.hideLabel'
+                            ngModel (ngModelChange)='update($event)'>
+                          <label class="form-check-label" for="hideLabel">
+                            Hide Label
+                          </label>
+                        </div>
+                      </div>
+
+
+
+                      <!-- Drop down Menu of Label Position -->
+                      <div *ngIf='instance.applicableProperties.labelPosition'>
+                        <label for="labelPosition" class='requiredClass'>Label Position</label>
+                        <select [(ngModel)]='componentData.labelPosition' ngModel id="labelPosition" class="form-control" name='labelPosition' required
+                          ngModel #labelPosition='ngModel' (ngModelChange)='update($event)'>
+                          <option value='top'>Top</option>
+                          <option value='bottom'>Bottom</option>
+                          <option value='left-L'>Left(Left Aligned)</option>
+                          <option value='left-R'>Left(Right Aligned)</option>
+                          <option value='right-R'>Right(Right Aligned)</option>
+                          <option value='right-L'>Right(Left Aligned)</option>
+                        </select>
+                        <div class="alert alert-danger" *ngIf='labelPosition.touched && labelPosition.invalid'>LabelPosition is required.</div>
+
+                      </div>
+
+
+                      <!-- input box for Label Width -->
+
+                      <div *ngIf="componentData.labelPosition=='left-L'
+                        ||componentData.labelPosition=='left-R'||
+                        componentData.labelPosition=='right-L'||
+                        componentData.labelPosition=='right-R'">
+                        <label for="label-width" class='mt-3 requiredClass'>Label Width</label>
+                        <input required [(ngModel)]='componentData.labelWidth' ngModel type="number" class="form-control" id='label-width' placeholder='enter Label width'
+                          name='labelWidth' #labelWidth='ngModel' (ngModel)='update($event)'>
+                        <div class="alert alert-danger" *ngIf='labelWidth.touched && labelWidth.invalid'>FlexieleLabel is required.</div>
+
+
+                        <!-- input box for Label Margin -->
+
+
+                        <label for="label-margin" class='mt-3 requiredClass'>Label Margin</label>
+                        <input type="number" class="form-control" id='label-margin' placeholder='enter label margin' [(ngModel)]='componentData.labelMargin'
+                          ngModel name='labelMargin' #labelMargin='ngModel' required (ngModelChange)='update($event)'>
+                        <div class="alert alert-danger" *ngIf='labelMargin.touched && labelMargin.invalid'>labelMargin is required.</div>
+                      </div>
+
+
+                      <!-- input box for width -->
+                      <div class='mt-2' *ngIf='instance.applicableProperties.width'>
+                        <label for='width'>
+                          Width
+                        </label>
+                        <input id='width' class='form-control' name='width' ngModel [(ngModel)]='componentData.width' placeholder='enter width' (ngModelChange)='update($width)'
+                        />
+                      </div>
+
+
+
+                      <!-- Dropdown For button Theme -->
+                      <div class='mt-2' *ngIf='instance.applicableProperties.theme'>
+                        <label for='theme'>
+                          Theme
+                        </label>
+                        <select id='theme' ngModel name='theme' class='form-control'>
+                          <option value='primary'>Primary</option>
+                          <option value="secondary">Secondary</option>
+                          <option value="danger">Danger</option>
+                          <option value="success">success</option>
+                        </select>
+                      </div>
+
+
+                      <!-- Dropdown for button size       -->
+
+                      <div class='mt-2' *ngIf='instance.applicableProperties.size'>
+                        <label for='size'>
+                          Size
+                        </label>
+                        <select ngModel name="size" id="size" class='form-control'>
+                          <option value="large">Large</option>
+                          <option value="medium">Medium</option>
+                          <option value="small">Small</option>
+                        </select>
+                      </div>
+
+
+                      <!-- left Icon text for button -->
+
+                      <div class='mt-2' *ngIf='instance.applicableProperties.leftIcon'>
+                        <label for='leftIcon'>
+                          Left Icon
+                        </label>
+                        <input type='text' class='form-control' name='leftIcon' ngModel/>
+                      </div>
+
+
+
+                      <!--Right Icon  text for button -->
+                      <div class='mt-2' *ngIf='instance.applicableProperties.rightIcon'>
+                          <label for='rightIcon'>
+                            Right Icon
+                          </label>
+                          <input type='text' class='form-control' id='rightIcon' name='rightIcon' ngModel/>
+                      </div>
+
+
+                <!-- input field for date time format       -->
+
+                    <div class='mt-2'   *ngIf='instance.applicableProperties.dateTimeFormat'>
+
+                        <label for='dateTimeFormat'>
+                             Date-Time Format
+                        </label>
+                        <input type='text' id='dateTimeFormat' ngModel name='dateTimeFormat' class='form-control'
+                        placeholder='date time format'/>
+
+                      </div>
+
+
+                 <!-- input box for format       -->
+
+                     <div class='mt-2'   *ngIf='instance.applicableProperties.format'>
+                          <label for='format'>
+                               format
+                          </label>
+                          <input type='text' id='format' ngModel name='format' class='form-control'
+                          placeholder='Enter format'/>
+
+                      </div>
+
+              <!-- input for region setting -->
+                    <div class='mt-2'   *ngIf='instance.applicableProperties.regionBias'>
+                          <label for='regionBias'>
+                               Region Bias
+                          </label>
+                          <input type='text' id='regionBias' ngModel name='regionBias' class='form-control'
+                          placeholder='Enter region bias'/>
+
+                      </div>
+
+
+                      <!-- input for fileMinimum size -->
+                      <div class='mt-2'   *ngIf='instance.applicableProperties.fileMinimumSize'>
+                          <label for='fileMinimumSize'>
+                               File Minimum size
+                          </label>
+                          <input type='text' id='format' ngModel name='fileMinimumSize' class='form-control'
+                          placeholder='Enter minimum file size'/>
+
+                      </div>
+
+
+
+           <!-- input for fileMaximum Size -->
+
+                      <div class='mt-2'   *ngIf='instance.applicableProperties.fileMaximumSize'>
+                          <label for='fileMaximumSize'>
+                               File Maximum size
+                          </label>
+                          <input type='text' id='fileMaximumSize' ngModel name='fileMaximumSize' class='form-control'
+                          placeholder='Enter maximum file size'/>
+
+                      </div>
+
+
+
+
+
+
+
+
+                      <!-- Input Box for Placeholder -->
+                      <div *ngIf='instance.applicableProperties.placeholder'>
+                        <label for="placeholder" class='mt-3'>Placeholder</label>
+                        <input type="text" class="form-control" id='placeholder' placeholder='placeholder' [(ngModel)]='componentData.placeholder'
+                          ngModel name='placeholder' (ngModelChange)='update($event)'>
+                      </div>
+
+
+
+                      <!-- Input box for Description -->
+                      <div *ngIf='instance.applicableProperties.description'>
+                        <label for="desc" class='mt-3'>Description</label>
+                        <input type="text" class="form-control" id='desc' placeholder='description for this field' [(ngModel)]='componentData.description'
+                          ngModel name='description' (ngModelChange)='update($event)'>
+                      </div>
+
+
+
+                <!-- input for text area rows -->
+
+                     <div class='mt-2' *ngIf='instance.applicableProperties.rows'>
+                       <label for='rows'>
+                             Rows
+                       </label>
+                       <input type='number' class='form-control' ngModel name='rows'/>
+                     </div>
+
+
+
+
+
+                      <!-- Input Box for ToolTip -->
+                      <div *ngIf='instance.applicableProperties.tooltip'>
+                        <label for='tooltip' class='mt-3'>Tooltip</label>
+                        <input type="text" class="form-control" id='tooltip' placeholder='to add tooltip to this field' [(ngModel)]='componentData.tooltip'
+                          ngModel name='tooltip' (ngModelChange)='update($event)'>
+                      </div>
+
+
+
+                      <!-- Text Area for Error Label -->
+                      <div *ngIf='instance.applicableProperties.errorLabel'>
+                        <label for="error-label" class='mt-3'>Error Label</label>
+                        <textarea class="form-control" rows="3" id="error-label" placeholder='Error Label' [(ngModel)]='componentData.errorLabel'
+                          ngModel name='errorLabel'>
+                        </textarea>
+                      </div>
+
+
+
+                      <!-- Input box for Input masking -->
+                      <div *ngIf='instance.applicableProperties.inputMask'>
+                        <label for='mask' class='mt-3'>Input Mask</label>
+                        <input type="text" class="form-control" id='mask' placeholder='input mask' [(ngModel)]='componentData.inputMask' ngModel
+                          name='inputMask'>
+                      </div>
+
+
+                      <!-- Input box for Prefix -->
+                      <div *ngIf='instance.applicableProperties.prefix'>
+                        <label for='prefix' class='mt-3'>Prefix</label>
+                        <input type="text" class="form-control" id='prefix' placeholder="example '$','@'" [(ngModel)]='componentData.prefix' ngModel
+                          name='prefix' (ngModelChange)='update($event)'>
+                      </div>
+
+
+                      <!-- input box for suffix -->
+                      <div *ngIf='instance.applicableProperties.suffix'>
+                        <label for='suffix' class='mt-3'>Suffix</label>
+                        <input type="text" class="form-control" id='suffix' placeholder="example '$','@'" [(ngModel)]='componentData.suffix' ngModel
+                          name='suffix' (ngModelChange)='update($event)'>
+                      </div>
+
+
+                      <!-- input box for custom classes -->
+                     <div *ngIf='instance.applicableProperties.customCssClass'>
+                      <label for='custom' class='mt-3'>Custom CssClass</label>
+                      <input type="text" class="form-control" id='custom' placeholder="add custom classes" [(ngModel)]='componentData.customCssClass'
+                        ngModel name='customCss'>
+                      </div>
+
+
+
+                      <!-- Input box for Tab index  -->
+                      <div *ngIf='instance.applicableProperties.tabIndex'>
+                        <label for='tab-index' class='mt-3'>Tab Index</label>
+                        <input type="text" class="form-control" id='tab-index' placeholder='tab Index' [(ngModel)]='componentData.tabIndex' ngModel
+                          name='tabIndex'>
+                      </div>
+
+
+                  <!-- check box for enableCk     -->
+                    <div *ngIf='instance.applicableProperties.enableCk'>
+                      <div class='for-check mt-3 ml-4'>
+                        <input class='form-check-input' type='checkbox'
+                        ngModel name='enableCk' id='enableCheck'
+                        #enableCheck='ngModel'>
+                        <label for='enableck' class='form-check-label' value='enableCheck'>
+                           Enable Ck
+                        </label>
+                      </div>
+
+
+
+                 <!-- text area for cksetting -->
+
+                      <div class='mt-2' *ngIf='enableCheck.value'>
+                        <label for='ckSetting' >
+                            Ck Settings
+                        </label>
+                        <textarea ngModel name="ckSettings" id="ckSetting"  rows="3" class='form-control' ngModel></textarea>
+                      </div>
+                      </div>
+
+
+
+
+                      <!-- check boxes for clear value when Hidden -->
+                      <div class="form-check  mt-3" *ngIf='instance.applicableProperties.clearValue'>
+                        <input class="form-check-input" type="checkbox" value="clearValue" id="clear" [(ngModel)]='componentData.clearValue' ngModel
+                          name='clearValue'>
+                        <label class="form-check-label" for="clear">
+                          Clear value when Hidden
+                        </label>
+                      </div>
+
+
+                      <!-- check box for enable spell check -->
+
+                      <div class="form-check mb-2 mt-3" *ngIf='instance.applicableProperties.enableSpellCheck'>
+                          <input class="form-check-input" type="checkbox" value="enableSpellCheck" id="enableSpellCheck" ngModel name='enableSpellCheck'>
+                          <label class="form-check-label" for="enableSpellCheck">
+                            Enable Spell Check
+                          </label>
+                      </div>
+
+
+                <!-- checkbox for multiple address       -->
+
+                      <div class="form-check mb-2 mt-3" *ngIf='instance.applicableProperties.allowMultipleAddress'>
+                          <input class="form-check-input" type="checkbox" value="multipleAddress" id="multipleAddress" ngModel name='multipleAddress'>
+                          <label class="form-check-label" for="multipleAddress">
+                            AllowMultipleAddress
+                          </label>
+                      </div>
+
+
+
+
+                      <!-- Check box for Hidden -->
+                      <div class="form-check mb-2 mt-3" *ngIf='instance.applicableProperties.hidden'>
+                        <input class="form-check-input" type="checkbox" value="hidden" id="hidden" [(ngModel)]='componentData.hidden' ngModel name='hidden'>
+                        <label class="form-check-label" for="hidden">
+                          Hidden
+                        </label>
+                      </div>
+
+
+                      <!-- check box for disabled -->
+                      <div class="form-check mb-2 mt-3" *ngIf='instance.applicableProperties.disabled'>
+                        <input class="form-check-input" type="checkbox" value="disabled" id="disabled" [(ngModel)]='componentData.disabled' ngModel
+                          name='disabled'>
+                        <label class="form-check-label" for="disabled">
+                          Disabled
+                        </label>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-tab>
+
+
+            <!-- ******* -->
+            <!-- tab for data property -->
+            <!-- ******* -->
+            <ngb-tab title='Data'>
+              <ng-template ngbTabContent>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-10">
+
+                      <!-- Dropdown for Default Value -->
+                      <div *ngIf='instance.applicableProperties.defaultValue'>
+                      <label for="defaultValue" class='mt-3'>Default Value</label>
+                      <select id="defaultValue" class="form-control" [ngModel]="'none'" name='defaultValue' [(ngModel)]='componentData.defaultValue'
+                        ngModel #defaultValue='ngModel'>
+                        <option value='none'>none</option>
+                        <option value='simple'>simple</option>
+                        <option value='sqlQuery'>Sql Query</option>
+                      </select>
+                     </div>
+
+
+
+
+                      <!-- Text Area for Sql Query -->
+                      <div *ngIf="componentData.defaultValue=='sqlQuery'">
+                        <label for="Sql" class='mt-1 requiredClass'>Sql Query</label>
+                        <textarea class="form-control" rows="3" id="error-label" placeholder='Sql' [(ngModel)]='componentData.sqlQuery' ngModel name='sqlQuery'
+                          #sqlquery='ngModel' required></textarea>
+
+                        <div class="alert alert-danger" *ngIf='sqlquery.touched && sqlquery.invalid'>Sql Query is required.
+
+                        </div>
+                      </div>
+
+
+                    <div class='mt-2'>
+                      <label for='listOfValue'>
+                          List of Value
+                      </label>
+
+                      <select ngModel name='listOfValue' id='listOfValue' class='form-control' #listOfValue='ngModel'>
+                            <option value="jsFunction"> Js function</option>
+                            <option value="jsonLogic">jsonLogic </option>
+                      </select>
+
+                    </div>
+
+
+                 <!-- Text Area for JS Function -->
+
+                      <div *ngIf="listOfValue.value=='jsFunction'">
+                        <label for="JsFunc" class='mt-3 requiredClass'>JS Function</label>
+                        <textarea class="form-control" rows="3" id="JsFunc" placeholder='Enter Js Function' [(ngModel)]='componentData.jsFunction'
+                          ngModel name='jsFunction' #jsFunction='ngModel' required></textarea>
+
+                        <div class="alert alert-danger" *ngIf='jsFunction.touched && jsFunction.invalid'>JS function is required.</div>
+                      </div>
+
+
+             <!-- text area for json Logic -->
+                      <div *ngIf="listOfValue.value=='jsonLogic'">
+
+                        <!-- Text Area for JSON Logic -->
+                        <label for="JSON" class='mt-3 requiredClass'>JSON Logic</label>
+                        <textarea class="form-control" rows="3" id="JSON" placeholder='Enter JSON Logic' [(ngModel)]='componentData.jsonLogic' ngModel
+                          name='jsonLogic' #jsonLogic='ngModel' required></textarea>
+                        <div class="alert alert-danger" *ngIf='jsonLogic.touched && jsonLogic.invalid'>JSON Logic is required.</div>
+                      </div>
+
+
+
+
+
+                      <!-- Check box for non-persistence of data     -->
+
+                    <div *ngIf='instance.applicableProperties.nonPersistent'>
+                      <div class="form-check  mt-3">
+                        <input class="form-check-input" type="checkbox" value="nonPersistent" id="non-persistent" [(ngModel)]='componentData.nonPersistent'
+                          ngModel name='nonPersistent'>
+                        <label class="form-check-label" for="non-persistent">
+                          Non-Persistent
+                        </label>
+                        <br>
+                      </div>
+                    </div>
+
+
+                <!-- input for minimum date -->
+                    <div class='mt-2'
+                    *ngIf='instance.applicableProperties.minimumDate'>
+                      <label for='minimumDate'>
+                          Minimum date
+                      </label>
+                      <input id='minimumDate' class='form-control' ngModel
+                      name='minimumDate'>
+                    </div>
+
+       <!-- input for maximum date -->
+                    <div class='mt-2'
+                    *ngIf='instance.applicableProperties.maximumDate'>
+                      <label for='maximumDate'>
+                          Maximum date
+                      </label>
+                      <input id='maximumDate' class='form-control' ngModel
+                      name='maximumDate'>
+                    </div>
+
+       <!-- input for calculated Value -->
+                    <div class='mt-2'
+                    *ngIf='instance.applicableProperties.calculatedValue'>
+                      <label for='calculatedValue'>
+                          calculated value
+                      </label>
+                      <input id='calculatedValue' class='form-control' ngModel
+                      name='calculatedValue'>
+                    </div>
+
+                      <!-- input for autocomplete -->
+
+                      <div *ngIf="componentData.nonPersistent" class='mt-2'>
+
+                        <input name='auto' type='text' id="auto-complete" autocomplete='on' ngMoldel name='autoComplete' />
+
+                      </div>
+
+
+                      <!-- checkbox for use delimeter -->
+
+                      <div class='form-check mt-3' *ngIf='instance.applicableProperties.useDelimeter'>
+
+                         <input class='form-check-input' ngModel name='useDelimeter' type='checkbox' />
+                         <label class='form-check-label'>
+                             use Delimeter
+                         </label>
+
+                      </div>
+
+           <!-- check box for required decimal -->
+                      <div class='form-check mt-3' *ngIf='instance.applicableProperties.requiredDecimal'>
+
+                          <input class='form-check-input' ngModel name='requiredDecimal' type='checkbox' />
+                          <label class='form-check-label'>
+                              required decimal
+                          </label>
+
+                       </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+
+              </ng-template>
+            </ngb-tab>
+
+
+            <!-- ********************** -->
+            <!-- tabs for validation -->
+
+            <ngb-tab title='Validation'>
+              <ng-template ngbTabContent>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-10">
+                      <div *ngIf='instance.applicableProperties.appliedValidation'>
+                      <label for="appliedValidation" class="mt-3">Applied Validation</label>
+                      <select [(ngModel)]='componentData.appliedValidation' ngModel name='appliedValidation' id="appliedValidation" class="form-control">
+                        <option>required</option>
+                        <option>Number +</option>
+                        <option>Number -</option>
+                        <option>email</option>
+                        <option>Multiple Email</option>
+                        <option>Alphabet</option>
+                        <option>Alphanumeric</option>
+                      </select>
+                    </div>
+
+
+                      <div class='form-check mt-3' *ngIf='instance.applicableProperties.unique'>
+
+                          <input class='form-check-input' ngModel name='unique' type='checkbox' />
+                          <label class='form-check-label'>
+                              Unique
+                          </label>
+
+                       </div>
+
+
+
+
+
+                      <!-- input text for minimum length -->
+                      <div *ngIf='instance.applicableProperties.minimumLength'>
+                      <label for='min-length' class='mt-3'>Minimum Length</label>
+                      <input type="number" class="form-control" id='min-lenght' placeholder='minimum length' [(ngModel)]='componentData.minimumLength'
+                        ngModel name='minimumLenght'>
+                      </div>
+
+                      <!-- input text for maximum length -->
+                      <div *ngIf='instance.applicableProperties.maximumLength'>
+                      <label for='max-length' class='mt-3'>Maximum Length</label>
+                      <input type="number" class="form-control" id='max-lenght' placeholder='maximum length' ngModel [(ngModel)]='componentData.maximumLength'
+                        name='maximumLength'>
+                      </div>
+
+                      <!-- input text for Regular Expression -->
+                      <div *ngIf='instance.applicableProperties.regularExpression'>
+                      <label for='regular' class='mt-3'>Regular Expression</label>
+                      <input type="number" class="form-control" id='regular' placeholder='Regular Expression Pattern' [(ngModel)]='componentData.regularExpression'
+                        ngModel name='regularExpression'>
+                      </div>
+
+                      <!-- input text for custom error message -->
+                      <div *ngIf='instance.applicableProperties.regularExpression'>
+                      <label for='custom' class='mt-3'>Custom Error Message</label>
+                      <input type="number" class="form-control" id='custom' placeholder='custom error message' name='customErrorMessage' ngModel
+                        [(ngModel)]='componentData.customErrorFunction'>
+                      </div>
+
+                      <div class='mt-2'>
+                        <label for='customValidation'>
+                             customValidation
+                        </label>
+                         <select name="customValidation" class='form-control'
+                         ngModel #customValidation='ngModel' id='customValidation'>
+                           <option value="customValidationFunction">custom validation Function</option>
+                           <option value="jsonLogic">Json Logic</option>
+                           <option value="formLevelValidation">form Level validation</option>
+                         </select>
+
+                      </div>
+
+
+
+                      <!-- text area for custom Validation Function -->
+                      <div *ngIf="customValidation.value=='customValidationFunction'">
+                      <label for="valid" class='mt-3'>Custom Validation Function</label>
+                      <textarea class="form-control" rows="3" id="valid" placeholder='Add custom validation function' name='customValidationFunction'
+                        ngModel [(ngModel)]='componentData.customValidationFunction'></textarea>
+                      </div>
+
+                      <!-- text area for custom JSON logic      -->
+                      <div *ngIf="customValidation.value=='jsonLogic'">
+                      <label for="custom-JSON" class='mt-3'>JSON Logic</label>
+                      <textarea class="form-control" rows="3" id="custom-JSON" placeholder='Enter custom JSON Logic' [(ngModel)]='componentData.JSONLogic'
+                        ngModel name='jsonLogic'></textarea>
+                      </div>
+
+                      <!-- text area for form validation -->
+
+                      <div *ngIf="customValidation.value=='formLevelValidation'">
+                          <label for="fv" class='mt-3'>Form Level Validation</label>
+                          <textarea class="form-control" rows="3" id="fv" placeholder='Enter form validation'
+                            ngModel name='formLevelValidation' class='form-control'></textarea>
+                      </div>
+
+
+
+
+
+
+                      <!-- input fot minimumValue -->
+                      <div class='mt-2' *ngIf='instance.applicableProperties.minimumValue'>
+                          <label for='minimumValue'>
+                             Minimum Value
+                          </label>
+
+                          <input type='number' class='form-control' name='minimumValue' id='minimumValue' ngModel >
+                      </div>
+
+                      <!-- input fot maximumValue -->
+                      <div class='mt-2' *ngIf='instance.applicableProperties.minimumValue'>
+                          <label for='maximumValue'>
+                             Maximum Value
+                          </label>
+
+                          <input type='number' class='form-control' name='maximumValue' id='maximumValue' ngModel >
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </ng-template>
+            </ngb-tab>
+
+
+
+            <!-- ****************************************** -->
+            <!-- tab for Layout -->
+            <!-- ********************************************** -->
+
+            <ngb-tab title='Layout'>
+              <ng-template ngbTabContent>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-10">
+
+                    <div *ngIf='instance.applicableProperties.marginTop'>
+                      <label for='margin-top' class='mt-3'>Margin Top</label>
+                      <input type="number" class="form-control" id='margin-top' placeholder='margin top' name='marginTop' [(ngModel)]='componentData.marginTop'
+                        ngModel>
+                      </div>
+
+                      <!-- input for margin right -->
+                     <div *ngIf='instance.applicableProperties.marginRight'>
+                      <label for='margin-right' class='mt-3'>Margin Right</label>
+                      <input type="number" class="form-control" id='margin-right' placeholder='margin right' name='marginRight' ngModel [(ngModel)]='componentData.marginRight'>
+                    </div>
+
+
+                  <!-- input for margin bottom -->
+                  <div *ngIf='instance.applicableProperties.marginBottom'>
+                      <label for='margin-bottom' class='mt-3'>Margin Bottom</label>
+                      <input type="number" class="form-control" id='margin-bottom' placeholder='Margin bottom' name='marginBottom' ngModel>
+                    </div>
+
+
+                    <div *ngIf='instance.applicableProperties.marginLeft'>
+                      <label for='margin-left' class='mt-3'>Margin Left</label>
+                      <input type="number" class="form-control" id='margin-left' placeholder='Margin Left' name='marginLeft' [(ngModel)]='componentData.marginLeft'
+                        ngModel>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+
+            </ngb-tab>
+
+
+
+            <!--
+            <!-- ************************** -->
+            <!-- tabs for conditional -->
+            **************************** -->
+
+            <ngb-tab title='Conditional'>
+              <ng-template ngbTabContent>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-10">
+
+                       <div>
+                          <label for='conditionType'>Condition Type</label>
+                          <select name="conditionType" class='form-control' ngModel #conditionType='ngModel'>
+                            <option value="customFunction">custom Function</option>
+                            <option value="customJsonLogic"> custom Json Logic</option>
+                            <option value="simple">simple</option>
+                          </select>
+
+                       </div>
+
+
+                      <!-- text area for custom Function -->
+
+                      <div *ngIf="conditionType.value=='customFunction'">
+                      <label for="custom-func" class='mt-3'>Custom Function</label>
+                      <textarea class="form-control" rows="3" id="custom-func" placeholder='Enter custom function' [(ngModel)]='componentData.customFunction'
+                        ngModel name='customFunction'></textarea>
+                      </div>
+
+
+
+                      <!-- text area for json logic  -->
+                      <div *ngIf="conditionType.value=='customJsonLogic'">
+                      <label for="json-logic" class='mt-3'> custom JSON Logic</label>
+                      <textarea class="form-control" rows="3" id="json logic" placeholder='Enter JSON Logic' name='customJsonLogic' [(ngModel)]='componentData.conditionalJsonLogic'
+                        ngModel></textarea>
+                      </div>
+
+                    <!-- text area for simple -->
+
+                      <div *ngIf="conditionType.value=='simple'">
+                          <label for="simple" class='mt-3'>Simple</label>
+                          <textarea class="form-control" rows="3" id="simple" placeholder='Enter simple condition' name='simple'
+                            ngModel>
+                          </textarea>
+                      </div>
+
+
+                    </div>
+
+                  </div>
+                </div>
+              </ng-template>
+
+            </ngb-tab>
+
+          </ngb-tabset>
+
+        </div>
+
+
+
+        <div class="col-md-4 masterCard">
+          <div class="card preview-card">
+            <h4 class="card-header">
+              Preview
+            </h4>
+            <div class="card-body">
+
+
+              <ng-template #preview></ng-template>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <button class='btn btn-primary mt-2' type='submit' [disabled]='!f.valid'>Save</button>
+            </div>
+            <div class="col-md-8">
+              <button type="button" class="btn btn-danger mt-2 " (click)="onReset()">Reset</button>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+
+<!-- </ng-template> -->
+
+<!-- <pre>{{closeResult}}</pre> -->

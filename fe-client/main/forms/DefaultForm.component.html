@@ -1,0 +1,8 @@
+<div class="card fe-form-container">
+    <div class="card-header fe-form-header" *ngIf="labelHidden">
+      {{ schema.label }}
+    </div>
+    <feForm  class="fe-fields-container card-body"  [formInstance]="instance"  [schema]="schema" #form="feForm" (submit)="submit($event)"></feForm>
+    {{ form.valid }}
+    {{ form.value | json }}
+</div>

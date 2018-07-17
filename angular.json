@@ -1,0 +1,376 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "fe": {
+      "root": "",
+      "sourceRoot": "fe-client/legislations/fe/clients/fe",
+      "projectType": "application",
+      "prefix": "fe",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/fe",
+            "index": "fe-client/legislations/fe/clients/fe/index.html",
+            "main": "fe-client/scripts/main.ts",
+            "polyfills": "fe-client/scripts/polyfills.ts",
+            "tsConfig": "fe-client/legislations/fe/clients/fe/configs/tsconfig.app.json",
+            "assets": [
+              "fe-client/legislations/fe/clients/fe/assets",
+              "fe-client/legislations/fe/clients/fe/favicon.ico"
+            ],
+            "styles": [
+              "fe-client/styles/icons/material-design/material-icons.css",
+              "fe-client/styles/app-global-styles.css",
+              "fe-client/legislations/fe/clients/fe/styles/client-global-styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "./node_modules/material-design-icons/iconfont/material-icons.css",
+              "./node_modules/ngx-select-dropdown/dist/assets/style.css",
+              "node_modules/dragula/dist/dragula.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "fe-client/environments/environment.ts",
+                  "with": "fe-client/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "fe:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "fe:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "fe:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "fe-client/scripts/test.ts",
+            "polyfills": "fe-client/scripts/polyfills.ts",
+            "tsConfig": "fe-client/legislations/fe/clients/fe/tsconfig.spec.json",
+            "karmaConfig": "fe-client/scripts/karma.conf.js",
+            "assets": [
+              "fe-client/legislations/fe/clients/fe/assets",
+              "fe-client/legislations/fe/clients/fe/favicon.ico"
+            ],
+            "styles": [
+              "fe-client/styles/app-global-styles.css",
+              "fe-client/legislations/fe/clients/fe/styles/client-global-styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "fe-client/legislations/fe/clients/fe/tsconfig.app.json",
+              "fe-client/legislations/fe/clients/fe/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "fe-e2e": {
+      "root": "e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "fe:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "fe:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "hisysmc": {
+      "root": "",
+      "sourceRoot": "fe-client/legislations/in/clients/hisysmc",
+      "projectType": "application",
+      "prefix": "hisysmc",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/hisysmc",
+            "index": "fe-client/legislations/in/clients/hisysmc/index.html",
+            "main": "fe-client/scripts/main.ts",
+            "polyfills": "fe-client/scripts/polyfills.ts",
+            "tsConfig": "fe-client/legislations/in/clients/hisysmc/configs/tsconfig.app.json",
+            "assets": [
+              "fe-client/legislations/in/clients/hisysmc/assets",
+              "fe-client/legislations/in/clients/hisysmc/favicon.ico"
+            ],
+            "styles": [
+              "fe-client/styles/app-global-styles.css",
+              "fe-client/legislations/in/clients/hisysmc/styles/client-global-styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "fe-client/environments/environment.ts",
+                  "with": "fe-client/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "hisysmc:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "hisysmc:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "hisysmc:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "fe-client/scripts/test.ts",
+            "polyfills": "fe-client/scripts/polyfills.ts",
+            "tsConfig": "fe-client/legislations/in/clients/hisysmc/tsconfig.spec.json",
+            "karmaConfig": "fe-client/scripts/karma.conf.js",
+            "assets": [
+              "fe-client/legislations/in/clients/hisysmc/assets",
+              "fe-client/legislations/in/clients/hisysmc/favicon.ico"
+            ],
+            "styles": [
+              "fe-client/styles/app-global-styles.css",
+              "fe-client/legislations/in/clients/hisysmc/styles/client-global-styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "fe-client/legislations/in/clients/hisysmc/tsconfig.app.json",
+              "fe-client/legislations/in/clients/hisysmc/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "hisysmc-e2e": {
+      "root": "e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "hisysmc:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "hisysmc:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "shopclues": {
+      "root": "",
+      "sourceRoot": "fe-client/legislations/in/clients/shopclues",
+      "projectType": "application",
+      "prefix": "shopclues",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/shopclues",
+            "index": "fe-client/legislations/in/clients/shopclues/index.html",
+            "main": "fe-client/scripts/main.ts",
+            "polyfills": "fe-client/scripts/polyfills.ts",
+            "tsConfig": "fe-client/legislations/in/clients/shopclues/configs/tsconfig.app.json",
+            "assets": [
+              "fe-client/legislations/in/clients/shopclues/assets",
+              "fe-client/legislations/in/clients/shopclues/favicon.ico"
+            ],
+            "styles": [
+              "fe-client/styles/app-global-styles.css",
+              "fe-client/legislations/in/clients/shopclues/styles/client-global-styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "fe-client/environments/environment.ts",
+                  "with": "fe-client/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "shopclues:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "shopclues:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "shopclues:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "fe-client/scripts/test.ts",
+            "polyfills": "fe-client/scripts/polyfills.ts",
+            "tsConfig": "fe-client/legislations/in/clients/shopclues/tsconfig.spec.json",
+            "karmaConfig": "fe-client/scripts/karma.conf.js",
+            "assets": [
+              "fe-client/legislations/in/clients/shopclues/assets",
+              "fe-client/legislations/in/clients/shopclues/favicon.ico"
+            ],
+            "styles": [
+              "fe-client/styles/app-global-styles.css",
+              "fe-client/legislations/in/clients/shopclues/styles/client-global-styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "fe-client/legislations/in/clients/shopclues/tsconfig.app.json",
+              "fe-client/legislations/in/clients/shopclues/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "shopclues-e2e": {
+      "root": "e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "shopclues:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "shopclues:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "fe"
+}

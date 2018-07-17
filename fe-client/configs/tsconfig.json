@@ -1,0 +1,43 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "../",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "paths": {
+      "@L3Root/*" : ["./*"],
+      "@L3Main/*" : ["./main/*"],
+      "@L3Process/*" : ["./main/process/*"],
+      "@L3Forms/*" : ["./main/forms/*"],
+      "@L2Root/*" : ["../../*"],
+      "@L2Main/*" : ["../../main/*"],
+      "@L2Process/*" : ["../../main/process/*"],
+      "@L2Forms/*" : ["../../main/forms/*"],
+      "@L1Root/*" : ["../../../../*"],
+      "@L1Main/*" : ["../../../../main/*"],
+      "@L1Process/*" : ["../../../../main/process/*"],
+      "@L1Forms/*" : ["../../../../main/forms/*"],
+      "@L1Styles/*" : ["../../../../styles"],
+    }
+  },
+  "include": [
+    "../scripts/main.ts",
+    "../scripts/polyfills.ts",
+  ],
+  "exclude": [
+    "../scripts/test.ts",
+    "**/*.spec.ts"
+  ]
+}

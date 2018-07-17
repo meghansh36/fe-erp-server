@@ -1,0 +1,17 @@
+/* @import '~ng2-dnd/bundles/style.css'; */
+
+.form-builder{
+    border: 1px solid black;
+}
+ng::after{
+    z-index: 1000;
+}
+
+.builder-buttons{
+   margin-top: 26%;
+   margin-left:70%
+}
+
+.requiredClass:after {
+  content:"*";color:red;
+}

@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <a routerLink="/login" routerLinkActive="active">Login</a>
+        </div>
+        <div class="col-sm">
+            <a routerLink="/formBuilder" routerLinkActive="active">Form Builder</a>
+        </div>
+        <div class="col-sm">
+            <a routerLink="/default" routerLinkActive="active">Form Generator Test</a>
+        </div>
+        <div class="col-sm">
+            <a routerLink="/logout" routerLinkActive="active" (click)="logout()">Logout</a>
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>

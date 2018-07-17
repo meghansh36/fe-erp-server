@@ -1,0 +1,18 @@
+<div class="fieldset-wrapper">
+    <div class="card">
+        <div class="card-header" [class.hidden]="hideLegend">
+            {{label}}
+        </div>
+        <div class="card-body">
+            <div class="fieldset-container ">
+                <fieldset class="form-field FST-field fieldset" [attr.id]="id">
+                    <!-- <legend></legend> -->
+                    <div class="fst-fields-container">
+                        <ng-container *ngFor="let field of components;" feField [form]="form" [config]="field" [group]="group" [formComponent]="formComponent">
+                        </ng-container>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>

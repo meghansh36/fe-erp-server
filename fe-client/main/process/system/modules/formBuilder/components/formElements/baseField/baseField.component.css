@@ -1,0 +1,85 @@
+.fieldWrapper {
+    position: relative;
+    top:0%;
+    left: 0%;
+
+}
+
+.fieldWrapper:hover .fieldOptions {
+    visibility: visible;
+}
+
+.top{
+  display:flex;
+  flex-direction: column;
+
+}
+
+
+
+.bottom{
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.left-L{
+  display: flex;
+  justify-content: space-around;
+}
+
+.left-R{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.right-R{
+  display: flex;
+ flex-direction: row-reverse;
+ justify-content: space-around;
+}
+
+.right-L{
+  display: flex;
+ flex-direction: row-reverse;
+ justify-content: flex-end;
+}
+
+
+
+
+.fieldOptions{
+    position: absolute;
+    right: 0%;
+    z-index: 100;
+    visibility: hidden;
+    transition: 0.5s linear;
+    -o-transition: 0.5s linear;
+    -moz-transition: 0.5s linear;
+    -webkit-transition: 0.5s linear;
+}
+.fieldOptions ul {
+    list-style: none;
+    display: inline;
+}
+.fieldOptions ul>li {
+    display: inline;
+    padding-right: 16px;
+}
+
+.fieldOptions ul>li:hover {
+    cursor: pointer;
+}
+
+.field{
+    top:0%;
+    left: 0%;
+    margin-bottom: 0%;
+}
+
+.icon-size{
+    font-size: 16px;
+}
+
+
+
+

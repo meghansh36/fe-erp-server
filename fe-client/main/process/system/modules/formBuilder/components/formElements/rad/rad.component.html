@@ -1,0 +1,37 @@
+<div class="fieldWrapper">
+  <span *ngIf='showEdit' class="fieldOptions">
+    <ul>
+      <li (click)='openModal()'><i class="material-icons icon-size">settings</i></li>
+      <li><i class="material-icons icon-size">open_with</i></li>
+      <li (click)="close($event)"><i class="material-icons icon-size">clear</i></li>
+    </ul>
+  </span>
+  <div class="form-group field">
+      <label for=""><b>{{properties.label}}</b>&nbsp;
+        <span style='display: inline-block;' *ngIf='applicableProperties.tooltip'>
+          <a  class='card-tooltip mt-2' placement="right" ngbTooltip='{{properties.tooltip}}'>
+            <i style='font-size: 16px;' class="material-icons"> help </i>
+          </a>
+        </span>
+      </label>
+      <!-- <span class='mt-3 ml-1' *ngIf='applicableProperties.tooltip'>
+        <a class='card-tooltip' placement="right" ngbTooltip='{{properties.tooltip}}'>
+          <i class="material-icons"> help </i>
+        </a>
+      </span> -->
+    <div class="input-group" >
+    <div class="input-group-prepend" *ngIf='applicableProperties.prefix'>
+      <span class="input-group-text" id="basic-addon1">{{properties.prefix}}</span>
+    </div>
+     <input type="radio" value={{properties.placeholder}} class="form-control">
+
+    <div class="input-group-append" *ngIf='applicableProperties.suffix'>
+      <span class="input-group-text">{{properties.suffix}}</span>
+    </div>
+   </div>
+    <br>
+
+    <div role="presentation"><a >{{properties.description}}</a></div>
+
+</div>
+</div>

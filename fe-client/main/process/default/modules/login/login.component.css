@@ -1,0 +1,20 @@
+
+#form {
+    /* background-image: url('https://stefanik.house.gov/sites/stefanik.house.gov/files/styles/congress_featured_image/public/featured_image/office_location/Office-Door-1Small.jpg?itok=ChMFh_yB'); */
+    height: 100vh;
+}
+.container.login-container {
+    margin-top: 25%;
+}
+
+.card.login-card {
+    padding: 40px 0px 20px;
+    background-color: #f4f4f4;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+form-signin {
+    max-width: 350px;
+    margin: auto;
+}

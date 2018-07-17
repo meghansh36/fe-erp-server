@@ -1,0 +1,57 @@
+<div class="container">
+  <!-- <div id='image'>
+      <img src="https://stefanik.house.gov/sites/stefanik.house.gov/files/styles/congress_featured_image/public/featured_image/office_location/Office-Door-1Small.jpg?itok=ChMFh_yB" alt="loginPageImg">
+  </div> -->
+  <div class="container login-container" id='form'>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-sm-12 col-md-8">
+        <div class="card login-card">
+          <div class="card-block">
+            <h3>Login</h3>
+              <form class="form-signin" (ngSubmit)="login()" #f="ngForm">
+                <div class="form-group">
+                  <label 
+                  for="username" >Username:</label>
+                  <input 
+                  type="text" 
+                  class="form-control" 
+                  placeholder="Username"  
+                  [(ngModel)]="userData.username" 
+                  name="username" 
+                  required/>
+                </div>
+                <div class="form-group">
+                  <label for="password" >Password:</label>
+                  <input 
+                  type="password" 
+                  class="form-control" 
+                  placeholder="Password" 
+                  [(ngModel)]="userData.password" 
+                  name="password" 
+                  required/>
+                </div>
+                <div class="form-group">
+                  <button
+                  class="btn"
+                  type="submit" 
+                  [disabled]="!loginForm.form.valid">
+                  Log in
+                  </button>
+                </div>
+                <div>
+                  <button 
+                  class="btn btn-link">
+                  <a href="#">
+                  Forgot Password
+                  </a>
+                </button>
+                </div>
+              </form>
+            </div>
+           </div>
+          </div>
+        <div class="col"></div>
+    </div>               
+  </div>
+</div>

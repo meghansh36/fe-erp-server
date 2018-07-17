@@ -1,0 +1,114 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*---------------------{  Style for managing form field label position. */
+.hidden {
+    display: none !important;
+}
+
+.field-wrapper {
+    display: flex;
+    width: 100%;
+  }
+  
+  .field-label-top {
+    flex-direction: column;
+  }
+  
+  .field-label-bottom {
+    flex-direction: column-reverse;
+  }
+  
+  .field-label-right {
+    flex-direction: row-reverse;
+  }
+  
+  .field-label-left {
+    flex-direction: row;
+  }
+  
+  .field-label-left .fe-field-container, .field-label-right .fe-field-container {
+    width: 50%;
+    /* padding-left: 10px;
+    padding-right: 10px; */
+    
+  }
+  .field-label-left .field-label-container, .field-label-right .field-label-container {
+    display: flex;
+    justify-content:  center;
+    padding-top:10px;
+  }
+  
+  /* .field-label-left .field-label-container, .field-label-right .field-label-container {
+    padding-top: 25px;
+  }
+
+  .fieldset-container  .field-label-left .field-label-container, .fieldset-container .field-label-right .field-label-container {
+    padding-top:0px !important;
+  } */
+  /* .left-labeled-field,.right-labeled-field {
+    padding-top: 32px !important;
+  } */
+
+  .feForm .fe-field-component {
+    padding-left: 10px;
+    padding-right: 10px;
+  } 
+  
+  .field-label-right .field-label  {
+    float: right;
+  }
+
+  .fe-form-container form {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  .display-flex, .field-label-container {
+      display: flex;
+  }
+
+  .field-desc i {
+    font-size: 17px;
+    color: #999;
+  } 
+
+  .form-field i {
+    vertical-align: middle;
+  }
+
+  .text-length-info-container .text-length-info  {
+    float:right;  
+  }
+
+  .mandatory-field-label:after {
+    content: "*";
+    color:red;
+  }
+
+  .valid-field-label {
+    color:green;
+  }
+
+  fe-fieldset {
+    width: 100%;
+  }
+
+.fieldset-wrapper{
+  text-align: center;
+}
+
+.ngx-select__clear .ngx-select__clear-icon {
+  font-size: 14px;
+}
+
+.fst-fields-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.ngx-select__selected .ngx-select__selected-plural {
+  color:unset !important;
+  background-color: #fff !important;
+}
+  /*-------------------------}          */
+  
