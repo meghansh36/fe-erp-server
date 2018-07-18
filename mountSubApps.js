@@ -3,7 +3,8 @@ const app = require('./app.js')
 const vhost = require('vhost');
 Object.defineProperty(global, '_', {value: require('lodash')}) // import lodash globally
 var config = require("./fe-server/config/fe.config.host.json");
-
+var clientSessionConfig = {};
+var sessionConfig = {};
 config = config['clients'];
 
 for(const host in config) {
@@ -23,8 +24,18 @@ for(const host in config) {
             FE.clients[host] = {};
         }
         FE.clients[host][details] =   hostDetails[details];
+        clientSessionConfig = require(hostDetails['session'])
     }
-    app.use(vhost(vhostName,require(hostPath)));
+    
+    if(_.isEmpty(clientSessionConfig)){
+        sessionConfig = FE.config.sessionConfig;
+    }
+    sessionConfig = _.assign({},FE.config.sessionConfig,clientSessionConfig);
+    const subAppObj = require(hostPath);
+    app.load(subAppObj);
+    app.use(vhost(vhostName,subAppObj));
 }
+
+
 
 

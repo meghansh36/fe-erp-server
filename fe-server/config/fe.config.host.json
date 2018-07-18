@@ -4,13 +4,14 @@
             "fe" :{
                 "appPath": "./fe-server/apps/fe.js",
                 "vhost"  : "fe.localhost",
-                "session":"require(\"./fe-server/legislations/fe/clients/fe/config/session.js\")",
-                "policies":"require(\"./fe-server/legislations/fe/clients/fe/config/policies.js\")"
+                "session":"./fe-server/legislations/fe/clients/fe/config/session.js",
+                "policies":"./fe-server/legislations/fe/clients/fe/config/policies.js"
             },
             "shopclues" :{
                 "appPath": "./fe-server/apps/shopclues.js",
                 "vhost"  : "shopclues.localhost",
-                "policies":"./fe-server/legislations/fe/clients/shopclues/config"
+                "session":"./fe-server/legislations/fe/clients/shopclues/config/session.js",
+                "policies":"./fe-server/legislations/fe/clients/shopclues/config/policies.js"
             }
         }
 } 

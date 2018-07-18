@@ -139,44 +139,6 @@ app.use(express.static(path.join('../'+__dirname, "dist")));
 module.exports = app;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // //var express = require('express');
 // var express = require('express');
 // var path = require('path');

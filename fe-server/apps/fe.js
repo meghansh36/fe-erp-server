@@ -47,26 +47,25 @@ app.use(passport.session());
 app.use(dynamicStatic);
 
 
-app.use(session({
-  genid: (req) => {
-    // console.log('Inside the session middleware')
-    // console.log(req.sessionID)
-    return uuid() // use UUIDs for session IDs
-  },
-  key:'user_sid',
-  store: new FileStore(),
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false,     //cookie won't be save for someone unauthorized(false)
-  cookie:{
-        maxAge:1200000,
-        expires:1200000
-  }
-})); 
+// // app.use(session({
+// //   genid: (req) => {
+// //     // console.log('Inside the session middleware')
+// //     // console.log(req.sessionID)
+// //     return uuid() // use UUIDs for session IDs
+// //   },
+// //   key:'user_sid',
+// //   store: new FileStore(),
+// //   secret: 'keyboard cat',
+// //   resave: false,
+// //   saveUninitialized: false,     //cookie won't be save for someone unauthorized(false)
+// //   cookie:{
+// //         maxAge:1200000,
+// //         expires:1200000
+// //   }
+// })); 
  
 // checks if user's cookie is saved in the browser when user is logout
 app.use((req, res, next)=>{
-  console.log('req fe');
   if(req.cookies.user_sid && !req.session.username){
     res.clearCookie('user_sid');
   }
