@@ -15,8 +15,7 @@ moduleAlias()
 const express = require('express')
 // main-app
 //const app = express();
-global.FE = express();
-require('./configHandler.js');
+app = express();
 var passport = require('passport');
 
 require('./fe-server/globals/clientsDetails.js');
@@ -25,9 +24,9 @@ require('./fe-server/middlewares/fe.middleware.require.js');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const middleware = require('./fe-server/middlewares/fe.middleware.dispatcher');
-FE.use(bodyParser.json());
-FE.use(bodyParser.urlencoded({'extended':'true'}));
-FE.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({'extended':'true'}));
+app.use(cookieParser());
 // app.use('/:client/api/',function(req,res,done){
 //   console.log('Inside FE subapp.');
 //   done();
@@ -40,6 +39,7 @@ FE.use(cookieParser());
 
 module.exports = app
 require("./mountSubApps.js");
+require('./configHandler.js');
 
 
 

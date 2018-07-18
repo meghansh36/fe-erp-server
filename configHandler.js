@@ -1,6 +1,14 @@
 var dbConfiguration = require('./fe-server/config/config.js');
 var sessionConfiguration = require('./fe-server/config/session.js');
 
-FE.config.sessionConfig = sessionConfigurations;
-FE.config.dbConfig = dbConfiguration;
+if(!global.FE.config) {
+    global.FE = {
+        config :{}
+    };    
+}
+//FE.config[host][details] =   hostDetails[details];
+//clientSessionConfig = require(hostDetails['session'])
 
+
+FE.config.sessionConfig = sessionConfiguration;
+FE.config.dbConfig = dbConfiguration;

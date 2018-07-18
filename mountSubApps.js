@@ -2,10 +2,10 @@ const app = require('./app.js')
 //const app = express();
 const vhost = require('vhost');
 Object.defineProperty(global, '_', {value: require('lodash')}) // import lodash globally
-var config = require("./fe-server/config/fe.config.host.json");
+var config = require("./fe-server/config/fe.config.host.js");
 var clientSessionConfig = {};
 var sessionConfig = {};
-config = config['clients'];
+const fs = require('fs');
 
 for(const host in config) {
     const hostDetails = config[host]
@@ -13,6 +13,13 @@ for(const host in config) {
     hostPath = hostDetails['appPath'];
     vhostName = hostDetails['vhost'];
     configPath = hostDetails['config'];
+
+    fs.readdirSync(configPath).forEach(file => {
+    console.log(file);
+    })
+
+
+
     for(const details in hostDetails )
     {   
         if(!global.FE) {
@@ -24,7 +31,8 @@ for(const host in config) {
             FE.clients[host] = {};
         }
         FE.clients[host][details] =   hostDetails[details];
-        clientSessionConfig = require(hostDetails['session'])
+        console.log('asdadadsa',hostDetails['session']);
+        clientSessionConfig = require(hostDetails['session']);
     }
     
     if(_.isEmpty(clientSessionConfig)){
@@ -32,9 +40,27 @@ for(const host in config) {
     }
     sessionConfig = _.assign({},FE.config.sessionConfig,clientSessionConfig);
     const subAppObj = require(hostPath);
-    app.load(subAppObj);
+    //app.use(subAppObj);
+    loadSession(subAppObj,sessionConfig);
     app.use(vhost(vhostName,subAppObj));
 }
+
+// loadSubApp(subApp) {
+//     loadConfigs(subApp);
+//     loadSession(subApp);
+// }
+
+// loadConfigs(subApp) {
+
+// }
+
+
+loadSession = function(subAppObj){
+    var sessionMiddleWare = require('./fe-server/lib/session.js');
+    sessionMiddleWare(subAppObj);
+}
+
+
 
 
 
