@@ -17,7 +17,7 @@ const express = require('express')
 //const app = express();
 app = express();
 var passport = require('passport');
-
+require('./configHandler.js');
 require('./fe-server/globals/clientsDetails.js');
 require('./fe-server/middlewares/fe.middleware.require.js');
 // /const uuid = require('uuid');
@@ -37,9 +37,9 @@ app.use(cookieParser());
 // })
 
 
-module.exports = app
+module.exports = app;
 require("./mountSubApps.js");
-require('./configHandler.js');
+
 
 
 

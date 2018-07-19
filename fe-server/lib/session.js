@@ -1,4 +1,4 @@
 const session = require('express-session');
-module.exports = function(subAppObj){
-    return subAppObj.use(session(subAppObj.configs.session));
+module.exports = function(subAppObj,clientSessionConfig){
+    return subAppObj.use(session(clientSessionConfig));
 }

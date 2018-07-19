@@ -121,7 +121,6 @@ app.use(express.static(path.join('../'+__dirname, "dist")));
 //     // models.sequelize.sync({ force: true });
 // }
 
-console.log(global.FE);
 
 // const sequelize = new Sequelize('mysql://chiragbansal:>G?3"qS/@dev-mumbai.cyvlbltrfdzs.ap-south-1.rds.amazonaws.com:3306/dev');
 

@@ -8,7 +8,7 @@ var clients =
             "shopclues" :{
                 "appPath": "./fe-server/apps/shopclues.js",
                 "vhost"  : "shopclues.localhost",
-                "session":"./fe-server/legislations/fe/clients/shopclues/config/"
+                "config":"./fe-server/legislations/fe/clients/shopclues/config/"
             }
         } ;
 
