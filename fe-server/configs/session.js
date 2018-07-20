@@ -1,8 +1,16 @@
-
-let SESSION_CONFIG = {} //Make this global to use all over the application
-
-SESSION_CONFIG.attr1   = 'val1';
-SESSION_CONFIG.attr2   = 'val2';
-SESSION_CONFIG.attr3   = 'val3';
-
-module.exports = SESSION_CONFIG;
+let sessionConfig = {
+  sessionKey: 'fe_session_id',
+  storeType: 'mongo',
+  mongo: {
+    url: 'mongodb://guest:guest1@ds133597.mlab.com:33597/fe-erp',
+    ttl: 2 * 60 * 60,
+  },
+  clientSecret: 'QEQWE@#4234234ASDASDCZXC__+++2123123',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 2,
+    expires: 1000 * 60 * 2,
+  }
+}
+module.exports = sessionConfig;

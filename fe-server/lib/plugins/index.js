@@ -9,8 +9,11 @@ const pluginsClasses = Object.assign({}, ...fs.readdirSync(__dirname)
     (file.indexOf(".") !== 0) && (file !== "index.js")
   )
   .map(function (file) {
-    const globalObj = require(path.join(__dirname, file));
-    return globalObj;
+    const pluginClass = require(path.join(__dirname, file));
+    var pluginName = file.slice(0,-3);
+    return {
+        [pluginName] : pluginClass
+    };
   })
 );
 module.exports = pluginsClasses;

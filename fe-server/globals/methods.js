@@ -1,4 +1,7 @@
 module.exports = {
+    require           : function(path) {
+        return require(path);
+    },
     requireL0           : function(path) {
         return require(FE.SERVER_APP_PATH + '/' + path);
     },
