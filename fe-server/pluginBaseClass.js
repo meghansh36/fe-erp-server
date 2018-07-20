@@ -4,7 +4,6 @@ class BasePlugin {
   }
 
   initialize() {
-
   }
 }
 module.exports = BasePlugin;

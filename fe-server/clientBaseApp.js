@@ -8,6 +8,7 @@ class ClientBaseApp {
 
   initialize() {
     this.mountSubApp();
+    this.loadGlobals();
     this.loadConfigs();
     this.loadPlugins();
     this.tempFunc();
@@ -15,6 +16,15 @@ class ClientBaseApp {
 
   mountSubApp() {
     this.app = this._appObj;
+  }
+
+  loadGlobals(){
+  /**
+   * @description : Load App Globals
+  */
+    const globals = require('./globals/index.js');
+    _.assign(this.app,globals);
+
   }
 
   loadConfigs() {
