@@ -29,3 +29,8 @@ clientObj.app.use('/:client/api/',function(req,res,done) {
 }, middleware);
 
 module.exports = clientObj;
+
+
+function loadPlugins() {
+
+};

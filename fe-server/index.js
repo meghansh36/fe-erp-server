@@ -34,7 +34,7 @@ FE.app = appObj;
 /**
  * @description : Load App Globals
  */
-const appGlobals = require('./globals');
+const appGlobals = require('./globals/index.js');
 Object.assign(global, appGlobals);
 
 /**
@@ -46,11 +46,6 @@ FE.configs = configs;
 module.exports = FE.app;
 
 FE.loadClientApp = function(clientAppObj) {
-  /**
-   * @description : Load App Global L0 Configs
-   */
-  var configs = require('./configs/index.js');
-  FE.configs = configs;
 };
 
 require('./clientSubApps');
