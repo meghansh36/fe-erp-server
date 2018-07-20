@@ -3,9 +3,12 @@
 /**
  * Module dependencies.
  */
-require('module-alias/register')
-var app = require('../app');
-var debug = require('debug')('mean-app:server');
+require('module-alias/register');
+
+var path = require('path');
+global.projectFolderPath = path.resolve();
+
+var app = require('../fe-server/index');
 var http = require('http');
 
 /**
@@ -86,7 +89,6 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-    //global.clientName = 'fe';
   console.log('Listening on ' + bind);
 }
 

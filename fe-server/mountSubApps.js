@@ -1,8 +1,8 @@
-const app = require('./app.js')
+const app = require('./index.js')
 //const app = express();
 const vhost = require('vhost');
 Object.defineProperty(global, '_', {value: require('lodash')}) // import lodash globally
-var config = require("./fe-server/config/fe.config.host.js");
+var config = require("./config/fe.config.host.js");
 var sessionConfig = {};
 const fs = require('fs');
 
@@ -13,7 +13,7 @@ loadSession = function(host,subAppObj){
      }else{
          sessionConfig = _.assign({},FE.config.sessionConfig,clientSessionConfig);
      }
-     var sessionMiddleWare = require('./fe-server/lib/session.js');
+     var sessionMiddleWare = require('./lib/session.js');
      sessionMiddleWare(subAppObj,sessionConfig);
  }
 
@@ -83,7 +83,7 @@ for(let host in config) {
 //     }else{
 //         sessionConfig = _.assign({},FE.config.sessionConfig,clientSessionConfig);
 //     }
-//     var sessionMiddleWare = require('./fe-server/lib/session.js');
+//     var sessionMiddleWare = require('./lib/session.js');
 //     sessionMiddleWare(subAppObj);
 // }
 

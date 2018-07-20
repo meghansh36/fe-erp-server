@@ -12,5 +12,4 @@ CONFIG.db_name      = 'dev';
 CONFIG.db_user      = 'chiragbansal';
 CONFIG.db_password  = '>G?3"qS/';
 
-console.log('INSIDE CONFIG');
 module.exports = CONFIG;
