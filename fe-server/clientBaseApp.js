@@ -7,6 +7,8 @@ class ClientBaseApp {
   }
 
   initialize() {
+    this.mountSubApp();
+    this.loadGlobals();
     this.loadConfigs();
     this.mountSubApp();    
     this.loadPlugins();
@@ -18,6 +20,15 @@ class ClientBaseApp {
     // view-engine setup
     this.app.set('views', FE.SERVER_APP_PATH + '/legislations/fe/clients/fe/main/process/');
     this.app.set('view engine', 'pug');
+  }
+
+  loadGlobals(){
+  /**
+   * @description : Load App Globals
+  */
+    const globals = require('./globals/index.js');
+    _.assign(this.app,globals);
+
   }
 
   loadConfigs() {
