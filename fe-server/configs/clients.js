@@ -3,7 +3,7 @@ var clients = {
         "client"        : "fe",
         "legislation"   : "fe",
         "app"           : FE.SERVER_APP_PATH + "/legislations/fe/clients/fe/index.js",
-        "domain"        : "fe.localhost",
+        "domain"        : "localhost",
         "config":"./fe-server/legislations/fe/clients/fe/config/",
     }
 };

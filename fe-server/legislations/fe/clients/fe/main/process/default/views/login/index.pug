@@ -1,0 +1,27 @@
+html
+    head
+        title='Login Page'
+        link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7", crossorigin="anonymous")
+    body
+    .card-block
+        .col
+        .col-sm-3
+            block content
+            h1='Login'
+            form(action="/api/default/login/login", method="post")
+                .form-group
+                    label(for="username")="Username"
+                    input.form-control(type="text", name="username", placeholder="Username")
+                .form-group
+                    label(for="password")="Password"
+                    input.form-control(type="password", name="password", placeholder="Password")
+                .form-group
+                    input(type="checkbox", name="check")
+                    label(for="check")="Remember Me"
+                .form-group
+                    button.btn(type="submit")="Log in"
+            .form-group
+                a(class="btn btn-danger" href="/api/default/login/google") Google+
+            .form-group
+                a(class="btn btn-info" href="/api/default/login/saml") SSO
+

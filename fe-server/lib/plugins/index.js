@@ -10,7 +10,8 @@ const pluginsClasses = Object.assign({}, ...fs.readdirSync(__dirname)
   )
   .map(function (file) {
     const pluginClass = require(path.join(__dirname, file));
-    var pluginName = file.slice(0,-3);
+    //var pluginName = file.slice(0,-3);
+    var pluginName = file;
     return {
         [pluginName] : pluginClass
     };

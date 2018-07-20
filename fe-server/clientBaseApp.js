@@ -7,14 +7,17 @@ class ClientBaseApp {
   }
 
   initialize() {
-    this.mountSubApp();
     this.loadConfigs();
+    this.mountSubApp();    
     this.loadPlugins();
     this.tempFunc();
   }
 
   mountSubApp() {
     this.app = this._appObj;
+    // view-engine setup
+    this.app.set('views', FE.SERVER_APP_PATH + '/legislations/fe/clients/fe/main/process/');
+    this.app.set('view engine', 'pug');
   }
 
   loadConfigs() {
@@ -43,18 +46,7 @@ class ClientBaseApp {
   }
 
   tempFunc() {
-    var passport = require('passport');
     var middleware = require('@L1Root/middlewares/dispatcher.js');
-    this.app.use(passport.initialize());
-    this.app.use(passport.session());
-
-    this.app.use((req, res, next) => {
-      if (req.cookies.user_sid && !req.session.username) {
-        res.clearCookie('user_sid');
-      }
-      next();
-    });
-
     this.app.use('/:client/api/', function (req, res, done) {
       console.log('Inside FE subapp.');
       done();

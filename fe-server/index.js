@@ -25,6 +25,7 @@ appObj.use(bodyParser.json());
 appObj.use(bodyParser.urlencoded({'extended':'true'}));
 appObj.use(cookieParser());
 appObj.use(dynamicStatic);
+
 /**
  * @description : Make FE Obj Global
  */
@@ -44,10 +45,8 @@ var configs = require('./configs/index.js');
 FE.configs = configs;
 
 module.exports = FE.app;
-
-FE.loadClientApp = function(clientAppObj) {
-};
-
 require('./clientSubApps');
+
+
 
 //console.log(FE);

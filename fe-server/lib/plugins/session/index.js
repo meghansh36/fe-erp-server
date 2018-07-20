@@ -34,6 +34,15 @@ class SessionPlugin extends BasePlugin {
     }
 
     this._clientApp.app.use(session(this._props));
+
+    // checks if user's cookie is saved in the browser when user is logout
+    const thisObj = this;
+    this._clientApp.app.use((req, res, next) => {
+      if(req.cookies[thisObj._props.key] && !req.session.username) {
+        res.clearCookie(thisObj._props.key);
+      }
+      next();   
+    });
   }
 
   sessionIdGenerated(requestObj) {
