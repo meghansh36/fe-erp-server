@@ -14,5 +14,5 @@ const appGlobals = Object.assign({}, ...fs.readdirSync(__dirname)
   })
 );
 
-Object.assign(global, appGlobals);
+Object.assign(FE, appGlobals);
 module.exports = appGlobals;

@@ -35,7 +35,7 @@ FE.app = appObj;
  * @description : Load App Globals
  */
 const appGlobals = require('./globals/index.js');
-Object.assign(global, appGlobals);
+Object.assign(FE, appGlobals);
 
 /**
  * @description : Load App Global L0 Configs
