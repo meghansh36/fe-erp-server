@@ -48,12 +48,8 @@ class ClientBaseApp {
     var pluginsToBeLoaded = this.configs.plugins;
     var plugins = pluginsToBeLoaded.plugins;
     var pluginsOrder = pluginsToBeLoaded.order;
-    //console.log(plugins);
     for (var pluginKey in pluginsOrder) {
-      //console.log(pluginKey);
-      //console.log(this._pluginClasses[pluginsOrder[pluginKey]])
       if (plugins[pluginsOrder[pluginKey]] == true && typeof this._pluginClasses[pluginsOrder[pluginKey]] == "function") {
-        //console.log('YES')
         var pluginObject = new this._pluginClasses[pluginsOrder[pluginKey]](this);
         pluginObject.initialize();
       }
@@ -61,11 +57,11 @@ class ClientBaseApp {
   }
 
   tempFunc() {
-    var middleware = require('@L1Root/middlewares/dispatcher.js');
-    this.app.use('/:client/api/', function (req, res, done) {
-      console.log('Inside FE subapp.');
-      done();
-    }, middleware);
+    // var middleware = require('@L1Root/middlewares/dispatcher.js');
+    // this.app.use('/:client/api/', function (req, res, done) {
+    //   console.log('Inside FE subapp.');
+    //   done();
+    // }, middleware);
   }
 }
 module.exports = ClientBaseApp;

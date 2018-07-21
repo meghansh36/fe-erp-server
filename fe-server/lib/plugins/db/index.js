@@ -37,6 +37,7 @@ class DbPlugin extends BasePlugin {
       define:this._props.define
     });
 
+    FE.DBOBJECT = sequelize;
 
     var processesPath  = this._clientApp.SUB_APP_PROCESS_PATH;
     this._models ={};
