@@ -4,7 +4,8 @@ var clients = {
         "legislation"   : "fe",
         "app"           : FE.SERVER_APP_PATH + "/legislations/fe/clients/fe/index.js",
         "domain"        : "localhost",
-        "config":"./fe-server/legislations/fe/clients/fe/config/",
+        "configsPath"    : FE.SERVER_APP_PATH + "/legislations/fe/clients/fe/configs/index.js",
+        "globalsPath"    : FE.SERVER_APP_PATH + "/legislations/fe/clients/fe/globals/index.js",
     }
 };
 module.exports = clients;

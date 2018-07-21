@@ -53,13 +53,13 @@ class AuthPlugin extends BasePlugin {
 	initialize() {
 		this.serialize();
 		this.deserialize();
-    this.loadStrategies();
-    this._clientApp.app.use('/fe/api/login/', loginRouter);
-    this._clientApp.app.use(this._passport.initialize());
-    this._clientApp.app.use(this._passport.session());
-    this.redirectUser();
-		console.log('auth plugin initialized');
-	}
+		this.loadStrategies();
+		this._clientApp.app.use('/fe/api/login/', loginRouter);
+		this._clientApp.app.use(this._passport.initialize());
+		this._clientApp.app.use(this._passport.session());
+		this.redirectUser();
+			console.log('auth plugin initialized');
+		}
 
 	redirectUser() {
 		var thisObj = this;

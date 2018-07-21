@@ -1,7 +1,7 @@
 class ClientBaseApp {
 
   constructor(appObj) {
-    this._appObj = appObj;
+    this.app = appObj;
     this.configs = {};
     this._pluginClasses = {};
   }
@@ -9,14 +9,12 @@ class ClientBaseApp {
   initialize() {
     this.mountSubApp();
     this.loadGlobals();
-    this.loadConfigs();
-    this.mountSubApp();    
+    this.loadConfigs(); 
     this.loadPlugins();
     this.tempFunc();
   }
 
   mountSubApp() {
-    this.app = this._appObj;
     // view-engine setup
     this.app.set('views', FE.SERVER_APP_PATH + '/legislations/fe/clients/fe/main/process/');
     this.app.set('view engine', 'pug');
@@ -26,8 +24,10 @@ class ClientBaseApp {
   /**
    * @description : Load App Globals
   */
-    const globals = require('./globals/index.js');
-    _.assign(this.app,globals);
+    const globals = require(this._appProps.globalsPath);
+    Object.assign(this,globals);
+    // console.log('globals', globals);
+    // console.log(this.SUB_APP_PATH);
 
   }
 
@@ -35,7 +35,7 @@ class ClientBaseApp {
     /**
      * @description : Load Client App L3 Configs
      */
-    var configs = require('./configs/index.js');
+    var configs = require(this._appProps.configsPath);
     this.configs = configs;
   }
 
@@ -48,8 +48,12 @@ class ClientBaseApp {
     var pluginsToBeLoaded = this.configs.plugins;
     var plugins = pluginsToBeLoaded.plugins;
     var pluginsOrder = pluginsToBeLoaded.order;
+    //console.log(plugins);
     for (var pluginKey in pluginsOrder) {
+      //console.log(pluginKey);
+      //console.log(this._pluginClasses[pluginsOrder[pluginKey]])
       if (plugins[pluginsOrder[pluginKey]] == true && typeof this._pluginClasses[pluginsOrder[pluginKey]] == "function") {
+        //console.log('YES')
         var pluginObject = new this._pluginClasses[pluginsOrder[pluginKey]](this);
         pluginObject.initialize();
       }

@@ -1,16 +1,18 @@
 
 let pluginConfig = {
     plugins    : {
-        "session"   : true,
-        "passport"  : true,
-        "db"        : true,
-        "acl"       : true,
+        "session"       : true,
+        "db"            : true,
+        "auth"      : true,
+        "acl"           : true,
+        "dispatcher"    : true
     },
     order    : [
         "session",
-        "passport",
         "db",
-        "acl"
+        "auth",
+        "acl",
+        "dispatcher"
     ]
 };
 module.exports = pluginConfig;
