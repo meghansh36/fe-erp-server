@@ -34,6 +34,17 @@ class AclPlugin extends BasePlugin{
     	return prom;
 	}
 
+	//middleware to validate user
+	validateUser(req, res, next, acl){
+		acl.isAllowed(req.userId, req.url, req.method, (err, allowed)=>{
+			if(allowed){
+				next();
+			} else {
+				res.send('Access Denied'); //handle denied access
+			}
+		});
+	}
+	
 	//hardcorded set_roles function (to be handled later)
 	set_roles(acl){
     
