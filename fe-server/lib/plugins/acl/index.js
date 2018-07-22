@@ -9,42 +9,36 @@ class AclPlugin extends BasePlugin{
 	constructor(_clientApp) {
     super(_clientApp);
     this._clientApp = _clientApp;
-    this._configs = this._clientApp.configs.acl;
+	this._configs = this._clientApp.configs.acl;
   }
   
-  	intialize(){
-		return this.connectMongo()
-		.then((acl)=>{
-			//logic to store roles and users into mongo
-			set_roles(acl);	//will be changed to fetch roles from mySQL and inject into mongo
-			return acl;		//this will be used inside dispatcher to authorize requests
+  	initialize(){
+		const db 		= this._configs.dbUrl;
+		const prefix  = this._configs.prefix;
+		var acl;
+		this.connectMongo(db, prefix)
+		.then((mongoBackend)=>{
+			//get acl with a mongo backend
+			acl = new node_acl(mongoBackend);
+			this.set_roles(acl);	//will be changed to fetch roles from mySQL and inject into mongo
+			FE.ACL = acl;		//this will be used inside dispatcher to authorize requests
 		})
-		.catch((err)=> console.error(err)); 
+		.catch((err)=> console.error(err));
+		console.log('acl plugin initialized!');
   	}
 
   	//connect to mongoose
- 	connectMongo(){
+ 	connectMongo(url, prefix){
     	var prom = new Promise(function(resolve, reject) {
-        	mongoose.connect(this._configs.mongoUrl, function(err, db) {
-            	var acl = 	new node_acl(new node_acl.mongodbBackend(mongoose.connection.db, this._configs.prefix));
-            	resolve(acl);
+        	mongoose.connect(url, function(err, db) {
+            	var mongoBackend = 	new node_acl.mongodbBackend(mongoose.connection.db, prefix);
+            	resolve(mongoBackend);
             	reject(err);
         	});
     	});
     	return prom;
 	}
 
-	//middleware to validate user
-	validateUser(req, res, next, acl){
-		acl.isAllowed(req.userId, req.url, req.method, (err, allowed)=>{
-			if(allowed){
-				next();
-			} else {
-				res.send('Access Denied'); //handle denied access
-			}
-		});
-	}
-	
 	//hardcorded set_roles function (to be handled later)
 	set_roles(acl){
     
@@ -83,4 +77,16 @@ class AclPlugin extends BasePlugin{
 	    ]);
 	}
 
+	//middleware to validate user
+	// validateUser(req, res, next, acl){
+	// 	acl.isAllowed(req.userId, req.url, req.method, (err, allowed)=>{
+	// 		if(allowed){
+	// 			next();
+	// 		} else {
+	// 			res.send('Access Denied'); //handle denied access
+	// 		}
+	// 	});
+	//}
 };
+
+module.exports = AclPlugin;
