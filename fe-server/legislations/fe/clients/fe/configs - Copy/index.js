@@ -12,6 +12,10 @@ const appConfigs = Object.assign({}, ...fs.readdirSync(__dirname)
     let configObj = require(path.join(__dirname, file));
     var fileName = file.split(/[\\/]/).pop();
     var configName = path.basename(fileName, path.extname(fileName));
+
+    if(typeof FE.configs[configName] != "undefined") {
+      configObj = Object.assign({}, FE.configs[configName], configObj);
+    }    
     return {
         [configName] : configObj
     };

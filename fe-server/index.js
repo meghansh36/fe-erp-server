@@ -19,6 +19,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const dynamicStatic = require('express-dynamic-static')();
+const BaseAppClass = require('./baseApp');
 const appObj = express();
 
 appObj.use(bodyParser.json());
@@ -29,24 +30,8 @@ appObj.use(dynamicStatic);
 /**
  * @description : Make FE Obj Global
  */
-global.FE = global.FE || {};
-FE.app = appObj;
-
-/**
- * @description : Load App Globals
- */
-const appGlobals = require('./globals/index.js');
-Object.assign(FE, appGlobals);
-
-/**
- * @description : Load App Global L0 Configs
- */
-var configs = require('./configs/index.js');
-FE.configs = configs;
-
+global.FE = new BaseAppClass(appObj);
+FE.initialize();
 module.exports = FE.app;
-require('./clientSubApps');
 
-
-
-//console.log(FE);
+FE.clients.fe.helpers.logger.trace.info('my message');

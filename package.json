@@ -79,6 +79,8 @@
     "sortablejs": "^1.7.0",
     "uuid": "^3.3.2",
     "vhost": "^3.0.2",
+    "winston": "^3.0.0",
+    "winston-daily-rotate-file": "^3.3.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

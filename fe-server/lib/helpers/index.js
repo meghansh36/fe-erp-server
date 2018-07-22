@@ -4,18 +4,17 @@ var path      = require('path');
 /**
  * @description : Use all files in globals folder and attach each variable in globals.
  */
-const appConfigs = Object.assign({}, ...fs.readdirSync(__dirname)
+const helperClasses = Object.assign({}, ...fs.readdirSync(__dirname)
   .filter(file =>
     (file.indexOf(".") !== 0) && (file !== "index.js")
   )
   .map(function (file) {
-    let configObj = require(path.join(__dirname, file));
+    const helperClass = require(path.join(__dirname, file));
     var fileName = file.split(/[\\/]/).pop();
-    var configName = path.basename(fileName, path.extname(fileName));
+    var helperName = path.basename(fileName, path.extname(fileName));
     return {
-        [configName] : configObj
+        [helperName] : helperClass
     };
   })
 );
-console.log('configs L3 fetedh');
-module.exports = appConfigs;
+module.exports = helperClasses;

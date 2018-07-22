@@ -12,5 +12,3 @@ for(let clientName in clientArr) {
     //FE.loadClientApp(appObj);
     FE.app.use(vhost(domainName, clientObj.app));
 }
-
-// console.log(FE.clients.fe.configs.db);
