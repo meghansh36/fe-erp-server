@@ -10,14 +10,16 @@ const appConfigs = Object.assign({}, ...fs.readdirSync(__dirname)
   )
   .map(function (file) {
     let configObj = require(path.join(__dirname, file));
-    let configName = file.slice(0,-3);
+    var fileName = file.split(/[\\/]/).pop();
+    var configName = path.basename(fileName, path.extname(fileName));
 
     if(typeof FE.configs[configName] != "undefined") {
-      configObj = _.assign({}, FE.configs[configName], configObj);
+      configObj = Object.assign({}, FE.configs[configName], configObj);
     }    
     return {
         [configName] : configObj
     };
   })
 );
+console.log('configs L3 fetedh');
 module.exports = appConfigs;

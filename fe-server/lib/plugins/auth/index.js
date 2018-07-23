@@ -1,6 +1,6 @@
 const path = FE.require('path');
 const jwt = FE.require('jsonwebtoken');
-const BasePlugin = FE.requireL0('pluginBaseClass.js');
+const BasePlugin = FE.requireLib('pluginBaseClass.js');
 const loginRouter = require('./login.js');
 const request = FE.require('request');
 
@@ -52,15 +52,15 @@ class AuthPlugin extends BasePlugin {
 	}
 
 	initialize() {
-    this._clientApp.app.use(this._passport.initialize());
-    this.loadStrategies();
-    this.serialize();
+		this.serialize();
 		this.deserialize();
-    this._clientApp.app.use('/api/default/login', loginRouter);
-	  this._clientApp.app.use(this._passport.session());
-    this.redirectUser();
-		console.log('auth plugin initialized');
-	}
+		this.loadStrategies();
+		this._clientApp.app.use('/fe/api/login/', loginRouter);
+		this._clientApp.app.use(this._passport.initialize());
+		this._clientApp.app.use(this._passport.session());
+		this.redirectUser();
+			console.log('auth plugin initialized');
+		}
 
 	redirectUser() {
     var thisObj = this;

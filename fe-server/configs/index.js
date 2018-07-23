@@ -10,7 +10,8 @@ const appConfigs = Object.assign({}, ...fs.readdirSync(__dirname)
   )
   .map(function (file) {
     const configObj = require(path.join(__dirname, file));
-    var configName = file.slice(0,-3);
+    var fileName = file.split(/[\\/]/).pop();
+    var configName = path.basename(fileName, path.extname(fileName));
     return {
         [configName] : configObj
     };
