@@ -1,5 +1,5 @@
 var express = require('express');
-var ClientBaseApp = FE.requireLib('clientBaseApp.js');
+var ClientBaseApp = FE.requireLib('/client/baseApp.js');
 
 
 var app = express();
