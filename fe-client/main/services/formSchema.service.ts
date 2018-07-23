@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -3821,7 +3822,7 @@ export class FeFormSchemaService {
       ]
     }
   }
-  constructor(public router: Router, public route: ActivatedRoute) { }
+  constructor(public router: Router, public route: ActivatedRoute, public http: HttpClient) { }
 
   addProps(components, code) {
 
@@ -3842,9 +3843,12 @@ export class FeFormSchemaService {
   getFormSchema(code) {
     console.log(code);
     let form = this._schema[code];
-    if (code === 'FRM0000001') {
-      form = this._schema[101];
-    }
+    // if (code === 'FRM0000001') {
+    //   form = this._schema[101];
+    // }
+    this.http.post("http://fe.localhost:3000/fe/fe/default/forms_data/form_data ",{'id':code}).subscribe((data)=>{
+      form = data;
+    })
     /* console.log("Form", form);
     this.addProps(form.components, code);
     this.addProps(form.buttons, code); */
@@ -3853,5 +3857,9 @@ export class FeFormSchemaService {
 
   navigateToFormGenerator(id: number) {
     this.router.navigate(['/formGenerator', id]);
+  }
+
+  navigateToFormBuilder(id: number) {
+    this.router.navigate(['/formBuilder', id]);
   }
 }

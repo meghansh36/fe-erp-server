@@ -67,17 +67,12 @@ module.exports = class FeFormsData{
     form_data(req,res,done) {
         var clientName = req.params.client;
         FE.clients[clientName].models.FormsData.find({
-            where: req.params.id,
-            attributes:['FORM_CODE','LABEL','ID']
-        }).then(function(formsData){
-                var formObj = {};
-                formObj.formcode = data.FORM_CODE;
-                formObj.label = data.LABEL;
-                formObj.id = data.ID;
-                formsArray.push(formObj);
-
-       // console.log(formsData);
-        res.json(formsArray);
+            where: req.body.id,
+            attributes:['FORM_CODE','LABEL','ID','JSON']
+        }).then(function(formData){
+                formData.JSON.id = formData.ID;
+                formData.JSON.formcode = formData.FORM_CODE;
+                res.json(formData.JSON);
         }).catch(function(err){
             console.log(err);
             res.send(err);

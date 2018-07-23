@@ -6,3 +6,5 @@ module.exports =  class PaygroupModel extends LgPaygroupModel {
 		super(...arguments);
 	}
 }	
+
+

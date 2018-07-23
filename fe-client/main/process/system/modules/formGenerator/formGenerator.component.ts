@@ -40,7 +40,7 @@ export class FeFormGeneratorComponent implements OnInit {
     getSchema(id: number) {
         let form = this.formSchemaService.getFormSchema(id);
         if (form) {
-            this.schema = form.components;
+            this.schema = form;
             console.log(this.schema);
         }
         else {

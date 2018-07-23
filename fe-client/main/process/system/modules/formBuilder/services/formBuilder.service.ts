@@ -372,7 +372,16 @@ export class FeFormBuilderService {
   }
 
   postData(data) {
-    return this.httpClient.post('http://localhost:3000/fe/api/default/save', data)
+    if(data.id !== '') {
+      return this.httpClient.post('http://fe.localhost:3000/fe/fe/default/forms_data/update_form_data ', {
+        id: data.id,
+        formLabel: data.formLabel,
+        json: data
+      })
+    } else {
+      return this.httpClient.post('http://fe.localhost:3000/fe/fe/default/forms_data/save_form_data', data)
+    }
+    
   }
 
 }

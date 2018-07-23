@@ -10,12 +10,14 @@ import { FstComponent } from '@L3Process/system/modules/formBuilder/components/f
 import * as _ from 'lodash';
 import { MasterFormComponent } from '@L3Process/system/modules/formBuilder/components/Master/masterForm.component';
 import { reject } from 'q';
-
+import { ActivatedRoute } from '@angular/router';
+import { FormSchemaService } from '@L3Main/services/formSchema.service';
 // import { FieldRenderDirective } from '@L3Process/system/modules/formBuilder/directives/fieldRender.directive';
 @Component({
   selector: 'form-builder',
   templateUrl: './formBuilder.component.html',
-  styleUrls: ['./formBuilder.component.css']
+  styleUrls: ['./formBuilder.component.css'],
+  providers: [FormSchemaService]
 })
 export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 
@@ -44,6 +46,8 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     private dragulaService: DragulaService,
     private formBuilderService: FormBuilderService,
     private renderer: Renderer2,
+    public formSchemaService: FormSchemaService,
+    public route: ActivatedRoute
   ) {
     this.formJson = this.formJsonService.MasterJSON;
     this.dragulaService.setOptions('bag-one', {
@@ -96,9 +100,31 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.route.params
+            .filter(params => params.id)
+            .subscribe(params => {
+                let id = params.id;
+                if(id) {
+                  this.getSchema(id);
+                }
+                
+            })
     this.init();
   }
 
+  getSchema(id: number) {
+    let form = this.formSchemaService.getFormSchema(id);
+    if (form) {
+        this.finalJSON = form;
+        this.formJson = this.finalJSON;
+       // console.log(this.schema);
+       this.populateFormBuilder(form.components);
+    }
+    else {
+        console.log('no schema found');
+    }
+
+}
   ngAfterViewInit() {
     this.applyDisplayProps();
   }
