@@ -30,6 +30,7 @@
 {"level":"info","time":"2018-07-23 13:07:88","msg":"my new message","desc":"","stg":"101","file":"E:\\Shubham_Library\\GitHub\\fe-erp-server\\fe-erp-server\\fe-server\\index.js:43:30","line":"43"}
 {"level":"info","time":"2018-07-23 13:07:24","msg":"my new message","desc":"","stg":"101","file":"E:\\Shubham_Library\\GitHub\\fe-erp-server\\fe-erp-server\\fe-server\\index.js:43:30","line":"43"}
 {"level":"info","time":"2018-07-23 13:07:24","msg":"my new message","desc":"","stg":"101","file":"/Users/chiragbansal/Desktop/FlexiEle-Angular/fe-erp-server/fe-server/index.js:43:30","line":"43"}
+<<<<<<< HEAD
 {"level":"info","time":"2018-07-23 15:07:77","msg":"my new message","desc":"","stg":"101","file":"C:\\Users\\Sahil\\Desktop\\fe-server\\fe-erp-server\\fe-server\\index.js:43:30","line":"43"}
 {"level":"info","time":"2018-07-23 15:07:11","msg":"my new message","desc":"","stg":"101","file":"C:\\Users\\Sahil\\Desktop\\fe-server\\fe-erp-server\\fe-server\\index.js:43:30","line":"43"}
 {"level":"info","time":"2018-07-23 15:07:27","msg":"my new message","desc":"","stg":"101","file":"C:\\Users\\Sahil\\Desktop\\fe-server\\fe-erp-server\\fe-server\\index.js:43:30","line":"43"}
@@ -37,3 +38,19 @@
 {"level":"info","time":"2018-07-23 15:07:32","msg":"my new message","desc":"","stg":"101","file":"C:\\Users\\Sahil\\Desktop\\fe-server\\fe-erp-server\\fe-server\\index.js:43:30","line":"43"}
 {"level":"info","time":"2018-07-23 15:07:71","msg":"my new message","desc":"","stg":"101","file":"C:\\Users\\Sahil\\Desktop\\fe-server\\fe-erp-server\\fe-server\\index.js:43:30","line":"43"}
 {"level":"info","time":"2018-07-23 15:07:52","msg":"my new message","desc":"","stg":"101","file":"C:\\Users\\Sahil\\Desktop\\fe-server\\fe-erp-server\\fe-server\\index.js:43:30","line":"43"}
+=======
+{"level":"info","time":"2018-07-23 14:07:21","msg":"my new message","desc":"","stg":"101","file":"/home/properchels/Documents/flexiEle/fe-server-sir/fe-erp-server/fe-server/index.js:43:30","line":"43"}
+{"level":"info","time":"2018-07-23 14:07:33","msg":"my new message","desc":"","stg":"101","file":"/home/properchels/Documents/flexiEle/fe-server-sir/fe-erp-server/fe-server/index.js:43:30","line":"43"}
+{"level":"info","time":"2018-07-23 15:07:55","msg":"my new message","desc":"","stg":"101","file":"/home/properchels/Documents/flexiEle/fe-server-sir/fe-erp-server/fe-server/index.js:43:30","line":"43"}
+{"level":"info","time":"2018-07-23 15:07:55","msg":"my new message","desc":"","stg":"101","file":"/home/properchels/Documents/flexiEle/fe-server-sir/fe-erp-server/fe-server/index.js:43:30","line":"43"}
+{"level":"info","time":"2018-07-23 15:07:92","msg":"my new message","desc":"","stg":"101","file":"/home/properchels/Documents/flexiEle/fe-server-sir/fe-erp-server/fe-server/index.js:43:30","line":"43"}
+{"level":"info","time":"2018-07-23 15:07:60","msg":"my new message","desc":"","stg":"101","file":"/home/properchels/Documents/flexiEle/fe-server-sir/fe-erp-server/fe-server/index.js:43:30","line":"43"}
+{"level":"info","time":"2018-07-23 15:07:16","msg":"my new message","desc":"","stg":"101","file":"/home/properchels/Documents/flexiEle/fe-server-sir/fe-erp-server/fe-server/index.js:43:30","line":"43"}
+{"level":"info","time":"2018-07-23 15:07:24","msg":"my new message","desc":"","stg":"101","file":"/home/properchels/Documents/flexiEle/fe-server-sir/fe-erp-server/fe-server/index.js:43:30","line":"43"}
+{"level":"info","time":"2018-07-23 15:07:16","msg":"my new message","desc":"","stg":"101","file":"/home/properchels/Documents/flexiEle/fe-server-sir/fe-erp-server/fe-server/index.js:43:30","line":"43"}
+{"level":"info","time":"2018-07-23 15:07:34","msg":"my new message","desc":"","stg":"101","file":"/home/properchels/Documents/flexiEle/fe-server-sir/fe-erp-server/fe-server/index.js:43:30","line":"43"}
+{"level":"info","time":"2018-07-23 15:07:08","msg":"my new message","desc":"","stg":"101","file":"/home/properchels/Documents/flexiEle/fe-server-sir/fe-erp-server/fe-server/index.js:43:30","line":"43"}
+{"level":"info","time":"2018-07-23 15:07:87","msg":"my new message","desc":"","stg":"101","file":"/home/properchels/Documents/flexiEle/fe-server-sir/fe-erp-server/fe-server/index.js:43:30","line":"43"}
+{"level":"info","time":"2018-07-23 15:07:61","msg":"my new message","desc":"","stg":"101","file":"/home/properchels/Documents/flexiEle/fe-server-sir/fe-erp-server/fe-server/index.js:43:30","line":"43"}
+{"level":"info","time":"2018-07-23 15:07:42","msg":"my new message","desc":"","stg":"101","file":"/home/properchels/Documents/flexiEle/fe-server-sir/fe-erp-server/fe-server/index.js:43:30","line":"43"}
+>>>>>>> c27513cc6e8e6f460dbf79046d46b120e398cf0c
