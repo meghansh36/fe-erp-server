@@ -220,13 +220,13 @@ class AuthPlugin extends BasePlugin {
 			//Check if user exists
 			if (index === -1) {
 				return done(null, false, {
-					message: 'Incorrect Username.'
+					message: 'Incorrect Username'
 				});
 			}
 			//validPassword method
 			else if (password !== user.password) {
 				return done(null, false, {
-					message: 'Incorrect Password '
+					message: 'Incorrect Password'
 				});
 			}
 			console.log("BEFORE SERIALIZE");
