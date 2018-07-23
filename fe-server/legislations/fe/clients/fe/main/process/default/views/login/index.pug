@@ -10,7 +10,7 @@ html
             h1='Login'
             if(message)
                 .alert.alert-danger !{message}
-            form(action="/api/default/login/login", method="post")
+            form(action="/fe/api/login/login", method="post")
                 .form-group
                     label(for="username")="Username"
                     input.form-control(type="text", name="username", placeholder="Username")
@@ -23,8 +23,8 @@ html
                 .form-group
                     button.btn(type="submit")="Log in"
             .form-group
-                a(class="btn btn-danger" href="/api/default/login/google") Google+
+                a(class="btn btn-danger" href="/fe/api/login/google") Google+
             .form-group
-                a(class="btn btn-info" href="/api/default/login/saml") SSO
+                a(class="btn btn-info" href="/fe/api/login/saml") SSO
             
 

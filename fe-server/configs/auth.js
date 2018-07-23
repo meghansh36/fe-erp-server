@@ -8,7 +8,7 @@ let authConfig = {
 	google: {
 		clientId: '210388964297-poii0qg87ocquekma1jojutgqoigusi1.apps.googleusercontent.com',
 		clientSecret: 'dXrgtPT1oRoJNdU1NnMAbl0A',
-		callbackUrl: '/api/default/login/googlecb'
+		callbackUrl: '/fe/api/login/googlecb'
 	},
 	ldap: {
 		url: "ldap://182.74.171.42:389",
@@ -20,7 +20,7 @@ let authConfig = {
 	saml: {
 		entryPoint: 'https://idp.ssocircle.com/sso/idpssoinit?metaAlias=/ssocircle&spEntityID=tempIdp',
 		issuer: 'passport-saml',
-		path: '/api/default/login/samlcb'
+		path: '/fe/api/login/samlcb'
 	},
 	jwtSecretKey: "ASDASDSADQWE16235laskjhdlkasdlAASDASDAS34534534"
 }

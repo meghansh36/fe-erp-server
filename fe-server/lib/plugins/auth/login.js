@@ -34,7 +34,7 @@ router.get('/googlecb', (req, res)=>{
                   check:false
                 }
                 
-    request.post('http://localhost:3000/api/default/login/login', { json: credentials }, (err, res, body) => {
+    request.post('http://fe.localhost:3000/fe/api/login/login', { json: credentials }, (err, res, body) => {
     if(err){
       console.log(err);
     }
@@ -74,7 +74,7 @@ router.post('/samlcb',
                       username:user.username,
                       password:user.password
                     }
-        request.post('http://localhost:3000/api/default/login/login', { json: credentials }, (err, res, body) => {
+        request.post('http://fe.localhost:3000/fe/api/login/login', { json: credentials }, (err, res, body) => {
           if(err){
               console.log(err);
             }

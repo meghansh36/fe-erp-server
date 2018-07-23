@@ -52,11 +52,11 @@ class AuthPlugin extends BasePlugin {
 	}
 
 	initialize() {
+		this._clientApp.app.use(this._passport.initialize());
+		this.loadStrategies();
 		this.serialize();
 		this.deserialize();
-		this.loadStrategies();
 		this._clientApp.app.use('/fe/api/login/', loginRouter);
-		this._clientApp.app.use(this._passport.initialize());
 		this._clientApp.app.use(this._passport.session());
 		this.redirectUser();
 			console.log('auth plugin initialized');
@@ -102,7 +102,7 @@ class AuthPlugin extends BasePlugin {
             check:false
           };
      
-          request.post('http://localhost:3000/api/default/login/login', { json: credentials }, (err, res, body) => {
+          request.post('http://fe.localhost:3000/fe/api/login/login', { json: credentials }, (err, res, body) => {
            
              if(err){
                 console.log(err);
