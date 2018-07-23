@@ -17,12 +17,12 @@ class AclPlugin extends BasePlugin{
 		this._props.dbUrl = this._configs.dbUrl
 		this._props.prefix = this._configs.prefix;
 		var acl;
-		this.connectMongo(this._props.dbUrl, this._props.prefix)
+		FE.ACL = this.connectMongo(this._props.dbUrl, this._props.prefix)
 		.then((mongoBackend)=>{
-			//get acl with a mongo backend
+		//get acl with a mongo backend
 			acl = new node_acl(mongoBackend);
-			this.set_roles(acl);	//will be changed to fetch roles from mySQL and inject into mongo
-			FE.ACL = acl;		//this will be used inside dispatcher to authorize requests
+			acl = this.set_roles(acl);	//will be changed to fetch roles from mySQL and inject into mongo
+			return acl;		//this will be used inside dispatcher to authorize requests
 		})
 		.catch((err)=> console.error(err));
 		console.log('acl plugin initialized!');
@@ -75,7 +75,8 @@ class AclPlugin extends BasePlugin{
 	                {resources:'/fe', permissions: ['get', 'post']}
 	            ]
 	        }
-	    ]);
+		]);
+		return acl;
 	}
 
 	//middleware to validate user
