@@ -2,13 +2,13 @@
 let pluginConfig = {
     plugins    : {
         "session"   : true,
-        "passport"  : true,
+        "auth"      : true,
         "db"        : true,
         "acl"       : true,
     },
     order    : [
         "session",
-        "passport",
+        "auth",
         "db",
         "acl"
     ]

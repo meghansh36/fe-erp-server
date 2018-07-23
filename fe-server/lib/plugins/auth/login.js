@@ -1,57 +1,11 @@
-const express = require('express');
+const express = FE.require('express');
 const router = express.Router();
-const jwt = require('jsonwebtoken');
-const passport = require('passport');
-const request = require('request');
+const jwt = FE.require('jsonwebtoken');
+const passport = FE.require('passport');
+const request = FE.require('request');
 
 
 let credentials;
-
-// router.get('/verifytoken', (req, res)=>{
-
-//   console.log('INSIDE VERIFYTOKEN')
-//   // var token = req.headers['x-auth-token'];
-//   const token = req.headers['cookie'];
-//   // console.log(req);
-//   console.log(token);
-
-//   if(!token){
-//     console.log('NO TOKEN');
-//     return res.json({
-//       auth: false,
-//       message: "No Token"
-//     });
-//   }
-
-//   jwt.verify(token, "your_jwt_secret", (err, decoded)=>{
-//     if(err){ 
-//       console.log('ERR_DECODING_TOKEN');
-//       return res.status(500).send({
-//         auth: false,
-//         message: "Err Decoding Token"
-//       })
-//     }
-//     console.log('Decoded');
-//     console.log(decoded);
-   
-//     credentials = {
-//       username: decoded.user.username,
-//       password: decoded.user.password,
-//       check:false
-//     };
-    
-//     request.post('http://localhost:3000/api/default/login/login', { json: credentials }, (err, res, body) => {
-//     if(err){
-//       console.log(err);
-//     }
-//     if(res.statusCode == 200){
-//       console.log("INSIDE POST SUCCESS");
-//       console.log(body);
-//     }
-//   }).pipe(res);
-
-//   });
-// });
 
  
 router.get('/google',
@@ -67,10 +21,11 @@ router.get('/googlecb', (req, res)=>{
       return;
     }
     if (!user) { 
-      return res.status(401).json({
-      success: false,
-      message: info?info.message:'Login Failed' 
-      });
+      // return res.status(401).json({
+      // success: false,
+      // message: info?info.message:'Login Failed' 
+      // });
+      return res.render('default/views/login/index', {message: info?info.message:'Login Failed'})
      }
     console.log(user);
     credentials = {
@@ -106,10 +61,12 @@ router.post('/samlcb',
           throw err;
         }
         if(!user){
-          return res.json({
-            success:false,
-            message:info?info.message:"Login Failed"
-          })
+          // return res.json({
+          //   success:false,
+          //   message:info?info.message:"Login Failed"
+          // })
+          return res.render('default/views/login/index',{message:info?info.message:"Login Failed"});
+          
         }
         console.log(user);
         // req.user = user;
@@ -132,13 +89,6 @@ router.post('/samlcb',
 );
 
 
-// router.post('/ldap',
-//   passport.authenticate('ldapauth', (err, user, info) => {
-//     if(user){
-//       console.log(user);
-//     }
-//   })
-// );
 
 router.post('/ldap',
 (req, res, next) => {
@@ -197,13 +147,13 @@ router.post('/login', (req, res, next)=> {
     }
     if (!user) { 
       console.log(req.get('Authorization'));
-      return res.status(401).json({
-      success: false,
-      message: info?info.message:'Login Failed' 
-      });
+      // return res.status(401).json({
+      // success: false,
+      // message: info?info.message:'Login Failed' 
+      // });
+      return res.render('default/views/login/index', {message: info?info.message:'Login Failed'});
      }
-
-    req.login(user, (err)=> {
+    req.login(user, (err) => {
       if (err) { 
         return next(err); 
       }
@@ -212,7 +162,7 @@ router.post('/login', (req, res, next)=> {
       console.log(`req.body: ${JSON.stringify(req.body)}`);
       req.session.username = req.body.username;
       console.log(`req.session: ${JSON.stringify(req.session)}`);
-      const token = jwt.sign({user: user}, 'your_jwt_secret', { expiresIn: '60m' });
+      const token = jwt.sign({user: user}, 'ASDASDSADQWE16235laskjhdlkasdlAASDASDAS34534534', { expiresIn: '60m' });
       const data = {
         success: true,
         message: 'Login Successful',
@@ -221,9 +171,9 @@ router.post('/login', (req, res, next)=> {
       if(req.body.check){
       res.cookie('token', token);        
       }
-      res.redirect('/fe/formBuilder');    
+      res.send("LOGIN_SUCCESS");
+    	// res.redirect('/');    
     });
-
     credentials='';
   })(req, res, next);
 });

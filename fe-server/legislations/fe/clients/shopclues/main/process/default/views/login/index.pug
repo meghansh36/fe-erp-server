@@ -8,8 +8,6 @@ html
         .col-sm-3
             block content
             h1='Login'
-            -if(message)
-                .alert.alert-danger !{message}
             form(action="/api/default/login/login", method="post")
                 .form-group
                     label(for="username")="Username"
@@ -26,5 +24,4 @@ html
                 a(class="btn btn-danger" href="/api/default/login/google") Google+
             .form-group
                 a(class="btn btn-info" href="/api/default/login/saml") SSO
-            
 

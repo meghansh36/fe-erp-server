@@ -1,6 +1,7 @@
 module.exports = {
-    APP_PATH         : global.projectFolderPath,
-    CLIENT_APP_PATH  : global.projectFolderPath + '/fe-client',
-    SERVER_APP_PATH  : global.projectFolderPath + '/fe-server',
-    PLUGINS_PATH     : global.projectFolderPath + '/fe-server/lib/plugins',
+    SUB_APP_PATH     : SERVER_APP_PATH+'/legislations/fe/clients/fe',
+    SUB_APP_MAIN_PATH  : SERVER_APP_PATH+'/legislations/fe/clients/fe/main',
+    SUB_APP_PROCESS_PATH  : SERVER_APP_PATH+'/legislations/fe/clients/fe/main/process',
 };
+
+

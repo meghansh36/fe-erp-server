@@ -27,7 +27,7 @@ class ClientBaseApp {
    * @description : Load App Globals
   */
     const globals = require('./globals/index.js');
-    _.assign(this.app,globals);
+    FE._.assign(this.app,globals);
 
   }
 

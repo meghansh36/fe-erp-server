@@ -2,10 +2,9 @@
 var path      = require('path');
 var Sequelize = require('sequelize');
 var db        = {};
-var CONFIG = require('@root/config/config.js');
+var CONFIG = require('@root/fe-server/config/config.js');
 //const CLASSMETHODS = 'classMethods';
 //const ASSOCIATE = 'associate';
-
 const sequelize = new Sequelize(CONFIG.db_name, CONFIG.db_user, CONFIG.db_password, {
   host: CONFIG.db_host,
   dialect: CONFIG.db_dialect,
@@ -66,9 +65,9 @@ const models = Object.assign({}, ...fs.readdirSync(__dirname)
 
 // Load model associations
 for (const model of Object.keys(models)) {
+
   typeof models[model].associate === 'function' && models[model].associate(models);
 }
 
-console.log("SHOPCLUES");
-
+console.log(models);
 module.exports = models;
