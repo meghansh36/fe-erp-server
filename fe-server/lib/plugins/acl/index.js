@@ -1,5 +1,5 @@
 var path      = require('path');
-const BasePlugin = FE.requireL0('pluginBaseClass.js');
+const BasePlugin = FE.requireLib('pluginBaseClass.js');
 const mongoose = require('mongoose');
 const node_acl = require('acl');
 
@@ -10,13 +10,14 @@ class AclPlugin extends BasePlugin{
     super(_clientApp);
     this._clientApp = _clientApp;
 	this._configs = this._clientApp.configs.acl;
+	this._props = {};
   }
   
   	initialize(){
-		const db 		= this._configs.dbUrl;
-		const prefix  = this._configs.prefix;
+		this._props.dbUrl = this._configs.dbUrl
+		this._props.prefix = this._configs.prefix;
 		var acl;
-		this.connectMongo(db, prefix)
+		this.connectMongo(this._props.dbUrl, this._props.prefix)
 		.then((mongoBackend)=>{
 			//get acl with a mongo backend
 			acl = new node_acl(mongoBackend);
