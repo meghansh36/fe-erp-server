@@ -1,4 +1,4 @@
-const LgEmpDetails = require('@L2Process/default/controllers/fe_hrt_emp_info_t.js');
+const LgEmpDetails = FE.require(FE.SERVER_APP_PATH+'/legislations/fe/main/process/default/controllers/fe_hrt_emp_info_t.js');
 
 //console.log('sdsadasadsdasadsadsa'+   process.env.L2Process);
 module.exports = class EmpDetails extends LgEmpDetails{
