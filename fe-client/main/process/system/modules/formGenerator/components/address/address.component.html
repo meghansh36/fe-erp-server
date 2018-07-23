@@ -1,0 +1,39 @@
+<div [ngClass]="defaultClasses.fieldMainWrapperClasses" [formGroup]="group" [ngStyle]="style.fieldMainWrapperStyle">
+    <div [ngClass]="defaultClasses.fieldWrapperClasses" [ngStyle]="defaultClasses.fieldWrapperStyle">
+        <div [ngClass]="defaultClasses.fieldLabelContainerClasses" [ngStyle]="style.fieldLabelContainerStyle">
+            <div class="label">
+                <label for="{{ id }}" [ngClass]="defaultClasses.labelClasses" [ngStyle]="defaultClasses.labelStyle">{{ label }}</label>
+            </div>
+            <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="defaultClasses.fieldDescWrapperStyle" *ngIf="description">
+                <span [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+                    <i class="material-icons " placement="right" [ngbTooltip]="description"> help</i>
+                </span>
+            </div>
+        </div>
+        <div [ngClass]="defaultClasses.nestedFieldContainerClasses" [ngStyle]="style.nestedFieldContainerStyle">
+            <div [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
+                <div class="input-group-prepend" *ngIf="prefix">
+                    <span class="input-group-text"> {{ prefix }} </span>
+                </div>
+                <input type="text"  class="form-control" [ngClass]="defaultClasses.fieldClasses" [ngStyle]="defaultClasses.fieldStyle"
+                    [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" [formControlName]="flexiLabel" [attr.id]="id">
+                <div class="input-group-append" *ngIf="suffix ">
+                    <span class="input-group-text"> {{ suffix }} </span>
+                </div>
+            </div>
+            <span class="text-length-info-container" *ngIf="hasTextLenghtLimit">
+                <span class="badge text-length-info min-length-info" *ngIf="len>0" [ngClass]="_Class">
+                    {{ len }}/{{ maxLength }}
+                </span>
+            </span>
+            <div *ngIf="hasError" [ngStyle]="style.fieldErrorWrapperStyle">
+                <span *ngFor="let err of errors">
+                    <small class="text-danger error-message error-{{err.name}}" *ngIf="group.controls[flexiLabel].errors[err.name]">
+                        {{err.message}}
+                        <br>
+                    </small>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

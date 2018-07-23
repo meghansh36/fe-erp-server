@@ -1,0 +1,24 @@
+<div class="filter-action-container col-sm-10 col-md-11 col-xl-11" [attr.id]="'CHIP_'+code">
+	<div class="grid-filters">
+		<div class="filter-chip-container">
+			<div class="filter-edit-form-container filter-form-container hidden"></div>
+			<div class="chip">
+				<div class="chip-label-container pointer flex" (click)="popUp()">
+					<span>{{ name }}:&nbsp;{{ operator }} {{ filter }}
+					</span>
+					<p class="inline" *ngFor="let flt of dependentFilters"> & {{flt.flexi}}: {{flt.operator}} {{flt.label}}</p>
+				</div>
+				<div class="filter-chip-close">
+					<button class="btn btn-flat chip-close-btn" (click)="removeChip()">
+						<i class="icon md-cancel"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<fe-popUp *ngIf="checked" [filteredCol]="filteredCol" [columnsFiltersTobeApplied]="columnsFiltersTobeApplied" [modify]="true" [value]="filter" [operator]="operator" (close)="closePopUp($event)"
+ (filterObject)="addFilter($event)"></fe-popUp>
+
+
+<!-- [attr.id]="'CHIP_'+ code" -->

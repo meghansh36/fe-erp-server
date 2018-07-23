@@ -1,0 +1,184 @@
+.dropdown-toggle::after {
+    display: none;
+}
+
+.ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
+    background-color: rgba(192,192,192,0.3);
+}
+
+.filter-action-container {
+    display: flex;
+    padding: 0px 25px 0px 0px;
+    flex-wrap: wrap;
+}
+.grid-filters, .flexigrid .grid-filter-container .grid-filters .filter-chip-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+.filter-chip-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+.flexigrid .filter-form-container {
+    position: absolute !important;
+    z-index: 1000;
+    width: 245px !important;
+    top: 0px;
+}
+.chip {
+    background: #e0e0e0;
+}
+.chip, .flexigrid .add-filter-container {
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-border-radius: 32px;
+    border-radius: 32px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 15px;
+    height: 32px;
+    margin: 4px 8px 4px 0;
+    max-width: 100%;
+    outline: none;
+    padding: 0 6px 0 16px;
+    position: relative;
+    white-space: nowrap;
+    font-weight: bold;
+}
+.chip-label-container {
+    font-size: 15px;
+    white-space: nowrap;
+    font-weight: bold;
+    color: black;
+}
+
+.chip-close-btn {
+    padding: 3px 5px 0px 10px !important;
+    color: inherit;
+    margin: 0;
+    font-family: inherit;
+    text-transform: none;
+}
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+.btn-flat {
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.inline{
+    display: inline;
+}
+
+
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell {
+    background-color: rgba(192,192,192,0.3);
+}
+
+.filter-action-container {
+    display: flex;
+    padding: 0px 25px 0px 0px;
+    flex-wrap: wrap;
+}
+.grid-filters, .flexigrid .grid-filter-container .grid-filters .filter-chip-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+.filter-chip-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+.chip {
+    background: #e0e0e0;
+}
+.chip, .flexigrid .add-filter-container {
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-border-radius: 32px;
+    border-radius: 32px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 15px;
+    height: 32px;
+    margin: 4px 8px 4px 0;
+    max-width: 100%;
+    outline: none;
+    padding: 0 6px 0 16px;
+    position: relative;
+    white-space: nowrap;
+    font-weight: bold;
+}
+.chip-label-container {
+    font-size: 15px;
+    white-space: nowrap;
+    font-weight: bold;
+    color: black;
+}
+
+.chip-close-btn {
+    padding: 3px 5px 0px 10px !important;
+    color: inherit;
+}
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+.btn-flat {
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+.add-filter-container {
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-border-radius: 32px;
+    border-radius: 32px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 15px;
+    height: 32px;
+    margin: 4px 8px 4px 0;
+    max-width: 100%;
+    outline: none;
+    padding: 0 6px 0 16px;
+    position: relative;
+    white-space: nowrap;
+    font-weight: bold;
+    text-align: center;
+    width: 124px;
+    display: flex;
+    justify-content: space-around;
+    border: .5px dashed rgba(0,0,0,0.45);
+    padding-left: 0px !important;
+    font-weight: 100 !important;
+    cursor: pointer;
+}
+
+
+
+

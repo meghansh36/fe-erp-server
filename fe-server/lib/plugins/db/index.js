@@ -66,6 +66,8 @@ class DbPlugin extends BasePlugin {
 
 		this._clientApp.models = this._models;
 
+		console.log(FE.clients.fe);
+
 	}
 
 }

@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormDragComponent } from '@L3Process/system/modules/formBuilder/components/formDrag/formDrag.component';
 import { FormBuilderService } from '@L3Process/system/modules/formBuilder/services/formBuilder.service';
 import { FormMasterService } from '@L3Process/system/modules/formBuilder/services/formMaster.service';
@@ -10,9 +10,10 @@ import { FormBuilderComponent } from '@L3Process/system/modules/formBuilder/form
 import { FormBuilderRoutes } from '@L3Process/system/modules/formBuilder/formBuilder.routing';
 import { CommonModule } from '@angular/common';
 import { MasterFormComponent } from '@L3Process/system/modules/formBuilder/components/Master/masterForm.component';
-import { SortablejsModule } from 'angular-sortablejs';
+import { SortablejsModule } from 'angular-sortablejs/dist';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {FormsModule, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { TextMaskModule } from 'angular2-text-mask';
+import { DefaultsService } from '@L3Process/system/services/Defaults.service';
 import { TxtComponent } from '@L3Process/system/modules/formBuilder/components/formElements/txt/txt.component';
 import { TxaComponent } from '@L3Process/system/modules/formBuilder/components/formElements/txa/txa.component';
 import { TimComponent } from '@L3Process/system/modules/formBuilder/components/formElements/tim/tim.component';
@@ -37,8 +38,19 @@ import { SelComponent } from '@L3Process/system/modules/formBuilder/components/f
 import { MslComponent } from '@L3Process/system/modules/formBuilder/components/formElements/msl/msl.component';
 import { IcbComponent } from '@L3Process/system/modules/formBuilder/components/formElements/icb/icb.component';
 import { AcsComponent } from '@L3Process/system/modules/formBuilder/components/formElements/acs/acs.component';
+import { NgxSelectModule, INgxSelectOptions } from 'ngx-select-ex';
+import { JSONEditorModule } from 'ngx-jsoneditor';
+import { HTMLComponent } from "@L3Process/system/modules/formBuilder/components/formElements/html/html.component";
+import { FileComponent } from "@L3Process/system/modules/formBuilder/components/formElements/file/file.component";
+import { CKEditorModule } from 'ng2-ckeditor';
+import { FormGeneratorModule } from '../../../../../legislations/fe/clients/fe/main/process/system/modules/formGenerator/formGenerator.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
+const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more options
+  optionValueField: 'code',
+  optionTextField: 'meaning'
+};
 @NgModule({
   declarations: [
     FormBuilderComponent,
@@ -66,10 +78,13 @@ import { AcsComponent } from '@L3Process/system/modules/formBuilder/components/f
     SelComponent,
     MslComponent,
     IcbComponent,
-    AcsComponent
+    AcsComponent,
+    HTMLComponent,
+    FileComponent
   ],
   imports: [
     CommonModule,
+    NgxSelectModule.forRoot(CustomSelectOptions),
     NgbModule,
     DndModule.forRoot(),
     FormBuilderRoutes,
@@ -77,15 +92,20 @@ import { AcsComponent } from '@L3Process/system/modules/formBuilder/components/f
     SortablejsModule.forRoot({ animation: 500 }),
     DragulaModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    JSONEditorModule,
+    TextMaskModule,
+    CKEditorModule,
+    FormGeneratorModule
   ],
   entryComponents: [TxtComponent, TxaComponent, TimComponent, PwdComponent, PhnComponent,
                     NumComponent, MonComponent, HidComponent, EmlComponent, DtiComponent,
                     DatComponent, CurComponent, AdrComponent, ChkComponent,
                     AncComponent, BlkComponent, BtnComponent, RadComponent,
-                    AcsComponent, FstComponent,IcbComponent, SelComponent,
-                    MslComponent],
-  providers: [FormBuilderService, FormMasterService, FieldControlService, FormJsonService],
-  bootstrap: [FormBuilderComponent]
+                    AcsComponent, FstComponent, IcbComponent, SelComponent,
+                    MslComponent, HTMLComponent, FileComponent],
+  providers: [FormBuilderService, FormMasterService, FieldControlService, FormJsonService, DefaultsService],
+  bootstrap: [FormBuilderComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class FeFormBuilderModule { }

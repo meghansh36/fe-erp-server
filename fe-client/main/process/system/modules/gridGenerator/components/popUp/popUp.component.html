@@ -1,0 +1,38 @@
+<div class="filter-form-container">
+	<div class="filter-form-popup ">
+		<div class="card">
+			<div class="card-header popup-header" [attr.id]="'filterPopUpHeader'+ id">
+				{{label}}
+				<i class="float-left md-close pointer" (click)="closePopUp()"></i>
+			</div>
+			<div class="card-body" [attr.id]="'filterPopUpBody'+ id">
+				<div class="row">
+					<div class="col" #tag>
+
+						<span class="form-group flex" id="TXT" *ngIf="type == 'TXT'">
+							<label class="form-control-label" for="'TXT_'+ id">{{label}}</label>&nbsp;
+							<select class="form-control" [(ngModel)]="operatorValue" (change)="selectOperator($event)">
+								<option *ngFor="let opr of operators" value="{{opr}}">{{opr}}</option>
+							</select>&nbsp;
+							<input type="text" #TxtTag [attr.id]="'TXT_'+ id" [(ngModel)]="filter" (change)="getFilterValue()" class="form-control">
+						</span>
+
+						<div class="form-group flex" id="SEL" *ngIf="type == 'SEL'">
+							<label class="form-control-label" for="'SEL_'+ id">{{conditionalLabel}}</label>&nbsp;
+							<select class="form-control" [(ngModel)]="operatorValue" [attr.id]="'OPR_'+ id" (change)="selectOperator($event)">
+								<option value="equals" selected>equals</option>
+							</select>&nbsp;
+							<select [attr.id]="'SEL_'+ id" #SelTag [(ngModel)]="selectedValue" class="form-control" (change)="selectItem($event)">
+								<option value="">--select--</option>
+								<option *ngFor="let opt of conditionalLov" value="{{opt.code}}">{{opt.meaning}}</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-footer text-right text-muted filter-popup-footer">
+				<button class="btn btn-secondary" (click)="applyFilter()">Apply</button>
+			</div>
+		</div>
+	</div>
+</div>

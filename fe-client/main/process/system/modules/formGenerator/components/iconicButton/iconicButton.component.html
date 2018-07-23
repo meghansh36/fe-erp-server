@@ -1,0 +1,13 @@
+<div class="feField feButton" [ngClass]="defaultClasses.fieldMainWrapperClasses" [ngStyle]="style.fieldMainWrapperStyle">
+    <div [ngClass]="defaultClasses.fieldLabelContainerClasses" [ngStyle]="style.fieldLabelContainerStyle">
+    </div>
+    <div class="label">
+        <label></label>
+    </div>
+    <div [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
+        <button [disabled]="disabled"  [attr.placement]="tooltipPlacement" [ngbTooltip]="tooltip" [attr.flexilabel]="flexiLabel" [ngClass]="defaultClasses.fieldClasses" [attr.id]="id" [ngStyle]="defaultClasses.fieldStyle">
+            <i *ngIf="!!icon" [ngClass]="icon"></i>
+        </button>
+    </div>
+
+</div>

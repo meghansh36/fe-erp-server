@@ -1,0 +1,35 @@
+<div [ngClass]="defaultClasses.fieldMainWrapperClasses" [formGroup]="group" [ngStyle]="style.fieldMainWrapperStyle">
+        <div [ngClass]="defaultClasses.fieldWrapperClasses">
+    
+            <div [ngClass]="defaultClasses.fieldLabelContainerClasses" [ngStyle]="style.fieldLabelContainerStyle">
+                <div class="label">
+                    <label for="{{ id }}"  [ngClass]="defaultClasses.labelClasses">{{ label }}</label>
+                </div>
+                <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="defaultClasses.fieldDescWrapperStyle" *ngIf="description">
+                    <span [ngClass]="defaultClasses.fieldDescContainerClasses">
+                        <i class="material-icons " placement="right" [ngbTooltip]="description"> help</i>
+                    </span>
+                </div>
+            </div>
+            <div [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
+                <div class="input-group-prepend" *ngIf="prefix">
+                    <span class="input-group-text"> {{ prefix }} </span>
+                </div>
+                <input type="number"   class="form-control" [ngClass]="defaultClasses.fieldClasses" 
+                    [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" [formControlName]="flexiLabel"
+                    [attr.id]="id" [attr.flexilabel]="flexiLabel">
+                <div class="input-group-append" *ngIf="suffix ">
+                    <span class="input-group-text"> {{ suffix }} </span>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="hasError"
+                [ngClass]="defaultClasses.fieldErrorWrapperClasses" [ngStyle]="style.fieldErrorWrapperStyle">
+            <span *ngFor="let err of errors">
+                <small class="text-danger error-message error-{{err.name}}" *ngIf="control.errors[err.name]">
+                    {{err.message}}
+                    <br>
+                </small>
+            </span>
+        </div>
+    </div>

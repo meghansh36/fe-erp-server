@@ -2,6 +2,7 @@ const path = FE.require('path');
 const jwt = FE.require('jsonwebtoken');
 const BasePlugin = FE.requireLib('pluginBaseClass.js');
 const loginRouter = require('./login.js');
+const request = FE.require('request');
 
 class AuthPlugin extends BasePlugin {
 	constructor(_clientApp) {
@@ -51,73 +52,114 @@ class AuthPlugin extends BasePlugin {
 	}
 
 	initialize() {
-		this.serialize();
-		this.deserialize();
-		this.loadStrategies();
-		this._clientApp.app.use('/fe/api/login/', loginRouter);
-		this._clientApp.app.use(this._passport.initialize());
-		this._clientApp.app.use(this._passport.session());
-		this.redirectUser();
+		//this._clientApp.app.use(this._passport.initialize());
+		//this.loadStrategies();
+		//this.serialize();
+		//this.deserialize();
+		//this._clientApp.app.use('/fe/api/login/', loginRouter);
+		//this._clientApp.app.use(this._passport.session());
+	//	this.redirectUser();
 			console.log('auth plugin initialized');
 		}
 
 	redirectUser() {
-		var thisObj = this;
+    var thisObj = this;
 		/**
 		 * Checks if token is saved in cookies 
 		 * true: validate and login
 		 */
+		this._clientApp.app.use((req, res, next)=>{
+      if(!req.session.username && !req.cookies.token){
+        res.render('default/views/login/index');
+      }
+      //next();
+    })
 		this._clientApp.app.use((req, res, next) => {
-      console.log('in FE');
+      		console.log('in FE');
 			if (req.cookies.token && !req.session.username) {
 
 				console.log(req.cookies.token);
 				const token = req.cookies.token;
 
 				console.log(token);
-				jwt.verify(token, thisObj._configs.jwtSecretKey, thisObj.jwtVerificationCB.bind(thisObj));
+        // jwt.verify(token, thisObj._configs.jwtSecretKey, thisObj.jwtVerificationCB.bind(thisObj, [res]));
+        jwt.verify(token, thisObj._configs.jwtSecretKey, (err, decoded)=>{
+      
+          if(err){ 
+            console.log('ERR_DECODING_TOKEN');
+            return res.status(500).send({
+              auth: false,
+              message: "Err Decoding Token"
+            })
+          }
+    
+          console.log('Decoded');
+          console.log(decoded);
+         
+          let credentials = {
+            username: decoded.user.username,
+            password: decoded.user.password,
+            check:false
+          };
+     
+          request.post('http://fe.localhost:3000/fe/api/login/login', { json: credentials }, (err, res, body) => {
+           
+             if(err){
+                console.log(err);
+              }
+              if(res.statusCode === 200){
+                console.log("INSIDE POST SUCCESS");
+                console.log(body);
+               // next();
+              }
+            }).pipe(res);
+          });
 			}
-			console.log("TOKEN " + req.session.username);
-			if (req.session.username) {
-        //return res.sendFile(path.join(FE.APP_PATH, "dist", "fe", "index.html"));
-        return res.send('login succcessfull');
-			} else {
-				res.render('default/views/login/index');
-			}
-		});
+      
+      console.log("USER " + req.session.username);
+			
+    });
+
+    // this._clientApp.app.all('*', (req, res)=>{
+
+    //   // if(req.session.username){
+    //     return res.sendFile(path.join(FE.APP_PATH, "dist", "fe", "index.html"));  
+    //     // res.send("LOGGED IN")
+    //   // }
+    // });
 	}
 
-	jwtVerificationCB(err, decoded) {
-		if (err) {
-			console.log('ERR_DECODING_TOKEN');
-			return res.status(500).send({
-				auth: false,
-				message: "Err Decoding Token"
-			})
-		}
+	// jwtVerificationCB(response, err, decoded) {
+	// 	if (err) {
+	// 		console.log('ERR_DECODING_TOKEN');
+	// 		return res.status(500).send({
+	// 			auth: false,
+	// 			message: "Err Decoding Token"
+	// 		})
+	// 	}
 
-		console.log('Decoded');
-		console.log(decoded);
+	// 	console.log('Decoded');
+	// 	console.log(decoded);
 
-		credentials = {
-			username: decoded.user.username,
-			password: decoded.user.password,
-			check: false
-		};
+	// 	let credentials = {
+	// 		username: decoded.user.username,
+	// 		password: decoded.user.password,
+	// 		check: false
+	// 	};
 
-		request.post('http://localhost:3000/api/default/login/login', {
-			json: credentials
-		}, (err, res, body) => {
+	// 	request.post('http://localhost:3000/api/default/login/login', {
+	// 		json: credentials
+	// 	}, (err, res, body) => {
 
-			if (err) {
-				console.log(err);
-			}
-			if (res.statusCode === 200) {
-				console.log("INSIDE POST SUCCESS");
-				console.log(body);
-			}
-		}).pipe(res);
-	}
+	// 		if (err) {
+	// 			console.log(err);
+  //     }
+	// 		if (res.statusCode === 200) {
+	// 			console.log("INSIDE POST SUCCESS");
+	// 			console.log(body);
+	// 		}
+  //   }).pipe(response);
+	// }
 
 	serialize() {
 		/**
@@ -137,8 +179,9 @@ class AuthPlugin extends BasePlugin {
 		this._passport.deserializeUser((id, done) => {
 			console.log('Inside deserializeUser callback')
 			console.log(`The user id passport saved in the session file store is: ${id}`)
-			const user = Users[0].id === id ? Users[0] : false;
-			done(null, user);
+      //find user by id
+      const index = this.users.findIndex(user => user.id === id)
+			done(null, this.users[index]);
 		});
 	}
 
@@ -163,25 +206,30 @@ class AuthPlugin extends BasePlugin {
 
 	loadLocalStrategy() {
 		let thisObj = this;
+		console.log("LOCALSTRATEGY ");
 		const LocalStrategy = FE.require('passport-local').Strategy;
 		/**
 		 * Passport Local Strategy 
 		 */
+		
 		this._passport.use(new LocalStrategy((username, password, done) => {
+			console.log("INSIDE LOCAL")
 			const index = thisObj.users.findIndex(user => user.username === username);
 			const user = thisObj.users[index];
+			console.log(user)
 			//Check if user exists
 			if (index === -1) {
 				return done(null, false, {
-					message: 'Incorrect Username.'
+					message: 'Incorrect Username'
 				});
 			}
 			//validPassword method
 			else if (password !== user.password) {
 				return done(null, false, {
-					message: 'Incorrect Password '
+					message: 'Incorrect Password'
 				});
 			}
+			console.log("BEFORE SERIALIZE");
 			return done(null, user);
 		}));
 	}
@@ -263,4 +311,5 @@ class AuthPlugin extends BasePlugin {
 		));
 	}
 }
+
 module.exports = AuthPlugin;

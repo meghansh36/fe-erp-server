@@ -1,0 +1,6 @@
+<div class="feField feButton" [ngClass]="defaultClasses.fieldMainWrapperClasses"  [ngStyle]="style.fieldMainWrapperStyle">
+    <button [disabled]="disabled" [attr.placement]="tooltipPlacement" [ngbTooltip]="tooltip" [ngClass]="defaultClasses.fieldClasses" [attr.id]="id" [ngStyle]="defaultClasses.fieldStyle" [attr.flexilabel]="flexiLabel">
+        <i *ngIf="!!icon" [ngClass]="icon" ></i> {{ label }}
+    </button>
+</div>
+

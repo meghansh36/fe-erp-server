@@ -3,23 +3,22 @@ const Sequelize = require('sequelize');
 module.exports =  class FeFormsData extends Sequelize.Model {
 	static init(sequelize, DataTypes) {
 	  return super.init( {
-		ID: {
+		ID: {  //id
 			type: Sequelize.INTEGER(10),
             allowNull: false,
             autoIncrement:true,
-			defaultValue: '0',
 			primaryKey: true
 		},
-		FORM_CODE: {
+		FORM_CODE: {  //formCode
             type: Sequelize.INTEGER(7),
 			allowNull: true
 		},
-		LABEL: {
+		LABEL: { //label
 			type: Sequelize.STRING(20),
 			allowNull: true
 		},
-		JSON: {
-			type: Sequelize.STRING(255),
+		JSON: {  //json
+			type: Sequelize.TEXT,
 			allowNull: true
 		},
 		attribute1: {

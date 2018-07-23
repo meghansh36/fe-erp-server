@@ -4,19 +4,19 @@ module.exports = class FeEmpDetails{
  
     //reading emplyee details frm all the tables.
     emp_details(req,res,done){
-        //var clientName = req.params.client;
+        var clientName = req.params.client;
         //var legislationName = global.legislation[clientName]; 
         //var legislationName = req.params.legislation;
         //var models = globals.requireL3('@L3Root/'+clientName+'/main/process/default/models');
-        var models = global.requireL3('/process/default/models',req);
-        var empId = req.params.id;
+        var models = FE.clients[clientName].models;
+        //var empId = req.params.id;
         models.EmpInfoModel.findAll({
             limit:10,
             subQuery: false,
             attributes: [['attribute11', 'Employee No'],['attribute4','Employee Name']],
-            where: {
-               attribute1: empId
-           },
+        //     where: {
+        //        attribute1: empId
+        //    },
            required: true,
             include:
             [

@@ -105,7 +105,8 @@ class BaseApp {
 			clientObj._appProps = clientArr[clientName];
 			clientObj.initialize();
 			FE.clients[clientArr[clientName]['client']] = clientObj;
-			//FE.loadClientApp(appObj);
+			console.log('FE.clients ----- >',FE.clients);
+			//FE.loadClientAppa(appObj);
 			FE.app.use(vhost(domainName, clientObj.app));
 		}
     }

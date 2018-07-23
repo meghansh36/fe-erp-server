@@ -1,3 +1,18 @@
-<p>
-  blk works!
-</p>
+<div [ngClass]="defaultClasses.fieldMainWrapperClasses" [attr.flexilabel]="flexiLabel" [ngStyle]="style.fieldMainWrapperStyle">
+    <div class="field-tool-wrapper">
+        <span *ngIf='showEdit' class=" field-tool-container">
+            <ul class=" field-tool">
+              <li (click)='openModal()'>
+                <i class="material-icons icon-size">settings</i>
+              </li>
+              <li>
+                <i class="material-icons icon-size">open_with</i>
+              </li>
+              <li (click)="close($event)">
+                <i class="material-icons icon-size">clear</i>
+              </li>
+            </ul>
+          </span>
+    </div>
+    
+  </div>

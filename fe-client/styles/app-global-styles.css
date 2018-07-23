@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
 /*---------------------{  Style for managing form field label position. */
+
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
 .hidden {
     display: none !important;
 }
@@ -8,107 +13,341 @@
 .field-wrapper {
     display: flex;
     width: 100%;
-  }
-  
-  .field-label-top {
+}
+.flex {
+    display: flex;
+}
+.flex-direction {
     flex-direction: column;
-  }
-  
-  .field-label-bottom {
+}
+
+.field-label-top {
+    flex-direction: column;
+}
+
+.field-label-bottom {
     flex-direction: column-reverse;
-  }
-  
-  .field-label-right {
+}
+
+.field-label-right {
     flex-direction: row-reverse;
-  }
-  
-  .field-label-left {
+}
+
+.field-label-left {
     flex-direction: row;
-  }
-  
-  .field-label-left .fe-field-container, .field-label-right .fe-field-container {
+}
+
+.field-label-left .fe-field-container,
+.field-label-right .fe-field-container {
     width: 50%;
     /* padding-left: 10px;
     padding-right: 10px; */
-    
-  }
-  .field-label-left .field-label-container, .field-label-right .field-label-container {
+}
+
+.field-label-left .field-label-container,
+.field-label-right .field-label-container {
     display: flex;
-    justify-content:  center;
-    padding-top:10px;
-  }
-  
-  /* .field-label-left .field-label-container, .field-label-right .field-label-container {
+    justify-content: center;
+    padding-top: 10px;
+}
+
+/* .field-label-left .field-label-container, .field-label-right .field-label-container {
     padding-top: 25px;
   }
 
   .fieldset-container  .field-label-left .field-label-container, .fieldset-container .field-label-right .field-label-container {
     padding-top:0px !important;
   } */
-  /* .left-labeled-field,.right-labeled-field {
+
+/* .left-labeled-field,.right-labeled-field {
     padding-top: 32px !important;
   } */
 
-  .feForm .fe-field-component {
+.fe-field-component {
     padding-left: 10px;
     padding-right: 10px;
-  } 
-  
-  .field-label-right .field-label  {
-    float: right;
-  }
+    display: block;
+}
 
-  .fe-form-container form {
+.space-around {
+    justify-content: space-around;
+}
+
+.field-label-right .field-label {
+    float: right;
+}
+
+.fe-form-container form {
     display: flex;
     flex-flow: row wrap;
-  }
+}
 
-  .display-flex, .field-label-container {
-      display: flex;
-  }
+.display-flex,
+.field-label-container {
+    display: flex;
+}
 
-  .field-desc i {
+.card-label {
+    width: 98%;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.field-desc i {
     font-size: 17px;
     color: #999;
-  } 
+}
 
-  .form-field i {
+.form-field i {
     vertical-align: middle;
-  }
+}
 
-  .text-length-info-container .text-length-info  {
-    float:right;  
-  }
+.form-btn i {
+    vertical-align: middle;
+}
 
-  .mandatory-field-label:after {
+.form-buttons {
+    display: flex;
+}
+
+.form-buttons feformbutton {
+    margin-left: 10px;
+}
+
+.text-length-info-container .text-length-info {
+    float: right;
+}
+
+.mandatory-field-label:after {
     content: "*";
-    color:red;
-  }
+    color: red;
+}
 
-  .valid-field-label {
-    color:green;
-  }
+.margin_top {
+    margin-top: auto;
+}
 
-  fe-fieldset {
+.pointer {
+    cursor: pointer;
+}
+
+.valid-field-label {
+    color: green;
+}
+
+fe-fieldset {
     width: 100%;
-  }
+}
 
-.fieldset-wrapper{
-  text-align: center;
+.fieldset-wrapper {
+    text-align: center;
 }
 
 .ngx-select__clear .ngx-select__clear-icon {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 .fst-fields-container {
-  display: flex;
-  flex-flow: row wrap;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.grid-li {
+    margin-left: 10px;
+    list-style-type: none;
 }
 
 .ngx-select__selected .ngx-select__selected-plural {
-  color:unset !important;
-  background-color: #fff !important;
+    color: unset !important;
+    background-color: #fff !important;
 }
-  /*-------------------------}          */
-  
+
+.help-icon-containe {
+    display: inline-block;
+}
+
+.json-help-container {
+    display: none;
+}
+
+.json-help {
+    color: #e83e8c;
+}
+
+.json-help {
+    max-height: 250px;
+    overflow-y: scroll;
+}
+
+.round-input {
+    border-radius: 50px;
+    border-style: dotted;
+    border-width: 1px;
+}
+
+.box-shadow {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.checkbox {
+    position: relative;
+    margin: 0 1rem 0 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.checkbox::before {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    content: "";
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #f2f2f2;
+}
+
+.checkbox:checked::before {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    height: .5rem;
+    border-color: #009688;
+    border-top-style: none;
+    border-right-style: none;
+}
+
+.checkbox::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1rem;
+    height: 1rem;
+    background: #fff;
+    cursor: pointer;
+}
+
+.button {
+    position: relative;
+    margin: 0 1rem 0 0;
+    cursor: pointer;
+    outline: none;
+}
+.field-tool {
+    list-style: none;
+    display: flex;
+}
+
+.field-tool li {
+    cursor: pointer;
+}
+
+.field-tool-container {
+    position: absolute;
+    right: 0%;
+    z-index: 100;
+    /* visibility: hidden; */
+    transition: 0.5s linear;
+    -o-transition: 0.5s linear;
+    -moz-transition: 0.5s linear;
+    -webkit-transition: 0.5s linear;
+}
+
+a.disabled {
+    color: gray;
+    cursor: not-allowed;
+    text-decoration: underline;
+}
+
+.gray_clr {
+    color: gray;
+}
+
+.mr_10 {
+    margin-left: 10px;
+}
+
+.color_red {
+    background: pink;
+}
+
+.right {
+    text-align: right !important;
+}
+
+.left {
+    text-align: left !important;
+}
+
+.name-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.chi_2 {
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+    margin: 3px 1px;
+    width: 100px;
+    padding: 2px 0px;
+    height: 50px;
+}
+
+.chip-content {
+    color: #fff;
+    margin: 0 auto;
+}
+
+.popup-header {
+    background: #3367d6 !important;
+    color: white !important;
+    display: flex !important;
+    justify-content: space-between;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.field-tool-wrapper, .position-relative{
+    position: relative;
+}
+
+.filter-form-container {
+    position: absolute !important;
+    z-index: 1000;
+    width: 245px !important;
+    top: 0px;
+}
+
+.filter-form-popup {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.form-control-label {
+    padding: 0.429rem 0;
+    font-weight: 300;
+}
+
+.fieldset-wrapper {
+    padding: 10px;
+}
+
+.radio-field {
+    padding-top: 3px;
+}
+
+.radio-label {
+    padding-left: 5px;
+}
+/*-------------------------}          */

@@ -1,0 +1,29 @@
+<div [ngClass]="defaultClasses.fieldMainWrapperClasses" [formGroup]="group" [ngStyle]="style.fieldMainWrapperStyle">
+    <div [ngClass]="defaultClasses.fieldWrapperClasses">
+
+        <div [ngClass]="defaultClasses.fieldLabelContainerClasses" [ngStyle]="style.fieldLabelContainerStyle">
+            <div class="label">
+                <label   for="{{ id }}" class="form-check-label" [ngClass]="defaultClasses.labelClasses" [class.text-valid]="group.controls[flexiLabel].valid && ( group.controls[flexiLabel].dirty)" >{{ label }}</label>
+            </div>
+            <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="defaultClasses.fieldDescWrapperStyle" *ngIf="description">
+                <span [ngClass]="defaultClasses.fieldDescContainerClasses">
+                    <i class="material-icons " placement="right" [ngbTooltip]="description"> help</i>
+                </span>
+            </div>
+        </div>
+       <!--  <div class="form-check" [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
+            <input type="checkbox" [attr.flexilabel]="flexiLabel" class="form-check-input checkbox" [ngClass]="defaultClasses.fieldClasses" 
+                [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" [formControlName]="flexiLabel"
+                [attr.id]="id" value="{{opt}}">
+        </div> -->
+
+        <div class="form-check display-flex" [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle"  *ngFor="let field of inputPropsArray; let i = index;">
+                <input type="checkbox" [attr.flexilabel]="flexiLabel" class="form-check-input checkbox" [ngClass]="defaultClasses.fieldClasses" 
+                [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" [formControlName]="flexiLabel"
+                [attr.id]="id" value="{{field.value}}">
+                <label class="form-check-label" for="{{id}}'_'{{i}}">
+                  {{field.label}}
+                </label>
+            </div>
+    </div>
+</div>

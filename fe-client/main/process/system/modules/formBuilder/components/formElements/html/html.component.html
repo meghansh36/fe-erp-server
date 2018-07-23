@@ -1,0 +1,49 @@
+<div [ngClass]="defaultClasses.fieldMainWrapperClasses" [ngStyle]="style.fieldMainWrapperStyle">
+  <div class="field-tool-wrapper">
+    <span *ngIf='showEdit' class=" field-tool-container">
+      <ul class=" field-tool">
+        <li (click)='openModal()'>
+          <i class="material-icons icon-size">settings</i>
+        </li>
+        <li>
+          <i class="material-icons icon-size">open_with</i>
+        </li>
+        <li (click)="close($event)">
+          <i class="material-icons icon-size">clear</i>
+        </li>
+      </ul>
+    </span>
+  </div>
+  <div [ngClass]="defaultClasses.fieldWrapperClasses">
+    <!-- <span class="text-length-info-container" *ngIf="hasTextLenghtLimit">
+          <span class="badge text-length-info min-length-info" *ngIf="len>0" [ngClass]="_Class">
+              {{ len }}/{{ maxLength }}
+          </span>
+      </span> -->
+    <div [ngClass]="defaultClasses.fieldLabelContainerClasses" [ngStyle]="style.fieldLabelContainerStyle">
+      <div class="label">
+        <label for="{{ id }}" [ngClass]="defaultClasses.labelClasses">{{ label }}</label>
+      </div>
+      <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="defaultClasses.fieldDescWrapperStyle" *ngIf="description">
+        <span [ngClass]="defaultClasses.fieldDescContainerClasses">
+          <i class="material-icons " placement="right" [ngbTooltip]="description"> help</i>
+        </span>
+      </div>
+    </div>
+    <!-- <span class="text-length-info-container" *ngIf="hasTextLenghtLimitation">
+          <span class="badge badge-info text-length-info min-length-info" *ngIf="minLength">
+              Min:&nbsp;{{minLength}}
+          </span>
+          <span class="badge badge-info text-length-info max-length-info" *ngIf="maxLength">
+              Max:&nbsp;{{maxLength}}
+          </span>
+      </span> -->
+    <div [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
+      <ckeditor [attr.flexilabel]="flexiLabel"   [ngClass]="defaultClasses.fieldClasses" [ngStyle]="style.fieldStyle"
+            [attr.placeholder]="placeholder"   
+               [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" 
+               [attr.id]="id">
+            </ckeditor>
+    </div>
+  </div>
+</div>

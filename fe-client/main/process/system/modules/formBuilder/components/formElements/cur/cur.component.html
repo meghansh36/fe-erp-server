@@ -1,37 +1,44 @@
-<div class="fieldWrapper">
-  <span *ngIf='showEdit' class="fieldOptions">
-    <ul>
-      <li (click)='openModal()'><i class="material-icons icon-size">settings</i></li>
-      <li><i class="material-icons icon-size">open_with</i></li>
-      <li (click)="close($event)"><i class="material-icons icon-size">clear</i></li>
-    </ul>
-  </span>
-  <div class="form-group field">
-      <label for=""><b>{{properties.label}}</b>&nbsp;
-        <span style='display: inline-block;' *ngIf='applicableProperties.tooltip'>
-          <a  class='card-tooltip mt-2' placement="right" ngbTooltip='{{properties.tooltip}}'>
-            <i style='font-size: 16px;' class="material-icons"> help </i>
-          </a>
+
+
+<div [ngClass]="defaultClasses.fieldMainWrapperClasses" [ngStyle]="style.fieldMainWrapperStyle">
+  <div class="field-tool-wrapper">
+      <span *ngIf='showEdit' class=" field-tool-container">
+          <ul class=" field-tool">
+            <li (click)='openModal()'>
+              <i class="material-icons icon-size">settings</i>
+            </li>
+            <li>
+              <i class="material-icons icon-size">open_with</i>
+            </li>
+            <li (click)="close($event)">
+              <i class="material-icons icon-size">clear</i>
+            </li>
+          </ul>
         </span>
-      </label>
-      <!-- <span class='mt-3 ml-1' *ngIf='applicableProperties.tooltip'>
-        <a class='card-tooltip' placement="right" ngbTooltip='{{properties.tooltip}}'>
-          <i class="material-icons"> help </i>
-        </a>
-      </span> -->
-    <div class="input-group" >
-    <div class="input-group-prepend" *ngIf='applicableProperties.prefix'>
-      <span class="input-group-text" id="basic-addon1">{{properties.prefix}}</span>
-    </div>
-  <input type="text" placeholder="test Cur" class="form-control">
-  <div class="input-group-append" *ngIf='applicableProperties.suffix'>
-    <span class="input-group-text">{{properties.suffix}}</span>
   </div>
- </div>
-  <br>
-
-  <div role="presentation"><a >{{properties.description}}</a></div>
-
+  <div [ngClass]="defaultClasses.fieldWrapperClasses" [ngStyle]="defaultClasses.fieldWrapperStyle">
+      <div [ngClass]="defaultClasses.fieldLabelContainerClasses" [ngStyle]="style.fieldLabelContainerStyle">
+          <div class="label">
+              <label for="{{ id }}" [ngClass]="defaultClasses.labelClasses" [ngStyle]="defaultClasses.labelStyle">{{ label }}</label>
+          </div>
+          <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="defaultClasses.fieldDescWrapperStyle" *ngIf="description">
+              <span [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+                  <i class="material-icons " placement="right" [ngbTooltip]="description"> help</i>
+              </span>
+          </div>
+      </div>
+      <div [ngClass]="defaultClasses.nestedFieldContainerClasses" [ngStyle]="style.nestedFieldContainerStyle">
+          <div [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
+              <div class="input-group-prepend" *ngIf="prefix">
+                  <span class="input-group-text"> {{ prefix }} </span>
+              </div>
+              <!-- [textMask]="maskConfig" attribute creating problem. -->
+              <input type="text"  [textMask]="maskConfig" [attr.flexilabel]="flexiLabel" class="form-control" [ngClass]="defaultClasses.fieldClasses" [ngStyle]="style.fieldStyle"
+                  [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder"  [attr.id]="id" [disabled]="disabled">
+              <div class="input-group-append" *ngIf="suffix ">
+                  <span class="input-group-text"> {{ suffix }} </span>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
-</div>
-

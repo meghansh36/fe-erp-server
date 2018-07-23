@@ -1,15 +1,128 @@
 <div class="container form-builder">
-    <form #form='ngForm'>
+  <form #form='ngForm'>
+    <ng-template #formSettigContent let-c="close" let-d="dismiss">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Form Settings</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
         <div class='row mt-2'>
+          <div class="col-md-4 txa-container">
+            <label class="form-check-label" for="formActive">
+              Active
+            </label>
+            <input class="form-check-input  ml-5 mt-2" type="checkbox" value="Y" id="formActive" [(ngModel)]='formJson.active' ngModel
+              name='formActive' change-event='replace'>
+
+          </div>
+          <div class="col-md-4 txa-container">
+            <label class="form-check-label" for="frmDisabled">
+              Disabled
+            </label>
+            <input class="form-check-input  ml-5 mt-2" type="checkbox" value="Y" id="frmDisabled" [(ngModel)]='formJson.disabled' (change)="onDisabled()" ngModel
+              name='frmDisabled' change-event='replace'>
+          </div>
+
+          <div class="col-md-4 txa-container">
+            <label class="form-check-label" for="frmHidden">
+              Hidden
+            </label>
+            <input class="form-check-input  ml-5 mt-2" type="checkbox" value="Y" id="frmHidden" [(ngModel)]='formJson.hidden' (change)="onHidden()" ngModel
+              name='frmHidden' change-event='replace'>
+          </div>
+        </div>
+        <div class='row mt-2'>
+          <div class="col-md-6 txa-container">
+            <div class="json-help-container">
+              <ng-template #formHiddenContditionHelp>
+                <div class="json-help-wrapper">
+                  <pre class="json-help">
+                                                    {{ formJsonHelp.show | json }}
+                                                </pre>
+                </div>
+              </ng-template>
+            </div>
+            <label for="showCondition" class='mt-3'>Form Conditional Show JSON&nbsp;&nbsp;
+              <span class='help-icon-container'>
+                <a class='card-tooltip mt-2' placement="right" [ngbPopover]="formHiddenContditionHelp" popoverTitle="Form Level Hidden Condition">
+                  <i style='font-size: 16px;' class="material-icons"> help </i>
+                </a>
+              </span>
+            </label>
+            <!-- <textarea class="form-control" rows="3" id="showCondition" placeholder='JSON' [(ngModel)]='formJson.showCondition'
+                                ngModel name='showCondition'></textarea> -->
+            <json-editor id="showCondition" [(ngModel)]="formJson.showCondition" jsonModal name="showCondition" [config]="jsonEditorConfig"
+              #showCondition='ngModel' required>
+            </json-editor>
+
+          </div>
+
+          <div class="col-md-6 txa-container">
+            <div class="json-help-container">
+              <ng-template #formDisabledHelp>
+                <div class="json-help-wrapper">
+                  <pre class="json-help">
+                    {{ formJsonHelp.disable | json }}
+                  </pre>
+                </div>
+              </ng-template>
+            </div>
+            <label for="disableCondition" class='mt-3'>Form Conditional Disabled JSON&nbsp;&nbsp;
+              <span class='help-icon-container'>
+                <a class='card-tooltip mt-2' placement="right" [ngbPopover]="formDisabledHelp" popoverTitle="Form Level Disabled Condition">
+                  <i style='font-size: 16px;' class="material-icons"> help </i>
+                </a>
+              </span>
+            </label>
+            <!-- <textarea class="form-control" rows="3" id="disableCondition" placeholder='JSON' [(ngModel)]='formJson.disableCondition'
+                                    ngModel name='disableCondition'>
+                                </textarea> -->
+            <json-editor id="disableCondition" [(ngModel)]="formJson.disableCondition" jsonModal name="disableCondition" [config]="jsonEditorConfig"
+              #disableCondition='ngModel'>
+            </json-editor>
+          </div>
+
+          
+        </div>
+        <div class='row mt-2'>
+          <div class="col-md-12 txa-container">
+              <label for="formHelp" class='mt-3'>Form Help Text</label>
+              <!-- <textarea class="form-control" rows="3" id="formHelp" placeholder='Text/Html' [(ngModel)]='formJson.help' ngModel name='help'>
+              </textarea> -->
+              <ckeditor class="form-control"  [(ngModel)]='formJson.help' ngModel name='help'  id="formHelp">
+              </ckeditor>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
+      </div>
+    </ng-template>
 
 
+    <div class="card mt-3">
+      <div class="card-header card-header-container display-flex">
+        <div class="card-label">
+          <h5>Form Properties Definition </h5>
+        </div>
+        <div class="card-setting-icon cursor-pointer ">
+          <span (click)='openFormSettingModal(formSettigContent)' placement="bottom" ngbTooltip="Click to define form properties.">
+            <i class="form-setting-icon material-icons icon-size">settings</i>
+          </span>
+        </div>
 
+      </div>
+
+      <div class="card-body">
+        <div class='row mt-2'>
           <div class='col-md-4'>
             <label for='name' class='requiredClass'>
               <b>Name</b>
             </label>
             <input type='text' class='form-control w-75' id='name' placeholder='type form name here' name='name' ngModel required #name='ngModel'
-           [(ngModel)]='masterFormService.name'/>
+              [(ngModel)]='formJson.name' />
             <div class="alert alert-danger w-75" *ngIf='name.touched && name.invalid'>Name is required.</div>
           </div>
 
@@ -20,33 +133,33 @@
               <b>Label</b>
             </label>
             <input type='text' class='form-control w-75 requiredClass' id='formLabel' placeholder='type label here' name='label' ngModel
-            required  #formLabel='ngModel'
-           [(ngModel)]='masterFormService.formLabel'/>
+              required #formLabel='ngModel' [(ngModel)]='formJson.formLabel' />
             <div class="alert alert-danger w-75" *ngIf='formLabel.touched && formLabel.invalid'>label is required.</div>
-         </div>
+          </div>
 
+          <div class='col-md-4'>
+            <label for='formType'>
+              <b>Display</b>
+            </label>
+            <select id='formType' class='form-control w-75 ' ngModel [ngModel]="'conventional'" name='display' #formType='ngModel' [(ngModel)]='formJson.type'>
+              <option value="conventional">Conventional</option>
+              <option value="excel">Excel</option>
+            </select>
 
-
-
-      <div class='col-md-4'>
-        <label for='display'>
-          <b>Display</b>
-        </label>
-        <select id='display' class='form-control w-75 ' ngModel [ngModel]="'conventional'" name='display' #display='ngModel'
-        [(ngModel)]='masterFormService.display'>
-          <option value="conventional">Conventional</option>
-          <option value="excel">Excel</option>
-        </select>
+          </div>
 
         </div>
-        </div>
-      </form>
+      </div>
+    </div>
+
+
+  </form>
 
 
 
-    <div class="row mt-3">
-        <div class="col-md-3 col-sm-5 component-column">
-            <!-- <div class="card">
+  <div class="row mt-3">
+    <div class="col-md-3 col-sm-5 component-column">
+      <!-- <div class="card">
                 <div class="card-header">
                     Fields
                 </div>
@@ -54,55 +167,63 @@
                     <form-drag></form-drag>
                 </div>
             </div> -->
-            <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-                <ngb-panel title="Basic Fields">
-                    <ng-template ngbPanelContent>
-                        <form-drag [elementListToLoad]="basic"></form-drag>
-                    </ng-template>
-                </ngb-panel>
-                <ngb-panel title="Advanced Fields">
-                    <ng-template ngbPanelContent>
-                        <form-drag [elementListToLoad]="advanced"></form-drag>
-                    </ng-template>
-                </ngb-panel>
-                <ngb-panel title="Layout">
-                    <ng-template ngbPanelContent>
-                        <form-drag [elementListToLoad]="layoutFields"></form-drag>
-                    </ng-template>
-                </ngb-panel>
-            </ngb-accordion>
+      <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+        <ngb-panel title="Basic Fields">
+          <ng-template ngbPanelContent>
+            <form-drag [elementListToLoad]="basic"></form-drag>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel title="Advanced Fields">
+          <ng-template ngbPanelContent>
+            <form-drag [elementListToLoad]="advanced"></form-drag>
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel title="Layout">
+          <ng-template ngbPanelContent>
+            <form-drag [elementListToLoad]="layoutFields"></form-drag>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
 
     </div>
-        <div class="col-md-9 col-sm-7 drop-column">
-                <div class="card" >
-                    <div class="card-header">
-                        Drag And Drop Fields
-                    </div>
-                    <!-- <div class="card-body" dnd-droppable (onDropSuccess) = "dropComplete($event,content)">
-                        <div dnd-sortable-container > -->
-                    <div class="card-body customDropZone" [dragula]='"bag-one"' id="root_drop" (hostRef) = 'fstHandler($event)'>
-                        <ng-template #host> </ng-template>
-                        <!-- </div> -->
-                    </div>
-                </div>
-               <div class='builder-buttons'>
-                 <button type='button' (click)='save()'  class="btn btn-primary">Save</button>
-                 <button type='button' (click)='reset()' class="btn btn-secondary ml-2 mr-2">Reset</button>
-                 <button type='button' (click)='preview()'  class="btn btn-success">Preview</button>
-               </div>
+    <div class="col-md-9 col-sm-7 drop-column">
+      <div class="card">
+        <div class="card-header">
+          Drag And Drop Fields
         </div>
-
-      </div> 
-
+         <div class="card-body customDropZone flex-container" [dragula]='"bag-one"' id="root_drop" (hostRef) = 'fstHandler($event)'>
+            <ng-template #host></ng-template>
+         </div>
+      </div>
+      <div class="card" >
+        <div class="card-header">
+            Drag And Drop Buttons
+        </div>
+        <div class="card-body buttonDropZone" [dragula]='"bag-one"' id="button_drop">
+            <ng-template #buttonHost></ng-template>
+        </div>
+      </div>
+      <div class='builder-buttons'>
+        <button type='button' (click)='save()'  class="btn btn-primary">Save</button>
+        <button type='button' (click)='reset()' class="btn btn-secondary ml-2 mr-2">Reset</button>
+        <button type='button' (click)='renderPreview()'  class="btn btn-success">Preview</button>
+        <button type='button' (click)='runBuilder()'  class="btn btn-success">Edit</button>
+      </div>
+    </div>
+  </div>
 </div>
-<div data-spy='scroll' data-offset='100' style='width:300px;height: 500px;'>
-    <div class='container'>
-      <pre>
+<div data-spy='scroll' data-offset='100'>
+  <div class='container'>
+    <pre>
            {{finalJSON|json}}
       </pre>
-    </div>
+  </div>
 </div>
 
 <ng-template #content>
-    <form-master></form-master>
+  <form-master></form-master>
+</ng-template>
+
+<ng-template #preview>
+  <feForm  class="fe-fields-container card-body" [schema]="finalJSON" ></feForm>
 </ng-template>

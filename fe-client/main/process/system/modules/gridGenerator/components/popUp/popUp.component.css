@@ -1,0 +1,9 @@
+.filter-form-container {
+    position: absolute !important;
+    z-index: 1000;
+    width: 50% !important;
+    top: 0px;
+}
+.filter-form-popup {
+    width: 100%;
+}

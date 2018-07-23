@@ -1,0 +1,24 @@
+<div [ngClass]="defaultClasses.fieldMainWrapperClasses" [formGroup]="group" [ngStyle]="style.fieldMainWrapperStyle">
+    <div [ngClass]="defaultClasses.fieldWrapperClasses" [ngStyle]="defaultClasses.fieldWrapperStyle">
+
+        <div [ngClass]="defaultClasses.fieldLabelContainerClasses" [ngStyle]="style.fieldLabelContainerStyle">
+            <div class="label">
+                <label for="{{ id }}" [ngClass]="defaultClasses.labelClasses" [ngStyle]="defaultClasses.labelStyle">{{ label }}</label>
+            </div>
+            <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="defaultClasses.fieldDescWrapperStyle" *ngIf="description">
+                <span [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+                    <i class="material-icons " placement="right" [ngbTooltip]="description"> help</i>
+                </span>
+            </div>
+        </div>
+        <div [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
+            <div class="input-group-prepend" *ngIf="prefix">
+                <span class="input-group-text"> {{ prefix }} </span>
+            </div>
+            <ngx-select [items]="lov" [attr.flexilabel]="flexiLabel" [formControlName]="flexiLabel" [attr.placeholder]="placeholder"></ngx-select>
+            <div class="input-group-append" *ngIf="suffix ">
+                <span class="input-group-text"> {{ suffix }} </span>
+            </div>
+        </div>
+    </div>
+</div>

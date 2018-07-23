@@ -24,6 +24,8 @@ import { SelComponent } from '@L3Process/system/modules/formBuilder/components/f
 import { MslComponent } from '@L3Process/system/modules/formBuilder/components/formElements/msl/msl.component';
 import { IcbComponent } from '@L3Process/system/modules/formBuilder/components/formElements/icb/icb.component';
 import { AcsComponent } from '@L3Process/system/modules/formBuilder/components/formElements/acs/acs.component';
+import { HTMLComponent } from "@L3Process/system/modules/formBuilder/components/formElements/html/html.component";
+import { FileComponent } from "@L3Process/system/modules/formBuilder/components/formElements/file/file.component";
 
 @Injectable()
 export class FeFormBuilderService {
@@ -35,38 +37,38 @@ export class FeFormBuilderService {
   basicElements = [
     {
       name: 'input',
-       component: TxtComponent,
+     component: TxtComponent,
       label: 'Text Field',
       icon: 'title',
-      type: 'text',
+      type:'text',
       componentName: 'TxtComponent'
     },
     {
       name: 'number',
-       component: NumComponent,
+      component: NumComponent,
       label: 'Number',
       icon: 'plus_one',
-      type: 'number',
+      type:'number',
       componentName: 'NumComponent'
     },
     {
       name: 'password',
-       component: PwdComponent,
+      component: PwdComponent,
       label: 'Password',
       icon: 'priority_high',
-      type: 'password',
+      type:'password',
       componentName: 'PwdComponent'
     },
     {
       name: 'textarea',
-       component: TxaComponent,
+      component: TxaComponent,
       label: 'Text Area',
       icon: 'text_format',
       componentName: 'TxaComponent'
     },
     {
       name: 'input',
-      component: ChkComponent,
+     component: ChkComponent,
       label: 'CheckBox',
       icon: 'done',
       componentName: 'ChkComponent'
@@ -80,125 +82,139 @@ export class FeFormBuilderService {
     },
     {
       name: 'anchor',
-       component: AncComponent,
+      component: AncComponent,
       label: 'Anchor',
       icon: 'code',
       componentName: 'AncComponent'
     },
     {
       name: 'Blank',
-       component: BlkComponent,
+      component: BlkComponent,
       label: 'Blank',
       icon: 'check_box_outline_blank',
       componentName: 'BlkComponent'
     },
     {
       name: 'hidden',
-       component: HidComponent,
+      component: HidComponent,
       label: 'Hidden',
       icon: 'visibility_off',
       componentName: 'HidComponent'
     },
     {
       name: 'date',
-       component: DatComponent,
+      component: DatComponent,
       label: 'Date',
       icon: 'date_range',
       componentName: 'DatComponent'
     },
     {
       name: 'month',
-       component: MonComponent,
+      component: MonComponent,
       label: 'Month',
       icon: 'date_range',
       componentName: 'MonComponent'
     },
     {
       name: 'button',
-       component: BtnComponent,
+      component: BtnComponent,
       label: 'Button',
       icon: 'send',
       componentName: 'BtnComponent'
     },
     {
       name: 'select',
-      component: SelComponent,
+     component: SelComponent,
       label: 'Select',
       icon: 'list',
       componentName: 'SelComponent'
     },
     {
       name: 'multiselect',
-      component: MslComponent,
+     component: MslComponent,
       label: 'Multi Select',
       icon: 'list',
       componentName: 'MslComponent'
     },
     {
       name: 'iconicButton',
-      component: IcbComponent,
+     component: IcbComponent,
       label: 'Iconic Button',
       icon: 'send',
       componentName: 'IcbComponent'
+    },
+    {
+      name: 'iconicButton',
+      component: FileComponent,
+      label: 'File',
+      icon: 'cloud_upload',
+      componentName: 'FileComponent'
     }
   ];
 
   advancedElements = [
     {
       name: 'email',
-       component: EmlComponent,
+      component: EmlComponent,
       label: 'Email',
       icon: 'email',
       componentName: 'EmlComponent'
     },
     {
       name: 'phone',
-       component: PhnComponent,
+      component: PhnComponent,
       label: 'Phone',
       icon: 'call',
       componentName: 'PhnComponent'
     },
     {
       name: 'address',
-       component: AdrComponent,
+      component: AdrComponent,
       label: 'Address',
       icon: 'location_on',
       componentName: 'AdrComponent'
     },
     {
       name: 'currency',
-       component: CurComponent,
+      component: CurComponent,
       label: 'Currency',
       icon: 'attach_money',
       componentName: 'CurComponent'
     },
     {
       name: 'datettime',
-       component: DtiComponent,
+      component: DtiComponent,
       label: 'Date/Time',
       icon: 'add_alarm',
       componentName: 'DtiComponent'
     },
     {
       name: 'time',
-       component: TimComponent,
+      component: TimComponent,
       label: 'Time',
       icon: 'access_time',
       componentName: 'TimComponent'
     },
     {
       name: 'fieldset',
-      component: FstComponent,
+     component: FstComponent,
       label: 'FieldSet',
       icon: 'access_time',
       componentName: 'FstComponent'
     },
     {
       name: 'autocomplete',
-      component: FstComponent,
+     component: FstComponent,
       label: 'Auto Complete',
       icon: 'search',
       componentName: 'AcsComponent'
+    },
+    {
+      name: 'autocomplete',
+     component: HTMLComponent,
+      label: 'Rich Text Editor',
+      icon: 'title',
+      componentName: 'HTMLComponent'
     }
   ];
 
@@ -208,119 +224,129 @@ export class FeFormBuilderService {
 
   component = {
     'TxtComponent': {
-      component: TxtComponent,
+     component: TxtComponent,
       name: 'input',
-      type: 'text'
+      type:'text'
     },
     'NumComponent': {
       name: 'input',
-      component: NumComponent,
-      type: 'number',
+     component: NumComponent,
+      type:'number',
     },
     'PwdComponent': {
       name: 'input',
-      component: PwdComponent,
-      type: 'password',
+     component: PwdComponent,
+      type:'password',
     },
     'TxaComponent': {
       name: 'textarea',
-       component: TxaComponent,
-      type: 'textarea'
+      component: TxaComponent,
+      type:'textarea'
     },
     'HidComponent': {
       name: 'input',
-      component: HidComponent,
-      type: 'hidden',
+     component: HidComponent,
+      type:'hidden',
     },
     'DatComponent': {
       name: 'input',
-       component: DatComponent,
-      type: 'date',
+     component: DatComponent,
+      type:'date',
     },
     'MonComponent': {
       name: 'input',
-      component: MonComponent,
-      type: 'month',
+     component: MonComponent,
+      type:'month',
     },
     'EmlComponent': {
       name: 'input',
-       component: EmlComponent,
-      type: 'email',
+      component: EmlComponent,
+      type:'email',
     },
     'PhnComponent': {
       name: 'input',
-      component: PhnComponent,
-      type: 'text',
+     component: PhnComponent,
+      type:'text',
     },
     'AdrComponent': {
       name: 'input',
-       component: AdrComponent,
-      type: 'text',
+      component: AdrComponent,
+      type:'text',
     },
     'CurComponent': {
       name: 'input',
-       component: CurComponent,
-      type: 'text',
+      component: CurComponent,
+      type:'text',
     },
     'DtiComponent': {
       name: 'datettime',
-       component: DtiComponent,
-      type: 'datetime',
+      component: DtiComponent,
+      type:'datetime',
     },
     'TimComponent': {
       name: 'time',
-      component: TimComponent,
-      type: 'time'
+     component: TimComponent,
+      type:'time'
     },
     'AncComponent': {
       name: 'anchor',
-      component: AncComponent,
-      type: 'anchor'
+     component: AncComponent,
+      type:'anchor'
     },
     'BlkComponent': {
       name: 'blank',
-      component: BlkComponent,
-      type: 'blank'
+     component: BlkComponent,
+      type:'blank'
     },
     'ChkComponent': {
       name: 'checkBox',
-      component: ChkComponent,
-      type: 'checkbox'
+     component: ChkComponent,
+      type:'checkbox'
     },
     'BtnComponent': {
       name: 'button',
-      component: BtnComponent,
-      type: 'button'
+     component: BtnComponent,
+      type:'button'
     },
     'RadComponent': {
       name: 'radio',
-      component: RadComponent,
-      type: 'radio'
+     component: RadComponent,
+      type:'radio'
     },
     'FstComponent': {
       name: 'fieldset',
-      component: FstComponent,
-      type: 'fieldset'
+     component: FstComponent,
+      type:'fieldset'
     },
     'SelComponent': {
       name: 'select',
-      component: SelComponent,
-      type: 'select'
+     component: SelComponent,
+      type:'select'
     },
     'MslComponent': {
       name: 'multiselect',
-      component: MslComponent,
-      type: 'multiselect'
+     component: MslComponent,
+      type:'multiselect'
     },
     'IcbComponent': {
       name: 'iconicButton',
-      component: IcbComponent,
-      type: 'button'
+     component: IcbComponent,
+      type:'button'
     },
     'AcsComponent': {
       name: 'autocomplete',
-      component: AcsComponent,
-      type: 'text'
+     component: AcsComponent,
+      type:'text'
+    },
+    'FileComponent': {
+      name: 'autocomplete',
+     component: FileComponent,
+      type:'text'
+    },
+    'HTMLComponent': {
+      name: 'autocomplete',
+     component: HTMLComponent,
+      type:'text'
     }
 
   };
@@ -345,8 +371,8 @@ export class FeFormBuilderService {
     return this.component[name];
   }
 
-  postData(data){
-    return this.httpClient.post('http://jsonplaceholder.typicode.com/posts',data)
+  postData(data) {
+    return this.httpClient.post('http://localhost:3000/fe/api/default/save', data)
   }
 
 }

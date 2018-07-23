@@ -11,24 +11,24 @@ export interface FieldConfig {
   description?: string;
   code: string;
   flexiLabel: string;
-  options?: string[];
-  isParent?: string;
+  lov?: any[];
+  isParent?: any;
   placeholder?: string;
   type: string;
   validation?: ValidatorFn[];
-  customValidations?: {
+  customFuncValidation?: {
     [key: string]: { name: string, validatorFn: any, message: string }
   };
-  jsonValidations?: { json: object, message: string },
+  jsonLogicVal?: { json: object, message: string },
   validations?: {
     [key: string]: {
       value: any,
       message: string
     }
   };
-  formClassValidations?: {
+  formClassValidation?: {
     [key: string]: { message: string, validatorFuncName: string }
-  };
+  },
   mask?: Array<string>;
   labelPosition?: string,
   labelWidth?: number,//To be checked
@@ -41,7 +41,7 @@ export interface FieldConfig {
   marginLeft?: string,
   width?: string,
   events: object
-  condition?: object,
+  showCondition?: object,
   defaultValue?: any,
   components?: any,
   theme?: string,
@@ -50,7 +50,18 @@ export interface FieldConfig {
   rightIcon?: string,
   ckeditor?: string,
   tooltip?: string,
-  show?:any ,
-  icon?: string
+  icon?: string,
+  disableCondition?: any,
+  minimumValue?: any,
+  maximumValue?: any,
+  useDelimeter?: any,
+  requiredDecimal?: any,
+  required?: any,
+  appliedValidations?: any,
+  minimumDate?: any,
+  maximumDate?: any,
+  inputPropsArray?: any,
+  submit?: any,
+  spellcheck?: any
 }
 

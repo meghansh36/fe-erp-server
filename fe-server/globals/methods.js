@@ -19,7 +19,7 @@ module.exports = {
     requireL3           : function(path, req) {
         var client = req.params.client;
         var legislation = req.params.legislation;
-        var L3Path = FE.SERVER_APP_PATH + '/legislations/' + legislation + '/clients/' + client + '/main/' + path;
+        var L3Path = FE.SERVER_APP_PATH + '/legislations/' + legislation + '/clients/' + client + '/main' + path;
         return require(L3Path);
     }
 };

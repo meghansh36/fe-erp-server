@@ -1,78 +1,62 @@
-import * as _ from 'lodash';
-import { Component, OnInit, ViewChild, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FeBaseField } from '../baseField/baseField.component';
 
 @Component({
-  selector: 'btn-input',
-  templateUrl: './btn.component.html',
-  styleUrls: ['./btn.component.css', '../baseField/baseField.component.css']
+	selector: 'btn-input.button-input',
+	templateUrl: './btn.component.html',
+	styleUrls: ['./btn.component.css', '../baseField/baseField.component.css']
 })
-export class FeBtnComponent extends FeBaseField  implements OnInit, DoCheck {
-  showEdit = true;
-  properties = {
-  label: 'test',
-  prefix: '',
-  suffix: '',
-  description: '',
-  placeholder: 'test',
-  tooltip: '',
-  ...this.properties  
-};
+export class FeBtnComponent extends FeBaseField implements OnInit {
 
-  applicableProperties={
-    action:true,
-    theme:true,
-    size:true,
-    leftIcon:true,
-    rightIcon:true,
-    hidden:true,
-    disabled:true,
-    appliedValidation:true,
-    customFunction:true,
-    jsonLogic:true,
-    ...this.applicableProperties
-}
+	public properties = {
+		theme: 'default',
+		size: 'small',
+		btnLeftIcon: '',
+		btnRightIcon: '',
+		...this.properties,
+		type: 'BTN',
 
-  ngOnInit() {
+	};
 
-    // this.properties = {
-    //   label: 'test',
-    //   prefix: '',
-    //   suffix: '',
-    //   description: '',
-    //   placeholder: 'test',
-    //   tooltip: ''
-    // };
-    console.log("initialized a new instance", this.properties);
-    this.setRef(this.fieldControlService.getFieldRef().ref);
-    this.uniqueKey = this.masterFormService.getCurrentKey();
-    console.log(this.uniqueKey);
-   // this.masterFormService.setCurrentKey(this.uniqueKey);
-    this.masterFormService.setProperties(this.properties);
-    // this.applicableProperties={
-    //   ...this.textApplicableProperties,
-    //   ...this.applicableProperties
-    // }
+	public applicableProperties = {
+		theme: true,
+		size: true,
+		btnLeftIcon: true,
+		btnRightIcon: true,
+		...this.applicableProperties,
+		labelPosition: false,
+		labelWidth: false,
+		labelMargin: false,
+		hideLabel: false,
+		width: true,
+		defaultValueType: false,
+		label: true,
+	};
 
-    console.log("base field property is ",this.applicableProperties);
+	//9627233491
 
-  }
+	get tooltipPlacement() {
+		return this.defaults.BTN_TOOLTIP_PLACEMENT;
+	  }
 
-  ngDoCheck() {
-  //   const propsFromMasterForm = this.masterFormService.getProperties(this.uniqueKey);
-  //  // console.log("master form props", propsFromMasterForm);
-  //   if (propsFromMasterForm) {
-  //     this.update(propsFromMasterForm);
-  // }
-}
+	get icon() {
+		return this.properties.icon;
+	}
 
-  openModal() {
-    this.masterFormService.setCurrentKey(this.uniqueKey);
-    this.masterFormService.setProperties(this.properties);
-    this.fieldControlService.getFieldRef().parent.openModal();
-  }
+	get theme() {
+		return this.properties.theme;
+	}
 
-  update(propsFromMasterForm) {
-    this.properties = _.assignIn({}, propsFromMasterForm);
-  }
+	get btnLeftIcon() {
+		return this.properties.btnLeftIcon;
+	}
+
+	get btnRightIcon() {
+		return this.properties.btnRightIcon;
+	}
+
+	get size() {
+		return this.properties.size;
+	}
+
 }

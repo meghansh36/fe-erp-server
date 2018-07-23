@@ -1,0 +1,104 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="card box-shadow ">
+			<div class="card-header">
+				<span *ngIf="!selected?.length;else alternate">
+					<b>{{title}}</b>
+					<small> | {{subTitle}}</small>
+				</span>
+				<ng-template #alternate>
+					<b>{{selected?.length}}</b>
+					<small> Selected
+					</small>
+				</ng-template>
+				<span class="float-right" *ngIf="selected?.length">
+					<i *ngFor="let action of actionButtons" [ngClass]="[action.icon , action.customCssClass]" (click)="onAction(action,selected)"></i>&nbsp;&nbsp;
+				</span>
+				<span class="float-right">
+					<i *ngFor="let action of buttons" [ngClass]="[action.icon , action.customCssClass]" (click)="onAction(action,null)"></i>&nbsp;&nbsp;
+				</span>
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-10">
+						<div class="row" *ngIf="filterable">
+							<fe-chip *ngFor="let chip of filterableCol" [attr.id]="'chip'+chip.code" [chipData]="chip" (closeChip)="closeThisChip($event)"
+							 (addThisFilter)="applyModifiedFilter($event)"></fe-chip>
+						</div>
+						<div class="row" *ngIf="filterable">
+							<div class="name-container" ngbDropdown [autoClose]="'outside'" #myDrop="ngbDropdown" [hidden]="checked">
+								<div class="add-filter-container" id="dropdownManual" ngbDropdownToggle>
+									<i class="icon md-add"></i>
+									<span>Search</span>
+								</div>
+								<div ngbDropdownMenu aria-labelledby="dropdownManual">
+									<button *ngFor='let col of columnsFiltersTobeApplied' class="dropdown-item button" [attr.id]="'btn'+ col.code" (click)="popUp(col)">{{col.label}}</button>
+								</div>
+							</div>
+							<fe-popUp *ngIf="checked" [filteredCol]="filteredCol" [columnsFiltersTobeApplied]="columnsFiltersTobeApplied" [value]="InitialValue" (close)="closePopUp($event)" (filterObject)="addFirstFilter($event)"></fe-popUp>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="float-right">
+							<i class="md-settings gray_clr mr_10 pointer" (click)="dropDownOpenClose()"></i>
+							<div ngbDropdown #dropdown="ngbDropdown">
+								<span id="dropdownManual" ngbDropdownAnchor></span>
+								<div ngbDropdownMenu aria-labelledby="dropdownManual">
+									<li *ngFor='let col of allColumns' class="grid-li">
+										<input type='checkbox' class="checkbox" [id]="col.name" (click)='toggle(col)' [checked]='isChecked(col)' />
+										<label [attr.for]="col.name">{{col.name}}</label>
+									</li>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<ngx-datatable #table [id]="formCode" class='material' [rows]='rows' [rowHeight]="rowHeight" [scrollbarH]="scrollbarH" [headerHeight]="headerHeight"
+		 [offset]="offset" [footerHeight]="footerHeight" [messages]="message" [selected]="selected" [selectionType]="selectionType"
+		 [selectAllRowsOnPage]="selectAllRowsOnPage" (select)='onSelect($event)' (reorder)="reorderColumn($event)" (sort)="filterOnSorting($event)">
+
+			<ngx-datatable-column [width]="50" *ngIf="checkboxable" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false"
+			 [headerCheckboxable]="headerCheckboxable" [checkboxable]="checkboxable" [frozenLeft]="true">
+			</ngx-datatable-column>
+
+			<ngx-datatable-column *ngFor="let col of columns" [columnMode]="'force'" [name]="col.name" [cellClass]="col.align" [width]="col.width"
+			 [sortable]="col.sortable" [frozenLeft]="col.frozenLeft" [resizeable]="col.resizeable"></ngx-datatable-column>
+
+			<ngx-datatable-column *ngIf="rowActions?.length">
+				<ng-template let-column="column" ngx-datatable-header-template>
+				</ng-template>
+				<ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+					<div class="float-right">
+						<i *ngFor="let action of rowActions" [ngClass]="[action.icon , action.customCssClass]" (click)="onAction(action,row)"></i>
+					</div>
+				</ng-template>
+			</ngx-datatable-column>
+
+			<ngx-datatable-footer>
+				<ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize" let-selectedCount="selectedCount"
+				 let-curPage="curPage" let-offset="offset" let-isVisible="isVisible">
+					<div class="page-limit" [hidden]="!limitShow">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<label class="input-group-text" for="inputGroupSelect01">limit</label>
+							</div>
+							<select class="custom-select" (change)="getLimitedData($event)">
+								<option value="{{limit}}" selected>{{limit}}</option>
+								<option value="10">10</option>
+								<option value="10">15</option>
+								<option value="10">20</option>
+								<option value="10">30</option>
+							</select>
+						</div>
+					</div>
+					<datatable-pager [pagerLeftArrowIcon]="'datatable-icon-left'" [pagerRightArrowIcon]="'datatable-icon-right'" [pagerPreviousIcon]="'datatable-icon-prev'"
+					 [pagerNextIcon]="'datatable-icon-skip'" [page]="curPage" [size]="pageSize" [count]="rowCount" [hidden]="pagerShowHideCondition"
+					 (change)="table.onFooterPage($event)">
+					</datatable-pager>
+				</ng-template>
+			</ngx-datatable-footer>
+		</ngx-datatable>
+	</div>
+</div>
