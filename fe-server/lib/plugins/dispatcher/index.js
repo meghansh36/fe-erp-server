@@ -1,4 +1,4 @@
-const BasePlugin = FE.requireL0('pluginBaseClass.js');
+const BasePlugin = FE.requireLib('pluginBaseClass.js');
 
 class DispatcherPlugin extends BasePlugin {
 constructor(_clientApp) {

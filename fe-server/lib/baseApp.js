@@ -12,6 +12,7 @@ class BaseApp {
 		this.loadConfigs();
 		this.loadPluginsClasses();
 		this.loadHelpersClasses();
+		this.loadHooksClasses();
         this.loadSubApps();
 	}
 
@@ -19,7 +20,7 @@ class BaseApp {
 		/**
 		 * @description : Load App Globals
 		 */
-		const globals = require('./globals/index.js');
+		const globals = require(global.projectFolderPath + '/fe-server/globals/index.js');
         Object.assign(this, globals);
     }
     
@@ -27,7 +28,7 @@ class BaseApp {
 		/**
 		 * @description : Load Client App L3 Configs
 		 */
-		var utils = require('./utils/index.js');
+		var utils = require(FE.SERVER_APP_PATH + '/utils/index.js');
         this.utils = utils;
 	}
 
@@ -35,7 +36,7 @@ class BaseApp {
 		/**
 		 * @description : Load Client App L3 Configs
 		 */
-		var configs = require('./configs/index.js');
+		var configs = require(FE.SERVER_APP_PATH + '/configs/index.js');
 		this.configs = configs;
 	}
 
@@ -73,10 +74,40 @@ class BaseApp {
 				pluginObject.initialize();
 			}
 		} */
+	}
+	
+	loadHooksClasses() {
+		/**
+		 * @description : Load Client App L3 Configs
+		 */
+		this._hookClasses = require(FE.HOOKS_PATH);
+
+		/* var helpersToBeLoaded = this.configs.helpers;
+		var helpers = helpersToBeLoaded.helpers;
+		var helpersOrder = helpersToBeLoaded.order;
+		for (var pluginKey in helpersOrder) {
+			if (helpers[helpersOrder[pluginKey]] == true && typeof this._helperClasses[helpersOrder[pluginKey]] == "function") {
+				var pluginObject = new this._pluginClasses[helpersOrder[pluginKey]](this);
+				pluginObject.initialize();
+			}
+		} */
     }
     
     loadSubApps() {
-        require('./clientSubApps');
+        const vhost = require('vhost');
+		const clientArr = FE.configs.clients;
+
+		FE.clients = {};
+		for(let clientName in clientArr) {
+			const appPath = clientArr[clientName]['app'];
+			const domainName = clientArr[clientName]['domain'];
+			let clientObj = require(appPath);
+			clientObj._appProps = clientArr[clientName];
+			clientObj.initialize();
+			FE.clients[clientArr[clientName]['client']] = clientObj;
+			//FE.loadClientApp(appObj);
+			FE.app.use(vhost(domainName, clientObj.app));
+		}
     }
 }
 module.exports = BaseApp;

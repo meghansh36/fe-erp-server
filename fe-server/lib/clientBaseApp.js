@@ -3,8 +3,8 @@ class ClientBaseApp {
 	constructor(appObj) {
 		this.app = appObj;
 		this.configs = {};
-    this._pluginClasses = {};
-    this.helpers = {};
+    	this._pluginClasses = {};
+    	this.helpers = {};
 	}
 
 	initialize() {
@@ -12,7 +12,7 @@ class ClientBaseApp {
 		this.loadGlobals();
 		this.loadConfigs();
 		this.initPlugins();
-    this.initHelpers();
+    	this.initHelpers();
 	}
 
 	mountSubApp() {
@@ -33,8 +33,8 @@ class ClientBaseApp {
 		/**
 		 * @description : Load Client App L3 Configs
 		 */
-    var configs = require(this._appProps.configsPath);
-    configs = Object.assign({}, FE.configs, configs);
+		var configs = require(this._appProps.configsPath);
+		configs = Object.assign({}, FE.configs, configs);
 		this.configs = configs;
 	}
 
@@ -63,8 +63,8 @@ class ClientBaseApp {
 		for (var pluginKey in helpersOrder) {
 			if (helpers[helpersOrder[pluginKey]] == true && typeof FE._helperClasses[helpersOrder[pluginKey]] == "function") {
 				var helperObject = new FE._helperClasses[helpersOrder[pluginKey]](this);
-        helperObject.initialize();
-        this.helpers[helpersOrder[pluginKey]] = helperObject;
+				helperObject.initialize();
+				this.helpers[helpersOrder[pluginKey]] = helperObject;
 			}
 		}
 	}

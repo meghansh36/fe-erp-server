@@ -1,6 +1,6 @@
 const path = FE.require('path');
 const jwt = FE.require('jsonwebtoken');
-const BasePlugin = FE.requireL0('pluginBaseClass.js');
+const BasePlugin = FE.requireLib('pluginBaseClass.js');
 const loginRouter = require('./login.js');
 
 class AuthPlugin extends BasePlugin {

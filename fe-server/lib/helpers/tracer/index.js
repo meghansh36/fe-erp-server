@@ -1,11 +1,14 @@
-const winston = FE.require('winston');
+const BaseHelper = FE.requireLib('helperBaseClass.js');
+const winston = require('winston');
 require('winston-daily-rotate-file');
 
-class TraceLogger {
+class TracerHelper extends BaseHelper {
 
-	constructor(configs) {
-        this._configs = configs;
-        this._props = {};
+	constructor(_clientApp) {
+		super(_clientApp);
+		this._clientApp = _clientApp;
+		this._configs = this._clientApp.configs.helpers.tracer;
+		this._props = {};
 	}
 
 	initialize() {
@@ -40,23 +43,20 @@ class TraceLogger {
 		var logMsg = {};
 
 		var err = new Error();
-		var caller_line = err.stack.split("\n")[2];
+		var caller_line = err.stack.split("at ")[3];
 		
-		var index = caller_line.indexOf("at ");
-		index = caller_line.slice(index + 22, caller_line.length);
+		var index = caller_line.indexOf("(");
+		var lastIndex = caller_line.lastIndexOf(")");
+		index = caller_line.slice(index + 1, lastIndex);
 		
 		var line = index.match(/:[0-9]+:/).toLocaleString();
 		line = line.replace(/[^0-9]/g, '');
-		var currentdate = new Date();
-		var datetime = currentdate.getDate() + "-" +
-			(currentdate.getMonth() + 1) + "-" +
-			currentdate.getFullYear() + "  " +
-			currentdate.getHours() + ":" +
-			currentdate.getMinutes() + ":" +
-			currentdate.getSeconds();
+		
+		var curTime = new FE.utils.date();
+		var timestamp = curTime.format('YYYY-MM-DD HH:MM:SS');
 
 		logMsg.level = type || 'info';
-		logMsg.time = datetime || '';
+		logMsg.time = timestamp || '';
 		logMsg.msg = message || '';
 		logMsg.desc = description || '';
 		logMsg.stg = stage || '000';
@@ -89,6 +89,5 @@ class TraceLogger {
 	silly(message, description, stage, vars) {
 		return this._log('silly', message, description, stage, vars);
 	}
-
 }
-module.exports = TraceLogger;
+module.exports = TracerHelper;

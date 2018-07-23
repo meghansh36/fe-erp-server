@@ -1,3 +1,4 @@
 module.exports = {
-    "core" : require('lodash')
+    "core" : require('lodash'),
+    "date" : require('moment')
 };

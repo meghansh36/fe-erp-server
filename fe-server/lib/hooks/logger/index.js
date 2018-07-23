@@ -1,13 +1,14 @@
-const BaseHelper = FE.requireLib('helperBaseClass.js');
+const BaseHook = FE.requireLib('hookBaseClass.js');
 const winston = require('winston');
 require('winston-daily-rotate-file');
 
-class LoggerHelper extends BaseHelper {
+class LoggerHook extends BaseHook {
 
-	constructor(_clientApp) {
-		super(_clientApp);
+	constructor(_clientApp, requestObj) {
+		super(_clientApp, requestObj);
 		this._clientApp = _clientApp;
-		this._configs = this._clientApp.configs.helpers.logger;
+		this._requestObj = requestObj;
+		this._configs = this._clientApp.configs.hooks.logger;
 		this._props = {};
 	}
 
@@ -114,4 +115,4 @@ class LoggerHelper extends BaseHelper {
         );
 	}
 }
-module.exports = LoggerHelper;
+module.exports = LoggerHook;

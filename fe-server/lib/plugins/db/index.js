@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var Sequelize = require('sequelize');
-const BasePlugin = FE.requireL0('pluginBaseClass.js');
+const BasePlugin = FE.requireLib('pluginBaseClass.js');
 
 class DbPlugin extends BasePlugin {
 	constructor(_clientApp) {

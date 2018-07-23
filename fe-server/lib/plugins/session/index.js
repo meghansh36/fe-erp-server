@@ -1,7 +1,7 @@
 const session = FE.require('express-session');
 const uuid = FE.require('uuid');
 
-const BasePlugin = FE.requireL0('pluginBaseClass.js');
+const BasePlugin = FE.requireLib('pluginBaseClass.js');
 
 class SessionPlugin extends BasePlugin {
   constructor(_clientApp) {

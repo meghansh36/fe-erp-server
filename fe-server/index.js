@@ -19,7 +19,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const dynamicStatic = require('express-dynamic-static')();
-const BaseAppClass = require('./baseApp');
+const BaseAppClass = require('./lib/baseApp');
 const appObj = express();
 
 appObj.use(bodyParser.json());
@@ -34,4 +34,10 @@ global.FE = new BaseAppClass(appObj);
 FE.initialize();
 module.exports = FE.app;
 
-FE.clients.fe.helpers.logger.trace.info('my message');
+try {
+  var d = ee/5;
+} catch(e) {
+  FE.clients.fe.helpers.logger.info(e, 'my new message');
+}
+
+FE.clients.fe.helpers.tracer.info('my new message', '', '101');

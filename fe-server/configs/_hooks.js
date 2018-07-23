@@ -1,6 +1,6 @@
 
-let helperConfig = {
-    helpers    : {
+let hooksConfig = {
+    hooks    : {
         "logger"       : true,
         "tracer"       : true,
     },
@@ -9,4 +9,4 @@ let helperConfig = {
         "tracer",
     ]
 };
-module.exports = helperConfig;
+module.exports = hooksConfig;
