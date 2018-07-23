@@ -21,7 +21,7 @@ class AclPlugin extends BasePlugin{
 		.then((mongoBackend)=>{
 		//get acl with a mongo backend
 			acl = new node_acl(mongoBackend);
-			acl = this.set_roles(acl);	//will be changed to fetch roles from mySQL and inject into mongo
+			this.set_roles(acl);	//will be changed to fetch roles from mySQL and inject into mongo
 			return acl;		//this will be used inside dispatcher to authorize requests
 		})
 		.catch((err)=> console.error(err));
@@ -42,12 +42,6 @@ class AclPlugin extends BasePlugin{
 
 	//hardcorded set_roles function (to be handled later)
 	set_roles(acl){
-    
-	    acl.addUserRoles(420, 'b').then( ()=> console.log('added user'))
-	    .catch(err => console.error(err)),
-	   
-	    acl.addUserRoles(520, 'a').then( ()=> console.log('added user'))
-	    .catch(err => console.error(err)),
 
 	    //set permissions for roles
 	    acl.allow([
@@ -76,7 +70,12 @@ class AclPlugin extends BasePlugin{
 	            ]
 	        }
 		]);
-		return acl;
+
+		acl.addUserRoles(420, 'b').then( ()=> console.log('added user'))
+	    .catch(err => console.error(err));
+	   
+	    acl.addUserRoles(520, 'a').then( ()=> console.log('added user'))
+	    .catch(err => console.error(err));
 	}
 
 	//middleware to validate user

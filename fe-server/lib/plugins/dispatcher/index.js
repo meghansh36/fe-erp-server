@@ -14,9 +14,9 @@ constructor(_clientApp) {
     FE.ACL.then((acl)=>{
       
       //just testing acl
-      console.log(acl);
+      //console.log(acl);
       router.get('/', (req, res, next)=>{
-        acl.isAllowed(420, 'fe/api', 'post', (err, allowed)=>{
+        acl.isAllowed(420, '/fe/api', 'get', (err, allowed)=>{
           if(allowed){
             next();
           } else {
