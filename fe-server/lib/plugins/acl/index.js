@@ -1,5 +1,5 @@
 var path      = require('path');
-const BasePlugin = FE.requireL0('pluginBaseClass.js');
+const BasePlugin = FE.requireLib('pluginBaseClass.js');
 const mongoose = require('mongoose');
 const node_acl = require('acl');
 
