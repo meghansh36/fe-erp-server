@@ -25,13 +25,13 @@ const appObj = express();
 appObj.use(bodyParser.json());
 appObj.use(bodyParser.urlencoded({'extended':'true'}));
 appObj.use(cookieParser());
-appObj.use(dynamicStatic);
-
+appObj.use(express.static(global.projectFolderPath + "/dist/fe"));
 /**
  * @description : Make FE Obj Global
  */
 global.FE = new BaseAppClass(appObj);
 FE.initialize();
+
 module.exports = FE.app;
 
-console.log(FE.clients.fe);
+//console.log(FE.clients.fe);

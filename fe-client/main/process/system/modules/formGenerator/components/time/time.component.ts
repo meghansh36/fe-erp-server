@@ -5,7 +5,7 @@ import { BaseComponent } from '@L3Process/system/modules/formGenerator/component
 import { ValidatorsService } from '@L3Process/system/modules/formGenerator/services/validators.service';
 import { UtilityService } from '@L3Process/system/services/utility.service';
 import { DependentService } from '@L3Process/system/modules/formGenerator/services/dependent.service';
-import { DefaultsService } from '@L3Process/system/services/Defaults.service';
+import { DefaultsService } from '@L3Process/system/services/defaults.service';
 
 @Component({
   selector: 'fe-time',

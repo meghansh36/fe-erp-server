@@ -17,12 +17,12 @@ module.exports =  class FeFormsData extends Sequelize.Model {
 			type: Sequelize.STRING(20),
 			allowNull: true
 		},
-		JSON: {  //json
+		FORM_JSON: {  //json
 			type: Sequelize.TEXT,
 			allowNull: true
 		},
-		attribute1: {
-			type: Sequelize.STRING(255),
+		GRID_JSON: {
+			type: Sequelize.TEXT,
 			allowNull: true
 		},
 		attribute2: {

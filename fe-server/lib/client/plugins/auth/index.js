@@ -11,7 +11,6 @@ class AuthPlugin extends BasePlugin {
 		this._configs = this._appObj.configs.plugins.auth;
 		this._props = {};
 		this._passport = FE.require('passport');
-
 		this.users = [{
 				id: '1',
 				googleId: '105589192699370577629',
@@ -52,13 +51,13 @@ class AuthPlugin extends BasePlugin {
 	}
 
 	initialize() {
-		//this._appObj.app.use(this._passport.initialize());
-		//this.loadStrategies();
-		//this.serialize();
-		//this.deserialize();
-		//this._appObj.app.use('/fe/api/login/', loginRouter);
-		//this._appObj.app.use(this._passport.session());
-		//	this.redirectUser();
+		this._appObj.app.use(this._passport.initialize());
+		this.loadStrategies();
+		this.serialize();
+		this.deserialize();
+		this._appObj.app.use('/fe/api/login/', loginRouter);
+		this._appObj.app.use(this._passport.session());
+			this.redirectUser();
 		console.log('auth plugin initialized');
 	}
 
@@ -117,18 +116,22 @@ class AuthPlugin extends BasePlugin {
 					}).pipe(res);
 				});
 			}
-
+			next();
 			console.log("USER " + req.session.username);
 
 		});
 
-		// this._appObj.app.all('*', (req, res)=>{
 
-		//   // if(req.session.username){
-		//     return res.sendFile(path.join(FE.APP_PATH, "dist", "fe", "index.html"));  
-		//     // res.send("LOGGED IN")
-		//   // }
-		// });
+		this._appObj.app.get(/^\/(?!api\/)(.*)$/, (req, res)=>{
+			// console.log('before 1')
+			// //this._dynamicStatic.setPath(path.join(FE.APP_PATH, "dist", "fe"));
+			// console.log('after 1')
+			
+		  // if(req.session.username){
+		    return res.sendFile(path.join(FE.APP_PATH, "dist", "fe", "index.html"));  
+		    // res.send("LOGGED IN")
+		  // }
+		});
 	}
 
 	// jwtVerificationCB(response, err, decoded) {

@@ -13,21 +13,22 @@ class DispatcherPlugin extends BasePlugin {
 			mergeParams: true
 		});
 		//the router/dispatcher will function here
-		/* FE.ACL.then((acl)=>{
+		 FE.ACL.then((acl)=>{
 		  
 		  //just testing acl
 		  console.log(acl);
-		  router.get('/', (req, res, next)=>{
-		    acl.isAllowed(420, 'fe/api', 'post', (err, allowed)=>{
+		  router.get('/api/', (req, res, next)=>{
+		    acl.isAllowed(420, '/api/', 'post', (err, allowed)=>{
 		      if(allowed){
 		        next();
-		      } else {
+		      } else if(!allowed) {
 		        res.send('Access Denied');
-		      }
-		    })
-		  }, (req, res)=>{
-		    res.send('Congrats, you got through');
+		      } else if(err){
+						next();
+					}
+		    });	
 		  });
+			
 		  router.get('/:module/:controller/:action', (req, res, next)=>{
 		    // acl.isAllowed(420, 'fe/api', 'get', (err, allowed)=>{
 		    //   if(allowed){
@@ -42,38 +43,39 @@ class DispatcherPlugin extends BasePlugin {
 		    var controllerObj = new controller_class();
 		    var action = req.params.action;
 		    controllerObj[action](req,res);
-		  });
+			});
+			
+			// router.get('/:module/:controller/:action/:id', (req, res, next)=>{
+		  //   var controller = this._appObj.SUB_APP_PROCESS_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
+		  //   var controller_class = require(controller);
+		  //   var controllerObj = new controller_class();
+		  //   var action = req.params.action;
+		  //   controllerObj[action](req,res);
+		  // });
+
 
 		  router.post('/:module/:controller/:action', (req, res, next)=>{
-		    // acl.isAllowed(420, 'fe/api', 'get', (err, allowed)=>{
-		    //   if(allowed){
-		    //     next();
-		    //   } else {
-		    //     res.send('Access Denied');
-		    //   }
-		    // })
-		  // }, (req, res, next) => {
 		    var controller = this._appObj.SUB_APP_PROCESS_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
 		    var controller_class = require(controller);
 		    var controllerObj = new controller_class();
 		    var action = req.params.action;
 		    controllerObj[action](req,res);
 		  });
+		});     
 
+		// this._appObj.app.use('/:module/:controller/:action', (req, res, next) => {
+		// 	var controller = this._appObj.SUB_APP_PROCESS_PATH + '/' + req.params.module + "/controllers/" + req.params.controller + '.js';
+		// 	console.log('serving request');
+		// 	res.send('contoller' + controller);
 
+		// 	var controller_class = require(controller);
+		// 	var controllerObj = new controller_class();
+		// 	var action = req.params.action;
+		// 	controllerObj[action](req, res);
+		// });
+		this._appObj.app.use('/api/:client/:legislation',router);
+		console.log('Dispatcher plugin initialized');
 
-		});     */
-
-		this._appObj.app.use('/:module/:c;ontroller/:action', (req, res, next) => {
-			var controller = this._appObj.SUB_APP_PROCESS_PATH + '/' + req.params.module + "/controllers/" + req.params.controller + '.js';
-			console.log('serving request');
-			res.send('contoller' + controller);
-
-			var controller_class = require(controller);
-			var controllerObj = new controller_class();
-			var action = req.params.action;
-			controllerObj[action](req, res);
-		});
 	}
 }
 module.exports = DispatcherPlugin;

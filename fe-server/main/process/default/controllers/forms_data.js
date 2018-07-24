@@ -10,15 +10,15 @@ module.exports = class FeFormsData{
         }).then(function(formsData){
 
             var data = {};
-            var formsArray = [];
-            formsData.forEach(data => {
-                var formObj = {};
-                formObj.formcode = data.FORM_CODE;
-                formObj.label = data.LABEL;
-                formObj.id = data.ID;
-                formsArray.push(formObj);
-            });
-            data.key = formsArray;
+            // var formsArray = [];
+            // formsData.forEach(data => {
+            //     var formObj = {};
+            //     formObj.formcode = data.FORM_CODE;
+            //     formObj.label = data.LABEL;
+            //     formObj.id = data.ID;
+            //     formsArray.push(formObj);
+            // });
+            data.data = formsData;
 
        // console.log(formsData);
         res.json(data);
@@ -36,7 +36,7 @@ module.exports = class FeFormsData{
         var clientName = req.params.client;
         FE.clients[clientName].models.FormsData.create({  
             FORM_CODE: 'FRM' + (Math.random()*10),
-            JSON: req.body.json_data,
+            FORM_JSON: req.body.json_data,
             LABEL: form_label
           }).then(form => {
               res.send(form);
@@ -44,8 +44,27 @@ module.exports = class FeFormsData{
       };
 
 
+
+      save_grid_data(req,res,done){
+        var form_json = req.body.form_json;
+        var grid_json = req.body.grid_json;
+        //console.log(json_data);
+        //json_data = JSON.parse(json_data);
+        var form_label = req.body.formLabel;
+        var clientName = req.params.client;
+        FE.clients[clientName].models.FormsData.create({  
+            FORM_CODE: 'FRM' + Math.round(Math.random()*10)   ,
+            FORM_JSON: req.body.form_json,
+            GRID_JSON:req.body.grid_json,
+            LABEL: form_label
+          }).then(form => {
+              res.send(form);
+          });
+      };
+
     update_form_data(req,res,done){
-        var json_data = req.body.json;
+        var form_json = req.body.form_json;
+        var grid_json = req.body.grid_json;
         var clientName = req.params.client;
         var form_label = req.body.formLabel;
         FE.clients[clientName].models.FormsData.find({
@@ -53,7 +72,8 @@ module.exports = class FeFormsData{
           }).then ( function( form ) {
             return form.FormsData[0].updateAttributes({
             // return Promise.all([
-                  JSON:req.body.json,
+                  FORM_JSON:req.body.form_json,
+                  GRID_JSON:req.body.grid_json,
                   LABEL: form_label
               })
             //   emp.empob.map(fc => fc.updateAttributes({}))
@@ -66,17 +86,36 @@ module.exports = class FeFormsData{
      
     form_data(req,res,done) {
         var clientName = req.params.client;
+        var condition={};
+        if(!req.body.id) condition.FORM_CODE = req.body.code
+        else condition = req.body.id; 
         FE.clients[clientName].models.FormsData.find({
-            where: req.body.id,
-            attributes:['FORM_CODE','LABEL','ID','JSON']
+            where: condition,
+            attributes:['FORM_CODE','LABEL','ID','FORM_JSON']
         }).then(function(formData){
-                formData.JSON.id = formData.ID;
-                formData.JSON.formcode = formData.FORM_CODE;
-                res.json(formData.JSON);
+                formData.FORM_JSON.id = formData.ID;
+                formData.FORM_JSON.formcode = formData.FORM_CODE;
+                res.json(formData.FORM_JSON);
         }).catch(function(err){
             console.log(err);
             res.send(err);
         })
     }
+
+    grid_data(req,res,done) {
+        var clientName = req.params.client;
+        var condition={};
+        condition.FORM_CODE = req.body.code;
+        FE.clients[clientName].models.FormsData.find({
+            where: condition,
+            attributes:['GRID_JSON']
+        }).then(function(gridData){
+                res.json(gridData);
+        }).catch(function(err){
+            console.log(err);
+            res.send(err);
+        })
+    }
+
 
 }

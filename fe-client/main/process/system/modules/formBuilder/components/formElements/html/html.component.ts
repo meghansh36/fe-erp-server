@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { TxaComponent } from '@L3Process/system/modules/formBuilder/components/formElements/txa/txa.component';
+import { TextAreaComponent } from '@L3Process/system/modules/formBuilder/components/formElements/textArea/textArea.component';
 
 @Component({
   selector: 'fe-html',
   templateUrl: './html.component.html',
   styleUrls: ['./html.component.css']
 })
-export class FeHTMLComponent extends TxaComponent   {
+export class FeHTMLComponent extends TextAreaComponent   {
 
   properties = {
     ckSettings: '',

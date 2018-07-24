@@ -10,8 +10,8 @@ function configLoader(appObj) {
 		resave: false,
 		saveUninitialized: false,
 		cookie: {
-			maxAge: 1000 * 60 * 2,
-			expires: 1000 * 60 * 2,
+			maxAge: 1000 * 60 * 20,
+			expires: 1000 * 60 * 20,
 		}
 	};
 	return config;

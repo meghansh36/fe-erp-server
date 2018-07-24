@@ -186,8 +186,8 @@ router.post('/login', (req, res, next) => {
 			if (req.body.check) {
 				res.cookie('token', token);
 			}
-			res.send("LOGIN_SUCCESS");
-			// res.redirect('/s');    
+			// res.send("LOGIN_SUCCESS");
+			res.redirect('/');    
 		});
 		credentials = '';
 	})(req, res, next);

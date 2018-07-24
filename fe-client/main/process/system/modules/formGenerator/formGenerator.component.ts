@@ -1,51 +1,65 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location, PlatformLocation } from '@angular/common';
-import { FormSchemaService } from '@L3Main/services/formSchema.service';
+import { Component, OnInit, HostListener } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Location, PlatformLocation } from "@angular/common";
+import { FormSchemaService } from "@L3Main/services/formSchema.service";
 
 @Component({
-    selector: 'formGenerator',
-    styleUrls: ['formGenerator.component.css'],
-    templateUrl: 'formGenerator.component.html',
-    providers: [FormSchemaService]
+  selector: "formGenerator",
+  styleUrls: ["formGenerator.component.css"],
+  templateUrl: "formGenerator.component.html",
+  providers: [FormSchemaService]
 })
 export class FeFormGeneratorComponent implements OnInit {
-    @HostListener('window:popstate', ['$event'])
-    onPopState(event) {
-        console.log('Back button pressed');
-        this.location.back();
-    }
+  protected _schema: any;
 
-    protected _schema: any;
+  @HostListener("window:popstate", ["$event"])
+  onPopState(event) {
+    this._location.back();
+  }
 
-    get schema() {
-        return this._schema;
-    }
+  constructor(
+    protected _route: ActivatedRoute,
+    protected _formSchemaService: FormSchemaService,
+    protected _location: Location
+  ) {}
 
-    set schema(schema) {
-        this._schema = schema;
-    }
+  protected _beforeNgOnInit() {}
 
-    constructor(public route: ActivatedRoute, public formSchemaService: FormSchemaService, public location: Location) { }
+  protected _afterNgOnInit() {}
 
-    ngOnInit() {
-        this.route.params
-            .filter(params => params.id)
-            .subscribe(params => {
-                let id = params.id;
-                this.getSchema(id);
-            })
-    }
+  ngOnInit() {
+    this._beforeNgOnInit();
+    this._init();
+    this._afterNgOnInit();
+  }
 
-    getSchema(id: number) {
-        let form = this.formSchemaService.getFormSchema(id);
+  _init() {
+    this._route.params.subscribe(this._handleRouteParams.bind(this));
+  }
+
+  protected _handleRouteParams(params) {
+    console.log("_handleRouteParams params", params);
+    this._initFormSchema(params.formId);
+  }
+
+  protected _initFormSchema(formId?: any) {
+    if (formId) {
+      this._formSchemaService.getFormSchemaById(formId).subscribe(data => {
+        const form = [...data.body.data];
         if (form) {
-            this.schema = form;
-            console.log(this.schema);
+          this.schema = form;
+        } else {
+          console.log("No schema found");
         }
-        else {
-            console.log('no schema found');
-        }
+      });
     }
+  }
 
+  get schema() {
+    return this._schema;
+  }
+
+  set schema(schema) {
+    this._schema = schema;
+  }
 }

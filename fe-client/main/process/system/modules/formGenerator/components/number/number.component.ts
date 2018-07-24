@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 })
 export class FeNumberComponent extends TextComponent {
   public numberMask: any;
- 
+
   protected _afterNgOnInit() {
     super._afterNgOnInit();
     this._applyNumericMask();
@@ -34,7 +34,6 @@ export class FeNumberComponent extends TextComponent {
       maskConfig = _.assign({}, maskConfig, config);
     }
     this.numberMask = createNumberMask(maskConfig);
-    console.log("this.numberMask", this.numberMask);
   }
 
   get useDelimeter() {
