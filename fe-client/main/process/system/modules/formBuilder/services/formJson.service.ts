@@ -199,23 +199,25 @@ export class FeFormJsonService {
         }
         // moved from fst to button
         else if ((source.id !== 'root_drop' && source.id !== 'button_drop') && target.id === 'button_drop') {
+            //console.log('moved', this.MasterJSON.components[el.generatedKey]);
             const key = el.generatedKey;
             const oldIndex = this.MasterJSON.components[key].instance.properties.order;
-            this.updateOrderInFlatJSON(target, this.MasterJSON.components);
+            this.updateOrderInFlatJSON(source, this.MasterJSON.components);
             const temp = this.MasterJSON.components[key];
             _.unset(this.MasterJSON.components, key);
             this.MasterJSON.buttons = _.merge(this.MasterJSON.buttons, {[key]: temp});
-            this.updateOrderInFlatJSON(source, this.MasterJSON.buttons);
+            console.log(this.MasterJSON.buttons)
+            this.updateOrderInFlatJSON(target, this.MasterJSON.buttons);
             this.MasterJSON.components[source.id].instance.properties.components.splice(oldIndex, 1);
         }
         // moved from button to fst
         else if ((target.id !== 'root_drop' && target.id !== 'button_drop') && source.id === 'button_drop') {
             const key = el.generatedKey;
-            this.updateOrderInFlatJSON(target, this.MasterJSON.buttons);
+            this.updateOrderInFlatJSON(source, this.MasterJSON.buttons);
             const temp = this.MasterJSON.buttons[key];
             _.unset(this.MasterJSON.buttons, key);
             this.MasterJSON.components = _.merge(this.MasterJSON.components, {[key]: temp});
-            this.updateOrderInFlatJSON(source, this.MasterJSON.components);
+            this.updateOrderInFlatJSON(target, this.MasterJSON.components);
             this.MasterJSON.components[target.id].instance.properties.components.splice(newIndex, 0, key);
         }
 

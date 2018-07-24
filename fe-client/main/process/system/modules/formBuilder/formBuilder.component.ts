@@ -157,13 +157,16 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 
   _init() {
     this.jsonEditorConfig = this._defaults.JSON_EDITOR_CONFIG;
-    //this._route.params.subscribe(this._handleRouteParams.bind(this));
+    this._route.params.subscribe(this._handleRouteParams.bind(this));
     this._initFormJsonHelp();
   }
 
   protected _handleRouteParams(params) {
     console.log("_handleRouteParams params", params);
-    this._initFormSchema(params.formId);
+    if (params.formId !== undefined) {
+      this._initFormSchema(Number(params.formId));
+      console.log('params identified');
+    }
   }
 
   protected _initFormSchema(formId?: any) {
@@ -171,9 +174,13 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
       const form = this._formSchemaService
         .getFormSchemaById(formId)
         .subscribe(data => {
-          const form = data.body.data;
+          const form = data.body;
           if (form) {
             this.formJson = form;
+            this.populateFormBuilder(form.components);
+            setTimeout(() => {
+              this.populateFormBuilder(form.buttons);
+            }, 1000);
           } else {
             console.log("No schema found");
           }
@@ -404,49 +411,6 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
       "help": "",
       "components": [
         {
-          "type": "TIM",
-          "hasParent": false,
-          "hideLabel": false,
-          "labelPosition": "top",
-          "marginTop": "",
-          "marginRight": "",
-          "marginLeft": "",
-          "marginBottom": "",
-          "defaultValueType": "none",
-          "defaultValueSqlQuery": "",
-          "defaultValueString": "",
-          "lovType": "none",
-          "lovSqlQuery": "",
-          "lovJson": "",
-          "nonPersistent": false,
-          "hidden": false,
-          "clearWhenHidden": false,
-          "disabled": false,
-          "prefix": "",
-          "suffix": "",
-          "appliedValidations": "",
-          "customFuncValidation": "",
-          "jsonLogicVal": "",
-          "formClassValidation": "",
-          "events": "",
-          "showCondition": "",
-          "disableCondition": "",
-          "active": true,
-          "required": false,
-          "labelWidth": "",
-          "labelMargin": "",
-          "width": "",
-          "mask": [],
-          "description": "",
-          "icon": "",
-          "parentName": "",
-          "filterSqlQuery": "",
-          "key": "_uzrmpnvg5",
-          "order": 0,
-          "parent": "root_drop",
-          "componentName": "TimeComponent"
-        },
-        {
           "label": "Fieldset",
           "description": "",
           "hideLabel": false,
@@ -454,92 +418,6 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
           "flexiLabel": "",
           "active": true,
           "components": [
-            {
-              "type": "DTI",
-              "hasParent": false,
-              "hideLabel": false,
-              "labelPosition": "top",
-              "marginTop": "",
-              "marginRight": "",
-              "marginLeft": "",
-              "marginBottom": "",
-              "defaultValueType": "none",
-              "defaultValueSqlQuery": "",
-              "defaultValueString": "",
-              "lovType": "none",
-              "lovSqlQuery": "",
-              "lovJson": "",
-              "nonPersistent": false,
-              "hidden": false,
-              "clearWhenHidden": false,
-              "disabled": false,
-              "prefix": "",
-              "suffix": "",
-              "appliedValidations": "",
-              "customFuncValidation": "",
-              "jsonLogicVal": "",
-              "formClassValidation": "",
-              "events": "",
-              "showCondition": "",
-              "disableCondition": "",
-              "active": true,
-              "required": false,
-              "labelWidth": "",
-              "labelMargin": "",
-              "width": "",
-              "mask": [],
-              "description": "",
-              "icon": "",
-              "parentName": "",
-              "filterSqlQuery": "",
-              "key": "_4ymzvt22a",
-              "order": 0,
-              "parent": "_6zkdmgzc7",
-              "componentName": "DateTimeComponent"
-            },
-            {
-              "type": "EML",
-              "hasParent": false,
-              "hideLabel": false,
-              "labelPosition": "top",
-              "marginTop": "",
-              "marginRight": "",
-              "marginLeft": "",
-              "marginBottom": "",
-              "defaultValueType": "none",
-              "defaultValueSqlQuery": "",
-              "defaultValueString": "",
-              "lovType": "none",
-              "lovSqlQuery": "",
-              "lovJson": "",
-              "nonPersistent": false,
-              "hidden": false,
-              "clearWhenHidden": false,
-              "disabled": false,
-              "prefix": "",
-              "suffix": "",
-              "appliedValidations": "",
-              "customFuncValidation": "",
-              "jsonLogicVal": "",
-              "formClassValidation": "",
-              "events": "",
-              "showCondition": "",
-              "disableCondition": "",
-              "active": true,
-              "required": false,
-              "labelWidth": "",
-              "labelMargin": "",
-              "width": "",
-              "mask": [],
-              "description": "",
-              "icon": "",
-              "parentName": "",
-              "filterSqlQuery": "",
-              "key": "_serl50qsf",
-              "order": 1,
-              "parent": "_6zkdmgzc7",
-              "componentName": "EmailComponent"
-            },
             {
               "label": "Fieldset",
               "description": "",
@@ -549,10 +427,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
               "active": true,
               "components": [
                 {
-                  "ckSettings": "",
-                  "enableSpellCheck": true,
-                  "rows": 5,
-                  "type": "HTML",
+                  "type": "TIM",
                   "hasParent": false,
                   "hideLabel": false,
                   "labelPosition": "top",
@@ -589,39 +464,91 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
                   "icon": "",
                   "parentName": "",
                   "filterSqlQuery": "",
-                  "key": "_4ozufkchr",
+                  "key": "_9g9ckocuy",
                   "order": 0,
-                  "parent": "_2bc9j1517",
-                  "componentName": "HTMLComponent"
+                  "parent": "_lx51yp5a2",
+                  "componentName": "TimeComponent"
                 }
               ],
               "type": "FST",
               "width": "100%",
               "hidden": false,
-              "key": "_2bc9j1517",
-              "order": 2,
-              "parent": "_6zkdmgzc7",
+              "key": "_lx51yp5a2",
+              "order": 0,
+              "parent": "_4a3k9hsv2",
               "componentName": "FieldSetComponent"
             }
           ],
           "type": "FST",
           "width": "100%",
           "hidden": false,
-          "key": "_6zkdmgzc7",
-          "order": 1,
+          "key": "_4a3k9hsv2",
+          "order": 0,
           "parent": "root_drop",
           "componentName": "FieldSetComponent"
         }
       ],
-      "buttons": []
+      "buttons": [
+        {
+          "theme": "default",
+          "size": "small",
+          "btnLeftIcon": "",
+          "btnRightIcon": "",
+          "hasParent": false,
+          "hideLabel": false,
+          "labelPosition": "top",
+          "marginTop": "",
+          "marginRight": "",
+          "marginLeft": "",
+          "marginBottom": "",
+          "defaultValueType": "none",
+          "defaultValueSqlQuery": "",
+          "defaultValueString": "",
+          "lovType": "none",
+          "lovSqlQuery": "",
+          "lovJson": "",
+          "nonPersistent": false,
+          "hidden": false,
+          "clearWhenHidden": false,
+          "disabled": false,
+          "prefix": "",
+          "suffix": "",
+          "appliedValidations": "",
+          "customFuncValidation": "",
+          "jsonLogicVal": "",
+          "formClassValidation": "",
+          "events": "",
+          "showCondition": "",
+          "disableCondition": "",
+          "active": true,
+          "required": false,
+          "labelWidth": "",
+          "labelMargin": "",
+          "width": "",
+          "mask": [],
+          "description": "",
+          "icon": "",
+          "parentName": "",
+          "filterSqlQuery": "",
+          "type": "BTN",
+          "key": "_52ml1thev",
+          "order": 0,
+          "parent": "button_drop",
+          "componentName": "ButtonComponent"
+        }
+      ]
     };
     this.populateFormBuilder(json.components);
+    setTimeout(() => {
+      this.populateFormBuilder(json.buttons);
+    }, 1000);
   }
 
   save() {
     this._formBuilderService.postData(this.finalJSON).subscribe(
       res => {
         alert("data received");
+        console.log(res);
       },
       err => {
         console.log("getting error", err);
