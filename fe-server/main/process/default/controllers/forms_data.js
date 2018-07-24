@@ -109,9 +109,12 @@ module.exports = class FeFormsData{
         condition.FORM_CODE = req.body.code;
         FE.clients[clientName].models.FormsData.find({
             where: condition,
-            attributes:['GRID_JSON']
+            attributes:['ID','GRID_JSON']
         }).then(function(gridData){
-                res.json(gridData);
+                var grid_data = {};
+                grid_data.grid_json =  JSON.parse(gridData.GRID_JSON);
+                grid_data.id = gridData.ID;
+                res.send(grid_data);
         }).catch(function(err){
             console.log(err);
             res.send(err);
