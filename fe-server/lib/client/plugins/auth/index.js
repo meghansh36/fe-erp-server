@@ -11,7 +11,6 @@ class AuthPlugin extends BasePlugin {
 		this._configs = this._appObj.configs.plugins.auth;
 		this._props = {};
 		this._passport = FE.require('passport');
-
 		this.users = [{
 				id: '1',
 				googleId: '105589192699370577629',
@@ -122,11 +121,15 @@ class AuthPlugin extends BasePlugin {
 
 		});
 
-		this._appObj.app.get('/', (req, res)=>{
 
+		this._appObj.app.get('/', (req, res)=>{
+			// console.log('before 1')
+			// //this._dynamicStatic.setPath(path.join(FE.APP_PATH, "dist", "fe"));
+			// console.log('after 1')
+			
 		  // if(req.session.username){
-		    // return res.sendFile(path.join(FE.APP_PATH, "dist", "fe", "index.html"));  
-		    res.send("LOGGED IN")
+		    return res.sendFile(path.join(FE.APP_PATH, "dist", "fe", "index.html"));  
+		    // res.send("LOGGED IN")
 		  // }
 		});
 	}
