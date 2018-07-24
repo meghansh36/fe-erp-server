@@ -11,7 +11,7 @@ constructor(_clientApp) {
   initialize() {   
     var router = require('express').Router({mergeParams: true});
     //the router/dispatcher will function here
-    FE.ACL.then((acl)=>{
+    //FE.ACL.then((acl)=>{
       
       //just testing acl
       //console.log(acl);
@@ -59,8 +59,13 @@ constructor(_clientApp) {
       });
 
 
+      router.get('/',(req,res,next)=>{
+        res.send('ANYTHING');
+      })
 
-    });    
+
+
+   // });    
     
     this._clientApp.app.use('/:client/:legislation',router);
   }

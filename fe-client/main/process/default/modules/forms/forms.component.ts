@@ -9,6 +9,7 @@ import { FormSchemaService } from '@L3Main/services/formSchema.service';
 })
 export class FeFormsComponent {
   public instance: any;
+  public code: string = "FRM0000001";
 
   constructor(public formSchemaService: FormSchemaService) {
     this.instance = this;
@@ -26,8 +27,8 @@ export class FeFormsComponent {
     console.log('download');
   }
 
-  detail(args: any) {
-    let id = args.id;
+  getFormById(args: any) {
+    let id = args.ID;
     this.formSchemaService.navigateToFormGenerator(id);
   }
 

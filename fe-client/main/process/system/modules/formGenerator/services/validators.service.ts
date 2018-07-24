@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ValidatorFn, Validators, AbstractControl } from '@angular/forms';
 import * as _ from 'lodash';
 import { CustomValidators } from 'ng4-validators';
-import { DefaultsService } from '@L3Process/system/services/Defaults.service';
+import { DefaultsService } from '@L3Process/system/services/defaults.service';
 
 @Injectable({
     providedIn: 'root'
@@ -29,9 +29,9 @@ export class FeValidatorsService {
         base64: (val: any, control: AbstractControl) => CustomValidators.base64,
         digits: (val: any, control: AbstractControl) => CustomValidators.digits,
         url: (val: any, control: AbstractControl) => CustomValidators.url,
-        lt: (val: any, control: AbstractControl) => CustomValidators.lt(val),//less than 
+        lt: (val: any, control: AbstractControl) => CustomValidators.lt(val),//less than
         gt: (val: any, control: AbstractControl) => CustomValidators.gt(val),//greater than
-        lte: (val: any, control: AbstractControl) => CustomValidators.lte(val),//less than 
+        lte: (val: any, control: AbstractControl) => CustomValidators.lte(val),//less than
         gte: (val: any, control: AbstractControl) => CustomValidators.gte(val),
         rangeLength: (val: any, control: AbstractControl) => CustomValidators.rangeLength(val),//[ min, max ]
         number_positive:  this.numberPositiveValidator.bind(this),
@@ -39,7 +39,7 @@ export class FeValidatorsService {
         alphanumeric:  (val: any, control: AbstractControl) => this.alphanumericValidator.bind(this),
         alphabet:  (val: any, control: AbstractControl) => this.alphabetValidator.bind(this)
     };
-    
+
 
     protected _customValidations = {
         min: this.minValidation.bind(this),
@@ -62,12 +62,12 @@ export class FeValidatorsService {
     }
 
     emailValidation(value?: any) {
-        
+
         const message = 'Please provide valid mail address';
         if (!value) {
             value = true;
         }
-        const name ='email';        
+        const name ='email';
         return FeValidatorsService.getValidation(name,  value, message);
     }
 
@@ -76,7 +76,7 @@ export class FeValidatorsService {
         if (!value) {
             value = true;
         }
-        const name ='commaseperatedemail';        
+        const name ='commaseperatedemail';
         return FeValidatorsService.getValidation(name,  value, message);
     }
 
@@ -91,76 +91,76 @@ export class FeValidatorsService {
         }
     }
 
-    
+
 
     minValidation(minValue?: any) {
         console.log("minValidation", this);
         const message = `Minimum value should be ${minValue}.`;
-        const name ='min';        
+        const name ='min';
         return FeValidatorsService.getValidation(name,  minValue, message);
     }
 
     maxValidation(maxValue?: any) {
         const message = `Maximum value should be ${maxValue}.`;
-        const name ='max';        
+        const name ='max';
         return FeValidatorsService.getValidation(name,  maxValue, message);
     }
 
     minDateValidation(minDate?: any) {
         const message = `Minimum date should be ${minDate}.`;
-        const name ='minDate';        
+        const name ='minDate';
         return FeValidatorsService.getValidation(name,  minDate, message);
     }
 
     maxDateValidation(maxDate?: any) {
         const message = `Maximum date should be ${maxDate}.`;
-        const name ='maxDate';        
+        const name ='maxDate';
         return FeValidatorsService.getValidation(name,  maxDate, message);
     }
 
     requiredValidation(value?: any) {
         const message = `Please provide appropriate value.`;
-        const name ='required';        
+        const name ='required';
         return FeValidatorsService.getValidation(name,  value, message);
     }
 
     rangeValidation(value?: any) {
         const message = `Value should be between ${value.min} and ${value.max}.`;
-        const name ='range';        
+        const name ='range';
         return FeValidatorsService.getValidation(name,  [value.min, value.max], message);
     }
 
     rangeLengthValidation(value?: any) {
         const message = `Value length should be between ${value.min} and ${value.max}.`;
-        const name ='rangeLength';        
+        const name ='rangeLength';
         return FeValidatorsService.getValidation(name,  [value.min, value.max], message);
     }
 
     numberNegativeValidation(value?: any) {
         value = 0;
         const message = `Please provide number negative only.`;
-        const name ='lt';        
+        const name ='lt';
         return FeValidatorsService.getValidation(name,  value, message);
     }
 
     alphanumericValidation(value?: any) {
         value = this._defaults.PATTERN['alphanumeric'];
         const message = `Alphanumric values allowed only.`;
-        const name ='alphanumeric';        
+        const name ='alphanumeric';
         return FeValidatorsService.getValidation(name,  value, message);
     }
 
     alphabetValidation(value?: any) {
         value = this._defaults.PATTERN['alphabet'];
         const message = `Alphabets values allowed only.`;
-        const name ='alphabet';        
+        const name ='alphabet';
         return FeValidatorsService.getValidation(name,  value, message);
     }
 
     numberPositiveValidation(value?: any) {
         value = 0
         const message = `Please provide number positive only.`;
-        const name ='gte';        
+        const name ='gte';
         return FeValidatorsService.getValidation(name,  value, message);
     }
 
@@ -200,7 +200,6 @@ export class FeValidatorsService {
             console.log(`Custom Validation ${validationName} implementation does not exist.`);
             return '';
         }
-        console.log('getCustomValidation this', this);
         return this._customValidations[validationName].call(this, value);
     }
 

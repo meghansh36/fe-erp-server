@@ -1,8 +1,5 @@
 export interface DataTable {
-    username?: string,
-    email?: string,
-    phone?: string,
-    date?: string,
-    country?: string,
-    state?: string,
+    FORM_CODE: string,
+    ID: string,
+    LABEL: string
 }

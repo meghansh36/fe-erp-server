@@ -13,31 +13,31 @@ import { MasterFormComponent } from '@L3Process/system/modules/formBuilder/compo
 import { SortablejsModule } from 'angular-sortablejs/dist';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TextMaskModule } from 'angular2-text-mask';
-import { DefaultsService } from '@L3Process/system/services/Defaults.service';
-import { TxtComponent } from '@L3Process/system/modules/formBuilder/components/formElements/txt/txt.component';
-import { TxaComponent } from '@L3Process/system/modules/formBuilder/components/formElements/txa/txa.component';
-import { TimComponent } from '@L3Process/system/modules/formBuilder/components/formElements/tim/tim.component';
-import { PwdComponent } from '@L3Process/system/modules/formBuilder/components/formElements/pwd/pwd.component';
-import { PhnComponent } from '@L3Process/system/modules/formBuilder/components/formElements/phn/phn.component';
-import { NumComponent } from '@L3Process/system/modules/formBuilder/components/formElements/num/num.component';
-import { MonComponent } from '@L3Process/system/modules/formBuilder/components/formElements/mon/mon.component';
-import { HidComponent } from '@L3Process/system/modules/formBuilder/components/formElements/hid/hid.component';
-import { EmlComponent } from '@L3Process/system/modules/formBuilder/components/formElements/eml/eml.component';
-import { DtiComponent } from '@L3Process/system/modules/formBuilder/components/formElements/dti/dti.component';
-import { DatComponent } from '@L3Process/system/modules/formBuilder/components/formElements/dat/dat.component';
-import { CurComponent } from '@L3Process/system/modules/formBuilder/components/formElements/cur/cur.component';
-import { AdrComponent } from '@L3Process/system/modules/formBuilder/components/formElements/adr/adr.component';
+import { DefaultsService } from '@L3Process/system/services/defaults.service';
+import { TextComponent } from '@L3Process/system/modules/formBuilder/components/formElements/text/text.component';
+import { TextAreaComponent } from '@L3Process/system/modules/formBuilder/components/formElements/textArea/textArea.component';
+import { TimeComponent } from '@L3Process/system/modules/formBuilder/components/formElements/time/time.component';
+import { PasswordComponent } from '@L3Process/system/modules/formBuilder/components/formElements/password/password.component';
+import { PhoneComponent } from '@L3Process/system/modules/formBuilder/components/formElements/phone/phone.component';
+import { NumberComponent } from '@L3Process/system/modules/formBuilder/components/formElements/number/number.component';
+import { MonthComponent } from '@L3Process/system/modules/formBuilder/components/formElements/month/month.component';
+import { HiddenComponent } from '@L3Process/system/modules/formBuilder/components/formElements/hidden/hidden.component';
+import { EmailComponent } from '@L3Process/system/modules/formBuilder/components/formElements/email/email.component';
+import { DateTimeComponent } from '@L3Process/system/modules/formBuilder/components/formElements/dateTime/dateTime.component';
+import { DateComponent } from '@L3Process/system/modules/formBuilder/components/formElements/date/date.component';
+import { CurrencyComponent } from '@L3Process/system/modules/formBuilder/components/formElements/currency/currency.component';
+import { AddressComponent } from '@L3Process/system/modules/formBuilder/components/formElements/address/address.component';
 import { DragulaModule } from 'ng2-dragula';
-import { ChkComponent } from '@L3Process/system/modules/formBuilder/components/formElements/chk/chk.component';
-import { AncComponent } from '@L3Process/system/modules/formBuilder/components/formElements/anc/anc.component';
-import { BlkComponent } from '@L3Process/system/modules/formBuilder/components/formElements/blk/blk.component';
-import { BtnComponent } from '@L3Process/system/modules/formBuilder/components/formElements/btn/btn.component';
-import { RadComponent } from '@L3Process/system/modules/formBuilder/components/formElements/rad/rad.component';
-import { FstComponent } from '@L3Process/system/modules/formBuilder/components/formElements/fst/fst.component';
-import { SelComponent } from '@L3Process/system/modules/formBuilder/components/formElements/sel/sel.component';
-import { MslComponent } from '@L3Process/system/modules/formBuilder/components/formElements/msl/msl.component';
-import { IcbComponent } from '@L3Process/system/modules/formBuilder/components/formElements/icb/icb.component';
-import { AcsComponent } from '@L3Process/system/modules/formBuilder/components/formElements/acs/acs.component';
+import { CheckboxComponent } from '@L3Process/system/modules/formBuilder/components/formElements/checkbox/checkbox.component';
+import { AnchorComponent } from '@L3Process/system/modules/formBuilder/components/formElements/anchor/anchor.component';
+import { BlankComponent } from '@L3Process/system/modules/formBuilder/components/formElements/blank/blank.component';
+import { ButtonComponent } from '@L3Process/system/modules/formBuilder/components/formElements/button/button.component';
+import { RadioComponent } from '@L3Process/system/modules/formBuilder/components/formElements/radio/radio.component';
+import { FieldSetComponent } from '@L3Process/system/modules/formBuilder/components/formElements/fieldSet/fieldSet.component';
+import { SelectComponent } from '@L3Process/system/modules/formBuilder/components/formElements/select/select.component';
+import { MultiSelectComponent } from '@L3Process/system/modules/formBuilder/components/formElements/multiSelect/multiSelect.component';
+import { IconicButtonComponent } from '@L3Process/system/modules/formBuilder/components/formElements/iconicButton/iconicButton.component';
+import { AutoCompleteComponent } from '@L3Process/system/modules/formBuilder/components/formElements/autoComplete/autoComplete.component';
 import { NgxSelectModule, INgxSelectOptions } from 'ngx-select-ex';
 import { JSONEditorModule } from 'ngx-jsoneditor';
 import { HTMLComponent } from "@L3Process/system/modules/formBuilder/components/formElements/html/html.component";
@@ -56,29 +56,29 @@ const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more
     FormBuilderComponent,
     FormDragComponent,
     MasterFormComponent,
-    TxtComponent,
-    TxaComponent,
-    TimComponent,
-    PwdComponent,
-    PhnComponent,
-    NumComponent,
-    MonComponent,
-    HidComponent,
-    EmlComponent,
-    DtiComponent,
-    DatComponent,
-    CurComponent,
-    AdrComponent,
-    ChkComponent,
-    AncComponent,
-    BlkComponent,
-    BtnComponent,
-    RadComponent,
-    FstComponent,
-    SelComponent,
-    MslComponent,
-    IcbComponent,
-    AcsComponent,
+    TextComponent,
+    TextAreaComponent,
+    TimeComponent,
+    PasswordComponent,
+    PhoneComponent,
+    NumberComponent,
+    MonthComponent,
+    HiddenComponent,
+    EmailComponent,
+    DateTimeComponent,
+    DateComponent,
+    CurrencyComponent,
+    AddressComponent,
+    CheckboxComponent,
+    AnchorComponent,
+    BlankComponent,
+    ButtonComponent,
+    RadioComponent,
+    FieldSetComponent,
+    SelectComponent,
+    MultiSelectComponent,
+    IconicButtonComponent,
+    AutoCompleteComponent,
     HTMLComponent,
     FileComponent
   ],
@@ -98,12 +98,12 @@ const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more
     CKEditorModule,
     FormGeneratorModule
   ],
-  entryComponents: [TxtComponent, TxaComponent, TimComponent, PwdComponent, PhnComponent,
-                    NumComponent, MonComponent, HidComponent, EmlComponent, DtiComponent,
-                    DatComponent, CurComponent, AdrComponent, ChkComponent,
-                    AncComponent, BlkComponent, BtnComponent, RadComponent,
-                    AcsComponent, FstComponent, IcbComponent, SelComponent,
-                    MslComponent, HTMLComponent, FileComponent],
+  entryComponents: [TextComponent, TextAreaComponent, TimeComponent, PasswordComponent, PhoneComponent,
+                    NumberComponent, MonthComponent, HiddenComponent, EmailComponent, DateTimeComponent,
+                    DateComponent, CurrencyComponent, AddressComponent, CheckboxComponent,
+                    AnchorComponent, BlankComponent, ButtonComponent, RadioComponent,
+                    AutoCompleteComponent, FieldSetComponent, IconicButtonComponent, SelectComponent,
+                    MultiSelectComponent, HTMLComponent, FileComponent],
   providers: [FormBuilderService, FormMasterService, FieldControlService, FormJsonService, DefaultsService],
   bootstrap: [FormBuilderComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

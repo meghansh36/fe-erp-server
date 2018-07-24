@@ -1,28 +1,41 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, AfterViewInit, OnDestroy, Renderer2, ViewChild, ViewContainerRef, TemplateRef, ElementRef } from '@angular/core';
-import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
-import { DependentService } from '@L3Process/system/modules/formGenerator/services/dependent.service';
-import { FieldConfig } from '@L1Process/system/modules/formGenerator/models/field-config.interface';
-import * as jsonLogic from 'json-logic-js';
-import { UtilityService } from '@L3Process/system/services/utility.service';
-import * as _ from 'lodash';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  AfterViewInit,
+  OnDestroy,
+  Renderer2,
+  ViewChild,
+  ViewContainerRef,
+  TemplateRef,
+  ElementRef
+} from "@angular/core";
+import { FormGroup, FormBuilder, AbstractControl } from "@angular/forms";
+import { DependentService } from "@L3Process/system/modules/formGenerator/services/dependent.service";
+import { FieldConfig } from "@L1Process/system/modules/formGenerator/models/field-config.interface";
+import * as jsonLogic from "json-logic-js";
+import { UtilityService } from "@L3Process/system/services/utility.service";
+import * as _ from "lodash";
 
 @Component({
-  exportAs: 'feForm',
-  selector: 'feForm',
-  styleUrls: ['form.component.css'],
-  templateUrl: 'form.component.html'
+  exportAs: "feForm",
+  selector: "feForm",
+  styleUrls: ["form.component.css"],
+  templateUrl: "form.component.html"
 })
-export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDestroy {
-  @Input()
-  schema: any;
+export class FeFormComponent
+  implements OnChanges, OnInit, AfterViewInit, OnDestroy {
+  @Input() schema: any;
 
-  @Input()
-  formInstance?: any;
+  @Input() formInstance?: any;
 
-  @Output()
-  submit: EventEmitter<any> = new EventEmitter<any>();
+  @Output() submit: EventEmitter<any> = new EventEmitter<any>();
 
-  @ViewChild('formHelp', { read: ViewContainerRef }) helpContainer: ViewContainerRef;
+  @ViewChild("formHelp", { read: ViewContainerRef })
+  helpContainer: ViewContainerRef;
 
   group: FormGroup;
   instance: any;
@@ -35,25 +48,23 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
   protected _schema: any;
   protected _buttons: any;
 
-
-
-
-  constructor(protected _fb: FormBuilder, protected _dependent: DependentService, protected _renderer: Renderer2, protected _eleRef: ElementRef, protected _utility: UtilityService) {
+  constructor(
+    protected _fb: FormBuilder,
+    protected _dependent: DependentService,
+    protected _renderer: Renderer2,
+    protected _eleRef: ElementRef,
+    protected _utility: UtilityService
+  ) {
     this.instance = this;
     this.componentInstances = [];
   }
 
-  protected _beforeNgOnInit() {
+  protected _beforeNgOnInit() {}
 
-  }
-
-  protected _afterNgOnInit() {
-
-  }
+  protected _afterNgOnInit() {}
 
   ngOnInit() {
     this._beforeNgOnInit();
-    console.log("this.schema", this.schema);
     if (this.schema && this.schema.constructor === Object) {
       this._schema = _.assign({}, this.schema);
     } else {
@@ -62,42 +73,29 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
     this.buttons = this._schema.buttons;
     this._setComponents();
     this._createGroup();
-    this._applyConditions()
+    this._applyConditions();
     this._afterNgOnInit();
   }
 
-  protected _beforeNgOnDestroy() {
+  protected _beforeNgOnDestroy() {}
 
-  }
-
-  protected _afterNgOnDestroy() {
-
-  }
+  protected _afterNgOnDestroy() {}
 
   protected _setComponents() {
-    console.log("this.schema", this._schema);
     const schema = this._schema;
-    console.log("_setComponents schema", schema, );
     if (schema) {
-      console.log(1);
       if (schema.constructor === Array) {
-        console.log(2);
         this.components = schema;
       } else if (schema.constructor === Object) {
-        console.log(3);
         if (schema.components) {
-          console.log(4);
           this.components = schema.components;
         } else {
-          console.log(5);
           this.components = [schema];
         }
       }
     }
     schema.components = this.components;
     this._schema = schema;
-    console.log("this.components", this.components);
-
   }
 
   ngOnDestroy() {
@@ -111,12 +109,19 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
     this._afterNgOnDestroy();
   }
 
-  protected _detectGroupValueChange(conditionFnction: Function, condition?: any) {
-    this._$groupValueChange.push(this.group.valueChanges.subscribe(conditionFnction.bind(this, condition)));
+  protected _detectGroupValueChange(
+    conditionFnction: Function,
+    condition?: any
+  ) {
+    this._$groupValueChange.push(
+      this.group.valueChanges.subscribe(conditionFnction.bind(this, condition))
+    );
   }
 
   protected _simpleEnableHandler(condition: { [key: string]: any }) {
-    this._$simpleConditionChange = this.group.controls[condition.when].valueChanges.subscribe((data) => {
+    this._$simpleConditionChange = this.group.controls[
+      condition.when
+    ].valueChanges.subscribe(data => {
       if (data == condition.eq) {
         this.group.disable({ emitEvent: false });
       }
@@ -124,7 +129,7 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
   }
 
   protected _advancedEnableHandler(condition: string) {
-    const theInstructions = new Function('controls', condition);
+    const theInstructions = new Function("controls", condition);
     function handler() {
       const show = theInstructions(this.controls);
       if (show == true) {
@@ -136,48 +141,45 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
 
   protected _jsonEnableHandler(condition: object) {
     function handler() {
-      if (jsonLogic.apply(condition['condition'], this.group.controls)) {
+      if (jsonLogic.apply(condition["condition"], this.group.controls)) {
         this.group.disable({ emitEvent: false });
       }
     }
     this._detectGroupValueChange(handler);
   }
 
-  protected _beforeNgOnChanges() {
+  protected _beforeNgOnChanges() {}
 
-  }
-
-  protected _afterNgOnChanges() {
-
-  }
+  protected _afterNgOnChanges() {}
 
   ngOnChanges() {
     this._beforeNgOnChanges();
     if (this.group) {
       const controls = Object.keys(this.controls);
-      const configControls = this.schemaControls.map((item) => item.flexiLabel);
+      const configControls = this.schemaControls.map(item => item.flexiLabel);
 
       controls
-        .filter((control) => !configControls.includes(control))
-        .forEach((control) => this.group.removeControl(control));
+        .filter(control => !configControls.includes(control))
+        .forEach(control => this.group.removeControl(control));
 
       configControls
-        .filter((control) => !controls.includes(control))
-        .forEach((flexiLabel) => {
-          const config = this.components.find((control) => control.flexiLabel === flexiLabel);
-          this.group.addControl(flexiLabel, this._utility.createControl(this._fb, config));
+        .filter(control => !controls.includes(control))
+        .forEach(flexiLabel => {
+          const config = this.components.find(
+            control => control.flexiLabel === flexiLabel
+          );
+          this.group.addControl(
+            flexiLabel,
+            this._utility.createControl(this._fb, config)
+          );
         });
     }
     this._afterNgOnChanges();
   }
 
-  protected _beforeNgAfterViewInit() {
+  protected _beforeNgAfterViewInit() {}
 
-  }
-
-  protected _afterNgAfterViewInit() {
-
-  }
+  protected _afterNgAfterViewInit() {}
 
   ngAfterViewInit() {
     this._beforeNgAfterViewInit();
@@ -190,7 +192,7 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
     if (this.disabled) {
       this.disable();
     }
-    
+
     this._afterNgAfterViewInit();
   }
 
@@ -209,26 +211,26 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
   }
 
   protected _applyConditionalShowHide() {
-    console.log("Going to apply applyConditionalShowHide");
-    this._applyCondition(this.showCondition, 'show');
+    this._applyCondition(this.showCondition, "show");
   }
 
   protected _applyConditionalDisable() {
-    console.log("Going to apply applyConditionalDisable");
-    this._applyCondition(this.disableCondition, 'disable');
+    this._applyCondition(this.disableCondition, "disable");
   }
 
   protected _applyCondition(conditionObj, action) {
     for (const conditionType in conditionObj) {
       const condition = conditionObj[conditionType];
       const conditionHandlerName = `_${conditionType}ConditionHandler`;
-      console.log("conditionHandlerName", conditionHandlerName);
-      if (this[conditionHandlerName] && typeof this[conditionHandlerName] == 'function') {
-        console.log("Calling condition handler");
+      if (
+        this[conditionHandlerName] &&
+        typeof this[conditionHandlerName] == "function"
+      ) {
         this[conditionHandlerName](condition, action);
-      }
-      else {
-        console.log(`Given condition handler is not a function for field ${this.code}`);
+      } else {
+        console.log(
+          `Given condition handler is not a function for field ${this.code}`
+        );
       }
     }
   }
@@ -237,71 +239,63 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
     let resFlag = true;
     const self = this;
     function handler(data) {
-      console.log("Simple condition handler", data);
       (<any>window).leftValue = data;
-      (<any>window).rightValue = condition['value'];
-      (<any>window).operator = condition['operator'];
+      (<any>window).rightValue = condition["value"];
+      (<any>window).operator = condition["operator"];
       (<any>window).result = false;
-      const evalStr = `window.result = window.leftValue ${(<any>window).operator} window.rightValue `;
-      console.log("evalStr", evalStr);
+      const evalStr = `window.result = window.leftValue ${
+        (<any>window).operator
+      } window.rightValue `;
       eval(evalStr);
       resFlag = (<any>window).result;
-      console.log('leftValue',(<any>window).leftValue,'rigthValue',(<any>window).rightValue,'resFlag', resFlag, "action", action);
-      //if ( resFlag ) {
-      if (action === 'show' && resFlag ) {
-        console.log(1);
+      if (action === "show" && resFlag) {
         if (!condition[action]) {
-          console.log(2);
           self.hideForm.call(self);
         } else {
-          console.log(3);
           self.showForm.call(self);
         }
-
-      } else if (action === 'disable' && resFlag) {
-        console.log(4);
+      } else if (action === "disable" && resFlag) {
         if (condition[action]) {
-          console.log(5);
           self.disable.call(self);
         } else {
-          console.log(6);
           self.enable.call(self);
         }
       }
-      //}
     }
-    if (action === 'show') {
-      this._$simpleShowConditionChange = this.group.get(condition.when).valueChanges.subscribe((data) => {
-        handler(data);
-      });
-    } else if (action === 'disable') {
-      this._$simpleDisableConditionChange = this.group.get(condition.when).valueChanges.subscribe(data => {
-        handler(data);
-      });
+    if (action === "show") {
+      this._$simpleShowConditionChange = this.group
+        .get(condition.when)
+        .valueChanges.subscribe(data => {
+          handler(data);
+        });
+    } else if (action === "disable") {
+      this._$simpleDisableConditionChange = this.group
+        .get(condition.when)
+        .valueChanges.subscribe(data => {
+          handler(data);
+        });
     }
   }
 
   protected _conditionHandler(conditionObj) {
     const appliedCondition = conditionObj.condition;
     const type = conditionObj.type;
-    console.log("_conditionHandler appliedCondition", appliedCondition, "appliedCondition.constructor === Array", appliedCondition.constructor, Array, appliedCondition.constructor === Array);
     function handleCondition(cond, conditionType) {
-      console.log("handleCondition condition", cond, " conditionType", conditionType);
-      if (conditionType === 'function') {
-        const fn = new Function('controls', 'form', 'field', cond);
+      if (conditionType === "function") {
+        const fn = new Function("controls", "form", "field", cond);
         const resFlag = fn(this.group.controls, this.group, this);
-        console.log("fn resFlag", resFlag);
         return resFlag;
-      } else if (conditionType === 'jsonLogic') {
+      } else if (conditionType === "jsonLogic") {
         const resFlag = jsonLogic.apply(cond, this.group.controls);
-        console.log("jsonLogin resFlag", resFlag);
         return resFlag;
       }
     }
     let show = true;
 
-    if (appliedCondition.constructor === Array || appliedCondition.constructor === Object) {
-      console.log("Going to iterate appliedCondition");
+    if (
+      appliedCondition.constructor === Array ||
+      appliedCondition.constructor === Object
+    ) {
       for (let i in appliedCondition) {
         show = handleCondition.call(this, appliedCondition[i], type);
         if (!show) {
@@ -309,14 +303,12 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
         }
       }
     } else {
-      console.log("Single applied condition");
       show = handleCondition.call(this, appliedCondition, type);
     }
     return show;
   }
 
   protected _showConditionHandler(conditionObj) {
-    console.log("showConditionHandler  conditionObj", conditionObj);
     if (!this._conditionHandler(conditionObj)) {
       this.hideForm();
     }
@@ -334,8 +326,8 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
   protected _advancedConditionHandler(condition: string, action: string) {
     const conditionObj = {
       condition,
-      type: 'function'
-    }
+      type: "function"
+    };
     const handlerFn = `_${action}ConditionHandler`;
     if (this[handlerFn]) {
       this._detectGroupValueChange(this[handlerFn], conditionObj);
@@ -347,8 +339,8 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
   protected _jsonConditionHandler(condition: object, action: string) {
     const conditionObj = {
       condition,
-      type: 'jsonLogic'
-    }
+      type: "jsonLogic"
+    };
     const handlerFn = `_${action}ConditionHandler`;
     if (this[handlerFn]) {
       this._detectGroupValueChange(this[handlerFn], conditionObj);
@@ -365,8 +357,8 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
 
   getDependentData(flexilabel, value) {
     let data: any = this._dependent.dependentData(flexilabel, value);
-    data.forEach((field) => {
-      if (field.fieldType == 'SEL' || field.fieldType == 'MSL') {
+    data.forEach(field => {
+      if (field.fieldType == "SEL" || field.fieldType == "MSL") {
         this.setFieldOptions(field.flexiLabel, field.data);
       } else {
         this.setValue(field.flexiLabel, field.data);
@@ -384,7 +376,7 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
 
   setDisabled(flexiLabel: string, disable?: boolean) {
     if (this.getControl(flexiLabel)) {
-      const method = disable ? 'disable' : 'enable';
+      const method = disable ? "disable" : "enable";
       this.getControl(flexiLabel)[method]();
       return;
     }
@@ -399,22 +391,21 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
   }
 
   hide() {
-    this._renderer.addClass(this._eleRef.nativeElement, 'hidden');
+    this._renderer.addClass(this._eleRef.nativeElement, "hidden");
   }
 
   show() {
-    this._renderer.removeClass(this._eleRef.nativeElement, 'hidden');
+    this._renderer.removeClass(this._eleRef.nativeElement, "hidden");
   }
 
   hideForm() {
-    console.log("this.formInstance", this.formInstance);
-    if ( this.formInstance ) {
+    if (this.formInstance) {
       this.formInstance.hide();
     }
   }
 
   showForm() {
-    if ( this.formInstance ) {
+    if (this.formInstance) {
       this.formInstance.show();
     }
   }
@@ -445,7 +436,7 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
   }
 
   setDefaultValue() {
-    this.components.forEach((componentConfig) => {
+    this.components.forEach(componentConfig => {
       const flexiLabel: string = componentConfig.flexiLabel;
       const value: any = componentConfig.defaultValue;
       if (value) {
@@ -485,7 +476,7 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
   }
 
   get code() {
-    return this._schema.code || 'feFormCode';
+    return this._schema.code || "feFormCode";
   }
 
   get label() {
@@ -523,9 +514,13 @@ export class FeFormComponent implements OnChanges, OnInit, AfterViewInit, OnDest
   get schemaControls() {
     return this.components;
   }
-  get changes() { return this.group.valueChanges; }
-  get valid() { return this.group.valid; }
-  get value() { return this.group.value; }
-
-
+  get changes() {
+    return this.group.valueChanges;
+  }
+  get valid() {
+    return this.group.valid;
+  }
+  get value() {
+    return this.group.value;
+  }
 }

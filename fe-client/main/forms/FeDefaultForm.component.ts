@@ -126,7 +126,7 @@ export class FeDefaultFormComponent implements OnInit, AfterViewInit {
                 "key": "_xhawl6mlx",
                 "order": 0,
                 "parent": "root_drop",
-                "componentName": "TxtComponent"
+                "componentName": "TextComponent"
             }/* ,
             {
                 "type": "DAT",
@@ -172,7 +172,7 @@ export class FeDefaultFormComponent implements OnInit, AfterViewInit {
                 "key": "_xhawl6mlx",
                 "order": 0,
                 "parent": "root_drop",
-                "componentName": "TxtComponent"
+                "componentName": "TextComponent"
             } */
         ];
         console.log("this.dummyField", this.dummyField);

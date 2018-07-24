@@ -5,21 +5,21 @@
         <h5 class="card-title">{{label}}</h5>
       </div>
       <div class="form-header-container" [attr.id]="code+'_HELP_CONTAINER'">
-        
+
       </div>
     </div>
     <div class="card-body">
       <div class="form-fields-container">
-        <form [attr.id]="code" class="feForm" [formGroup]="group" (submit)="handleSubmit($event)">
+        <form [attr.id]="code" class="feForm flex-container" [formGroup]="group" (submit)="handleSubmit($event)">
           <ng-container *ngFor="let field of components;" feField [form]="formInstance" [schema]="schema" [config]="field" [group]="group"
             [formComponent]="instance">
           </ng-container>
-          
+
         </form>
       </div>
     </div>
     <div class="card-footer text-muted" >
-      <div class="form-buttons-container display-flex space-around" *ngIf="buttons"> 
+      <div class="form-buttons-container display-flex space-around" *ngIf="buttons">
         <ng-container *ngFor="let btn of buttons">
           <feFormButton [buttonConfig]="btn" [group]="group" [form]="formInstance"></feFormButton>
         </ng-container>

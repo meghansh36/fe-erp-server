@@ -1,23 +1,27 @@
-import { Component, ViewChild, ComponentFactoryResolver, ViewContainerRef, DoCheck, Renderer2, OnInit, AfterViewInit } from '@angular/core';
-import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { NgBootstrapService } from '@L3Process/system/services/NgBootstrap.service';
-import { FormMasterService } from '@L3Process/system/modules/formBuilder/services/formMaster.service';
-import { FieldControlService } from '@L3Process/system/modules/formBuilder/services/fieldControl.service';
-import { FormJsonService } from '@L3Process/system/modules/formBuilder/services/formJson.service';
-import { DragulaService } from 'ng2-dragula';
-import { FormBuilderService } from '@L3Process/system/modules/formBuilder/services/formBuilder.service';
-import { FstComponent } from '@L3Process/system/modules/formBuilder/components/formElements/fst/fst.component';
-import * as _ from 'lodash';
-import { MasterFormComponent } from '@L3Process/system/modules/formBuilder/components/Master/masterForm.component';
-import { reject } from 'q';
-import { ActivatedRoute } from '@angular/router';
-import { FormSchemaService } from '@L3Main/services/formSchema.service';
-// import { FieldRenderDirective } from '@L3Process/system/modules/formBuilder/directives/fieldRender.directive';
+import {
+  Component,
+  ViewChild,
+  ComponentFactoryResolver,
+  ViewContainerRef,
+  DoCheck,
+  Renderer2,
+  OnInit,
+  AfterViewInit
+} from "@angular/core";
+import { NgBootstrapService } from "@L3Process/system/services/NgBootstrap.service";
+import { FormMasterService } from "@L3Process/system/modules/formBuilder/services/formMaster.service";
+import { FieldControlService } from "@L3Process/system/modules/formBuilder/services/fieldControl.service";
+import { FormJsonService } from "@L3Process/system/modules/formBuilder/services/formJson.service";
+import { DragulaService } from "ng2-dragula";
+import { FormBuilderService } from "@L3Process/system/modules/formBuilder/services/formBuilder.service";
+import * as _ from "lodash";
+import { MasterFormComponent } from "@L3Process/system/modules/formBuilder/components/Master/masterForm.component";
+import { reject } from "q";
+
 @Component({
-  selector: 'form-builder',
-  templateUrl: './formBuilder.component.html',
-  styleUrls: ['./formBuilder.component.css'],
-  providers: [FormSchemaService]
+  selector: "form-builder",
+  templateUrl: "./formBuilder.component.html",
+  styleUrls: ["./formBuilder.component.css"]
 })
 export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 
@@ -26,70 +30,100 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
   @ViewChild('content') content;
   @ViewChild('preview') preview;
   cond: Boolean = false;
-  basic: String = 'basic';
-  advanced: String = 'advanced';
+  basic: String = "basic";
+  advanced: String = "advanced";
   modalRef: any;
-  //formSettingModalRef: 
+
   rootDrop: any;
   component: any;
   finalJSON;
   formJson: any;
   jsonEditorConfig;
   DOMArray: any = [];
+  protected _dragulaObservable$: any;
+
   public formJsonHelp;
 
-  constructor(private bootstrapService: NgBootstrapService,
-    private masterFormService: FormMasterService,
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private fieldControlService: FieldControlService,
-    private formJsonService: FormJsonService,
-    private dragulaService: DragulaService,
-    private formBuilderService: FormBuilderService,
-    private renderer: Renderer2,
-    public formSchemaService: FormSchemaService,
-    public route: ActivatedRoute
+  constructor(
+    protected _bootstrapService: NgBootstrapService,
+    protected _masterFormService: FormMasterService,
+    protected _componentFactoryResolver: ComponentFactoryResolver,
+    protected _fieldControlService: FieldControlService,
+    protected _formJsonService: FormJsonService,
+    protected _dragulaService: DragulaService,
+    protected _formBuilderService: FormBuilderService,
+    protected _renderer: Renderer2
   ) {
-    this.formJson = this.formJsonService.MasterJSON;
-    this.dragulaService.setOptions('bag-one', {
+    this._initialize();
+  }
+
+  protected _initialize() {
+    this.formJson = this._formJsonService.MasterJSON;
+    this._setDragulaOptions();
+    this._dragulaService.drop.subscribe(this._onComponentDrop.bind(this));
+  }
+
+  protected _setDragulaOptions() {
+    this._dragulaService.setOptions("bag-one", {
       revertOnSpill: true,
-      copy: function (el, source) {
-        return source.id === 'not_copy';
+      copy: function(el, source) {
+        return source.id === "not_copy";
       },
-      accepts: function (el, target, source, sibling) {
-        const targetClassesArr = target.className.trim().split(' ');
-        const fieldClassesArr = el.className.trim().split(' ');
-        if (_.includes(targetClassesArr, 'buttonDropZone') &&
-          (_.includes(fieldClassesArr, 'button') || _.includes(fieldClassesArr, 'button-input'))) {
+      accepts: function(el, target, source, sibling) {
+        const targetClassesArr = target.className.trim().split(" ");
+        const fieldClassesArr = el.className.trim().split(" ");
+        if (
+          _.includes(targetClassesArr, "buttonDropZone") &&
+          (_.includes(fieldClassesArr, "button") ||
+            _.includes(fieldClassesArr, "button-input"))
+        ) {
           return true;
-        } else if (_.includes(targetClassesArr, 'FSTdropZone') || _.includes(targetClassesArr, 'customDropZone')) {
+        } else if (
+          _.includes(targetClassesArr, "FSTdropZone") ||
+          _.includes(targetClassesArr, "customDropZone")
+        ) {
           return true;
         }
       }
     });
-
-    this.dragulaService.drop.subscribe((value) => {
-      if (this.rootDrop === undefined) {
-        this.rootDrop = value[2];
-      }
-      if (value[1].nodeName === 'LI') {
-        const componentName = value[1].attributes.getNamedItem('componentName').nodeValue;
-        console.log("componentName", componentName);
-        const index = this.calculateIndex(value);
-        value[1].remove();
-        this.dropComplete(this.formBuilderService.getComponent(componentName), index, value);
-      } else {
-        const newIndex = this.calculateIndex(value);
-        value[1].parentComponent = value[2].id;
-        this.formJsonService.updateMasterJSONOnMove(value[2], value[3], value[1], newIndex);
-       // this.formJsonService.buildFinalJSON();
-      }
-    });
   }
+
+  protected _onComponentDrop(value) {
+    if (this.rootDrop === undefined) {
+      this.rootDrop = value[2];
+    }
+    if (value[1].nodeName === "LI") {
+      const componentName = value[1].attributes.getNamedItem("componentName")
+        .nodeValue;
+      const index = this.calculateIndex(value);
+      value[1].remove();
+      this.dropComplete(
+        this._formBuilderService.getComponent(componentName),
+        index,
+        value
+      );
+    } else {
+      const newIndex = this.calculateIndex(value);
+      value[1].parentComponent = value[2].id;
+      this._formJsonService.updateMasterJSONOnMove(
+        value[2],
+        value[3],
+        value[1],
+        newIndex
+      );
+    }
+  }
+
+  protected _beforeNgDoCheck() {}
 
   ngDoCheck() {
-    this.formJsonService.buildFinalJSON();
-    this.finalJSON = this.formJsonService.getFinalJSON();
+    this._beforeNgDoCheck();
+    this._formJsonService.buildFinalJSON();
+    this.finalJSON = this._formJsonService.getFinalJSON();
+    this._afterNgDoCheck();
   }
+
+  protected _afterNgDoCheck() {}
 
   onHidden() {
     this.hideFields(this.hidden);
@@ -99,48 +133,29 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     this.disableFields(this.disabled);
   }
 
+  protected _beforeNgOnInit() {}
+
+  protected _afterNgOnInit() {}
+
   ngOnInit() {
-    this.route.params
-            .filter(params => params.id)
-            .subscribe(params => {
-                let id = params.id;
-                if(id) {
-                  this.getSchema(id);
-                }
-                
-            })
-    this.init();
+    this._beforeNgOnInit();
+    this._init();
+    this._afterNgOnInit();
   }
 
-  getSchema(id: number) {
-    let form = this.formSchemaService.getFormSchema(id);
-    if (form) {
-        this.finalJSON = form;
-        this.formJson = this.finalJSON;
-       // console.log(this.schema);
-       this.populateFormBuilder(form.components);
-    }
-    else {
-        console.log('no schema found');
-    }
-
-}
   ngAfterViewInit() {
     this.applyDisplayProps();
   }
 
-  update(event) {
-  }
+  update(event) {}
 
-  init() {
+  _init() {
     this.jsonEditorConfig = {
-      mode: 'code', onChange: this.update
+      mode: "code",
+      onChange: this.update
     };
     this.initFormJsonHelp();
-    //this.applyDisplayProps();
   }
-
-
 
   applyDisplayProps() {
     this.disableFields(this.disabled);
@@ -166,47 +181,53 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
   initFormJsonHelp() {
     this.formJsonHelp = {
       show: {
-        'simple': {
-          "show": true,
-          "when": "field-flexilabel",
-          "value": 'rathor',
-          "operator": '=='
+        simple: {
+          show: true,
+          when: "field-flexilabel",
+          value: "rathor",
+          operator: "=="
         },
-        'advanced': ['var show; return show = controls.number.value == 150 ? true : false;', 'var show1; return show1 = controls.otherControl.value == 150 ? true : false;'],
-        "json": {
-          "condition": {
-            "and": [
-              { "===": [{ "var": "username.value" }, 'apple'] },
-              { "===": [{ "var": "number.value" }, 15] }
+        advanced: [
+          "var show; return show = controls.number.value == 150 ? true : false;",
+          "var show1; return show1 = controls.otherControl.value == 150 ? true : false;"
+        ],
+        json: {
+          condition: {
+            and: [
+              { "===": [{ var: "username.value" }, "apple"] },
+              { "===": [{ var: "number.value" }, 15] }
             ]
           },
-          "condition1": {
-            "and": [
-              { "===": [{ "var": "someControl.value" }, 'someValue'] },
-              { "===": [{ "var": "someOtherControl.value" }, 'value'] }
+          condition1: {
+            and: [
+              { "===": [{ var: "someControl.value" }, "someValue"] },
+              { "===": [{ var: "someOtherControl.value" }, "value"] }
             ]
           }
         }
       },
       disable: {
-        'simple': {
-          "disable": true,
-          "when": "field-flexilabel",
-          "value": 'rathor',
-          "operator": '=='
+        simple: {
+          disable: true,
+          when: "field-flexilabel",
+          value: "rathor",
+          operator: "=="
         },
-        'advanced': ['var show; return show = controls.number.value == 150 ? true : false;', 'var show1; return show1 = controls.otherControl.value == 150 ? true : false;'],
-        "json": {
-          "condition": {
-            "and": [
-              { "===": [{ "var": "username.value" }, 'apple'] },
-              { "===": [{ "var": "number.value" }, 15] }
+        advanced: [
+          "var show; return show = controls.number.value == 150 ? true : false;",
+          "var show1; return show1 = controls.otherControl.value == 150 ? true : false;"
+        ],
+        json: {
+          condition: {
+            and: [
+              { "===": [{ var: "username.value" }, "apple"] },
+              { "===": [{ var: "number.value" }, 15] }
             ]
           },
-          "condition1": {
-            "and": [
-              { "===": [{ "var": "someControl.value" }, 'someValue'] },
-              { "===": [{ "var": "someOtherControl.value" }, 'value'] }
+          condition1: {
+            and: [
+              { "===": [{ var: "someControl.value" }, "someValue"] },
+              { "===": [{ var: "someOtherControl.value" }, "value"] }
             ]
           }
         }
@@ -231,35 +252,40 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
   }
 
   openModal() {
-    console.log(this.content);
-    this.modalRef = this.bootstrapService.openModal(this.content, { size: 'lg' });
-    this.masterFormService.setModalRef(this.modalRef);
+    this.modalRef = this._bootstrapService.openModal(this.content, {
+      size: "lg"
+    });
+    this._masterFormService.setModalRef(this.modalRef);
   }
 
   openFormSettingModal(content) {
-    this.bootstrapService.openModal(content, { size: 'lg' });
+    this._bootstrapService.openModal(content, { size: "lg" });
   }
 
   generateNewKey() {
-    return '_' + Math.random().toString(36).substr(2, 9);
+    return (
+      "_" +
+      Math.random()
+        .toString(36)
+        .substr(2, 9)
+    );
   }
 
   moveDOMNode(parent, nextSibling, el) {
-    console.log(parent);
     parent.insertBefore(el, nextSibling);
   }
 
   createComponentFunc(componentObj, index, target, value) {
-
     const key = this.generateNewKey();
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentObj.component);
-    this.masterFormService.setCurrentKey(key);
+    const componentFactory = this._componentFactoryResolver.resolveComponentFactory(
+      componentObj.component
+    );
+    this._masterFormService.setCurrentKey(key);
     let viewContainerRef;
     const targetClassesArr = target.className.trim().split(" ");
-    if (_.includes(targetClassesArr, 'FSTdropZone')) {
-      viewContainerRef = this.fieldControlService.getFstCollection(target.id);
-      console.log('..................');
-    } else if (_.includes(targetClassesArr, 'buttonDropZone')) {
+    if (_.includes(targetClassesArr, "FSTdropZone")) {
+      viewContainerRef = this._fieldControlService.getFstCollection(target.id);
+    } else if (_.includes(targetClassesArr, "buttonDropZone")) {
       viewContainerRef = this.buttonHost;
     } else {
       viewContainerRef = this.host;
@@ -267,43 +293,58 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 
     const componentRef = viewContainerRef.createComponent(componentFactory);
     this.moveDOMNode(target, value[4], componentRef.location.nativeElement);
-    this.fieldControlService.setFieldRef(componentRef, this, componentObj);
-    this.formJsonService.addComponentToMasterJSON(key, componentRef, target.id, index);
+    this._fieldControlService.setFieldRef(componentRef, this, componentObj);
+    this._formJsonService.addComponentToMasterJSON(
+      key,
+      componentRef,
+      target.id,
+      index
+    );
     target.children[index].generatedKey = key;
     target.children[index].parentComponent = target.id;
-    this.formJsonService.updateMasterJSONOnDrop(target, key, false);
-    //this.formJsonService.buildFinalJSON();
-    //console.log(this.formJsonService.getMasterJSON());
+    this._formJsonService.updateMasterJSONOnDrop(target, key, false);
+    //this._formJsonService.buildFinalJSON();
+    //console.log(this._formJsonService.getMasterJSON());
   }
 
   createComponentsFromJSON(componentProps) {
     return new Promise((res, rej) => {
       const copy = _.assign({}, componentProps);
+
       const key = copy.key;
-      this.masterFormService.setCurrentKey(key);
+      this._masterFormService.setCurrentKey(key);
       const parentID = copy.parent;
       let viewContainerRef;
-      if (parentID === 'root_drop') {
+      if (parentID === "root_drop") {
         viewContainerRef = this.host;
-        // if (copy.componentName === 'FstComponent') {
-        //   copy.components = [];
-        // }
+        if (copy.componentName === 'FieldSetComponent') {
+          copy.components = [];
+        }
       } else if (parentID === 'button_drop') {
         viewContainerRef = this.buttonHost;
       } else {
-        viewContainerRef = this.fieldControlService.getFstCollection(parentID);
+        viewContainerRef = this._fieldControlService.getFstCollection(parentID);
       }
-      const component = this.formBuilderService.getComponent(copy.componentName).component;
-      const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
+      const component = this._formBuilderService.getComponent(
+        componentProps.componentName
+      ).component;
+
+      const componentFactory = this._componentFactoryResolver.resolveComponentFactory(
+        component
+      );
 
       const componentRef = viewContainerRef.createComponent(componentFactory);
-      componentRef.instance.properties = _.assign({}, copy);
-      this.fieldControlService.setFieldRef(componentRef, this, { component });
-      this.formJsonService.addComponentToMasterJSON(key, componentRef, copy.parent, copy.order);
-      const target: any = document.querySelector(`#${copy.parent}`);
-      console.log('target', target);
-      target.children[copy.order].generatedKey = key;
-      target.children[copy.order].parentComponent = target.id;
+      componentRef.instance.properties = copy;
+      this._fieldControlService.setFieldRef(componentRef, this, { component });
+      this._formJsonService.addComponentToMasterJSON(
+        key,
+        componentRef,
+        componentProps.parent,
+        componentProps.order
+      );
+      const target: any = document.querySelector(`#${componentProps.parent}`);
+      target.children[componentProps.order].generatedKey = key;
+      target.children[componentProps.order].parentComponent = target.id;
       setTimeout(() => {
         res();
       }, 10);
@@ -311,11 +352,10 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
   }
 
   async populateFormBuilder(components) {
+    console.log('input compProps', components);
     for (let i = 0; i < components.length; i++) {
-      if (components[i].components === undefined) {
-        await this.createComponentsFromJSON(components[i]);
-      } else {
-        await this.createComponentsFromJSON(components[i]);
+      await this.createComponentsFromJSON(components[i]);
+      if (components[i].components !== undefined) {
         this.populateFormBuilder(components[i].components);
       }
     }
@@ -327,18 +367,18 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     this.buttonHost.clear();
 
     const json = {
-      "id": "",
-      "code": "",
-      "formLabel": "",
-      "name": "",
-      "type": "",
-      "disabled": false,
-      "hidden": false,
-      "disableCondition": "",
-      "showCondition": "",
-      "active": true,
-      "help": "",
-      "components": [
+      id: "",
+      code: "",
+      formLabel: "",
+      name: "",
+      type: "",
+      disabled: false,
+      hidden: false,
+      disableCondition: "",
+      showCondition: "",
+      active: true,
+      help: "",
+      components: [
         {
           "type": "TXT",
           "hasParent": false,
@@ -614,26 +654,28 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
           "componentName": "RadComponent"
         }
       ],
-      "buttons": []
+      buttons: []
     };
     this.populateFormBuilder(json.components);
-    console.log(this.formJsonService.getMasterJSON());
-    //this.formJsonService.buildFinalJSON();
+    //this._formJsonService.buildFinalJSON();
   }
 
   save() {
-    this.formBuilderService.postData(this.finalJSON)
-      .subscribe((res) => { alert('data received') },
-        (err) => { console.log('getting error', err) });
+    this._formBuilderService.postData(this.finalJSON).subscribe(
+      res => {
+        alert("data received");
+      },
+      err => {
+        console.log("getting error", err);
+      }
+    );
   }
 
-  reset() {
-  }
-
+  reset() {}
 
   renderPreview() {
-    this.finalJSON = this.formJsonService.buildFinalJSON();
-    this.bootstrapService.openModal(this.preview, { size: 'lg' });
+    this.finalJSON = this._formJsonService.buildFinalJSON();
+    this._bootstrapService.openModal(this.preview, { size: 'lg' });
   }
 
   get id() {

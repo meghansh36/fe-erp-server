@@ -12,7 +12,7 @@ export const routesL1: Routes = [
     //canActivate:[LoginGuardService]
   },
   {
-    path: 'formGenerator/:id',
+    path: 'formGenerator/:id?',
     loadChildren: '@L3Process/system/modules/formGenerator/formGenerator.module#FormGeneratorModule',
     //canActivate:[LoginGuardService]
   },
