@@ -1,5 +1,5 @@
 import { Injectable, Renderer2 } from '@angular/core';
-import { DefaultsService } from '@L3Process/system/services/Defaults.service';
+import { DefaultsService } from '@L3Process/system/services/defaults.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { FieldConfig } from '@L1Process/system/modules/formGenerator/models/field-config.interface';
 
@@ -70,6 +70,10 @@ export class FeUtilityService {
             labelPosition = fieldComponent.labelPosition;
         }
 
+        if (fieldComponent.type === 'HID' && !editMode) {
+          this.renderer.addClass(fieldComponent._elemRef.nativeElement, 'hidden');
+      }
+
         let fieldContainerClasses = {};
         let classesStr = `form-field-container frm-fld-container ${type}-container`;
         if (fieldComponent.prefix || fieldComponent.suffix) {
@@ -123,7 +127,7 @@ export class FeUtilityService {
             classesStr += ` mandatory-field`;
         }
         fieldClasses = this.makeCssClassesObj(classesStr);
-        
+
         let nestedFieldContainerClasses = {};
         classesStr = `fe-field-container fe-${type}-wrapper`;
         nestedFieldContainerClasses = this.makeCssClassesObj(classesStr);
@@ -174,9 +178,7 @@ export class FeUtilityService {
         if (fieldWidth) {
             this.renderer.setStyle(fieldComponent._elemRef.nativeElement, 'width', fieldWidth);
         }
-        if (fieldComponent.type === 'HID') {
-            this.renderer.addClass(fieldComponent._elemRef.nativeElement, 'hidden');
-        }
+
 
         if (labelMargin) {
             const margin: string = `${labelMargin}`;
@@ -269,11 +271,11 @@ export class FeUtilityService {
             console.log(`Can not create form group without form builder`);
             return;
         }
-        
+
         if ( !group ) {
             group = fb.group({});
         }
-       
+
         this.createControls(fb, group, schemaControls);
         return group;
     }

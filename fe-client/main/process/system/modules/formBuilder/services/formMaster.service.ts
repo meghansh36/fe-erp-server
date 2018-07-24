@@ -18,11 +18,10 @@ export class FeFormMasterService {
   conditionalHidden: string;
   conditionalDisabled: string;
   active: boolean;
-  help: string; 
+  help: string;
 
 
   constructor(private masterJsonService: FormJsonService) {
-    console.log('formBuider data',this.formLabel,this.name,this.display);
    }
 
   setModalRef(temp) {
@@ -33,20 +32,20 @@ export class FeFormMasterService {
     return this.modalReference;
   }
 
-  setProperties(props) {
-    const masterJSON = this.masterJsonService.getMasterJSON();
-    console.log("master json", masterJSON);
-    if (masterJSON.components[this.key] === undefined) {
-      masterJSON.buttons[this.key].instance.properties = _.assignIn({}, props);
-    } else {
-      masterJSON.components[this.key].instance.properties = _.assignIn({}, props);
-    }
+  setProperties(props, key) {
+    // const masterJSON = this.masterJsonService.getMasterJSON();
+    // console.log("master json", masterJSON);
+    // if (masterJSON.components[key] === undefined) {
+    //   masterJSON.buttons[key].instance.properties = _.assignIn({}, props);
+    // } else {
+    //   masterJSON.components[key].instance.properties = _.assignIn({}, props);
+    // }
 
-    this.masterJsonService.setMasterJSON(masterJSON);
+    // this.masterJsonService.setMasterJSON(masterJSON);
+    this.masterJsonService.setMasterJSON(props, key);
   }
 
   getProperties(key) {
-    //console.log(this.properties);
     const masterJSON = this.masterJsonService.getMasterJSON();
     if (masterJSON.components[key] === undefined) {
       return masterJSON.buttons[key].instance.properties;

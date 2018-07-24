@@ -63,7 +63,7 @@
 			 [headerCheckboxable]="headerCheckboxable" [checkboxable]="checkboxable" [frozenLeft]="true">
 			</ngx-datatable-column>
 
-			<ngx-datatable-column *ngFor="let col of columns" [columnMode]="'force'" [name]="col.name" [cellClass]="col.align" [width]="col.width"
+			<ngx-datatable-column *ngFor="let col of columns" [columnMode]="'force'" [prop]="col.prop" [name]="col.name" [cellClass]="col.align" [width]="col.width"
 			 [sortable]="col.sortable" [frozenLeft]="col.frozenLeft" [resizeable]="col.resizeable"></ngx-datatable-column>
 
 			<ngx-datatable-column *ngIf="rowActions?.length">

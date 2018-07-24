@@ -34,4 +34,4 @@ global.FE = new BaseAppClass(appObj);
 FE.initialize();
 module.exports = FE.app;
 
-console.log(FE.clients.fe);
+//console.log(FE.clients.fe);

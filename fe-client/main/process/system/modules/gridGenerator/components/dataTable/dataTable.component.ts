@@ -16,7 +16,7 @@ import { NgbModal, ModalDismissReasons, NgbDropdownConfig } from '@ng-bootstrap/
 })
 export class FeDataTableComponent implements OnInit {
 	@Input() formInstance: any;
-	@Input() gridData?: any; 
+	@Input() code: string;
 	@Output() reorder = new EventEmitter;
 	@ViewChild('dropdown') dropdown: any;
 	@ViewChild('myDrop') myDrop: any;

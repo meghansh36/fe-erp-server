@@ -59,8 +59,13 @@ constructor(_clientApp) {
       });
 
 
+      router.get('/',(req,res,next)=>{
+        res.send('ANYTHING');
+      })
 
-    //});    
+
+
+   // });    
     
     this._clientApp.app.use('/:client/:legislation',router);
   }

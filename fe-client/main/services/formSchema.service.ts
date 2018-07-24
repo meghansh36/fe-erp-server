@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -140,7 +139,7 @@ export class FeFormSchemaService {
           "key": "_llmattdqg",
           "order": 1,
           "parent": "root_drop",
-          "componentName": "ChkComponent"
+          "componentName": "CheckboxComponent"
         },
         {
           "type": "PWD",
@@ -186,7 +185,7 @@ export class FeFormSchemaService {
           "key": "_5zsk34wj8",
           "order": 0,
           "parent": "root_drop",
-          "componentName": "PwdComponent"
+          "componentName": "PasswordComponent"
         },
         {
           "useDelimeter": true,
@@ -260,7 +259,7 @@ export class FeFormSchemaService {
           "key": "_7zc8dmwfp",
           "order": 0,
           "parent": "root_drop",
-          "componentName": "NumComponent"
+          "componentName": "NumberComponent"
         },
         {
           "type": "TXT",
@@ -299,7 +298,7 @@ export class FeFormSchemaService {
           "key": "_4mu5p44pa",
           "order": 1,
           "parent": "root_drop",
-          "componentName": "TxtComponent"
+          "componentName": "TextComponent"
         },
         {
           "enableCk": true,
@@ -349,7 +348,7 @@ export class FeFormSchemaService {
           "key": "_g7ncriov4",
           "order": 2,
           "parent": "root_drop",
-          "componentName": "TxaComponent"
+          "componentName": "TextAreaComponent"
         },
         {
           "type": "TXT",
@@ -392,7 +391,7 @@ export class FeFormSchemaService {
           "key": "_4lv8at4iu",
           "order": 0,
           "parent": "root_drop",
-          "componentName": "TxtComponent"
+          "componentName": "TextComponent"
         },
         {
           "type": "TXT",
@@ -436,7 +435,7 @@ export class FeFormSchemaService {
           "key": "_xhawl6mlx",
           "order": 0,
           "parent": "root_drop",
-          "componentName": "TxtComponent"
+          "componentName": "TextComponent"
         },
         {
           "type": "TXT",
@@ -479,7 +478,7 @@ export class FeFormSchemaService {
           "key": "_xhawl6mlx",
           "order": 0,
           "parent": "root_drop",
-          "componentName": "TxtComponent"
+          "componentName": "TextComponent"
         },
         {
           "type": "DAT",
@@ -524,7 +523,7 @@ export class FeFormSchemaService {
           "key": "_xhawl6mlx",
           "order": 0,
           "parent": "root_drop",
-          "componentName": "TxtComponent"
+          "componentName": "TextComponent"
         },
         {
           "type": "TXT",
@@ -699,7 +698,7 @@ export class FeFormSchemaService {
           "key": "_9hj8j94zh",
           "order": 0,
           "parent": "root_drop",
-          "componentName": "TxtComponent"
+          "componentName": "TextComponent"
         },
         {
           "minimumValue": 100,
@@ -747,7 +746,7 @@ export class FeFormSchemaService {
           "key": "_rl3o427ke",
           "order": 0,
           "parent": "root_drop",
-          "componentName": "NumComponent"
+          "componentName": "NumberComponent"
         },
         {
           "minimumValue": 100,
@@ -796,7 +795,7 @@ export class FeFormSchemaService {
           "key": "_rl3o427ke",
           "order": 0,
           "parent": "root_drop",
-          "componentName": "NumComponent"
+          "componentName": "NumberComponent"
         },
         {
           "minimumValue": '',
@@ -845,7 +844,7 @@ export class FeFormSchemaService {
           "key": "_rl3o427ke",
           "order": 0,
           "parent": "root_drop",
-          "componentName": "NumComponent"
+          "componentName": "NumberComponent"
         },
         {
           "minimumValue": '',
@@ -893,7 +892,7 @@ export class FeFormSchemaService {
           "key": "_rl3o427ke",
           "order": 0,
           "parent": "root_drop",
-          "componentName": "NumComponent"
+          "componentName": "NumberComponent"
         },
         {
           "type": "TXT",
@@ -937,7 +936,7 @@ export class FeFormSchemaService {
           "key": "_rl3o427ke",
           "order": 0,
           "parent": "root_drop",
-          "componentName": "NumComponent"
+          "componentName": "NumberComponent"
         },
         {
           "type": "EML",
@@ -981,7 +980,7 @@ export class FeFormSchemaService {
           "key": "_rl3o427ke",
           "order": 0,
           "parent": "root_drop",
-          "componentName": "NumComponent"
+          "componentName": "NumberComponent"
         },
         {
           "type": "RAD",
@@ -1041,7 +1040,7 @@ export class FeFormSchemaService {
           "key": "_6ify8d264",
           "order": 2,
           "parent": "root_drop",
-          "componentName": "RadComponent"
+          "componentName": "RadioComponent"
         },
         {
           "type": "SEL",
@@ -1095,7 +1094,7 @@ export class FeFormSchemaService {
           "key": "_dvcy9ovxo",
           "order": 3,
           "parent": "root_drop",
-          "componentName": "SelComponent"
+          "componentName": "SelectComponent"
         },
         {
           "label": "Fieldset",
@@ -1149,7 +1148,7 @@ export class FeFormSchemaService {
               "key": "_k7t3pqfqc",
               "order": 0,
               "parent": "_s06lm333h",
-              "componentName": "AncComponent"
+              "componentName": "AnchorComponent"
             },
             {
               "flexiLabel": "blank",
@@ -1158,7 +1157,7 @@ export class FeFormSchemaService {
               "key": "_bvflvuggh",
               "order": 1,
               "parent": "_s06lm333h",
-              "componentName": "BlkComponent",
+              "componentName": "BlankComponent",
               "appliedValidations": [
               ]
             },
@@ -1209,7 +1208,7 @@ export class FeFormSchemaService {
               "key": "_equptz4y3",
               "order": 2,
               "parent": "_s06lm333h",
-              "componentName": "DatComponent"
+              "componentName": "DateComponent"
             }
           ],
           "type": "FST",
@@ -1218,7 +1217,7 @@ export class FeFormSchemaService {
           "key": "_s06lm333h",
           "order": 4,
           "parent": "root_drop",
-          "componentName": "FstComponent"
+          "componentName": "FieldSetComponent"
         },
         {
           "label": "Fieldset",
@@ -1236,7 +1235,7 @@ export class FeFormSchemaService {
               "key": "_u3gqmqhbb",
               "order": 0,
               "parent": "_am4bbscaf",
-              "componentName": "BlkComponent",
+              "componentName": "BlankComponent",
               "appliedValidations": '', "appliedValidations1": [
                 {
                   "id": "required",
@@ -1340,7 +1339,7 @@ export class FeFormSchemaService {
               "key": "_76qqai7d8",
               "order": 1,
               "parent": "_am4bbscaf",
-              "componentName": "AncComponent"
+              "componentName": "AnchorComponent"
             },
             {
               "type": "MON",
@@ -1412,7 +1411,7 @@ export class FeFormSchemaService {
               "key": "_etz7oewkv",
               "order": 2,
               "parent": "_am4bbscaf",
-              "componentName": "MonComponent"
+              "componentName": "MonthComponent"
             },
             {
               "type": "PHN",
@@ -1486,7 +1485,7 @@ export class FeFormSchemaService {
               "key": "_ma15zjdt3",
               "order": 3,
               "parent": "_am4bbscaf",
-              "componentName": "PhnComponent"
+              "componentName": "PhoneComponent"
             },
             {
               "type": "ADR",
@@ -1561,7 +1560,7 @@ export class FeFormSchemaService {
               "key": "_j2kbwk3z0",
               "order": 4,
               "parent": "_am4bbscaf",
-              "componentName": "AdrComponent"
+              "componentName": "AddressComponent"
             },
             {
               "label": "Fieldset",
@@ -1643,7 +1642,7 @@ export class FeFormSchemaService {
                   "key": "_tncawjjai",
                   "order": 0,
                   "parent": "_pdripm1kc",
-                  "componentName": "TxtComponent"
+                  "componentName": "TextComponent"
                 },
                 {
                   "label": "Fieldset",
@@ -1802,7 +1801,7 @@ export class FeFormSchemaService {
                       "key": "_czkzmzm7t",
                       "order": 1,
                       "parent": "_pvdrdjoy8",
-                      "componentName": "AcsComponent"
+                      "componentName": "AutoCompleteComponent"
                     }
                   ],
                   "type": "FST",
@@ -1811,7 +1810,7 @@ export class FeFormSchemaService {
                   "key": "_pvdrdjoy8",
                   "order": 1,
                   "parent": "_pdripm1kc",
-                  "componentName": "FstComponent",
+                  "componentName": "FieldSetComponent",
                   "appliedValidations": '', "appliedValidations1": [
                     {
                       "id": "required",
@@ -1850,7 +1849,7 @@ export class FeFormSchemaService {
               "key": "_pdripm1kc",
               "order": 5,
               "parent": "_am4bbscaf",
-              "componentName": "FstComponent"
+              "componentName": "FieldSetComponent"
             },
             {
               "type": "PHN",
@@ -1893,7 +1892,7 @@ export class FeFormSchemaService {
               "key": "_yf14lm4oa",
               "order": 3,
               "parent": "_am4bbscaf",
-              "componentName": "PhnComponent"
+              "componentName": "PhoneComponent"
             }
           ],
           "type": "FST",
@@ -1902,7 +1901,7 @@ export class FeFormSchemaService {
           "key": "_am4bbscaf",
           "order": 0,
           "parent": "root_drop",
-          "componentName": "FstComponent"
+          "componentName": "FieldSetComponent"
         },
         {
           "hasParent": false,
@@ -2052,7 +2051,7 @@ export class FeFormSchemaService {
           "key": "_i1yaqj3xj",
           "order": 2,
           "parent": "root_drop",
-          "componentName": "EmlComponent"
+          "componentName": "EmailComponent"
         },
         {
           "type": "TXT",
@@ -2126,7 +2125,7 @@ export class FeFormSchemaService {
           "key": "_k86mgl1nm",
           "order": 3,
           "parent": "root_drop",
-          "componentName": "CurComponent"
+          "componentName": "CurrencyComponent"
         },
         {
           "type": "MSL",
@@ -2200,7 +2199,7 @@ export class FeFormSchemaService {
           "key": "_0r7vmo8qz",
           "order": 0,
           "parent": "root_drop",
-          "componentName": "MslComponent"
+          "componentName": "MultiSelectComponent"
         },
         {
           "type": "TXT",
@@ -2274,7 +2273,7 @@ export class FeFormSchemaService {
           "key": "_tdomql9tk",
           "order": 1,
           "parent": "root_drop",
-          "componentName": "CurComponent"
+          "componentName": "CurrencyComponent"
         },
         {
           "label": "Fieldset 1",
@@ -2317,6 +2316,7 @@ export class FeFormSchemaService {
                           "active": true,
                           "components": [
                             {
+
                               "theme": "primary",
                               "size": "large",
                               "btnLeftIcon": "md-search",
@@ -2394,7 +2394,7 @@ export class FeFormSchemaService {
                               "key": "_r1p25ognx",
                               "order": 0,
                               "parent": "_10syvizk9",
-                              "componentName": "BtnComponent"
+                              "componentName": "ButtonComponent"
                             },
                             {
                               "label": "Fieldset 6",
@@ -2565,7 +2565,7 @@ export class FeFormSchemaService {
                               "key": "_r0ck6qu9e",
                               "order": 0,
                               "parent": "_10syvizk9",
-                              "componentName": "FstComponent",
+                              "componentName": "FieldSetComponent",
                               "appliedValidations": '', "appliedValidations1": [
                                 {
                                   "id": "required",
@@ -2669,7 +2669,7 @@ export class FeFormSchemaService {
                               "key": "_e0tv07qg6",
                               "order": 1,
                               "parent": "_10syvizk9",
-                              "componentName": "PwdComponent"
+                              "componentName": "PasswordComponent"
                             }
                           ],
                           "type": "FST",
@@ -2678,7 +2678,7 @@ export class FeFormSchemaService {
                           "key": "_10syvizk9",
                           "order": 0,
                           "parent": "_ph3ncmpn9",
-                          "componentName": "FstComponent",
+                          "componentName": "FieldSetComponent",
                           "appliedValidations": '', "appliedValidations1": [
                             {
                               "id": "required",
@@ -2782,7 +2782,7 @@ export class FeFormSchemaService {
                           "key": "_ah7ad34q4",
                           "order": 1,
                           "parent": "_ph3ncmpn9",
-                          "componentName": "TxtComponent"
+                          "componentName": "TextComponent"
                         }
                       ],
                       "type": "FST",
@@ -2791,7 +2791,7 @@ export class FeFormSchemaService {
                       "key": "_ph3ncmpn9",
                       "order": 0,
                       "parent": "_9wu7jtxec",
-                      "componentName": "FstComponent",
+                      "componentName": "FieldSetComponent",
                       "appliedValidations": '', "appliedValidations1": [
                         {
                           "id": "required",
@@ -2830,7 +2830,7 @@ export class FeFormSchemaService {
                   "key": "_9wu7jtxec",
                   "order": 0,
                   "parent": "_klon1bzp6",
-                  "componentName": "FstComponent",
+                  "componentName": "FieldSetComponent",
                   "appliedValidations": '', "appliedValidations1": [
                     {
                       "id": "required",
@@ -2869,7 +2869,7 @@ export class FeFormSchemaService {
               "key": "_klon1bzp6",
               "order": 0,
               "parent": "_ki9dtq6q1",
-              "componentName": "FstComponent",
+              "componentName": "FieldSetComponent",
               "appliedValidations": '', "appliedValidations1": [
                 {
                   "id": "required",
@@ -2908,7 +2908,7 @@ export class FeFormSchemaService {
           "key": "_ki9dtq6q1",
           "order": 2,
           "parent": "root_drop",
-          "componentName": "FstComponent",
+          "componentName": "FieldSetComponent",
           "appliedValidations": '', "appliedValidations1": [
             {
               "id": "required",
@@ -3096,7 +3096,7 @@ export class FeFormSchemaService {
               "key": "_2gbrdyqvu",
               "order": 1,
               "parent": "_jvs9iq5ee",
-              "componentName": "MslComponent"
+              "componentName": "MultiSelectComponent"
             },
             {
               "label": "Fieldset",
@@ -3120,7 +3120,7 @@ export class FeFormSchemaService {
                   "key": "_icdnio4qs",
                   "order": 0,
                   "parent": "_f7itnjhwn",
-                  "componentName": "FstComponent",
+                  "componentName": "FieldSetComponent",
                   "appliedValidations": '', "appliedValidations1": [
                     {
                       "id": "required",
@@ -3166,7 +3166,7 @@ export class FeFormSchemaService {
                   "key": "_0psew3iek",
                   "order": 1,
                   "parent": "_f7itnjhwn",
-                  "componentName": "FstComponent",
+                  "componentName": "FieldSetComponent",
                   "appliedValidations": '', "appliedValidations1": [
                     {
                       "id": "required",
@@ -3205,7 +3205,7 @@ export class FeFormSchemaService {
               "key": "_f7itnjhwn",
               "order": 2,
               "parent": "_jvs9iq5ee",
-              "componentName": "FstComponent"
+              "componentName": "FieldSetComponent"
             },
             {
               "label": "Fieldset 1000",
@@ -3296,7 +3296,7 @@ export class FeFormSchemaService {
                       "key": "_o7o4y5dpu",
                       "order": 0,
                       "parent": "_t703m7hqt",
-                      "componentName": "AdrComponent"
+                      "componentName": "AddressComponent"
                     }
                   ],
                   "type": "FST",
@@ -3305,7 +3305,7 @@ export class FeFormSchemaService {
                   "key": "_t703m7hqt",
                   "order": 0,
                   "parent": "_w3n8aky06",
-                  "componentName": "FstComponent"
+                  "componentName": "FieldSetComponent"
                 }
               ],
               "type": "FST",
@@ -3314,7 +3314,7 @@ export class FeFormSchemaService {
               "key": "_w3n8aky06",
               "order": 3,
               "parent": "_jvs9iq5ee",
-              "componentName": "FstComponent",
+              "componentName": "FieldSetComponent",
               "appliedValidations": '', "appliedValidations1": [
                 {
                   "id": "required",
@@ -3426,7 +3426,7 @@ export class FeFormSchemaService {
                   "key": "_7s8e0k109",
                   "order": 0,
                   "parent": "_ip47ckiyk",
-                  "componentName": "AcsComponent"
+                  "componentName": "AutoCompleteComponent"
                 },
                 {
                   "type": "TIM",
@@ -3500,7 +3500,7 @@ export class FeFormSchemaService {
                   "key": "_wyccm3dfp",
                   "order": 1,
                   "parent": "_ip47ckiyk",
-                  "componentName": "TimComponent"
+                  "componentName": "TimeComponent"
                 },
                 {
                   "type": "TXT",
@@ -3574,7 +3574,7 @@ export class FeFormSchemaService {
                   "key": "_jbiufpqri",
                   "order": 2,
                   "parent": "_ip47ckiyk",
-                  "componentName": "CurComponent"
+                  "componentName": "CurrencyComponent"
                 }
               ],
               "type": "FST",
@@ -3583,7 +3583,7 @@ export class FeFormSchemaService {
               "key": "_ip47ckiyk",
               "order": 4,
               "parent": "_jvs9iq5ee",
-              "componentName": "FstComponent",
+              "componentName": "FieldSetComponent",
               "appliedValidations": '', "appliedValidations1": [
                 {
                   "id": "required",
@@ -3687,7 +3687,7 @@ export class FeFormSchemaService {
               "key": "_3ehcmi4b0",
               "order": 5,
               "parent": "_jvs9iq5ee",
-              "componentName": "PhnComponent"
+              "componentName": "PhoneComponent"
             }
           ],
           "type": "FST",
@@ -3696,7 +3696,7 @@ export class FeFormSchemaService {
           "key": "_jvs9iq5ee",
           "order": 3,
           "parent": "root_drop",
-          "componentName": "FstComponent"
+          "componentName": "FieldSetComponent"
         }
       ],
       "buttons": [
@@ -3749,7 +3749,7 @@ export class FeFormSchemaService {
           "key": "_id7kyj8mv",
           "order": 0,
           "parent": "button_drop",
-          "componentName": "BtnComponent"
+          "componentName": "ButtonComponent"
         },
         {
           id: 'BTN00001',
@@ -3771,95 +3771,94 @@ export class FeFormSchemaService {
           submit: true
         },
         {
-          "theme": "primary",
-          "size": "medium",
-          "btnLeftIcon": "md-save",
-          "btnRightIcon": "",
-          "hasParent": false,
-          "label": "sdfsdfsdf",
-          "hideLabel": false,
-          "labelPosition": "top",
-          "marginTop": "",
-          "marginRight": "",
-          "marginLeft": "",
-          "marginBottom": "",
-          "defaultValueType": "none",
-          "defaultValueSqlQuery": "",
-          "defaultValueString": "",
-          "lovType": "none",
-          "lovSqlQuery": "",
-          "lovJson": "",
-          "nonPersistent": false,
-          "hidden": false,
-          "clearWhenHidden": false,
-          "disabled": true,
-          "flexiLabel": "sfsdf",
-          "prefix": "",
-          "suffix": "",
-          "appliedValidations": "",
-          "customFuncValidation": "",
-          "jsonLogicVal": "",
-          "formClassValidation": "",
-          "events": "",
-          "showCondition": "",
-          "disableCondition": "",
-          "active": true,
-          "required": false,
-          "labelWidth": "",
-          "labelMargin": "",
-          "width": "",
-          "mask": [],
-          "description": "",
-          "icon": "",
-          "parentName": "",
-          "filterSqlQuery": "",
-          "type": "BTN",
-          "key": "_pobs53u45",
-          "order": 0,
-          "parent": "button_drop",
-          "componentName": "BtnComponent"
+        "theme": "primary",
+        "size": "medium",
+        "btnLeftIcon": "md-save",
+        "btnRightIcon": "",
+        "hasParent": false,
+        "label": "sdfsdfsdf",
+        "hideLabel": false,
+        "labelPosition": "top",
+        "marginTop": "",
+        "marginRight": "",
+        "marginLeft": "",
+        "marginBottom": "",
+        "defaultValueType": "none",
+        "defaultValueSqlQuery": "",
+        "defaultValueString": "",
+        "lovType": "none",
+        "lovSqlQuery": "",
+        "lovJson": "",
+        "nonPersistent": false,
+        "hidden": false,
+        "clearWhenHidden": false,
+        "disabled": true,
+        "flexiLabel": "sfsdf",
+        "prefix": "",
+        "suffix": "",
+        "appliedValidations": "",
+        "customFuncValidation": "",
+        "jsonLogicVal": "",
+        "formClassValidation": "",
+        "events": "",
+        "showCondition": "",
+        "disableCondition": "",
+        "active": true,
+        "required": false,
+        "labelWidth": "",
+        "labelMargin": "",
+        "width": "",
+        "mask": [],
+        "description": "",
+        "icon": "",
+        "parentName": "",
+        "filterSqlQuery": "",
+        "type": "BTN",
+        "key": "_pobs53u45",
+        "order": 0,
+        "parent": "button_drop",
+        "componentName": "ButtonComponent"
         }
       ]
     }
   }
-  constructor(public router: Router, public route: ActivatedRoute, public http: HttpClient) { }
+  constructor(public router: Router, public route: ActivatedRoute) { }
 
-  addProps(components, code) {
 
-    if (components.length !== 0) {
-      for (let i in components) {
-        const field = components[i];
-        const int: string = (Math.random() * 10000000).toString();
-        const fieldCode = `${field.type}000${int}`;
-        const fieldId = code + "_" + fieldCode;
-        field.code = fieldCode;
-        field.id = fieldId;
-        if (field.type === 'FST') {
-          this.addProps(field.components, code);
+  makeId() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+    for (var i = 0; i < 10; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  }
+    addProps(components, code) {
+
+      if (components.length !== 0) {
+        for (let i in components) {
+          const field = components[i];
+          field.code = this.makeId();
+          field.id = this.makeId();
+          if (field.type === 'FST') {
+            this.addProps(field.components, code);
+          }
         }
       }
-    }
-  }
+  };
+
   getFormSchema(code) {
-    console.log(code);
     let form = this._schema[code];
-    // if (code === 'FRM0000001') {
-    //   form = this._schema[101];
-    // }
-    this.http.post("http://fe.localhost:3000/fe/fe/default/forms_data/form_data ",{'id':code}).subscribe((data)=>{
-      form = data;
-    })
-    /* console.log("Form", form);
+    if(!code) {
+      form = this._schema[101];
+    }
     this.addProps(form.components, code);
-    this.addProps(form.buttons, code); */
+    this.addProps(form.buttons, code);
     return form;
   };
 
   navigateToFormGenerator(id: number) {
     this.router.navigate(['/formGenerator', id]);
-  }
-
-  navigateToFormBuilder(id: number) {
-    this.router.navigate(['/formBuilder', id]);
   }
 }

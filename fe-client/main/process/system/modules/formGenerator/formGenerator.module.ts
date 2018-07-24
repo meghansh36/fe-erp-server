@@ -7,7 +7,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { CKEditorModule } from 'ng2-ckeditor';
 import { NgxSelectModule, INgxSelectOptions } from 'ngx-select-ex';
-import { DefaultsService } from '@L3Process/system/services/Defaults.service';
+import { DefaultsService } from '@L3Process/system/services/defaults.service';
 
 import { FeFormGeneratorComponent } from '@L1Process/system/modules/formGenerator/formGenerator.component';
 

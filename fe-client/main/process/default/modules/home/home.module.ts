@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { DefaultsService } from '@L3Process/system/services/Defaults.service';
+import { DefaultsService } from '@L3Process/system/services/defaults.service';
 import { HomeComponent } from '@L3Process/default/modules/home/home.component';
 import { FormBuilderModule } from '@L3Process/system/modules/formBuilder/formBuilder.module';
 import { DefaultModule } from '@L3Process/default/modules/default/default.module';

@@ -1,29 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TxtComponent } from '@L3Process/system/modules/formBuilder/components/formElements/txt/txt.component';
-import { NumComponent } from '@L3Process/system/modules/formBuilder/components/formElements/num/num.component';
-import { PwdComponent } from '@L3Process/system/modules/formBuilder/components/formElements/pwd/pwd.component';
-import { TxaComponent } from '@L3Process/system/modules/formBuilder/components/formElements/txa/txa.component';
-import { EmlComponent } from '@L3Process/system/modules/formBuilder/components/formElements/eml/eml.component';
-import { PhnComponent } from '@L3Process/system/modules/formBuilder/components/formElements/phn/phn.component';
-import { AdrComponent } from '@L3Process/system/modules/formBuilder/components/formElements/adr/adr.component';
-import { CurComponent } from '@L3Process/system/modules/formBuilder/components/formElements/cur/cur.component';
-import { DtiComponent } from '@L3Process/system/modules/formBuilder/components/formElements/dti/dti.component';
-import { TimComponent } from '@L3Process/system/modules/formBuilder/components/formElements/tim/tim.component';
-import { HidComponent } from '@L3Process/system/modules/formBuilder/components/formElements/hid/hid.component';
-import { DatComponent } from '@L3Process/system/modules/formBuilder/components/formElements/dat/dat.component';
-import { MonComponent } from '@L3Process/system/modules/formBuilder/components/formElements/mon/mon.component';
+import { TextComponent } from '@L3Process/system/modules/formBuilder/components/formElements/text/text.component';
+import { NumberComponent } from '@L3Process/system/modules/formBuilder/components/formElements/number/number.component';
+import { PasswordComponent } from '@L3Process/system/modules/formBuilder/components/formElements/password/password.component';
+import { TextAreaComponent } from '@L3Process/system/modules/formBuilder/components/formElements/textArea/textArea.component';
+import { EmailComponent } from '@L3Process/system/modules/formBuilder/components/formElements/email/email.component';
+import { PhoneComponent } from '@L3Process/system/modules/formBuilder/components/formElements/phone/phone.component';
+import { AddressComponent } from '@L3Process/system/modules/formBuilder/components/formElements/address/address.component';
+import { CurrencyComponent } from '@L3Process/system/modules/formBuilder/components/formElements/currency/currency.component';
+import { DateTimeComponent } from '@L3Process/system/modules/formBuilder/components/formElements/dateTime/dateTime.component';
+import { TimeComponent } from '@L3Process/system/modules/formBuilder/components/formElements/time/time.component';
+import { HiddenComponent } from '@L3Process/system/modules/formBuilder/components/formElements/hidden/hidden.component';
+import { DateComponent } from '@L3Process/system/modules/formBuilder/components/formElements/date/date.component';
+import { MonthComponent } from '@L3Process/system/modules/formBuilder/components/formElements/month/month.component';
 import { componentFactoryName } from '@angular/compiler';
-import { ChkComponent } from '@L3Process/system/modules/formBuilder/components/formElements/chk/chk.component';
-import { AncComponent } from '@L3Process/system/modules/formBuilder/components/formElements/anc/anc.component';
-import { BlkComponent } from '@L3Process/system/modules/formBuilder/components/formElements/blk/blk.component';
-import { BtnComponent } from '@L3Process/system/modules/formBuilder/components/formElements/btn/btn.component';
-import { RadComponent } from '@L3Process/system/modules/formBuilder/components/formElements/rad/rad.component';
-import { FstComponent } from '@L3Process/system/modules/formBuilder/components/formElements/fst/fst.component';
-import { SelComponent } from '@L3Process/system/modules/formBuilder/components/formElements/sel/sel.component';
-import { MslComponent } from '@L3Process/system/modules/formBuilder/components/formElements/msl/msl.component';
-import { IcbComponent } from '@L3Process/system/modules/formBuilder/components/formElements/icb/icb.component';
-import { AcsComponent } from '@L3Process/system/modules/formBuilder/components/formElements/acs/acs.component';
+import { CheckboxComponent } from '@L3Process/system/modules/formBuilder/components/formElements/checkbox/checkbox.component';
+import { AnchorComponent } from '@L3Process/system/modules/formBuilder/components/formElements/anchor/anchor.component';
+import { BlankComponent } from '@L3Process/system/modules/formBuilder/components/formElements/blank/blank.component';
+import { ButtonComponent } from '@L3Process/system/modules/formBuilder/components/formElements/button/button.component';
+import { RadioComponent } from '@L3Process/system/modules/formBuilder/components/formElements/radio/radio.component';
+import { FieldSetComponent } from '@L3Process/system/modules/formBuilder/components/formElements/fieldSet/fieldSet.component';
+import { SelectComponent } from '@L3Process/system/modules/formBuilder/components/formElements/select/select.component';
+import { MultiSelectComponent } from '@L3Process/system/modules/formBuilder/components/formElements/multiSelect/multiSelect.component';
+import { IconicButtonComponent } from '@L3Process/system/modules/formBuilder/components/formElements/iconicButton/iconicButton.component';
+import { AutoCompleteComponent } from '@L3Process/system/modules/formBuilder/components/formElements/autoComplete/autoComplete.component';
 import { HTMLComponent } from "@L3Process/system/modules/formBuilder/components/formElements/html/html.component";
 import { FileComponent } from "@L3Process/system/modules/formBuilder/components/formElements/file/file.component";
 
@@ -37,111 +37,111 @@ export class FeFormBuilderService {
   basicElements = [
     {
       name: 'input',
-     component: TxtComponent,
+     component: TextComponent,
       label: 'Text Field',
       icon: 'title',
       type:'text',
-      componentName: 'TxtComponent'
+      componentName: 'TextComponent'
     },
     {
       name: 'number',
-      component: NumComponent,
+      component: NumberComponent,
       label: 'Number',
       icon: 'plus_one',
       type:'number',
-      componentName: 'NumComponent'
+      componentName: 'NumberComponent'
     },
     {
       name: 'password',
-      component: PwdComponent,
+      component: PasswordComponent,
       label: 'Password',
       icon: 'priority_high',
       type:'password',
-      componentName: 'PwdComponent'
+      componentName: 'PasswordComponent'
     },
     {
       name: 'textarea',
-      component: TxaComponent,
+      component: TextAreaComponent,
       label: 'Text Area',
       icon: 'text_format',
-      componentName: 'TxaComponent'
+      componentName: 'TextAreaComponent'
     },
     {
       name: 'input',
-     component: ChkComponent,
+     component: CheckboxComponent,
       label: 'CheckBox',
       icon: 'done',
-      componentName: 'ChkComponent'
+      componentName: 'CheckboxComponent'
     },
     {
       name: 'input',
-      component: RadComponent,
+      component: RadioComponent,
       label: 'Radio',
       icon: 'radio_button_checked',
-      componentName: 'RadComponent'
+      componentName: 'RadioComponent'
     },
     {
       name: 'anchor',
-      component: AncComponent,
+      component: AnchorComponent,
       label: 'Anchor',
       icon: 'code',
-      componentName: 'AncComponent'
+      componentName: 'AnchorComponent'
     },
     {
       name: 'Blank',
-      component: BlkComponent,
+      component: BlankComponent,
       label: 'Blank',
       icon: 'check_box_outline_blank',
-      componentName: 'BlkComponent'
+      componentName: 'BlankComponent'
     },
     {
       name: 'hidden',
-      component: HidComponent,
+      component: HiddenComponent,
       label: 'Hidden',
       icon: 'visibility_off',
-      componentName: 'HidComponent'
+      componentName: 'HiddenComponent'
     },
     {
       name: 'date',
-      component: DatComponent,
+      component: DateComponent,
       label: 'Date',
       icon: 'date_range',
-      componentName: 'DatComponent'
+      componentName: 'DateComponent'
     },
     {
       name: 'month',
-      component: MonComponent,
+      component: MonthComponent,
       label: 'Month',
       icon: 'date_range',
-      componentName: 'MonComponent'
+      componentName: 'MonthComponent'
     },
     {
       name: 'button',
-      component: BtnComponent,
+      component: ButtonComponent,
       label: 'Button',
       icon: 'send',
-      componentName: 'BtnComponent'
+      componentName: 'ButtonComponent'
     },
     {
       name: 'select',
-     component: SelComponent,
+     component: SelectComponent,
       label: 'Select',
       icon: 'list',
-      componentName: 'SelComponent'
+      componentName: 'SelectComponent'
     },
     {
       name: 'multiselect',
-     component: MslComponent,
+     component: MultiSelectComponent,
       label: 'Multi Select',
       icon: 'list',
-      componentName: 'MslComponent'
+      componentName: 'MultiSelectComponent'
     },
     {
       name: 'iconicButton',
-     component: IcbComponent,
+     component: IconicButtonComponent,
       label: 'Iconic Button',
       icon: 'send',
-      componentName: 'IcbComponent'
+      componentName: 'IconicButtonComponent'
     },
     {
       name: 'iconicButton',
@@ -155,59 +155,59 @@ export class FeFormBuilderService {
   advancedElements = [
     {
       name: 'email',
-      component: EmlComponent,
+      component: EmailComponent,
       label: 'Email',
       icon: 'email',
-      componentName: 'EmlComponent'
+      componentName: 'EmailComponent'
     },
     {
       name: 'phone',
-      component: PhnComponent,
+      component: PhoneComponent,
       label: 'Phone',
       icon: 'call',
-      componentName: 'PhnComponent'
+      componentName: 'PhoneComponent'
     },
     {
       name: 'address',
-      component: AdrComponent,
+      component: AddressComponent,
       label: 'Address',
       icon: 'location_on',
-      componentName: 'AdrComponent'
+      componentName: 'AddressComponent'
     },
     {
       name: 'currency',
-      component: CurComponent,
+      component: CurrencyComponent,
       label: 'Currency',
       icon: 'attach_money',
-      componentName: 'CurComponent'
+      componentName: 'CurrencyComponent'
     },
     {
       name: 'datettime',
-      component: DtiComponent,
+      component: DateTimeComponent,
       label: 'Date/Time',
       icon: 'add_alarm',
-      componentName: 'DtiComponent'
+      componentName: 'DateTimeComponent'
     },
     {
       name: 'time',
-      component: TimComponent,
+      component: TimeComponent,
       label: 'Time',
       icon: 'access_time',
-      componentName: 'TimComponent'
+      componentName: 'TimeComponent'
     },
     {
       name: 'fieldset',
-     component: FstComponent,
+     component: FieldSetComponent,
       label: 'FieldSet',
       icon: 'access_time',
-      componentName: 'FstComponent'
+      componentName: 'FieldSetComponent'
     },
     {
       name: 'autocomplete',
-     component: FstComponent,
+     component: FieldSetComponent,
       label: 'Auto Complete',
       icon: 'search',
-      componentName: 'AcsComponent'
+      componentName: 'AutoCompleteComponent'
     },
     {
       name: 'autocomplete',
@@ -223,119 +223,119 @@ export class FeFormBuilderService {
   ];
 
   component = {
-    'TxtComponent': {
-     component: TxtComponent,
+    'TextComponent': {
+     component: TextComponent,
       name: 'input',
       type:'text'
     },
-    'NumComponent': {
+    'NumberComponent': {
       name: 'input',
-     component: NumComponent,
+     component: NumberComponent,
       type:'number',
     },
-    'PwdComponent': {
+    'PasswordComponent': {
       name: 'input',
-     component: PwdComponent,
+     component: PasswordComponent,
       type:'password',
     },
-    'TxaComponent': {
+    'TextAreaComponent': {
       name: 'textarea',
-      component: TxaComponent,
+      component: TextAreaComponent,
       type:'textarea'
     },
-    'HidComponent': {
+    'HiddenComponent': {
       name: 'input',
-     component: HidComponent,
+     component: HiddenComponent,
       type:'hidden',
     },
-    'DatComponent': {
+    'DateComponent': {
       name: 'input',
-     component: DatComponent,
+     component: DateComponent,
       type:'date',
     },
-    'MonComponent': {
+    'MonthComponent': {
       name: 'input',
-     component: MonComponent,
+     component: MonthComponent,
       type:'month',
     },
-    'EmlComponent': {
+    'EmailComponent': {
       name: 'input',
-      component: EmlComponent,
+      component: EmailComponent,
       type:'email',
     },
-    'PhnComponent': {
+    'PhoneComponent': {
       name: 'input',
-     component: PhnComponent,
+     component: PhoneComponent,
       type:'text',
     },
-    'AdrComponent': {
+    'AddressComponent': {
       name: 'input',
-      component: AdrComponent,
+      component: AddressComponent,
       type:'text',
     },
-    'CurComponent': {
+    'CurrencyComponent': {
       name: 'input',
-      component: CurComponent,
+      component: CurrencyComponent,
       type:'text',
     },
-    'DtiComponent': {
+    'DateTimeComponent': {
       name: 'datettime',
-      component: DtiComponent,
+      component: DateTimeComponent,
       type:'datetime',
     },
-    'TimComponent': {
+    'TimeComponent': {
       name: 'time',
-     component: TimComponent,
+     component: TimeComponent,
       type:'time'
     },
-    'AncComponent': {
+    'AnchorComponent': {
       name: 'anchor',
-     component: AncComponent,
+     component: AnchorComponent,
       type:'anchor'
     },
-    'BlkComponent': {
+    'BlankComponent': {
       name: 'blank',
-     component: BlkComponent,
+     component: BlankComponent,
       type:'blank'
     },
-    'ChkComponent': {
+    'CheckboxComponent': {
       name: 'checkBox',
-     component: ChkComponent,
+     component: CheckboxComponent,
       type:'checkbox'
     },
-    'BtnComponent': {
+    'ButtonComponent': {
       name: 'button',
-     component: BtnComponent,
+     component: ButtonComponent,
       type:'button'
     },
-    'RadComponent': {
+    'RadioComponent': {
       name: 'radio',
-     component: RadComponent,
+     component: RadioComponent,
       type:'radio'
     },
-    'FstComponent': {
+    'FieldSetComponent': {
       name: 'fieldset',
-     component: FstComponent,
+     component: FieldSetComponent,
       type:'fieldset'
     },
-    'SelComponent': {
+    'SelectComponent': {
       name: 'select',
-     component: SelComponent,
+     component: SelectComponent,
       type:'select'
     },
-    'MslComponent': {
+    'MultiSelectComponent': {
       name: 'multiselect',
-     component: MslComponent,
+     component: MultiSelectComponent,
       type:'multiselect'
     },
-    'IcbComponent': {
+    'IconicButtonComponent': {
       name: 'iconicButton',
-     component: IcbComponent,
+     component: IconicButtonComponent,
       type:'button'
     },
-    'AcsComponent': {
+    'AutoCompleteComponent': {
       name: 'autocomplete',
-     component: AcsComponent,
+     component: AutoCompleteComponent,
       type:'text'
     },
     'FileComponent': {
@@ -372,16 +372,7 @@ export class FeFormBuilderService {
   }
 
   postData(data) {
-    if(data.id !== '') {
-      return this.httpClient.post('http://fe.localhost:3000/fe/fe/default/forms_data/update_form_data ', {
-        id: data.id,
-        formLabel: data.formLabel,
-        json: data
-      })
-    } else {
-      return this.httpClient.post('http://fe.localhost:3000/fe/fe/default/forms_data/save_form_data', data)
-    }
-    
+    return this.httpClient.post('http://localhost:3000/fe/api/default/save', data)
   }
 
 }

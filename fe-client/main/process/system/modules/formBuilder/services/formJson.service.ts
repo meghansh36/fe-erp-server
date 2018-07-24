@@ -27,32 +27,17 @@ export class FeFormJsonService {
         return this.MasterJSON;
     }
 
-    setMasterJSON(masterJson) {
-        this.MasterJSON = masterJson;
+    setMasterJSON(newProps, key) {
+        if (newProps.parent === 'root_drop') {
+            this.MasterJSON.components[key].instance.properties = newProps;
+        } else if (newProps.parent === 'button_drop') {
+            this.MasterJSON.buttons[key].instance.properties = newProps;
+        } else {
+            this.MasterJSON.components[key].instance.properties = newProps;
+        }
     }
 
     addComponentToMasterJSON(key, componentRef, parent, index) {
-        /* let targetClassesArr;
-        if (populateMasterForm) {
-            targetClassesArr = [parent.className];
-            componentRef.parentClass = targetClassesArr[0];
-        } else {
-            targetClassesArr = parent.className.trim().split(" ");
-            componentRef.parentClass = targetClassesArr[1];
-        }
-
-        componentRef.parent = parent.id;
-        componentRef.order = index;
-        if (_.includes(targetClassesArr, 'customDropZone') || _.includes(targetClassesArr, 'FSTdropZone')) {
-            this.MasterJSON.components = _.merge(this.MasterJSON.components, {[key]: componentRef});
-        } else if (_.includes(targetClassesArr, 'buttonDropZone')) {
-            this.MasterJSON.buttons = _.merge(this.MasterJSON.buttons, {[key]: componentRef});
-        }
-
-        if (parent.id !== 'root_drop') {
-            this.MasterJSON.components[parent.id].components[index] 
-        } */
-
         if (parent === 'root_drop') {
             this.MasterJSON.components = _.merge(this.MasterJSON.components, { [key]: componentRef });
             this.MasterJSON.components[key].instance.properties.key = key;
@@ -66,7 +51,6 @@ export class FeFormJsonService {
             this.MasterJSON.buttons[key].instance.properties.parent = parent;
             this.MasterJSON.buttons[key].instance.properties.componentName = componentRef.componentType.name;
         } else {
-            // create flat json
             this.MasterJSON.components = _.merge(this.MasterJSON.components, { [key]: componentRef });
             this.MasterJSON.components[key].instance.properties.key = key;
             this.MasterJSON.components[key].instance.properties.order = index;
@@ -74,15 +58,14 @@ export class FeFormJsonService {
             this.MasterJSON.components[key].instance.properties.componentName = componentRef.componentType.name;
             // copy to container component array
             // tslint:disable-next-line:max-line-length
-            this.MasterJSON.components[parent].instance.properties.components.splice(index, 0, this.MasterJSON.components[key].instance.properties);
-            console.log("possible error in addComponent", this.MasterJSON.components[parent].instance.properties);
-            //this.MasterJSON.components[parent].instance.properties.components.splice(index, 0, key);
+            //this.MasterJSON.components[parent].instance.properties.components.splice(index, 0, this.MasterJSON.components[key].instance.properties);
+           // console.log("possible error in addComponent", this.MasterJSON.components[parent].instance.properties);
+            this.MasterJSON.components[parent].instance.properties.components.splice(index, 0, key);
             
         }
     }
 
     removeComponent(key) {
-        // tslint:disable-next-line:forin
         let parent = this.MasterJSON.components[key];
         if (parent === undefined) {
             parent = this.MasterJSON.buttons[key].instance.properties.parent;
@@ -90,7 +73,6 @@ export class FeFormJsonService {
             parent = this.MasterJSON.components[key].instance.properties.parent;
         }
         if (parent !== 'button_drop') {
-            // tslint:disable-next-line:forin
             for (const comp in this.MasterJSON.components) {
                 const parentID = this.MasterJSON.components[comp].instance.properties.parent;
                 if (parentID === key) {
@@ -107,7 +89,6 @@ export class FeFormJsonService {
                 _.unset(this.MasterJSON.components, key);
                 this.MasterJSON.components[parentID].instance.properties.components.splice(indexToDelete, 1);
             }
-            // tslint:disable-next-line:forin
             for (const comp in this.MasterJSON.components) {
                 const parentID = this.MasterJSON.components[comp].instance.properties.parent;
                 if (this.MasterJSON.components[parentID] === undefined && parentID !== 'root_drop') {
@@ -144,8 +125,6 @@ export class FeFormJsonService {
     }
 
     updateMasterJSONOnDrop(parent, elementKey, compRemoved) {
-        console.log(this.MasterJSON);
-        console.log('update', parent.children);
         if (parent.id === 'root_drop') {
             this.updateOrderInFlatJSON(parent, this.MasterJSON.components);
         } else if (parent.id === 'button_drop') {
@@ -153,16 +132,6 @@ export class FeFormJsonService {
         } else {
             this.updateOrderInFlatJSON(parent, this.MasterJSON.components);
         }
-        // cases for moving and dropping from 1 container to another
-
-        // internal within fst - change original component order/parent and move in fst array
-        // fst to fst - change original component order/parent and move in fst array, delete from original fst array
-        // root to fst- change
-        // fst to root
-        // root to button
-        // button to root
-        // fst to button
-        // button to fst
     }
 
     updateMasterJSONOnMove(target, source, el, newIndex) {
@@ -184,7 +153,7 @@ export class FeFormJsonService {
         // moved from fst to fst- update ordering in flat json and also in container arrays
         else if (target.id !== source.id && (target.id !== 'root_drop' && target.id !== 'button_drop')
             && (source.id !== 'root_drop' && source.id !== 'button_drop')) {
-            
+
             const key = el.generatedKey;
             const oldIndex = this.MasterJSON.components[key].instance.properties.order;
             this.updateOrderInFlatJSON(target, this.MasterJSON.components);
@@ -193,7 +162,7 @@ export class FeFormJsonService {
         }
         // moved from root to fst - update ordering in flatjson and add in fst
         else if (source.id === 'root_drop' && target.id !== 'button_drop' && source.id !== target.id) {
-            
+
             this.updateOrderInFlatJSON(target, this.MasterJSON.components);
             this.updateOrderInFlatJSON(source, this.MasterJSON.components);
             const key = el.generatedKey;
@@ -218,7 +187,7 @@ export class FeFormJsonService {
         }
         // moved from button to root - update ordering in flat json in both root and button and then remove and add from button in root
         else if (target.id === 'root_drop' && source.id === 'button_drop') {
-            
+
             const key = el.generatedKey;
             this.updateOrderInFlatJSON(source, this.MasterJSON.buttons);
             const temp = this.MasterJSON.buttons[key];
@@ -226,9 +195,8 @@ export class FeFormJsonService {
             this.MasterJSON.components = _.merge(this.MasterJSON.components, {[key]: temp});
             this.updateOrderInFlatJSON(target, this.MasterJSON.components)
         }
-        // moved from fst to button 
+        // moved from fst to button
         else if ((source.id !== 'root_drop' && source.id !== 'button_drop') && target.id === 'button_drop') {
-            console.log('move called');
             const key = el.generatedKey;
             const oldIndex = this.MasterJSON.components[key].instance.properties.order;
             this.updateOrderInFlatJSON(target, this.MasterJSON.components);
@@ -251,16 +219,12 @@ export class FeFormJsonService {
 
     }
 
-
-
     buildFinalJSON() {
         const finalJSON = {
             ...this.MasterJSON
         };
         let tempComponents = [];
-        //    let tempNestedComponents = [];
         const pushInFSTContainer = (parent, key) => {
-
         };
 
         for (const key in this.MasterJSON.components) {
@@ -269,7 +233,6 @@ export class FeFormJsonService {
                 tempComponents[index] = this.MasterJSON.components[key].instance.properties;
             }
         }
-        
 
         finalJSON.components = tempComponents;
         tempComponents = [];

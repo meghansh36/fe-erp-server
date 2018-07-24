@@ -40,11 +40,11 @@ export class FeDataTableService {
 			{ icon: "md-get_app", clickEvent: "download",handlerOwner: 'resource', customCssClass: 'gray_clr mr_10 pointer' },
 		],
 		columns: [
-			{ prop: "formcode", name: "Formcode", sortable: true, resizeable: true, width: '300', frozenLeft: true },
-			{ prop: "label", name: "Label", sortable: true, resizeable: true, width: '400', align: 'left' },
+			{ prop: "FORM_CODE", name: "Form Code", sortable: true, resizeable: true, width: '300', frozenLeft: true },
+			{ prop: "LABEL", name: "Label", sortable: true, resizeable: true, width: '400', align: 'left' },
 		],
 		rowActions: [
-			{ icon: 'md-create', clickEvent: 'detail', handlerOwner: 'resource', customCssClass: 'gray_clr mr_10 pointer' },
+			{ icon: 'md-create', clickEvent: 'getFormById', handlerOwner: 'resource', customCssClass: 'gray_clr mr_10 pointer' },
 		],
 		actionButtons: [
 			{ icon: 'md-email', clickEvent: 'sendMail', handlerOwner: 'resource', customCssClass: 'gray_clr mr_10 pointer' },
@@ -52,10 +52,10 @@ export class FeDataTableService {
 		],
 		applicableFilters: [
 			{
-				type: "TXT", code: "FLD0001001", flexiLabel: "formcode", label: "Form Code"
+				type: "TXT", code: "FLD0001001", flexiLabel: "FORM_CODE", label: "Form Code"
 			},
 			{
-				type: "TXT", code: "FLD0001002", flexiLabel: "label", label: "Label"
+				type: "TXT", code: "FLD0001002", flexiLabel: "LABEL", label: "Label"
 			}/* ,
 			{
 				type: "SEL", code: "FLD0001004", flexiLabel: "state", parent:'FLD0001005', label: "State", lov: [{
@@ -86,7 +86,7 @@ export class FeDataTableService {
 	}
 
 	fetch() {
-		return this.http.get('http://fe.localhost:3000/fe/fe/default/forms_data/forms_data')
+		return this.http.get('https://raw.githubusercontent.com/Dhruv1996oct1/dodo_wisdom/2d04497a24d555486e992cf2f6dfdf7ac6db15c7/data.json')
 			.pipe(
 				map(data => data['key'])
 			);
