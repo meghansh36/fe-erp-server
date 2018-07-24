@@ -1,6 +1,6 @@
 function configLoader(appObj) {
 	let config = {
-		dbUrl   : 'mongodb://localhost/acl', 	//change to the mongodb URL
+		dbUrl   : 'mongodb://guest:guest1@ds133597.mlab.com:33597/fe-erp', 	//change to the mongodb URL
 		prefix	: 'acl_'  					//  change ?
 	};
 	return config;
