@@ -19,7 +19,7 @@ function configLoader(appObj) {
 			searchFilter: "(uid={{username}})"
 		},
 		saml: {
-			entryPoint: 'https://idp.ssocircle.com/sso/idpssoinit?metaAlias=/ssocircle&spEntityID=tempIdp',
+			entryPoint: 'https://idp.ssocircle.com/sso/idpssoinit?metaAlias=/ssocircle&spEntityID=temp1',
 			issuer: 'passport-saml',
 			path: '/fe/api/login/samlcb'
 		},

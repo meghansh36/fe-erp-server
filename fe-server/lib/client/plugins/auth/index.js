@@ -52,13 +52,13 @@ class AuthPlugin extends BasePlugin {
 	}
 
 	initialize() {
-		//this._appObj.app.use(this._passport.initialize());
-		//this.loadStrategies();
-		//this.serialize();
-		//this.deserialize();
-		//this._appObj.app.use('/fe/api/login/', loginRouter);
-		//this._appObj.app.use(this._passport.session());
-		//	this.redirectUser();
+		this._appObj.app.use(this._passport.initialize());
+		this.loadStrategies();
+		this.serialize();
+		this.deserialize();
+		this._appObj.app.use('/fe/api/login/', loginRouter);
+		this._appObj.app.use(this._passport.session());
+			this.redirectUser();
 		console.log('auth plugin initialized');
 	}
 
@@ -117,18 +117,18 @@ class AuthPlugin extends BasePlugin {
 					}).pipe(res);
 				});
 			}
-
+			next();
 			console.log("USER " + req.session.username);
 
 		});
 
-		// this._appObj.app.all('*', (req, res)=>{
+		this._appObj.app.get('/', (req, res)=>{
 
-		//   // if(req.session.username){
-		//     return res.sendFile(path.join(FE.APP_PATH, "dist", "fe", "index.html"));  
-		//     // res.send("LOGGED IN")
-		//   // }
-		// });
+		  // if(req.session.username){
+		    // return res.sendFile(path.join(FE.APP_PATH, "dist", "fe", "index.html"));  
+		    res.send("LOGGED IN")
+		  // }
+		});
 	}
 
 	// jwtVerificationCB(response, err, decoded) {
