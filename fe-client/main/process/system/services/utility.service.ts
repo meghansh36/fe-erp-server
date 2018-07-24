@@ -245,7 +245,7 @@ export class FeUtilityService {
         if (fieldComponent.type == 'HID') {
             this.renderer.addClass(fieldComponent._elemRef.nativeElement, 'hidden');
         }
-
+       // console.log("add display props", fieldComponent)
         this.renderer.addClass(fieldComponent._elemRef.nativeElement, 'fe-field-component');
     }
 

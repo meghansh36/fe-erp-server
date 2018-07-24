@@ -16,7 +16,9 @@ import { DragulaService } from "ng2-dragula";
 import { FormBuilderService } from "@L3Process/system/modules/formBuilder/services/formBuilder.service";
 import * as _ from "lodash";
 import { MasterFormComponent } from "@L3Process/system/modules/formBuilder/components/Master/masterForm.component";
-import { reject } from "q";
+import { DefaultsService } from "@L3Process/system/services/defaults.service";
+import { ActivatedRoute } from "@angular/router";
+import { FormSchemaService } from "@L3Main/services/formSchema.service";
 
 @Component({
   selector: "form-builder",
@@ -24,11 +26,12 @@ import { reject } from "q";
   styleUrls: ["./formBuilder.component.css"]
 })
 export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
-
-  @ViewChild('host', { read: ViewContainerRef }) host: ViewContainerRef;
-  @ViewChild('buttonHost', { read: ViewContainerRef }) buttonHost: ViewContainerRef;
-  @ViewChild('content') content;
-  @ViewChild('preview') preview;
+  @ViewChild("host", { read: ViewContainerRef })
+  host: ViewContainerRef;
+  @ViewChild("buttonHost", { read: ViewContainerRef })
+  buttonHost: ViewContainerRef;
+  @ViewChild("content") content;
+  @ViewChild("preview") preview;
   cond: Boolean = false;
   basic: String = "basic";
   advanced: String = "advanced";
@@ -52,7 +55,10 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     protected _formJsonService: FormJsonService,
     protected _dragulaService: DragulaService,
     protected _formBuilderService: FormBuilderService,
-    protected _renderer: Renderer2
+    protected _renderer: Renderer2,
+    protected _defaults: DefaultsService,
+    protected _route: ActivatedRoute,
+    protected _formSchemaService: FormSchemaService
   ) {
     this._initialize();
   }
@@ -144,20 +150,38 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.applyDisplayProps();
+    this._applyDisplayProps();
   }
 
   update(event) {}
 
   _init() {
-    this.jsonEditorConfig = {
-      mode: "code",
-      onChange: this.update
-    };
-    this.initFormJsonHelp();
+    this.jsonEditorConfig = this._defaults.JSON_EDITOR_CONFIG;
+    //this._route.params.subscribe(this._handleRouteParams.bind(this));
+    this._initFormJsonHelp();
   }
 
-  applyDisplayProps() {
+  protected _handleRouteParams(params) {
+    console.log("_handleRouteParams params", params);
+    this._initFormSchema(params.formId);
+  }
+
+  protected _initFormSchema(formId?: any) {
+    if (formId) {
+      const form = this._formSchemaService
+        .getFormSchemaById(formId)
+        .subscribe(data => {
+          const form = data.body.data;
+          if (form) {
+            this.formJson = form;
+          } else {
+            console.log("No schema found");
+          }
+        });
+    }
+  }
+
+  protected _applyDisplayProps() {
     this.disableFields(this.disabled);
     this.hideFields(this.hidden);
   }
@@ -178,7 +202,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     }
   }
 
-  initFormJsonHelp() {
+  _initFormJsonHelp() {
     this.formJsonHelp = {
       show: {
         simple: {
@@ -248,7 +272,6 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 
   dropComplete(componentObj, index, value) {
     this.createComponentFunc(componentObj, index, value[2], value);
-    //this.openModal();
   }
 
   openModal() {
@@ -291,7 +314,8 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
       viewContainerRef = this.host;
     }
 
-    const componentRef = viewContainerRef.createComponent(componentFactory);
+    const componentRef = viewContainerRef.createComponent(componentFactory, null, viewContainerRef.injector);
+    console.log(componentRef);
     this.moveDOMNode(target, value[4], componentRef.location.nativeElement);
     this._fieldControlService.setFieldRef(componentRef, this, componentObj);
     this._formJsonService.addComponentToMasterJSON(
@@ -315,19 +339,17 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
       this._masterFormService.setCurrentKey(key);
       const parentID = copy.parent;
       let viewContainerRef;
+      if (copy.componentName === 'FieldSetComponent') {
+        copy.components = [];
+      }
       if (parentID === "root_drop") {
         viewContainerRef = this.host;
-        if (copy.componentName === 'FieldSetComponent') {
-          copy.components = [];
-        }
       } else if (parentID === 'button_drop') {
         viewContainerRef = this.buttonHost;
       } else {
         viewContainerRef = this._fieldControlService.getFstCollection(parentID);
       }
-      const component = this._formBuilderService.getComponent(
-        componentProps.componentName
-      ).component;
+      const component = this._formBuilderService.getComponent(copy.componentName).component;
 
       const componentFactory = this._componentFactoryResolver.resolveComponentFactory(
         component
@@ -339,15 +361,17 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
       this._formJsonService.addComponentToMasterJSON(
         key,
         componentRef,
-        componentProps.parent,
-        componentProps.order
+        copy.parent,
+        copy.order
       );
-      const target: any = document.querySelector(`#${componentProps.parent}`);
-      target.children[componentProps.order].generatedKey = key;
-      target.children[componentProps.order].parentComponent = target.id;
+      const target: any = document.querySelector(`#${copy.parent}`);
+      target.children[copy.order].generatedKey = key;
+      target.children[copy.order].parentComponent = target.id;
+      //this._formJsonService.setMasterJSON(copy, key);
+      
       setTimeout(() => {
         res();
-      }, 10);
+      }, 50);
     });
   }
 
@@ -367,20 +391,20 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     this.buttonHost.clear();
 
     const json = {
-      id: "",
-      code: "",
-      formLabel: "",
-      name: "",
-      type: "",
-      disabled: false,
-      hidden: false,
-      disableCondition: "",
-      showCondition: "",
-      active: true,
-      help: "",
-      components: [
+      "id": "",
+      "code": "",
+      "formLabel": "",
+      "name": "",
+      "type": "",
+      "disabled": false,
+      "hidden": false,
+      "disableCondition": "",
+      "showCondition": "",
+      "active": true,
+      "help": "",
+      "components": [
         {
-          "type": "TXT",
+          "type": "TIM",
           "hasParent": false,
           "hideLabel": false,
           "labelPosition": "top",
@@ -417,247 +441,181 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
           "icon": "",
           "parentName": "",
           "filterSqlQuery": "",
-          "key": "_olx5769z5",
+          "key": "_uzrmpnvg5",
           "order": 0,
           "parent": "root_drop",
-          "componentName": "TxtComponent"
+          "componentName": "TimeComponent"
         },
         {
-          "useDelimeter": true,
-          "requiredDecimal": true,
-          "type": "NUM",
-          "hasParent": false,
+          "label": "Fieldset",
+          "description": "",
           "hideLabel": false,
           "labelPosition": "top",
-          "marginTop": "",
-          "marginRight": "",
-          "marginLeft": "",
-          "marginBottom": "",
-          "defaultValueType": "none",
-          "defaultValueSqlQuery": "",
-          "defaultValueString": "",
-          "lovType": "none",
-          "lovSqlQuery": "",
-          "lovJson": "",
-          "nonPersistent": false,
-          "hidden": false,
-          "clearWhenHidden": false,
-          "disabled": false,
-          "prefix": "",
-          "suffix": "",
-          "appliedValidations": "",
-          "customFuncValidation": "",
-          "jsonLogicVal": "",
-          "formClassValidation": "",
-          "events": "",
-          "showCondition": "",
-          "disableCondition": "",
+          "flexiLabel": "",
           "active": true,
-          "required": false,
-          "labelWidth": "",
-          "labelMargin": "",
-          "width": "",
-          "mask": [],
-          "description": "",
-          "icon": "",
-          "parentName": "",
-          "filterSqlQuery": "",
-          "key": "_flugnqddb",
+          "components": [
+            {
+              "type": "DTI",
+              "hasParent": false,
+              "hideLabel": false,
+              "labelPosition": "top",
+              "marginTop": "",
+              "marginRight": "",
+              "marginLeft": "",
+              "marginBottom": "",
+              "defaultValueType": "none",
+              "defaultValueSqlQuery": "",
+              "defaultValueString": "",
+              "lovType": "none",
+              "lovSqlQuery": "",
+              "lovJson": "",
+              "nonPersistent": false,
+              "hidden": false,
+              "clearWhenHidden": false,
+              "disabled": false,
+              "prefix": "",
+              "suffix": "",
+              "appliedValidations": "",
+              "customFuncValidation": "",
+              "jsonLogicVal": "",
+              "formClassValidation": "",
+              "events": "",
+              "showCondition": "",
+              "disableCondition": "",
+              "active": true,
+              "required": false,
+              "labelWidth": "",
+              "labelMargin": "",
+              "width": "",
+              "mask": [],
+              "description": "",
+              "icon": "",
+              "parentName": "",
+              "filterSqlQuery": "",
+              "key": "_4ymzvt22a",
+              "order": 0,
+              "parent": "_6zkdmgzc7",
+              "componentName": "DateTimeComponent"
+            },
+            {
+              "type": "EML",
+              "hasParent": false,
+              "hideLabel": false,
+              "labelPosition": "top",
+              "marginTop": "",
+              "marginRight": "",
+              "marginLeft": "",
+              "marginBottom": "",
+              "defaultValueType": "none",
+              "defaultValueSqlQuery": "",
+              "defaultValueString": "",
+              "lovType": "none",
+              "lovSqlQuery": "",
+              "lovJson": "",
+              "nonPersistent": false,
+              "hidden": false,
+              "clearWhenHidden": false,
+              "disabled": false,
+              "prefix": "",
+              "suffix": "",
+              "appliedValidations": "",
+              "customFuncValidation": "",
+              "jsonLogicVal": "",
+              "formClassValidation": "",
+              "events": "",
+              "showCondition": "",
+              "disableCondition": "",
+              "active": true,
+              "required": false,
+              "labelWidth": "",
+              "labelMargin": "",
+              "width": "",
+              "mask": [],
+              "description": "",
+              "icon": "",
+              "parentName": "",
+              "filterSqlQuery": "",
+              "key": "_serl50qsf",
+              "order": 1,
+              "parent": "_6zkdmgzc7",
+              "componentName": "EmailComponent"
+            },
+            {
+              "label": "Fieldset",
+              "description": "",
+              "hideLabel": false,
+              "labelPosition": "top",
+              "flexiLabel": "",
+              "active": true,
+              "components": [
+                {
+                  "ckSettings": "",
+                  "enableSpellCheck": true,
+                  "rows": 5,
+                  "type": "HTML",
+                  "hasParent": false,
+                  "hideLabel": false,
+                  "labelPosition": "top",
+                  "marginTop": "",
+                  "marginRight": "",
+                  "marginLeft": "",
+                  "marginBottom": "",
+                  "defaultValueType": "none",
+                  "defaultValueSqlQuery": "",
+                  "defaultValueString": "",
+                  "lovType": "none",
+                  "lovSqlQuery": "",
+                  "lovJson": "",
+                  "nonPersistent": false,
+                  "hidden": false,
+                  "clearWhenHidden": false,
+                  "disabled": false,
+                  "prefix": "",
+                  "suffix": "",
+                  "appliedValidations": "",
+                  "customFuncValidation": "",
+                  "jsonLogicVal": "",
+                  "formClassValidation": "",
+                  "events": "",
+                  "showCondition": "",
+                  "disableCondition": "",
+                  "active": true,
+                  "required": false,
+                  "labelWidth": "",
+                  "labelMargin": "",
+                  "width": "",
+                  "mask": [],
+                  "description": "",
+                  "icon": "",
+                  "parentName": "",
+                  "filterSqlQuery": "",
+                  "key": "_4ozufkchr",
+                  "order": 0,
+                  "parent": "_2bc9j1517",
+                  "componentName": "HTMLComponent"
+                }
+              ],
+              "type": "FST",
+              "width": "100%",
+              "hidden": false,
+              "key": "_2bc9j1517",
+              "order": 2,
+              "parent": "_6zkdmgzc7",
+              "componentName": "FieldSetComponent"
+            }
+          ],
+          "type": "FST",
+          "width": "100%",
+          "hidden": false,
+          "key": "_6zkdmgzc7",
           "order": 1,
           "parent": "root_drop",
-          "componentName": "NumComponent"
-        },
-        {
-          "type": "PWD",
-          "hasParent": false,
-          "hideLabel": false,
-          "labelPosition": "top",
-          "marginTop": "",
-          "marginRight": "",
-          "marginLeft": "",
-          "marginBottom": "",
-          "defaultValueType": "none",
-          "defaultValueSqlQuery": "",
-          "defaultValueString": "",
-          "lovType": "none",
-          "lovSqlQuery": "",
-          "lovJson": "",
-          "nonPersistent": false,
-          "hidden": false,
-          "clearWhenHidden": false,
-          "disabled": false,
-          "prefix": "",
-          "suffix": "",
-          "appliedValidations": "",
-          "customFuncValidation": "",
-          "jsonLogicVal": "",
-          "formClassValidation": "",
-          "events": "",
-          "showCondition": "",
-          "disableCondition": "",
-          "active": true,
-          "required": false,
-          "labelWidth": "",
-          "labelMargin": "",
-          "width": "",
-          "mask": [],
-          "description": "",
-          "icon": "",
-          "parentName": "",
-          "filterSqlQuery": "",
-          "key": "_fyl14ecjs",
-          "order": 2,
-          "parent": "root_drop",
-          "componentName": "PwdComponent"
-        },
-        {
-          "enableSpellCheck": true,
-          "rows": 5,
-          "type": "TXA",
-          "hasParent": false,
-          "hideLabel": false,
-          "labelPosition": "top",
-          "marginTop": "",
-          "marginRight": "",
-          "marginLeft": "",
-          "marginBottom": "",
-          "defaultValueType": "none",
-          "defaultValueSqlQuery": "",
-          "defaultValueString": "",
-          "lovType": "none",
-          "lovSqlQuery": "",
-          "lovJson": "",
-          "nonPersistent": false,
-          "hidden": false,
-          "clearWhenHidden": false,
-          "disabled": false,
-          "prefix": "",
-          "suffix": "",
-          "appliedValidations": "",
-          "customFuncValidation": "",
-          "jsonLogicVal": "",
-          "formClassValidation": "",
-          "events": "",
-          "showCondition": "",
-          "disableCondition": "",
-          "active": true,
-          "required": false,
-          "labelWidth": "",
-          "labelMargin": "",
-          "width": "",
-          "mask": [],
-          "description": "",
-          "icon": "",
-          "parentName": "",
-          "filterSqlQuery": "",
-          "key": "_ikx9hkwn9",
-          "order": 3,
-          "parent": "root_drop",
-          "componentName": "TxaComponent"
-        },
-        {
-          "type": "CHK",
-          "inputPropsArray": [
-            {
-              "label": "test",
-              "value": ""
-            }
-          ],
-          "hasParent": false,
-          "hideLabel": false,
-          "labelPosition": "top",
-          "marginTop": "",
-          "marginRight": "",
-          "marginLeft": "",
-          "marginBottom": "",
-          "defaultValueType": "none",
-          "defaultValueSqlQuery": "",
-          "defaultValueString": "",
-          "lovType": "none",
-          "lovSqlQuery": "",
-          "lovJson": "",
-          "nonPersistent": false,
-          "hidden": false,
-          "clearWhenHidden": false,
-          "disabled": false,
-          "prefix": "",
-          "suffix": "",
-          "appliedValidations": "",
-          "customFuncValidation": "",
-          "jsonLogicVal": "",
-          "formClassValidation": "",
-          "events": "",
-          "showCondition": "",
-          "disableCondition": "",
-          "active": true,
-          "required": false,
-          "labelWidth": "",
-          "labelMargin": "",
-          "width": "",
-          "mask": [],
-          "description": "",
-          "icon": "",
-          "parentName": "",
-          "filterSqlQuery": "",
-          "key": "_vu7dogsy6",
-          "order": 4,
-          "parent": "root_drop",
-          "componentName": "ChkComponent"
-        },
-        {
-          "inputPropsArray": [
-            {
-              "label": "test",
-              "value": ""
-            }
-          ],
-          "hasParent": false,
-          "hideLabel": false,
-          "labelPosition": "top",
-          "marginTop": "",
-          "marginRight": "",
-          "marginLeft": "",
-          "marginBottom": "",
-          "defaultValueType": "none",
-          "defaultValueSqlQuery": "",
-          "defaultValueString": "",
-          "lovType": "none",
-          "lovSqlQuery": "",
-          "lovJson": "",
-          "nonPersistent": false,
-          "hidden": false,
-          "clearWhenHidden": false,
-          "disabled": false,
-          "prefix": "",
-          "suffix": "",
-          "appliedValidations": "",
-          "customFuncValidation": "",
-          "jsonLogicVal": "",
-          "formClassValidation": "",
-          "events": "",
-          "showCondition": "",
-          "disableCondition": "",
-          "active": true,
-          "required": false,
-          "labelWidth": "",
-          "labelMargin": "",
-          "width": "",
-          "mask": [],
-          "description": "",
-          "icon": "",
-          "parentName": "",
-          "filterSqlQuery": "",
-          "type": "CHK",
-          "key": "_5l4bq2dl2",
-          "order": 5,
-          "parent": "root_drop",
-          "componentName": "RadComponent"
+          "componentName": "FieldSetComponent"
         }
       ],
-      buttons: []
+      "buttons": []
     };
     this.populateFormBuilder(json.components);
-    //this._formJsonService.buildFinalJSON();
   }
 
   save() {
@@ -675,7 +633,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 
   renderPreview() {
     this.finalJSON = this._formJsonService.buildFinalJSON();
-    this._bootstrapService.openModal(this.preview, { size: 'lg' });
+    this._bootstrapService.openModal(this.preview, { size: "lg" });
   }
 
   get id() {

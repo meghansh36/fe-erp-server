@@ -73,6 +73,7 @@ export class FeFormJsonService {
             parent = this.MasterJSON.components[key].instance.properties.parent;
         }
         if (parent !== 'button_drop') {
+            // tslint:disable-next-line:forin
             for (const comp in this.MasterJSON.components) {
                 const parentID = this.MasterJSON.components[comp].instance.properties.parent;
                 if (parentID === key) {
@@ -89,6 +90,7 @@ export class FeFormJsonService {
                 _.unset(this.MasterJSON.components, key);
                 this.MasterJSON.components[parentID].instance.properties.components.splice(indexToDelete, 1);
             }
+            // tslint:disable-next-line:forin
             for (const comp in this.MasterJSON.components) {
                 const parentID = this.MasterJSON.components[comp].instance.properties.parent;
                 if (this.MasterJSON.components[parentID] === undefined && parentID !== 'root_drop') {
@@ -224,26 +226,48 @@ export class FeFormJsonService {
             ...this.MasterJSON
         };
         let tempComponents = [];
-        const pushInFSTContainer = (parent, key) => {
-        };
-
         for (const key in this.MasterJSON.components) {
             if (this.MasterJSON.components[key].instance.properties.parent === 'root_drop' ) {
                 const index = this.MasterJSON.components[key].instance.properties.order;
-                tempComponents[index] = this.MasterJSON.components[key].instance.properties;
+                // tempComponents[index] = this.MasterJSON.components[key].instance.properties;
+                tempComponents[index] = _.assign({}, this.MasterJSON.components[key].instance.properties);
+            }
+      }
+
+        // recursion for nested components
+       const pushInFST = (container) => {
+          // console.log('push in fst called', container);
+            for (let i = 0; i < container.length; i++) {
+                const key = container[i];
+               // console.log('childKey', key);
+                container[i] = _.assign({}, this.MasterJSON.components[key].instance.properties);
+            }
+            return container;
+       };
+        
+       const buildNestedComponents = (rootContainer) => {
+        for (let i = 0; i < rootContainer.length; i++) {
+            if (rootContainer[i].components !== undefined) {
+               // console.log('in nested loop');
+                rootContainer[i].components = pushInFST(_.concat([], rootContainer[i].components));
+                buildNestedComponents(rootContainer[i].components);
             }
         }
+       };
+       buildNestedComponents(tempComponents);
+
 
         finalJSON.components = tempComponents;
-        tempComponents = [];
+        let tempComponentsButton = [];
         for (const key in this.MasterJSON.buttons) {
             if (key) {
                 const index = this.MasterJSON.buttons[key].instance.properties.order;
-                tempComponents[index] = this.MasterJSON.buttons[key].instance.properties;
+                tempComponentsButton[index] = this.MasterJSON.buttons[key].instance.properties;
             }
         }
-        finalJSON.buttons = tempComponents;
+        finalJSON.buttons = tempComponentsButton;
         this.finalJSON = finalJSON;
+        //console.log(finalJSON);
     }
 
     getFinalJSON() {

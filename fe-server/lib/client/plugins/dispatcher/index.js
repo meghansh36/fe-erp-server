@@ -17,8 +17,8 @@ class DispatcherPlugin extends BasePlugin {
 		  
 		  //just testing acl
 		  console.log(acl);
-		  router.get('/', (req, res, next)=>{
-		    acl.isAllowed(420, '/fe/api', 'post', (err, allowed)=>{
+		  router.get('/api/', (req, res, next)=>{
+		    acl.isAllowed(420, '/api/', 'post', (err, allowed)=>{
 		      if(allowed){
 		        next();
 		      } else if(!allowed) {
@@ -27,9 +27,7 @@ class DispatcherPlugin extends BasePlugin {
 						next();
 					}
 		    });	
-		  }, (req, res)=>{
-		    res.send('Congrats, you got through');
-			});
+		  });
 			
 		  router.get('/:module/:controller/:action', (req, res, next)=>{
 		    // acl.isAllowed(420, 'fe/api', 'get', (err, allowed)=>{
@@ -75,7 +73,7 @@ class DispatcherPlugin extends BasePlugin {
 		// 	var action = req.params.action;
 		// 	controllerObj[action](req, res);
 		// });
-		this._appObj.app.use('/:client/:legislation',router);
+		this._appObj.app.use('/api/:client/:legislation',router);
 		console.log('Dispatcher plugin initialized');
 
 	}

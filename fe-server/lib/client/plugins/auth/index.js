@@ -122,7 +122,7 @@ class AuthPlugin extends BasePlugin {
 		});
 
 
-		this._appObj.app.get('/', (req, res)=>{
+		this._appObj.app.get(/^\/(?!api\/)(.*)$/, (req, res)=>{
 			// console.log('before 1')
 			// //this._dynamicStatic.setPath(path.join(FE.APP_PATH, "dist", "fe"));
 			// console.log('after 1')

@@ -9,7 +9,7 @@ export class FeDefaultFormComponent implements OnInit, AfterViewInit {
 
     protected _originalSchema: any;
     protected _schema: any;
-    protected _code: String = 'DEFAULTFORM';
+    protected _code: string = 'DEFAULTFORM';
     protected _hideLabel: boolean;
     protected _instance: any;
     protected _components: any;
@@ -77,8 +77,8 @@ export class FeDefaultFormComponent implements OnInit, AfterViewInit {
     public init() {
         console.log("this.code", this.code);
 
-        const formSchema = this.formSchemaService.getFormSchema(this.code);
-        this._originalSchema = formSchema;
+        //const formSchema = this.formSchemaService.getFormSchema(this.code);
+        //this._originalSchema = formSchema;
         this.schema = _.assign({}, this._originalSchema);
         this._hideLabel = this.schema.hideLabel;
         this._dummyObject = {

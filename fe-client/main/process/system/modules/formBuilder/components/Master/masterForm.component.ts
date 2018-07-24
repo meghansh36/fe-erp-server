@@ -82,12 +82,15 @@ export class FeMasterFormComponent implements OnInit {
 
   onReset() {
     console.log("Form reset.");
+    //this.instance.properties = this.backupProps;
+    this.componentData = this.backupProps;
+    
   }
 
   onSubmit(form) {
     console.log("Component data in submit", this.componentData);
-    form.name = this.instance.fieldControlService.component.name;
-    form.type = this.instance.fieldControlService.component.type;
+    //form.name = this.instance.fieldControlService.component.name;
+    //form.type = this.instance.fieldControlService.component.type;
     this._masterFormService.setCurrentKey(this.currentKey);
     this._masterFormService.setProperties(this.instance.properties, this.currentKey);
     this._formJsonService.buildFinalJSON();

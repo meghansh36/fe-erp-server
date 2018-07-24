@@ -1,35 +1,26 @@
 import { Component } from '@angular/core';
-import { FormSchemaService } from '@L3Main/services/formSchema.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'forms',
   templateUrl: 'forms.component.html',
-  styleUrls: ['forms.component.css'],
-  providers: [FormSchemaService]
+  styleUrls: ['forms.component.css']
 })
 export class FeFormsComponent {
   public instance: any;
   public code: string = "FRM0000001";
 
-  constructor(public formSchemaService: FormSchemaService) {
+  constructor(public router: Router, public route: ActivatedRoute) {
     this.instance = this;
   }
 
-  sendMail(row: any) {
-    console.log(row);
-  }
-
-  addPerson(row: any) {
-    console.log(row);
-  }
-
-  download(arg: any) {
-    console.log('download');
-  }
-
-  getFormById(args: any) {
+  navigateToFormGenerator(args: any) {
     let id = args.ID;
-    this.formSchemaService.navigateToFormGenerator(id);
+    this.router.navigate(['/formGenerator', id]);
   }
 
+  navigateToFormBuilder(args: any) {
+    let id = args.ID;
+    this.router.navigate(['/formBuilder', id]);
+  }
 }

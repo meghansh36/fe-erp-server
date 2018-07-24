@@ -1,8 +1,9 @@
 import { Injectable, ErrorHandler } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { DataTable } from '@L1Process/system/modules/gridGenerator/models/data-table.interface';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import * as _ from 'lodash';
 
 @Injectable({
 	providedIn: 'root'
@@ -37,14 +38,15 @@ export class FeDataTableService {
 			emptyMessage: "No Data to Show"
 		},
 		buttons: [
-			{ icon: "md-get_app", clickEvent: "download",handlerOwner: 'resource', customCssClass: 'gray_clr mr_10 pointer' },
+			{ icon: "md-get_app", clickEvent: "download", handlerOwner: 'resource', customCssClass: 'gray_clr mr_10 pointer' },
 		],
 		columns: [
 			{ prop: "FORM_CODE", name: "Form Code", sortable: true, resizeable: true, width: '300', frozenLeft: true },
 			{ prop: "LABEL", name: "Label", sortable: true, resizeable: true, width: '400', align: 'left' },
 		],
 		rowActions: [
-			{ icon: 'md-create', clickEvent: 'getFormById', handlerOwner: 'resource', customCssClass: 'gray_clr mr_10 pointer' },
+			{ icon: 'md-create', clickEvent: 'navigateToFormGenerator', handlerOwner: 'resource', customCssClass: 'gray_clr mr_10 pointer' },
+			{ icon: 'md-create', clickEvent: 'navigateToFormBuilder', handlerOwner: 'resource', customCssClass: 'gray_clr mr_10 pointer' }
 		],
 		actionButtons: [
 			{ icon: 'md-email', clickEvent: 'sendMail', handlerOwner: 'resource', customCssClass: 'gray_clr mr_10 pointer' },
@@ -85,11 +87,9 @@ export class FeDataTableService {
 		]
 	}
 
-	fetch() {
-		return this.http.get('https://raw.githubusercontent.com/Dhruv1996oct1/dodo_wisdom/2d04497a24d555486e992cf2f6dfdf7ac6db15c7/data.json')
-			.pipe(
-				map(data => data['key'])
-			);
+	fetchRowData(): Observable<HttpResponse<any>> {
+		return this.http.get(
+			'http://fe.localhost:3000/fe/fe/default/forms_data/forms_data', { observe: 'response' });
 	}
 
 	fetchLimitData(limit, pageNumber, prevLimit) {
@@ -100,7 +100,8 @@ export class FeDataTableService {
 		})
 	}
 
-	getColumn() {
-		return this.column;
+	getGridDefinationByCode(code: string): Observable<HttpResponse<any>> {
+		return this.http.post<any>(
+			`http://fe.localhost:3000/fe/fe/default/forms_data/grid_data`, { 'code': code }, { observe: 'response' });
 	}
 }

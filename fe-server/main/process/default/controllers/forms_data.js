@@ -9,7 +9,7 @@ module.exports = class FeFormsData{
             attributes:['FORM_CODE','LABEL']
         }).then(function(formsData){
 
-            // var data = {};
+            var data = {};
             // var formsArray = [];
             // formsData.forEach(data => {
             //     var formObj = {};

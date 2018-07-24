@@ -100,12 +100,15 @@ export class FeFormComponent
 
   ngOnDestroy() {
     this._beforeNgOnDestroy();
-    this._$simpleConditionChange.unsubscribe();
+    if(this._$simpleConditionChange || this._$groupValueChange || this._$simpleDisableConditionChange || this._$simpleShowConditionChange ){
+      this._$simpleConditionChange.unsubscribe();
     this._$groupValueChange.forEach(observable => {
       observable.unsubscribe();
     });
     this._$simpleDisableConditionChange.unsubscribe();
     this._$simpleShowConditionChange.unsubscribe();
+    }
+    
     this._afterNgOnDestroy();
   }
 
