@@ -4,17 +4,17 @@ function configLoader(appObj) {
 		includes    : {
 			"session"       : true,
 			"db"            : true,
-			"reqHooks"      : true,
+			//"reqHooks"      : true,
 			"auth"          : true,
-			//"acl"           : true,
+			"acl"           : true,
 			"dispatcher"    : true
 		},
 		order    : [
 			"session",
 			"db",
-			"reqHooks",
+			//"reqHooks",
 			"auth",
-			//"acl",
+			"acl",
 			"dispatcher"
 		]
     };
