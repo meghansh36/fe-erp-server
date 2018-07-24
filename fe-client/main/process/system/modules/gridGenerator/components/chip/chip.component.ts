@@ -65,12 +65,12 @@ export class FeChipComponent implements OnInit {
 	}
 
 	protected popUp() {
-		this._checked = !this._checked;
+		this.checked = !this.checked;
 		this.filteredCol = this.chipData;
 	}
 
 	protected closePopUp() {
-		this._checked = !this._checked;
+		this.checked = !this.checked;
 	}
 
 	protected addFilter(event: any) {
@@ -87,7 +87,7 @@ export class FeChipComponent implements OnInit {
 		this.obj['filterValue'] = this.filterValue;
 
 		this.addThisFilter.emit(this.obj);
-		this._checked = !this._checked;
+		this.checked = !this.checked;
 	}
 
 	protected removeChip() {
@@ -109,6 +109,14 @@ export class FeChipComponent implements OnInit {
 
 	set filter(filterString) {
 		this._chipData.filter = filterString;
+	}
+
+	get checked() {
+		return this._checked;
+	}
+
+	set checked(checked) {
+		this._checked = checked;
 	}
 
 	get dependentFilter() {

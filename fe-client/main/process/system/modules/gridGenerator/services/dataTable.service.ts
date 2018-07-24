@@ -101,7 +101,7 @@ export class FeDataTableService {
 	}
 
 	getGridDefinationByCode(code: string): Observable<HttpResponse<any>> {
-		return this.http.post<any>(
-			`http://fe.localhost:3000/fe/fe/default/forms_data/grid_data`, { 'code': code }, { observe: 'response' });
+		return this.http.get<any>(
+			`https://raw.githubusercontent.com/Dhruv1996oct1/dodo_wisdom/master/col.json`, { observe: 'response' });
 	}
 }
