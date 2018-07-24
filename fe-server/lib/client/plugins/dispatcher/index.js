@@ -45,7 +45,16 @@ class DispatcherPlugin extends BasePlugin {
 		    var controllerObj = new controller_class();
 		    var action = req.params.action;
 		    controllerObj[action](req,res);
-		  });
+			});
+			
+			// router.get('/:module/:controller/:action/:id', (req, res, next)=>{
+		  //   var controller = this._appObj.SUB_APP_PROCESS_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
+		  //   var controller_class = require(controller);
+		  //   var controllerObj = new controller_class();
+		  //   var action = req.params.action;
+		  //   controllerObj[action](req,res);
+		  // });
+
 
 		  router.post('/:module/:controller/:action', (req, res, next)=>{
 		    var controller = this._appObj.SUB_APP_PROCESS_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
@@ -54,9 +63,6 @@ class DispatcherPlugin extends BasePlugin {
 		    var action = req.params.action;
 		    controllerObj[action](req,res);
 		  });
-
-
-
 		});     
 
 		// this._appObj.app.use('/:module/:controller/:action', (req, res, next) => {
