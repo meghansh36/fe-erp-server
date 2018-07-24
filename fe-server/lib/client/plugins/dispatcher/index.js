@@ -16,17 +16,22 @@ class DispatcherPlugin extends BasePlugin {
 		 FE.ACL.then((acl)=>{
 		  
 		  //just testing acl
-		  //console.log(acl);
+		  console.log(acl);
 		  router.get('/', (req, res, next)=>{
 		    acl.isAllowed(420, '/fe/api', 'post', (err, allowed)=>{
 		      if(allowed){
 		        next();
-		      } else {
+		      } else if(!allowed) {
 		        res.send('Access Denied');
-		      }
-		    })
-		  });
-		  router.use('/:module/:controller/:action', (req, res, next)=>{
+		      } else if(err){
+						next();
+					}
+		    });	
+		  }, (req, res)=>{
+		    res.send('Congrats, you got through');
+			});
+			
+		  router.get('/:module/:controller/:action', (req, res, next)=>{
 		    // acl.isAllowed(420, 'fe/api', 'get', (err, allowed)=>{
 		    //   if(allowed){
 		    //     next();
