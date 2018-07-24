@@ -176,11 +176,18 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
         .subscribe(data => {
           const form = data.body;
           if (form) {
-            this.formJson = form;
+			for( var key in form ) {
+				if( key !== 'components' && key !== 'buttons') {
+					this.formJson[ key ] = form[key];
+				}
+			}
+
+
             this.populateFormBuilder(form.components);
             setTimeout(() => {
               this.populateFormBuilder(form.buttons);
-            }, 1000);
+			}, 1000);
+
           } else {
             console.log("No schema found");
           }
@@ -269,7 +276,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
   calculateIndex(value) {
     const [bag, el, target, source, sibling] = value;
     const children = target.children;
-    console.log(value);
+
     if (sibling === null) {
       return children.length - 1;
     } else {
@@ -375,7 +382,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
       target.children[copy.order].generatedKey = key;
       target.children[copy.order].parentComponent = target.id;
       //this._formJsonService.setMasterJSON(copy, key);
-      
+
       setTimeout(() => {
         res();
       }, 50);
@@ -559,7 +566,8 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
   reset() {}
 
   renderPreview() {
-    this.finalJSON = this._formJsonService.buildFinalJSON();
+	this.finalJSON = this._formJsonService.buildFinalJSON();
+	console.log("this.finalJSON", this.finalJSON);
     this._bootstrapService.openModal(this.preview, { size: "lg" });
   }
 
@@ -579,8 +587,8 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     return this.formJson.name;
   }
 
-  get display() {
-    return this.formJson.display;
+  get type() {
+    return this.formJson.type;
   }
 
   get disabled() {
@@ -627,8 +635,8 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     this.formJson.name = name;
   }
 
-  set display(display) {
-    this.formJson.display = display;
+  set type(type) {
+    this.formJson.type = type;
   }
 
   set disabled(disabled) {
@@ -639,12 +647,16 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     this.formJson.hidden = hidden;
   }
 
-  set conditionalHidden(conditionalHidden) {
-    this.formJson.conditionalHidden = conditionalHidden;
+  set disableCondition(disableCondition) {
+    this.formJson.disableCondition = disableCondition;
   }
 
-  set conditionalDisabled(conditionalDisabled) {
-    this.formJson.conditionalDisabled = conditionalDisabled;
+  set showCondition(showCondition) {
+    this.formJson.showCondition = showCondition;
+  }
+
+  get showCondition() {
+	  return this.formJson.showCondition;
   }
 
   set active(active) {
