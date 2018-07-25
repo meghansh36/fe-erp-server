@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule as NgController } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -41,7 +41,7 @@ import { routes  } from '@L3Process/default/modules/home/home.routing';
 const routing: ModuleWithProviders = RouterModule.forRoot(routes);
 
 
-@NgModule({
+@NgController({
   declarations: [
     HomeComponent
   ],

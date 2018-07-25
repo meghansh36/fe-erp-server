@@ -28,6 +28,7 @@ export class FeFormJsonService {
     }
 
     setMasterJSON(newProps, key) {
+        console.log('props updated');
         if (newProps.parent === 'root_drop') {
             this.MasterJSON.components[key].instance.properties = newProps;
         } else if (newProps.parent === 'button_drop') {
@@ -38,6 +39,7 @@ export class FeFormJsonService {
     }
 
     addComponentToMasterJSON(key, componentRef, parent, index) {
+        console.log('component added');
         if (parent === 'root_drop') {
             this.MasterJSON.components = _.merge(this.MasterJSON.components, { [key]: componentRef });
             this.MasterJSON.components[key].instance.properties.key = key;

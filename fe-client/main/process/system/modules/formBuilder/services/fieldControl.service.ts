@@ -6,7 +6,6 @@ export class FeFieldControlService {
   instanceArray: Object[] = [];
   modalParent;
   component;
-  viewRef;
   fstCollection = {};
 
   constructor() { }
@@ -23,8 +22,7 @@ export class FeFieldControlService {
    return {
      ref: this.instanceArray[this.instanceArray.length - 1],
      parent: this.modalParent,
-     component: this.component,
-     viewRef: this.viewRef
+     component: this.component, //name of component
     };
   }
 
