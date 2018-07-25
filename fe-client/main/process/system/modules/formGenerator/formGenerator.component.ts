@@ -21,11 +21,11 @@ export class FeFormGeneratorComponent implements OnInit {
     protected _route: ActivatedRoute,
     protected _formSchemaService: FormSchemaService,
     protected _location: Location
-  ) {}
+  ) { }
 
-  protected _beforeNgOnInit() {}
+  protected _beforeNgOnInit() { }
 
-  protected _afterNgOnInit() {}
+  protected _afterNgOnInit() { }
 
   ngOnInit() {
     this._beforeNgOnInit();
@@ -39,13 +39,13 @@ export class FeFormGeneratorComponent implements OnInit {
 
   protected _handleRouteParams(params) {
     console.log("_handleRouteParams params", params);
-    this._initFormSchema(params.formId);
+    this._initFormSchema(Number(params.formId));
   }
 
   protected _initFormSchema(formId?: any) {
     if (formId) {
       this._formSchemaService.getFormSchemaById(formId).subscribe(data => {
-        const form = [...data.body.data];
+        const form = { ...data.body.data };
         if (form) {
           this.schema = form;
         } else {

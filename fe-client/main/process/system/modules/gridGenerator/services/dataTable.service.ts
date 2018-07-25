@@ -102,6 +102,6 @@ export class FeDataTableService {
 
 	getGridDefinationByCode(code: string): Observable<HttpResponse<any>> {
 		return this.http.get<any>(
-			`https://raw.githubusercontent.com/Dhruv1996oct1/dodo_wisdom/master/col.json`, { observe: 'response' });
+			`https://raw.githubusercontent.com/Dhruv1996oct1/dodo_wisdom/2e93d78754a301b9ee449d6fbfa8e41f154ca1c5/col.json`, { observe: 'response' });
 	}
 }
