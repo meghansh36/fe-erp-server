@@ -89,7 +89,7 @@ export class FeDataTableService {
 
 	fetchRowData(): Observable<HttpResponse<any>> {
 		return this.http.get(
-			'http://fe.localhost:3000/fe/fe/default/forms_data/forms_data', { observe: 'response' });
+			'http://fe.localhost:3000/api/fe/fe/default/forms_data/forms_data', { observe: 'response' });
 	}
 
 	fetchLimitData(limit, pageNumber, prevLimit) {
@@ -101,7 +101,7 @@ export class FeDataTableService {
 	}
 
 	getGridDefinationByCode(code: string): Observable<HttpResponse<any>> {
-		return this.http.post<any>(
-			`http://fe.localhost:3000/fe/fe/default/forms_data/grid_data`, { 'code': code }, { observe: 'response' });
+		return this.http.get<any>(
+			`https://raw.githubusercontent.com/Dhruv1996oct1/dodo_wisdom/2e93d78754a301b9ee449d6fbfa8e41f154ca1c5/col.json`, { observe: 'response' });
 	}
 }

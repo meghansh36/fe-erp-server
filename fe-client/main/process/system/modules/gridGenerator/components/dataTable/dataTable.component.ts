@@ -26,9 +26,11 @@ export class FeDataTableComponent implements OnInit {
 
 	protected _gridDef = {};
 	protected temp = [];
-	protected allColumns = [];
+	protected _allColumns = [];
 	protected selected = [];
-	protected _filterJsonData = [];
+	public filterableCol = [];
+	public filterJsonData = [];
+	public sortedData = [];
 	protected openOrClose: boolean = true;
 	protected checked: boolean = false;
 	protected allColumnsForFilter: any;
@@ -77,15 +79,17 @@ export class FeDataTableComponent implements OnInit {
 
 	protected _setGrid(gridDefination) {
 		this._gridDef = _.assign({}, gridDefination);
+		this.allColumns = this._gridDef['columns'];
 	}
 
 	protected _setRowData(data) {
+		console.log(data);
 		this.rows = [...data.body.data];
 		this.temp = [...data.body.data];
 	}
 
-	protected _toggle(col) {
-		const isChecked = this._isChecked(col);
+	public toggle(col) {
+		const isChecked = this.isChecked(col);
 
 		if (isChecked) {
 			this.columns = this.columns.filter(c => {
@@ -96,7 +100,7 @@ export class FeDataTableComponent implements OnInit {
 		}
 	}
 
-	protected _isChecked(col) {
+	public isChecked(col) {
 		return this.columns.find(c => {
 			return c.name === col.name;
 		});
@@ -113,24 +117,24 @@ export class FeDataTableComponent implements OnInit {
 		this.dataTableService.fetchLimitData(limit, pageNumber, prevLimit);
 	}
 
-	protected _onSelect({ selected }) {
+	public onSelect({ selected }) {
 		this.selected.splice(0, this.selected.length);
 		this.selected.push(...selected);
 	}
 
-	protected _add() {
+	public add() {
 		this.selected.push(this.rows[1], this.rows[3]);
 	}
 
-	protected _update() {
+	public update() {
 		this.selected = [this.rows[1], this.rows[3]];
 	}
 
-	protected _remove() {
+	public remove() {
 		this.selected = [];
 	}
 	//----------------------buttons actions ----------------------------
-	protected _dropDownOpenClose() {
+	public dropDownOpenClose() {
 		if (this.openOrClose) {
 			this.dropdown.open();
 			this.openOrClose = !this.openOrClose;
@@ -141,7 +145,7 @@ export class FeDataTableComponent implements OnInit {
 		}
 	}
 
-	protected _onAction(action: any, arg: any) {
+	public onAction(action: any, arg: any) {
 		try {
 			if (action.handlerOwner == 'form') {
 				if (this.formInstance.formInstance[action.clickEvent]) {
@@ -163,7 +167,7 @@ export class FeDataTableComponent implements OnInit {
 
 	//-------------------------- Filters ---------------------------------
 
-	protected _popUp(col: any) {
+	public popUp(col: any) {
 		this.checked = !this.checked;
 		this.filteredCol = col;
 		this.allColumnsForFilter = this.columnsFiltersTobeApplied;
@@ -176,11 +180,11 @@ export class FeDataTableComponent implements OnInit {
 		this.myDrop.close();
 	}
 
-	protected _closePopUp(event: any) {
+	public closePopUp(event: any) {
 		this.checked = event;
 	}
 
-	protected _closeThisChip(event: any) {
+	public closeThisChip(event: any) {
 		let code = event.code;
 		event.filter = undefined;
 		let element = document.querySelector(`#chip${code}`);
@@ -190,7 +194,7 @@ export class FeDataTableComponent implements OnInit {
 		this._manipulateStructureOfFilter(event);
 	}
 
-	protected _addFirstFilter(event: any) {
+	public addFirstFilter(event: any) {
 		this.filterableCol.push(event);
 		this.checked = event.checked;
 		this._manipulateStructureOfFilter(event);
@@ -219,7 +223,7 @@ export class FeDataTableComponent implements OnInit {
 		if (filter.filter != undefined) {
 			let getObj = this._valuesOfFilter(filter);
 			getObj.forEach((ele) => {
-				this.filterJsonData = ele;
+				this.filterJsonData.push(ele);
 			})
 		}
 	}
@@ -296,7 +300,7 @@ export class FeDataTableComponent implements OnInit {
 
 	//-------------------------- sorting filter ------------------------------
 
-	protected _filterOnSorting({ sorts, column, prevValue, newValue }) {
+	public filterOnSorting({ sorts, column, prevValue, newValue }) {
 		this._convertToValidSortingJson(sorts);
 		this._applyFilter();
 	}
@@ -529,19 +533,19 @@ export class FeDataTableComponent implements OnInit {
 		this._gridDef['filteredCol'] = filteredCol;
 	}
 
-	get filterableCol() {
-		return this._gridDef['filterableCol'];
+	/* get filterableCol() {
+		return this._filterableCol;
 	}
 
 	set filterableCol(filterableCol) {
-		this._gridDef['filterableCol'] = filterableCol;
-	}
+		this._filterableCol.push(filterableCol);
+	} */
 
 	get columnsFiltersTobeApplied() {
-		return this._gridDef['columnsFiltersTobeApplied']
+		return this._gridDef['applicableFilters']
 	}
 	set columnsFiltersTobeApplied(columnsFiltersTobeApplied) {
-		this._gridDef['columnsFiltersTobeApplied'] = columnsFiltersTobeApplied;
+		this._gridDef['applicableFilters'] = columnsFiltersTobeApplied;
 	}
 
 	get InitialValue() {
@@ -553,20 +557,28 @@ export class FeDataTableComponent implements OnInit {
 	}
 
 
-	get filterJsonData() {
+	/* get filterJsonData() {
 		return this._filterJsonData;
 	}
 
 	set filterJsonData(filterJsonData) {
 		this._filterJsonData.push(filterJsonData);
-	}
+	} */
 
-	get sortedData() {
+	/* get sortedData() {
 		return this._gridDef['sortedData'];
 	}
 
 	set sortedData(sortedData) {
 		this._gridDef['sortedData'] = sortedData;
+	} */
+
+	get allColumns() {
+		return this._allColumns;
+	}
+
+	set allColumns(cols) {
+		this._allColumns = cols;
 	}
 
 }
