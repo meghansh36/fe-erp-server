@@ -24,7 +24,7 @@ class ClientBaseApp {
 
 	mountSubApp() {
 		// view-engine setup
-		this.app.set('views', FE.SERVER_APP_PATH + '/legislations/fe/clients/fe/main/process/');
+		this.app.set('views', FE.SERVER_APP_PATH + '/legislations/fe/clients/fe/main/modules/');
 		this.app.set('view engine', 'pug');
 	}
 

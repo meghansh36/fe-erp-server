@@ -37,10 +37,10 @@ class DbPlugin extends BasePlugin {
 
 		FE.DBOBJECT = sequelize;
 
-		var processesPath = this._appObj.SUB_APP_PROCESS_PATH;
+		var modulesPath = this._appObj.SUB_APP_MODULES_PATH;
 		this._models = {};
-		fs.readdirSync(processesPath).forEach(process => {
-			var modelFolderName = processesPath + '/' + process + '/models';
+		fs.readdirSync(modulesPath).forEach(module => {
+			var modelFolderName = modulesPath + '/' + module + '/models';
 			fs.access(modelFolderName, fs.constants.R_OK, (err) => {
 				if (err) {
 

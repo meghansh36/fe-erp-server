@@ -1,5 +1,6 @@
 const LgEmpDetails = FE.require(FE.SERVER_APP_PATH+'/legislations/fe/main/modules/default/controllers/fe_hrt_emp_info_t.js');
 
+
 module.exports = class EmpDetails extends LgEmpDetails{
     constructor(){
         super();

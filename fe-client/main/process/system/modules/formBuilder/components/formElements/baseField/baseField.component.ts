@@ -173,7 +173,6 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
   ) {
     this._utility.renderer = this._render;
     this.systemValidations = this._defaults.VALIDATIONS;
-    console.log("constructor");
   }
 
   protected _beforeNgOnInit() {}
@@ -181,7 +180,6 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
   protected _afterNgOnInit() {}
 
   ngOnInit() {
-    console.log("called on init")
     this._beforeNgOnInit();
     this._init();
     this._afterNgOnInit();
@@ -190,6 +188,8 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
   _init() {
     this.setRef(this._fieldControlService.getFieldRef().ref);
     this.uniqueKey = this._masterFormService.getCurrentKey();
+   // this.properties = _.assign({}, this._formJsonService.getMasterJSON().components[this.uniqueKey].instance.properties);
+    console.log('base props', this.properties, this.uniqueKey);
     this._masterFormService.setProperties(this.properties, this.uniqueKey);
     this._initFieldStyle();
     this.systemValidations = this._defaults.VALIDATIONS;
@@ -199,7 +199,6 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
 
   ngAfterViewInit() {
     this._beforeNgAfterViewInit();
-    console.log("after view init", this)
     this._utility.addDisplayProps(this);
     this._afterNgAfterViewInit();
   }
@@ -243,7 +242,9 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
   openModal() {
     this._masterFormService.setCurrentKey(this.uniqueKey);
     this._masterFormService.setProperties(this.properties, this.uniqueKey);
-    this._fieldControlService.getFieldRef().parent.openModal();
+    const parent = this._fieldControlService.getFieldRef().parent;
+    this._fieldControlService.setFieldRef(this.refObj, parent, this.properties.componentName);
+    parent.openModal();
   }
 
   protected update(propsFromMasterForm) {

@@ -8,7 +8,7 @@ moduleAlias.addAliases({
   '@root'       : global.projectFolderPath,
   '@L1Root'     : global.projectFolderPath + '/fe-server/',
   '@L1Main'     : global.projectFolderPath + '/fe-server/main',
-  '@L1Process'  : global.projectFolderPath + '/fe-server/main/process'
+  '@L1Modules'  : global.projectFolderPath + '/fe-server/main/modules'
 });
 moduleAlias();
 

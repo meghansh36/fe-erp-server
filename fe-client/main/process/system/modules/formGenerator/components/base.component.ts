@@ -23,14 +23,11 @@ export class FeBaseComponent
 	public group?: FormGroup;
 	public form?: any;
 	public formComponent?: any;
-
 	public conditionClass: string;
-	public error: string;
 	public validators = [];
-	public name: string;
 	public errors = [];
-	public style: any;
-	public defaultClasses: any;
+	public style: any = {};
+	public defaultClasses: any = {};
 
 	protected _$statusChange: any;
 	protected _$valueChange: any;
@@ -66,6 +63,9 @@ export class FeBaseComponent
 
 	_init() {
 		this._config = _.assign({}, this.config);
+		if ( !this.control ) {
+			return;
+		}
 		this._applyValidations();
 		this._initFieldStyle();
 		this._applyObservers();
@@ -166,7 +166,6 @@ export class FeBaseComponent
 	}
 
 	protected _applyConditionalDisable() {
-
 		//this.disableField(!this.disableCondition.flag);
 		this._applyCondition(this.disableCondition, "disable");
 	}
@@ -205,7 +204,6 @@ export class FeBaseComponent
 
 	protected _simpleConditionHandler(condition: any, action, flagIndex) {
 		let resFlag = false;
-		console.log("condition", condition);
 		const self = this;
 		let handler = (data) => {
 			(<any>window).leftValue = data;
@@ -428,7 +426,9 @@ export class FeBaseComponent
 		if (this.jsonLogicVal) {
 			this._applyJsonValidations();
 		}
-		this.control.setValidators(this.validators);
+		if ( this.control && this.validators.length >0 ) {
+			this.control.setValidators(this.validators);
+		}
 	}
 
 	protected _addNgValidation(validation) {

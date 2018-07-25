@@ -33,7 +33,7 @@ constructor(_clientApp) {
         //   }
         // })
       // }, (req, res, next) => {
-        var controller = this._clientApp.SUB_APP_PROCESS_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
+        var controller = this._clientApp.SUB_APP_MODULES_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
         var controller_class = require(controller);
         var controllerObj = new controller_class();
         var action = req.params.action;
@@ -49,7 +49,7 @@ constructor(_clientApp) {
         //   }
         // })
       // }, (req, res, next) => {
-        var controller = this._clientApp.SUB_APP_PROCESS_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
+        var controller = this._clientApp.SUB_APP_MODULES_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
         var controller_class = require(controller);
         var controllerObj = new controller_class();
         var action = req.params.action;
