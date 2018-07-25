@@ -6,7 +6,7 @@ module.exports = class FeFormsData{
     forms_data(req,res,done) {
         var clientName = req.params.client;
         FE.clients[clientName].models.FormsData.findAll({
-            attributes:['FORM_CODE','LABEL']
+            attributes:['ID','FORM_CODE','LABEL']
         }).then(function(formsData){
 
             var data = {};
