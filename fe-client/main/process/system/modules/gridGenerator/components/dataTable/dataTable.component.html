@@ -68,7 +68,7 @@
 			<ngx-datatable-column *ngFor="let col of columns" [columnMode]="'force'" [prop]="col.prop" [name]="col.name" [cellClass]="col.align"
 			 [width]="col.width" [sortable]="col.sortable" [frozenLeft]="col.frozenLeft" [resizeable]="col.resizeable"></ngx-datatable-column>
 
-			<ngx-datatable-column *ngFor="let action of rowActions" [width]="action.width" [name]="action.name">
+			<ngx-datatable-column *ngFor="let action of rowActions" [width]="action.width" [name]="action.name" [prop]="action.prop">
 				<ng-template let-column="column" ngx-datatable-header-template>
 				</ng-template>
 				<ng-template let-row="row" let-value="value" ngx-datatable-cell-template>

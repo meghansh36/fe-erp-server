@@ -59,9 +59,9 @@ export class FeFormComponent
     this.componentInstances = [];
   }
 
-  protected _beforeNgOnInit() {}
+  protected _beforeNgOnInit() { }
 
-  protected _afterNgOnInit() {}
+  protected _afterNgOnInit() { }
 
   ngOnInit() {
     this._beforeNgOnInit();
@@ -70,16 +70,18 @@ export class FeFormComponent
     } else {
       this._schema = this.schema;
     }
-    this.buttons = this._schema.buttons;
-    this._setComponents();
-    this._createGroup();
-    this._applyConditions();
-    this._afterNgOnInit();
+    if (this._schema) {
+      this.buttons = this._schema.buttons;
+      this._setComponents();
+      this._createGroup();
+      this._applyConditions();
+      this._afterNgOnInit();
+    }
   }
 
-  protected _beforeNgOnDestroy() {}
+  protected _beforeNgOnDestroy() { }
 
-  protected _afterNgOnDestroy() {}
+  protected _afterNgOnDestroy() { }
 
   protected _setComponents() {
     const schema = this._schema;
@@ -100,15 +102,15 @@ export class FeFormComponent
 
   ngOnDestroy() {
     this._beforeNgOnDestroy();
-    if(this._$simpleConditionChange || this._$groupValueChange || this._$simpleDisableConditionChange || this._$simpleShowConditionChange ){
+    if (this._$simpleConditionChange || this._$groupValueChange || this._$simpleDisableConditionChange || this._$simpleShowConditionChange) {
       this._$simpleConditionChange.unsubscribe();
-    this._$groupValueChange.forEach(observable => {
-      observable.unsubscribe();
-    });
-    this._$simpleDisableConditionChange.unsubscribe();
-    this._$simpleShowConditionChange.unsubscribe();
+      this._$groupValueChange.forEach(observable => {
+        observable.unsubscribe();
+      });
+      this._$simpleDisableConditionChange.unsubscribe();
+      this._$simpleShowConditionChange.unsubscribe();
     }
-    
+
     this._afterNgOnDestroy();
   }
 
@@ -151,12 +153,19 @@ export class FeFormComponent
     this._detectGroupValueChange(handler);
   }
 
-  protected _beforeNgOnChanges() {}
+  protected _beforeNgOnChanges() { }
 
-  protected _afterNgOnChanges() {}
+  protected _afterNgOnChanges() { }
 
   ngOnChanges() {
     this._beforeNgOnChanges();
+    if (this.schema) {
+      this._schema = _.assign({}, this.schema);
+      this.buttons = this._schema.buttons;
+      this._setComponents();
+      this._createGroup();
+      this._applyConditions();
+    }
     if (this.group) {
       const controls = Object.keys(this.controls);
       const configControls = this.schemaControls.map(item => item.flexiLabel);
@@ -180,9 +189,9 @@ export class FeFormComponent
     this._afterNgOnChanges();
   }
 
-  protected _beforeNgAfterViewInit() {}
+  protected _beforeNgAfterViewInit() { }
 
-  protected _afterNgAfterViewInit() {}
+  protected _afterNgAfterViewInit() { }
 
   ngAfterViewInit() {
     this._beforeNgAfterViewInit();
@@ -248,7 +257,7 @@ export class FeFormComponent
       (<any>window).result = false;
       const evalStr = `window.result = window.leftValue ${
         (<any>window).operator
-      } window.rightValue `;
+        } window.rightValue `;
       eval(evalStr);
       resFlag = (<any>window).result;
       if (action === "show" && resFlag) {
