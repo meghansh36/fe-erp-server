@@ -89,7 +89,7 @@ export class FeDataTableService {
 
 	fetchRowData(): Observable<HttpResponse<any>> {
 		return this.http.get(
-			'http://fe.localhost:3000/fe/fe/default/forms_data/forms_data', { observe: 'response' });
+			'http://fe.localhost:3000/api/fe/fe/default/forms_data/forms_data', { observe: 'response' });
 	}
 
 	fetchLimitData(limit, pageNumber, prevLimit) {

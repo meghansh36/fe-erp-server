@@ -84,8 +84,8 @@ export class FeDataTableComponent implements OnInit {
 
 	protected _setRowData(data) {
 		console.log(data);
-		this.rows = [...data.body.key];
-		this.temp = [...data.body.key];
+		this.rows = [...data.body.data];
+		this.temp = [...data.body.data];
 	}
 
 	public toggle(col) {
