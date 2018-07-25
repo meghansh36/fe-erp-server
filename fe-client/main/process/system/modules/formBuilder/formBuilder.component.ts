@@ -174,7 +174,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
       const form = this._formSchemaService
         .getFormSchemaById(formId)
         .subscribe(data => {
-          const form = data.body;
+          const form = data.body.data;
           if (form) {
 			for( var key in form ) {
 				if( key !== 'components' && key !== 'buttons') {
@@ -394,7 +394,9 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
   }
 
   async populateFormBuilder(components) {
-    console.log('input compProps', components);
+	if ( !components ) {
+		return;
+	}
     for (let i = 0; i < components.length; i++) {
 		components[i].hideCondition = components[i].showCondition;
       await this.createComponentsFromJSON(components[i]);

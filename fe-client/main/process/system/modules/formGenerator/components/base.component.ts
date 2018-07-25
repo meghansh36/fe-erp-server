@@ -559,9 +559,7 @@ export class FeBaseComponent
 		let fn = function( formControls: any,
 			control: AbstractControl
 		): { [key: string]: boolean } | null {
-			console.log("form controls", formControls);
 			if (jsonLogic.apply(json["json"], formControls) != true) {
-				console.log("json failed");
 				return { json: true };
 			}
 			return null;

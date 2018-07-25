@@ -62,9 +62,9 @@ export class FeFormComponent
     this.componentInstances = [];
   }
 
-  protected _beforeNgOnInit() {}
+  protected _beforeNgOnInit() { }
 
-  protected _afterNgOnInit() {}
+  protected _afterNgOnInit() { }
 
   ngOnInit() {
     this._beforeNgOnInit();
@@ -73,16 +73,18 @@ export class FeFormComponent
     } else {
       this._schema = this.schema;
     }
-    this.buttons = this._schema.buttons;
-    this._setComponents();
-    this._createGroup();
-    this._applyConditions();
-    this._afterNgOnInit();
+    if (this._schema) {
+      this.buttons = this._schema.buttons;
+      this._setComponents();
+      this._createGroup();
+      this._applyConditions();
+      this._afterNgOnInit();
+    }
   }
 
-  protected _beforeNgOnDestroy() {}
+  protected _beforeNgOnDestroy() { }
 
-  protected _afterNgOnDestroy() {}
+  protected _afterNgOnDestroy() { }
 
   protected _setComponents() {
     const schema = this._schema;
@@ -139,10 +141,17 @@ export class FeFormComponent
 
   protected _beforeNgOnChanges() {}
 
-  protected _afterNgOnChanges() {}
+  protected _afterNgOnChanges() { }
 
   ngOnChanges() {
     this._beforeNgOnChanges();
+    if (this.schema) {
+      this._schema = _.assign({}, this.schema);
+      this.buttons = this._schema.buttons;
+      this._setComponents();
+      this._createGroup();
+      this._applyConditions();
+    }
     if (this.group) {
       const controls = Object.keys(this.controls);
       const configControls = this.schemaControls.map(item => item.flexiLabel);
@@ -166,9 +175,9 @@ export class FeFormComponent
     this._afterNgOnChanges();
   }
 
-  protected _beforeNgAfterViewInit() {}
+  protected _beforeNgAfterViewInit() { }
 
-  protected _afterNgAfterViewInit() {}
+  protected _afterNgAfterViewInit() { }
 
   ngAfterViewInit() {
     this._beforeNgAfterViewInit();
@@ -201,13 +210,13 @@ export class FeFormComponent
 
   protected _applyConditionalHide() {
 
-	this._hideForm( !this.hideCondition.flag );
+	//this._hideForm( !this.hideCondition.flag );
 	this._applyCondition(this.hideCondition, "hide");
 }
 
 protected _applyConditionalDisable() {
 
-	this._disableForm(!this.disableCondition.flag);
+	//this._disableForm(!this.disableCondition.flag);
 	this._applyCondition(this.disableCondition, "disable");
 }
 
