@@ -3862,12 +3862,12 @@ export class FeFormSchemaService {
 
   getFormSchemaById(id: string): Observable<HttpResponse<any>> {
     return this._http.post<any>(
-      `http://fe.localhost:3000/fe/fe/default/forms_data/form_data`, { 'id': id }, { observe: 'response' });
+      `http://fe.localhost:3000/api/fe/fe/default/forms_data/form_data`, { 'id': id }, { observe: 'response' });
   }
 
   getFormSchemaByCode(code: string): Observable<HttpResponse<any>> {
     return this._http.post<any>(
-      `http://fe.localhost:3000/fe/fe/default/forms_data/form_data`, { 'code': code }, { observe: 'response' });
+      `http://fe.localhost:3000/api/fe/fe/default/forms_data/form_data`, { 'code': code }, { observe: 'response' });
   }
 }
 

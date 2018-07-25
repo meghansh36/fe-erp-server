@@ -14,15 +14,15 @@
             </ul>
           </span>
     </div>
-  <div [ngClass]="defaultClasses.fieldWrapperClasses" [ngStyle]="defaultClasses.fieldWrapperStyle">
+  <div [ngClass]="defaultClasses.fieldWrapperClasses" [ngStyle]="style.fieldWrapperStyle">
 
       <div [ngClass]="defaultClasses.fieldLabelContainerClasses" [ngStyle]="style.fieldLabelContainerStyle">
           <div class="label">
               <label for="{{ id }}"  [ngClass]="defaultClasses.labelClasses" [ngStyle]="defaultClasses.labelStyle">{{ label }}</label>
           </div>
-          <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="defaultClasses.fieldDescWrapperStyle" *ngIf="description">
+          <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="tooltip">
               <span [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
-                  <i class="material-icons " placement="right" [ngbTooltip]="description"> help</i>
+                  <i class="material-icons " placement="right" [ngbTooltip]="tooltip"> help</i>
               </span>
           </div>
       </div>

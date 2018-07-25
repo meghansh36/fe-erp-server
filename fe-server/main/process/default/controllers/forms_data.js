@@ -36,7 +36,7 @@ module.exports = class FeFormsData{
         var clientName = req.params.client;
         FE.clients[clientName].models.FormsData.create({  
             FORM_CODE: 'FRM' + (Math.random()*10),
-            FORM_JSON: req.body.json_data,
+            FORM_JSON: JSON.stringify(req.body.json_data),
             LABEL: form_label
           }).then(form => {
               res.send(form);
@@ -93,6 +93,7 @@ module.exports = class FeFormsData{
             where: condition,
             attributes:['FORM_CODE','LABEL','ID','FORM_JSON']
         }).then(function(formData){
+                formData.FORM_JSON = JSON.parse(formData.FORM_JSON);
                 formData.FORM_JSON.id = formData.ID;
                 formData.FORM_JSON.formcode = formData.FORM_CODE;
                 res.json(formData.FORM_JSON);
@@ -108,9 +109,12 @@ module.exports = class FeFormsData{
         condition.FORM_CODE = req.body.code;
         FE.clients[clientName].models.FormsData.find({
             where: condition,
-            attributes:['GRID_JSON']
+            attributes:['ID','GRID_JSON']
         }).then(function(gridData){
-                res.json(gridData);
+                var grid_data = {};
+                grid_data.grid_json =  JSON.parse(gridData.GRID_JSON);
+                grid_data.id = gridData.ID;
+                res.send(grid_data);
         }).catch(function(err){
             console.log(err);
             res.send(err);

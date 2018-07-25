@@ -47,7 +47,7 @@ export class FeDefaultsService {
           { "===": [{ var: "number.value" }, 155] }
         ]
       },
-      condition2: "Error Message."
+      message: "Error Message."
     },
     formClassValidationValHelp: {
       //{valName:'Message'}
@@ -129,7 +129,7 @@ export class FeDefaultsService {
   public PATTERN = {
     number_positive: /^\d*[1-9]\d*$/,
     number_negative: /^-?\d{2}(\.\d+)?$/,
-    alphanumeric: /^[a-z0-9]+$/i,
+    alphanumeric: /^[a-zA-Z0-9]+$/i,
     alphabet: /^[a-zA-Z_]*$/
   };
 
@@ -159,7 +159,7 @@ export class FeDefaultsService {
       meaning: "Alphabet"
     },
     {
-      code: "alphanum",
+      code: "alphanumeric",
       meaning: "Alphanumeric"
     }
   ];

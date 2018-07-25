@@ -5,7 +5,7 @@
             <div class="label">
                 <label for="{{ id }}"  [ngClass]="defaultClasses.labelClasses" [ngStyle]="style.labelStyle">{{ label }}</label>
             </div>
-            <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="defaultClasses.fieldDescWrapperStyle" *ngIf="description">
+            <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
                 <span [ngClass]="defaultClasses.fieldDescContainerClasses">
                     <i class="material-icons " placement="right" [ngbTooltip]="description"> help</i>
                 </span>
