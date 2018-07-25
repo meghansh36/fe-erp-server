@@ -176,11 +176,11 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
         .subscribe(data => {
           const form = data.body.data;
           if (form) {
-            /* for (var key in form) {
+            for (var key in form) {
               if (key !== 'components' && key !== 'buttons') {
                 this.formJson[key] = form[key];
               }
-            } */
+            }
             console.log(form)
             this.populateFormBuilder(form.components);
             /* setTimeout(() => {

@@ -64,25 +64,21 @@ module.exports = class FeFormsData {
 
     update_form_data(req, res, done) {
         var form_json = req.body.form_json;
-        var grid_json = req.body.grid_json;
+        //var grid_json = req.body.grid_json;
         var clientName = req.params.client;
         var form_label = req.body.formLabel;
-        FE.clients[clientName].models.FormsData.find({
+        FE.clients[clientName].models.FormsData.findAll({
             where: { ID: req.body.id },
         }).then(function (form) {
-            return form.FormsData[0].updateAttributes({
+            return form[0].updateAttributes({
                 // return Promise.all([
-                FORM_JSON: req.body.form_json,
-                GRID_JSON: req.body.grid_json,
-                LABEL: form_label
-            })
-            //   emp.empob.map(fc => fc.updateAttributes({}))
-            // ]);
-        }).then(function (resp) {
-            res.send(resp);
+                FORM_JSON: JSON.stringify(req.body.form_json),
+                // GRID_JSON: req.body.grid_json,
+                LABEL: form_label })
+            }).then(function (form) {
+            res.send(form);
         })
     }
-
 
     form_data(req, res, done) {
         var clientName = req.params.client;
