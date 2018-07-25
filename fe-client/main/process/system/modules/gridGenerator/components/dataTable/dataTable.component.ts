@@ -477,12 +477,12 @@ export class FeDataTableComponent implements OnInit {
 		this._gridDef['editableIcon'] = editableIcon;
 	}
 
-	get message() {
-		return this._gridDef['message'];
+	get emptyMessage() {
+		return this._gridDef['emptyMessage'];
 	}
 
-	set message(message) {
-		this._gridDef['message'] = message;
+	set emptyMessage(emptyMessage) {
+		this._gridDef['emptyMessage'] = emptyMessage;
 	}
 
 	get rowActions() {

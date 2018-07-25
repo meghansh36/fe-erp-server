@@ -48,6 +48,7 @@ export class FeFormGeneratorComponent implements OnInit {
         const form = { ...data.body.data };
         if (form) {
           this.schema = form;
+          console.log(this.schema);
         } else {
           console.log("No schema found");
         }

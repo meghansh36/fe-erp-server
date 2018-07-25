@@ -51,9 +51,9 @@ export class FeBaseComponent
 		this._utility.renderer = this._render;
 	}
 
-	protected _beforeNgOnInit() {}
+	protected _beforeNgOnInit() { }
 
-	protected _afterNgOnInit() {}
+	protected _afterNgOnInit() { }
 
 	ngOnInit(): void {
 		this._beforeNgOnInit();
@@ -68,7 +68,7 @@ export class FeBaseComponent
 		this._applyObservers();
 	}
 
-	protected _beforeNgAfterViewInit() {}
+	protected _beforeNgAfterViewInit() { }
 
 	ngAfterViewInit() {
 		this._beforeNgAfterViewInit();
@@ -80,15 +80,15 @@ export class FeBaseComponent
 		this._afterNgAfterViewInit();
 	}
 
-	protected _afterNgAfterViewInit() {}
+	protected _afterNgAfterViewInit() { }
 
-	protected _beforeNgOnDestroy() {}
+	protected _beforeNgOnDestroy() { }
 
-	protected _afterNgOnDestroy() {}
+	protected _afterNgOnDestroy() { }
 
 	ngOnDestroy() {
 		this._beforeNgOnDestroy();
-		if (this._$statusChange && this._$statusChange.unsubscribe ) {
+		if (this._$statusChange && this._$statusChange.unsubscribe) {
 			this._$statusChange.unsubscribe();
 		}
 		if (this._$valueChange && this._$valueChange.unsubscribe) {
@@ -115,6 +115,17 @@ export class FeBaseComponent
 		}
 		this._afterNgOnDestroy();
 	}
+
+	/* protected _beforeNgOnChanges() {}
+	protected _afterNgOnChanges() {}
+
+	ngOnChanges() {
+		this._beforeNgOnChanges();
+		this._applyValidations();
+		this._initFieldStyle();
+		this._applyObservers();
+		this._afterNgOnChanges();
+	} */
 
 	protected _bindEvents() {
 		try {
@@ -199,7 +210,7 @@ export class FeBaseComponent
 			(<any>window).result = false;
 			const evalStr = `window.result = window.leftValue ${
 				(<any>window).operator
-			} window.rightValue `;
+				} window.rightValue `;
 			eval(evalStr);
 			resFlag = (<any>window).result;
 			if (action === "show") {
@@ -402,7 +413,9 @@ export class FeBaseComponent
 		if (this.jsonLogicVal) {
 			this._applyJsonValidations();
 		}
-		this.control.setValidators(this.validators);
+		if (this.validations || this.customFuncValidation || this.formClassValidation || this.jsonLogicVal) {
+			this.control.setValidators(this.validators);
+		}
 	}
 
 	protected _addNgValidation(validation) {
@@ -477,7 +490,7 @@ export class FeBaseComponent
 				} else {
 					console.log(
 						`Given _validator is not a function for validation ${name} for field ${
-							this.flexiLabel
+						this.flexiLabel
 						}`
 					);
 				}
@@ -492,7 +505,7 @@ export class FeBaseComponent
 			if (!this.form) {
 				console.log(
 					`Form class instance not found in field for applying form class validations for field ${
-						this.code
+					this.code
 					}`
 				);
 				return;
@@ -517,7 +530,7 @@ export class FeBaseComponent
 				} else {
 					console.log(
 						`Form class _validator function ${validatorFunc} does not exist for ${validationName} custom validation for field ${
-							this.code
+						this.code
 						}.`
 					);
 				}
@@ -530,7 +543,7 @@ export class FeBaseComponent
 	protected _applyJsonValidations() {
 		const json = this.jsonLogicVal;
 		//const validationName:string = "json_"+(parseInt(Math.random()*10000)).toString();
-		let fn = function( formControls: any,
+		let fn = function (formControls: any,
 			control: AbstractControl
 		): { [key: string]: boolean } | null {
 			console.log("form controls", formControls);

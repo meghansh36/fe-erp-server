@@ -57,7 +57,7 @@
 			</div>
 		</div>
 		<ngx-datatable #table [id]="formCode" class='material' [rows]='rows' [limit]="limit" [rowHeight]="rowHeight" [scrollbarH]="scrollbarH"
-		 [headerHeight]="headerHeight" [offset]="offset" [footerHeight]="footerHeight" [messages]="message" [selected]="selected"
+		 [headerHeight]="headerHeight" [offset]="offset" [footerHeight]="footerHeight" [emptyMessage]="emptyMessage" [selected]="selected"
 		 [selectionType]="selectionType" [selectAllRowsOnPage]="selectAllRowsOnPage" (select)='onSelect($event)' (reorder)="reorderColumn($event)"
 		 (sort)="filterOnSorting($event)">
 
