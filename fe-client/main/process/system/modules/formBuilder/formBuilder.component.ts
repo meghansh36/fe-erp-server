@@ -218,58 +218,62 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 
   _initFormJsonHelp() {
     this.formJsonHelp = {
-      show: {
-        simple: {
-          show: true,
-          when: "field-flexilabel",
-          value: "rathor",
-          operator: "=="
-        },
-        advanced: [
-          "var show; return show = controls.number.value == 150 ? true : false;",
-          "var show1; return show1 = controls.otherControl.value == 150 ? true : false;"
-        ],
-        json: {
-          condition: {
-            and: [
-              { "===": [{ var: "username.value" }, "apple"] },
-              { "===": [{ var: "number.value" }, 15] }
-            ]
-          },
-          condition1: {
-            and: [
-              { "===": [{ var: "someControl.value" }, "someValue"] },
-              { "===": [{ var: "someOtherControl.value" }, "value"] }
-            ]
-          }
-        }
+      hide: {
+		flag: false,
+      condition: {
+		simple: {
+			when: "field-flexilabel",
+			value: "rathor",
+			operator: "=="
+		  },
+		  advanced: [
+			"var show; return show = controls.number.value == 150 ? true : false;",
+			"var show1; return show1 = controls.otherControl.value == 150 ? true : false;"
+		  ],
+		  json: {
+			hideCondition: {
+			  and: [
+				{ "===": [{ var: "username.value" }, "apple"] },
+				{ "===": [{ var: "number.value" }, 15] }
+			  ]
+			},
+			condition1: {
+			  and: [
+				{ "===": [{ var: "someControl.value" }, "someValue"] },
+				{ "===": [{ var: "someOtherControl.value" }, "value"] }
+			  ]
+			}
+		  }
+	  }
       },
       disable: {
-        simple: {
-          disable: true,
-          when: "field-flexilabel",
-          value: "rathor",
-          operator: "=="
-        },
-        advanced: [
-          "var show; return show = controls.number.value == 150 ? true : false;",
-          "var show1; return show1 = controls.otherControl.value == 150 ? true : false;"
-        ],
-        json: {
-          condition: {
-            and: [
-              { "===": [{ var: "username.value" }, "apple"] },
-              { "===": [{ var: "number.value" }, 15] }
-            ]
-          },
-          condition1: {
-            and: [
-              { "===": [{ var: "someControl.value" }, "someValue"] },
-              { "===": [{ var: "someOtherControl.value" }, "value"] }
-            ]
-          }
-        }
-      }
+		flag: false,
+      condition: {
+		simple: {
+			when: "field-flexilabel",
+			value: "rathor",
+			operator: "=="
+		  },
+		  advanced: [
+			"var show; return show = controls.number.value == 150 ? true : false;",
+			"var show1; return show1 = controls.otherControl.value == 150 ? true : false;"
+		  ],
+		  json: {
+			hideCondition: {
+			  and: [
+				{ "===": [{ var: "username.value" }, "apple"] },
+				{ "===": [{ var: "number.value" }, 15] }
+			  ]
+			},
+			condition1: {
+			  and: [
+				{ "===": [{ var: "someControl.value" }, "someValue"] },
+				{ "===": [{ var: "someOtherControl.value" }, "value"] }
+			  ]
+			}
+		  }
+	  }
+    }
     };
   }
 
@@ -392,6 +396,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
   async populateFormBuilder(components) {
     console.log('input compProps', components);
     for (let i = 0; i < components.length; i++) {
+		components[i].hideCondition = components[i].showCondition;
       await this.createComponentsFromJSON(components[i]);
       if (components[i].components !== undefined) {
         this.populateFormBuilder(components[i].components);
@@ -413,7 +418,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
       "disabled": false,
       "hidden": false,
       "disableCondition": "",
-      "showCondition": "",
+      "hideCondition": "",
       "active": true,
       "help": "",
       "components": [
@@ -459,7 +464,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
                   "jsonLogicVal": "",
                   "formClassValidation": "",
                   "events": "",
-                  "showCondition": "",
+                  "hideCondition": "",
                   "disableCondition": "",
                   "active": true,
                   "required": false,
@@ -525,7 +530,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
           "jsonLogicVal": "",
           "formClassValidation": "",
           "events": "",
-          "showCondition": "",
+          "hideCondition": "",
           "disableCondition": "",
           "active": true,
           "required": false,
@@ -651,12 +656,12 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     this.formJson.disableCondition = disableCondition;
   }
 
-  set showCondition(showCondition) {
-    this.formJson.showCondition = showCondition;
+  set hideCondition(hideCondition) {
+    this.formJson.hideCondition = hideCondition;
   }
 
-  get showCondition() {
-	  return this.formJson.showCondition;
+  get hideCondition() {
+	  return this.formJson.hideCondition;
   }
 
   set active(active) {

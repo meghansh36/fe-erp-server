@@ -13,7 +13,7 @@ export class FeFormJsonService {
         disabled: false,
         hidden: false,
         disableCondition: '',
-        showCondition: '',
+        hideCondition: '',
         active: true,
         help: '',
         components: {},

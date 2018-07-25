@@ -42,11 +42,14 @@ export class FeFormComponent
   componentInstances: any;
   components: FieldConfig[] = [];
   protected _$simpleConditionChange: any;
-  protected _$groupValueChange: any[];
-  protected _$simpleShowConditionChange: any;
+  protected _$groupValueChange: any[] = [];
+  protected _$simpleHideConditonChange: any;
   protected _$simpleDisableConditionChange: any;
   protected _schema: any;
   protected _buttons: any;
+
+  protected _disableConditionFlags : boolean[] = [];
+	protected _hideConditionFlags : boolean[] = [];
 
   constructor(
     protected _fb: FormBuilder,
@@ -100,55 +103,38 @@ export class FeFormComponent
 
   ngOnDestroy() {
     this._beforeNgOnDestroy();
-    if(this._$simpleConditionChange || this._$groupValueChange || this._$simpleDisableConditionChange || this._$simpleShowConditionChange ){
-      this._$simpleConditionChange.unsubscribe();
-    this._$groupValueChange.forEach(observable => {
-      observable.unsubscribe();
-    });
-    this._$simpleDisableConditionChange.unsubscribe();
-    this._$simpleShowConditionChange.unsubscribe();
-    }
-    
+
+	if (
+		this._$simpleDisableConditionChange &&
+		this._$simpleDisableConditionChange.unsubscribe
+	) {
+		this._$simpleDisableConditionChange.unsubscribe();
+	}
+	if (
+		this._$simpleHideConditonChange &&
+		this._$simpleHideConditonChange.unsubscribe
+	) {
+		this._$simpleHideConditonChange.unsubscribe();
+	}
+	if (this._$groupValueChange.length !== 0) {
+		this._$groupValueChange.forEach(observable => {
+			if (observable.unsubscribe) {
+				observable.unsubscribe();
+			}
+		});
+	}
+
     this._afterNgOnDestroy();
   }
 
   protected _detectGroupValueChange(
     conditionFnction: Function,
-    condition?: any
+	condition?: any,
+	index?: any
   ) {
     this._$groupValueChange.push(
-      this.group.valueChanges.subscribe(conditionFnction.bind(this, condition))
+      this.group.valueChanges.subscribe(conditionFnction.bind(this, condition, index))
     );
-  }
-
-  protected _simpleEnableHandler(condition: { [key: string]: any }) {
-    this._$simpleConditionChange = this.group.controls[
-      condition.when
-    ].valueChanges.subscribe(data => {
-      if (data == condition.eq) {
-        this.group.disable({ emitEvent: false });
-      }
-    });
-  }
-
-  protected _advancedEnableHandler(condition: string) {
-    const theInstructions = new Function("controls", condition);
-    function handler() {
-      const show = theInstructions(this.controls);
-      if (show == true) {
-        this.group.disable({ emitEvent: false });
-      }
-    }
-    this._detectGroupValueChange(handler);
-  }
-
-  protected _jsonEnableHandler(condition: object) {
-    function handler() {
-      if (jsonLogic.apply(condition["condition"], this.group.controls)) {
-        this.group.disable({ emitEvent: false });
-      }
-    }
-    this._detectGroupValueChange(handler);
   }
 
   protected _beforeNgOnChanges() {}
@@ -204,8 +190,8 @@ export class FeFormComponent
   }
 
   protected _applyConditions() {
-    if (this.showCondition) {
-      this._applyConditionalShowHide();
+    if (this.hideCondition) {
+      this._applyConditionalHide();
     }
 
     if (this.disableCondition) {
@@ -213,72 +199,77 @@ export class FeFormComponent
     }
   }
 
-  protected _applyConditionalShowHide() {
-    this._applyCondition(this.showCondition, "show");
-  }
+  protected _applyConditionalHide() {
 
-  protected _applyConditionalDisable() {
-    this._applyCondition(this.disableCondition, "disable");
-  }
+	this._hideForm( !this.hideCondition.flag );
+	this._applyCondition(this.hideCondition, "hide");
+}
 
-  protected _applyCondition(conditionObj, action) {
-    for (const conditionType in conditionObj) {
-      const condition = conditionObj[conditionType];
-      const conditionHandlerName = `_${conditionType}ConditionHandler`;
-      if (
-        this[conditionHandlerName] &&
-        typeof this[conditionHandlerName] == "function"
-      ) {
-        this[conditionHandlerName](condition, action);
-      } else {
-        console.log(
-          `Given condition handler is not a function for field ${this.code}`
-        );
-      }
-    }
-  }
+protected _applyConditionalDisable() {
 
-  protected _simpleConditionHandler(condition: any, action) {
-    let resFlag = true;
-    const self = this;
-    function handler(data) {
-      (<any>window).leftValue = data;
-      (<any>window).rightValue = condition["value"];
-      (<any>window).operator = condition["operator"];
-      (<any>window).result = false;
-      const evalStr = `window.result = window.leftValue ${
-        (<any>window).operator
-      } window.rightValue `;
-      eval(evalStr);
-      resFlag = (<any>window).result;
-      if (action === "show" && resFlag) {
-        if (!condition[action]) {
-          self.hideForm.call(self);
-        } else {
-          self.showForm.call(self);
-        }
-      } else if (action === "disable" && resFlag) {
-        if (condition[action]) {
-          self.disable.call(self);
-        } else {
-          self.enable.call(self);
-        }
-      }
-    }
-    if (action === "show") {
-      this._$simpleShowConditionChange = this.group
-        .get(condition.when)
-        .valueChanges.subscribe(data => {
-          handler(data);
-        });
-    } else if (action === "disable") {
-      this._$simpleDisableConditionChange = this.group
-        .get(condition.when)
-        .valueChanges.subscribe(data => {
-          handler(data);
-        });
-    }
-  }
+	this._disableForm(!this.disableCondition.flag);
+	this._applyCondition(this.disableCondition, "disable");
+}
+
+
+
+
+protected _applyCondition(actionCondition, action) {
+	let conditionObj = actionCondition.condition;
+	let i = 0;
+	for (const conditionType in conditionObj) {
+		const condition = conditionObj[conditionType];
+		const conditionHandlerName = `_${conditionType}ConditionHandler`;
+		if (
+			this[conditionHandlerName] &&
+			typeof this[conditionHandlerName] == "function"
+		) {
+			if ( !this[ `_${action}ConditionFlags` ][ i ] === undefined ) {
+				!this[ `_${action}ConditionFlags` ].push(false);
+			}
+			this[ `_${action}ConditionFlags` ][ i ] = false;
+			this[conditionHandlerName](condition, action, i);
+			i++;
+		}
+	}
+}
+
+protected _simpleConditionHandler(condition: any, action, flagIndex) {
+	let resFlag = false;
+	const self = this;
+	let handler = (data) => {
+		(<any>window).leftValue = data;
+		(<any>window).rightValue = condition["value"];
+		(<any>window).operator = condition["operator"];
+		(<any>window).result = false;
+		const evalStr = `window.result = window.leftValue ${
+			(<any>window).operator
+		} window.rightValue `;
+		eval(evalStr);
+		resFlag = (<any>window).result;
+		this[ `_${action}ConditionFlags` ][flagIndex] = resFlag;
+		if (action == 'disable') {
+			this._disableForm(resFlag && this.disableCondition.flag);
+
+		} else if(action == 'hide') {
+			this._hideForm(resFlag && this.hideCondition.flag);
+		}
+		return resFlag;
+	}
+	if (action === "hide") {
+		this._$simpleHideConditonChange = this.group
+			.get(condition.when)
+			.valueChanges.subscribe(data => {
+				this[ `_${action}ConditionFlags` ][flagIndex] = handler.call( self, data);
+			});
+	} else if (action === "disable") {
+		this._$simpleDisableConditionChange = this.group
+			.get(condition.when)
+			.valueChanges.subscribe(data => {
+				this[ `_${action}ConditionFlags` ][flagIndex] = handler.call(self, data);
+			});
+	}
+}
 
   protected _conditionHandler(conditionObj) {
     const appliedCondition = conditionObj.condition;
@@ -311,46 +302,48 @@ export class FeFormComponent
     return show;
   }
 
-  protected _showConditionHandler(conditionObj) {
-    if (!this._conditionHandler(conditionObj)) {
-      this.hideForm();
-    }
-  }
 
-  protected _disableConditionHandler(conditionObj) {
-    const disabled = this._conditionHandler(conditionObj);
-    if (disabled) {
-      this.disable();
-    } else {
-      this.enable();
-    }
-  }
+  protected _hideConditionHandler(conditionObj, flagIndex) {
+	const flag = this._conditionHandler(conditionObj);
+	this._hideConditionFlags[ flagIndex ] = flag;
+	this._hideForm(flag && this.hideCondition.flag);
+}
 
-  protected _advancedConditionHandler(condition: string, action: string) {
-    const conditionObj = {
-      condition,
-      type: "function"
-    };
-    const handlerFn = `_${action}ConditionHandler`;
-    if (this[handlerFn]) {
-      this._detectGroupValueChange(this[handlerFn], conditionObj);
-    } else {
-      console.log(`Advanced conditional handler ${handlerFn} does not exist.`);
-    }
-  }
+protected _disableConditionHandler(conditionObj, flagIndex) {
+	const flag = this._conditionHandler(conditionObj);
+	this._hideConditionFlags[ flagIndex ] = flag;
+	this._disableForm( flag && this.disableCondition.flag);
+}
 
-  protected _jsonConditionHandler(condition: object, action: string) {
-    const conditionObj = {
-      condition,
-      type: "jsonLogic"
-    };
-    const handlerFn = `_${action}ConditionHandler`;
-    if (this[handlerFn]) {
-      this._detectGroupValueChange(this[handlerFn], conditionObj);
-    } else {
-      console.log(`Advanced conditional handler ${handlerFn} does not exist.`);
-    }
-  }
+protected _advancedConditionHandler(condition: string, action: string, flagIndex) {
+	const conditionObj = {
+		condition,
+		type: "function"
+	};
+	const handlerFn = `_${action}ConditionHandler`;
+	if (this[handlerFn]) {
+		this._detectGroupValueChange(this[handlerFn], conditionObj, flagIndex);
+	} else {
+		console.log(
+			`Advanced conditional handler ${handlerFn} does not exist.`
+		);
+	}
+}
+
+protected _jsonConditionHandler(condition: object, action: string, flagIndex) {
+	const conditionObj = {
+		condition,
+		type: "jsonLogic"
+	};
+	const handlerFn = `_${action}ConditionHandler`;
+	if (this[handlerFn]) {
+		this._detectGroupValueChange(this[handlerFn], conditionObj, flagIndex);
+	} else {
+		console.log(
+			`Advanced conditional handler ${handlerFn} does not exist.`
+		);
+	}
+}
 
   handleSubmit(event: Event) {
     event.preventDefault();
@@ -385,6 +378,14 @@ export class FeFormComponent
     }
   }
 
+  protected _disableForm( flag?: boolean ) {
+	  if ( flag ) {
+		  this.disable();
+	  } else {
+		  this.show();
+	  }
+  }
+
   disable() {
     this.group.disable({ emitEvent: false });
   }
@@ -401,7 +402,15 @@ export class FeFormComponent
     this._renderer.removeClass(this._eleRef.nativeElement, "hidden");
   }
 
-  hideForm() {
+  protected _hideForm( flag?: boolean ) {
+	if ( flag ) {
+		this.hideForm();
+	} else {
+		this.showForm();
+	}
+  }
+
+  hideForm( ) {
     if (this.formInstance) {
       this.formInstance.hide();
     }
@@ -494,12 +503,12 @@ export class FeFormComponent
     return this._schema.help;
   }
 
-  set showCondition(showCondition) {
-    this._schema.showCondition = showCondition;
+  set hideCondition(hideCondition) {
+    this._schema.hideCondition = hideCondition;
   }
 
-  get showCondition() {
-    return this._schema.showCondition;
+  get hideCondition() {
+    return this._schema.hideCondition;
   }
 
   get disableCondition() {
