@@ -35,7 +35,8 @@
 									<button *ngFor='let col of columnsFiltersTobeApplied' class="dropdown-item button" [attr.id]="'btn'+ col.code" (click)="popUp(col)">{{col.label}}</button>
 								</div>
 							</div>
-							<fe-popUp *ngIf="checked" [filteredCol]="filteredCol" [columnsFiltersTobeApplied]="columnsFiltersTobeApplied" [value]="InitialValue" (close)="closePopUp($event)" (filterObject)="addFirstFilter($event)"></fe-popUp>
+							<fe-popUp *ngIf="checked" [filteredCol]="filteredCol" [columnsFiltersTobeApplied]="columnsFiltersTobeApplied" [value]="InitialValue"
+							 (close)="closePopUp($event)" (filterObject)="addFirstFilter($event)"></fe-popUp>
 						</div>
 					</div>
 					<div class="col-md-2">
@@ -55,23 +56,24 @@
 				</div>
 			</div>
 		</div>
-		<ngx-datatable #table [id]="formCode" class='material' [rows]='rows' [limit]="limit" [rowHeight]="rowHeight" [scrollbarH]="scrollbarH" [headerHeight]="headerHeight"
-		 [offset]="offset" [footerHeight]="footerHeight" [messages]="message" [selected]="selected" [selectionType]="selectionType"
-		 [selectAllRowsOnPage]="selectAllRowsOnPage" (select)='onSelect($event)' (reorder)="reorderColumn($event)" (sort)="filterOnSorting($event)">
+		<ngx-datatable #table [id]="formCode" class='material' [rows]='rows' [limit]="limit" [rowHeight]="rowHeight" [scrollbarH]="scrollbarH"
+		 [headerHeight]="headerHeight" [offset]="offset" [footerHeight]="footerHeight" [messages]="message" [selected]="selected"
+		 [selectionType]="selectionType" [selectAllRowsOnPage]="selectAllRowsOnPage" (select)='onSelect($event)' (reorder)="reorderColumn($event)"
+		 (sort)="filterOnSorting($event)">
 
 			<ngx-datatable-column [width]="50" *ngIf="checkboxable" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false"
 			 [headerCheckboxable]="headerCheckboxable" [checkboxable]="checkboxable" [frozenLeft]="true">
 			</ngx-datatable-column>
 
-			<ngx-datatable-column *ngFor="let col of columns" [columnMode]="'force'" [prop]="col.prop" [name]="col.name" [cellClass]="col.align" [width]="col.width"
-			 [sortable]="col.sortable" [frozenLeft]="col.frozenLeft" [resizeable]="col.resizeable"></ngx-datatable-column>
+			<ngx-datatable-column *ngFor="let col of columns" [columnMode]="'force'" [prop]="col.prop" [name]="col.name" [cellClass]="col.align"
+			 [width]="col.width" [sortable]="col.sortable" [frozenLeft]="col.frozenLeft" [resizeable]="col.resizeable"></ngx-datatable-column>
 
-			<ngx-datatable-column *ngIf="rowActions?.length">
+			<ngx-datatable-column *ngFor="let action of rowActions" [width]="action.width" [name]="action.name">
 				<ng-template let-column="column" ngx-datatable-header-template>
 				</ng-template>
 				<ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
 					<div class="float-right">
-						<i *ngFor="let action of rowActions" [ngClass]="[action.icon , action.customCssClass]" (click)="onAction(action,row)"></i>
+						<i [ngClass]="[action.icon , action.customCssClass]" (click)="onAction(action,row)"></i>
 					</div>
 				</ng-template>
 			</ngx-datatable-column>
