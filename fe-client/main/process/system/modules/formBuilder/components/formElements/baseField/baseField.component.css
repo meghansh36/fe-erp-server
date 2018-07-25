@@ -2,10 +2,9 @@
     position: relative;
     top:0%;
     left: 0%;
-
 }
 
-.fieldWrapper:hover .fieldOptions {
+.fe-field:hover .field-tool-container {
     visibility: visible;
 }
 
@@ -14,8 +13,6 @@
   flex-direction: column;
 
 }
-
-
 
 .bottom{
   display: flex;
@@ -47,7 +44,7 @@
 
 
 
-.fieldOptions{
+.field-tool-container{
     position: absolute;
     right: 0%;
     z-index: 100;
@@ -57,16 +54,16 @@
     -moz-transition: 0.5s linear;
     -webkit-transition: 0.5s linear;
 }
-.fieldOptions ul {
+.field-tool-container ul {
     list-style: none;
     display: inline;
 }
-.fieldOptions ul>li {
+.field-tool-container ul>li {
     display: inline;
     padding-right: 16px;
 }
 
-.fieldOptions ul>li:hover {
+.field-tool-container ul>li:hover {
     cursor: pointer;
 }
 

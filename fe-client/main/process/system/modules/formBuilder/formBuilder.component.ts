@@ -285,6 +285,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 
   dropComplete(componentObj, index, value) {
     this.createComponentFunc(componentObj, index, value[2], value);
+    this.openModal();
   }
 
   openModal() {
@@ -390,7 +391,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 
       setTimeout(() => {
         res();
-      }, 100);
+      }, 10);
     });
   }
 
@@ -401,7 +402,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
       if (components[i].components !== undefined) {
         setTimeout(() => {
           this.populateFormBuilder(components[i].components);
-        },100)
+        },10)
       }
     }
     return;
