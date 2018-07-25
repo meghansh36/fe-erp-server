@@ -72,10 +72,10 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
   protected _setDragulaOptions() {
     this._dragulaService.setOptions("bag-one", {
       revertOnSpill: true,
-      copy: function(el, source) {
+      copy: function (el, source) {
         return source.id === "not_copy";
       },
-      accepts: function(el, target, source, sibling) {
+      accepts: function (el, target, source, sibling) {
         const targetClassesArr = target.className.trim().split(" ");
         const fieldClassesArr = el.className.trim().split(" ");
         if (
@@ -120,7 +120,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     }
   }
 
-  protected _beforeNgDoCheck() {}
+  protected _beforeNgDoCheck() { }
 
   ngDoCheck() {
     this._beforeNgDoCheck();
@@ -129,7 +129,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     this._afterNgDoCheck();
   }
 
-  protected _afterNgDoCheck() {}
+  protected _afterNgDoCheck() { }
 
   onHidden() {
     this.hideFields(this.hidden);
@@ -139,9 +139,9 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     this.disableFields(this.disabled);
   }
 
-  protected _beforeNgOnInit() {}
+  protected _beforeNgOnInit() { }
 
-  protected _afterNgOnInit() {}
+  protected _afterNgOnInit() { }
 
   ngOnInit() {
     this._beforeNgOnInit();
@@ -153,7 +153,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     this._applyDisplayProps();
   }
 
-  update(event) {}
+  update(event) { }
 
   _init() {
     this.jsonEditorConfig = this._defaults.JSON_EDITOR_CONFIG;
@@ -176,17 +176,16 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
         .subscribe(data => {
           const form = data.body;
           if (form) {
-			for( var key in form ) {
-				if( key !== 'components' && key !== 'buttons') {
-					this.formJson[ key ] = form[key];
-				}
-			}
-
-
-            this.populateFormBuilder(form.components);
-            setTimeout(() => {
+            for (var key in form) {
+              if (key !== 'components' && key !== 'buttons') {
+                this.formJson[key] = form[key];
+              }
+            }
+            console.log(form)
+            this.populateFormBuilder(form.components, 0);
+            /* setTimeout(() => {
               this.populateFormBuilder(form.buttons);
-			}, 1000);
+            },2000); */
 
           } else {
             console.log("No schema found");
@@ -331,7 +330,8 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     const componentRef = viewContainerRef.createComponent(componentFactory, null, viewContainerRef.injector);
     console.log(componentRef);
     this.moveDOMNode(target, value[4], componentRef.location.nativeElement);
-    this._fieldControlService.setFieldRef(componentRef, this, componentObj);
+    console.log(componentObj);
+    this._fieldControlService.setFieldRef(componentRef, this, componentObj.component.name);
     this._formJsonService.addComponentToMasterJSON(
       key,
       componentRef,
@@ -363,6 +363,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
       } else {
         viewContainerRef = this._fieldControlService.getFstCollection(parentID);
       }
+      console.log("component props", copy);
       const component = this._formBuilderService.getComponent(copy.componentName).component;
 
       const componentFactory = this._componentFactoryResolver.resolveComponentFactory(
@@ -370,8 +371,11 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
       );
 
       const componentRef = viewContainerRef.createComponent(componentFactory);
+      
       componentRef.instance.properties = copy;
-      this._fieldControlService.setFieldRef(componentRef, this, { component });
+      console.log('compref props', componentRef.instance.properties);
+      console.log(component);
+      this._fieldControlService.setFieldRef(componentRef, this, component.name);
       this._formJsonService.addComponentToMasterJSON(
         key,
         componentRef,
@@ -381,24 +385,43 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
       const target: any = document.querySelector(`#${copy.parent}`);
       target.children[copy.order].generatedKey = key;
       target.children[copy.order].parentComponent = target.id;
+     // this._formJsonService.updateMasterJSONOnDrop(target, key, false);
       //this._formJsonService.setMasterJSON(copy, key);
 
       setTimeout(() => {
         res();
-      }, 50);
+      }, 100);
     });
   }
 
-  async populateFormBuilder(components) {
+  async populateFormBuilder(components, index = 0) {
     console.log('input compProps', components);
     for (let i = 0; i < components.length; i++) {
       await this.createComponentsFromJSON(components[i]);
       if (components[i].components !== undefined) {
-        this.populateFormBuilder(components[i].components);
+        setTimeout(() => {
+          this.populateFormBuilder(components[i].components);
+        },100)
       }
     }
     return;
   }
+  /* async populateFormBuilder(components, i) {
+    console.log('total comp', components, i);
+    if (i > components.length) {
+      return;
+    }
+    console.log('components[i].components', components[i].components);
+    if (components[i].components === undefined) {
+      await this.createComponentsFromJSON(components[i]);
+      console.log('next iter', components);
+      this.populateFormBuilder(components, i + 1);
+    } else if(components[i].components !== undefined){
+      await this.createComponentsFromJSON(components[i]);
+      console.log('next recur', components[i].components)
+      this.populateFormBuilder(components[i].components, 0)
+    }
+  } */
 
   runBuilder() {
     this.host.clear();
@@ -418,6 +441,49 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
       "help": "",
       "components": [
         {
+          "type": "TXT",
+          "hasParent": false,
+          "hideLabel": false,
+          "labelPosition": "top",
+          "marginTop": "",
+          "marginRight": "",
+          "marginLeft": "",
+          "marginBottom": "",
+          "defaultValueType": "none",
+          "defaultValueSqlQuery": "",
+          "defaultValueString": "",
+          "lovType": "none",
+          "lovSqlQuery": "",
+          "lovJson": "",
+          "nonPersistent": false,
+          "hidden": false,
+          "clearWhenHidden": false,
+          "disabled": false,
+          "prefix": "",
+          "suffix": "",
+          "appliedValidations": "",
+          "customFuncValidation": "",
+          "jsonLogicVal": "",
+          "formClassValidation": "",
+          "events": "",
+          "showCondition": "",
+          "disableCondition": "",
+          "active": true,
+          "required": false,
+          "labelWidth": "",
+          "labelMargin": "",
+          "width": "",
+          "mask": [],
+          "description": "",
+          "icon": "",
+          "parentName": "",
+          "filterSqlQuery": "",
+          "key": "_5l05acbbk",
+          "order": 0,
+          "parent": "root_drop",
+          "componentName": "TextComponent"
+        },
+        {
           "label": "Fieldset",
           "description": "",
           "hideLabel": false,
@@ -425,6 +491,49 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
           "flexiLabel": "",
           "active": true,
           "components": [
+            {
+              "type": "EML",
+              "hasParent": false,
+              "hideLabel": false,
+              "labelPosition": "top",
+              "marginTop": "",
+              "marginRight": "",
+              "marginLeft": "",
+              "marginBottom": "",
+              "defaultValueType": "none",
+              "defaultValueSqlQuery": "",
+              "defaultValueString": "",
+              "lovType": "none",
+              "lovSqlQuery": "",
+              "lovJson": "",
+              "nonPersistent": false,
+              "hidden": false,
+              "clearWhenHidden": false,
+              "disabled": false,
+              "prefix": "",
+              "suffix": "",
+              "appliedValidations": "",
+              "customFuncValidation": "",
+              "jsonLogicVal": "",
+              "formClassValidation": "",
+              "events": "",
+              "showCondition": "",
+              "disableCondition": "",
+              "active": true,
+              "required": false,
+              "labelWidth": "",
+              "labelMargin": "",
+              "width": "",
+              "mask": [],
+              "description": "",
+              "icon": "",
+              "parentName": "",
+              "filterSqlQuery": "",
+              "key": "_epnymsyar",
+              "order": 0,
+              "parent": "_jdwerodo0",
+              "componentName": "EmailComponent"
+            },
             {
               "label": "Fieldset",
               "description": "",
@@ -471,36 +580,80 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
                   "icon": "",
                   "parentName": "",
                   "filterSqlQuery": "",
-                  "key": "_9g9ckocuy",
+                  "key": "_ja1qizlc3",
                   "order": 0,
-                  "parent": "_lx51yp5a2",
+                  "parent": "_3wyk9cpmr",
                   "componentName": "TimeComponent"
                 }
               ],
               "type": "FST",
               "width": "100%",
               "hidden": false,
-              "key": "_lx51yp5a2",
-              "order": 0,
-              "parent": "_4a3k9hsv2",
+              "key": "_3wyk9cpmr",
+              "order": 1,
+              "parent": "_jdwerodo0",
               "componentName": "FieldSetComponent"
+            },
+            {
+              "inputPropsArray": [
+                {
+                  "label": "test",
+                  "value": ""
+                }
+              ],
+              "hasParent": false,
+              "hideLabel": false,
+              "labelPosition": "top",
+              "marginTop": "",
+              "marginRight": "",
+              "marginLeft": "",
+              "marginBottom": "",
+              "defaultValueType": "none",
+              "defaultValueSqlQuery": "",
+              "defaultValueString": "",
+              "lovType": "none",
+              "lovSqlQuery": "",
+              "lovJson": "",
+              "nonPersistent": false,
+              "hidden": false,
+              "clearWhenHidden": false,
+              "disabled": false,
+              "prefix": "",
+              "suffix": "",
+              "appliedValidations": "",
+              "customFuncValidation": "",
+              "jsonLogicVal": "",
+              "formClassValidation": "",
+              "events": "",
+              "showCondition": "",
+              "disableCondition": "",
+              "active": true,
+              "required": false,
+              "labelWidth": "",
+              "labelMargin": "",
+              "width": "",
+              "mask": [],
+              "description": "",
+              "icon": "",
+              "parentName": "",
+              "filterSqlQuery": "",
+              "type": "CHK",
+              "key": "_p6x2mhnt9",
+              "order": 2,
+              "parent": "_jdwerodo0",
+              "componentName": "RadioComponent"
             }
           ],
           "type": "FST",
           "width": "100%",
           "hidden": false,
-          "key": "_4a3k9hsv2",
-          "order": 0,
+          "key": "_jdwerodo0",
+          "order": 1,
           "parent": "root_drop",
           "componentName": "FieldSetComponent"
-        }
-      ],
-      "buttons": [
+        },
         {
-          "theme": "default",
-          "size": "small",
-          "btnLeftIcon": "",
-          "btnRightIcon": "",
+          "type": "SEL",
           "hasParent": false,
           "hideLabel": false,
           "labelPosition": "top",
@@ -537,18 +690,19 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
           "icon": "",
           "parentName": "",
           "filterSqlQuery": "",
-          "type": "BTN",
-          "key": "_52ml1thev",
-          "order": 0,
-          "parent": "button_drop",
-          "componentName": "ButtonComponent"
+          "key": "_feolfz0m4",
+          "order": 2,
+          "parent": "root_drop",
+          "componentName": "SelectComponent"
         }
-      ]
+      ],
+      "buttons": []
     };
-    this.populateFormBuilder(json.components);
+    this.populateFormBuilder(json.components, 0);
     setTimeout(() => {
-      this.populateFormBuilder(json.buttons);
+      this.populateFormBuilder(json.buttons, 0);
     }, 1000);
+
   }
 
   save() {
@@ -563,11 +717,11 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     );
   }
 
-  reset() {}
+  reset() { }
 
   renderPreview() {
-	this.finalJSON = this._formJsonService.buildFinalJSON();
-	console.log("this.finalJSON", this.finalJSON);
+    this.finalJSON = this._formJsonService.buildFinalJSON();
+    console.log("this.finalJSON", this.finalJSON);
     this._bootstrapService.openModal(this.preview, { size: "lg" });
   }
 
@@ -656,7 +810,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
   }
 
   get showCondition() {
-	  return this.formJson.showCondition;
+    return this.formJson.showCondition;
   }
 
   set active(active) {
