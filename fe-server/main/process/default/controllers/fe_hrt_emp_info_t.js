@@ -7,7 +7,7 @@ module.exports = class FeEmpDetails{
         var clientName = req.params.client;
         //var legislationName = global.legislation[clientName]; 
         //var legislationName = req.params.legislation;
-        //var models = globals.requireL3('@L3Root/'+clientName+'/main/process/default/models');
+        //var models = globals.requireL3('@L3Root/'+clientName+'/main/modules/default/models');
         var models = FE.clients[clientName].models;
         //var empId = req.params.id;
         models.EmpInfoModel.findAll({
@@ -70,7 +70,7 @@ module.exports = class FeEmpDetails{
 
     //updating employee details
     update_emp(req,res,done){
-        var models = global.requireL3('/process/default/models',req);
+        var models = global.requireL3('/modules/default/models',req);
         models.EmpInfoModel.find({
             where: { attribute1: req.body.id }, 
             include: [ { model : models.EmpJobModel } ] 
@@ -111,7 +111,7 @@ module.exports = class FeEmpDetails{
     }
 
     create_emp(req,res,done){
-        var models = global.requireL3('/process/default/models',req);
+        var models = global.requireL3('/modules/default/models',req);
         models.EmpInfoModel.create({  
             attribute4: req.body.firstname,
             attribute6: req.body.lastname

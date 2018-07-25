@@ -38,7 +38,7 @@ class DispatcherPlugin extends BasePlugin {
 		    //   }
 		    // })
 		  // }, (req, res, next) => {
-		    var controller = this._appObj.SUB_APP_PROCESS_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
+		    var controller = this._appObj.SUB_APP_MODULES_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
 		    var controller_class = require(controller);
 		    var controllerObj = new controller_class();
 		    var action = req.params.action;
@@ -46,7 +46,7 @@ class DispatcherPlugin extends BasePlugin {
 			});
 			
 			// router.get('/:module/:controller/:action/:id', (req, res, next)=>{
-		  //   var controller = this._appObj.SUB_APP_PROCESS_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
+		  //   var controller = this._appObj.SUB_APP_MODULES_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
 		  //   var controller_class = require(controller);
 		  //   var controllerObj = new controller_class();
 		  //   var action = req.params.action;
@@ -55,7 +55,7 @@ class DispatcherPlugin extends BasePlugin {
 
 
 		  router.post('/:module/:controller/:action', (req, res, next)=>{
-		    var controller = this._appObj.SUB_APP_PROCESS_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
+		    var controller = this._appObj.SUB_APP_MODULES_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
 		    var controller_class = require(controller);
 		    var controllerObj = new controller_class();
 		    var action = req.params.action;
@@ -64,7 +64,7 @@ class DispatcherPlugin extends BasePlugin {
 		});     
 
 		// this._appObj.app.use('/:module/:controller/:action', (req, res, next) => {
-		// 	var controller = this._appObj.SUB_APP_PROCESS_PATH + '/' + req.params.module + "/controllers/" + req.params.controller + '.js';
+		// 	var controller = this._appObj.SUB_APP_MODULES_PATH + '/' + req.params.module + "/controllers/" + req.params.controller + '.js';
 		// 	console.log('serving request');
 		// 	res.send('contoller' + controller);
 
