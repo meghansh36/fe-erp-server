@@ -4,7 +4,7 @@ import { TextComponent } from '@L3Process/system/modules/formBuilder/components/
 @Component({
   selector: 'txa-input',
   templateUrl: './textArea.component.html',
-  styleUrls: ['./textArea.component.css']
+  styleUrls: ['./textArea.component.css', '../baseField/baseField.component.css']
 })
 export class FeTextAreaComponent extends TextComponent   {
   showEdit = true;

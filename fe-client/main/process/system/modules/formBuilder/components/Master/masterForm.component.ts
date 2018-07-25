@@ -5,8 +5,8 @@ import {
   OnInit,
   ComponentFactoryResolver,
   ViewContainerRef,
-  ViewChild,
-  DoCheck
+  ViewChild
+
 } from "@angular/core";
 import { NgBootstrapService } from "@L3Process/system/services/NgBootstrap.service";
 import { NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
@@ -15,6 +15,7 @@ import { builderFieldCompInterface } from "./masterForm.interface";
 import * as _ from "lodash";
 import { FormJsonService } from "@L3Process/system/modules/formBuilder/services/formJson.service";
 import { DefaultsService } from "@L3Process/system/services/defaults.service";
+import { FormBuilderService } from "@L3Process/system/modules/formBuilder/services/formBuilder.service";
 @Component({
   selector: "form-master",
   templateUrl: "./masterForm.component.html",
@@ -54,7 +55,8 @@ export class FeMasterFormComponent implements OnInit {
     protected _componentFactoryResolver: ComponentFactoryResolver,
     protected _formJsonService: FormJsonService,
     protected _ngBootstrap: NgBootstrapService,
-    protected _defaults: DefaultsService
+    protected _defaults: DefaultsService,
+    protected _formBuilderService: FormBuilderService
   ) {}
 
   protected _beforeNgOnInit() {}
@@ -69,8 +71,8 @@ export class FeMasterFormComponent implements OnInit {
 
   _init() {
     this.modalRef = this._masterFormService.getModalRef();
-    const component = this._fieldControlService.getFieldRef().component
-      .component;
+    const componentName = this._fieldControlService.getFieldRef().component;
+    const component = this._formBuilderService.getComponent(componentName).component;
     this._createComponentFunc(component);
     this.jsonEditorConfig = this._defaults.JSON_EDITOR_CONFIG;
     this.jsonHelp = this._defaults.FORM_BUILDER_JSON_HELP;
@@ -84,7 +86,7 @@ export class FeMasterFormComponent implements OnInit {
     console.log("Form reset.");
     //this.instance.properties = this.backupProps;
     this.componentData = this.backupProps;
-    
+
   }
 
   onSubmit(form) {
@@ -136,7 +138,7 @@ export class FeMasterFormComponent implements OnInit {
     console.log(this.componentData);
   }
 
-  ngOnDestroy() {
-    this.instance.showEdit = true;
-  }
+  // ngOnDestroy() {
+  //   this.instance.showEdit = true;
+  // }
 }

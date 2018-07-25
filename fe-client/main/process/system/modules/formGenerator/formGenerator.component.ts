@@ -38,7 +38,6 @@ export class FeFormGeneratorComponent implements OnInit {
   }
 
   protected _handleRouteParams(params) {
-    console.log("_handleRouteParams params", params);
     this._initFormSchema(Number(params.formId));
   }
 

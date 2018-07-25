@@ -32,7 +32,7 @@ export interface FieldConfig {
   mask?: Array<string>;
   labelPosition?: string,
   labelWidth?: number,//To be checked
-  hidden?: boolean,
+  hidden?: any,
   labelMargin?: number,
   tabIndex?: string,
   marginTop?: string,
@@ -41,7 +41,7 @@ export interface FieldConfig {
   marginLeft?: string,
   width?: string,
   events: object
-  showCondition?: object,
+  hideCondition?: any,
   defaultValue?: any,
   components?: any,
   theme?: string,
