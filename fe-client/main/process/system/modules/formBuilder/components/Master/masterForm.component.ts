@@ -57,7 +57,9 @@ export class FeMasterFormComponent implements OnInit {
     protected _ngBootstrap: NgBootstrapService,
     protected _defaults: DefaultsService,
     protected _formBuilderService: FormBuilderService
-  ) {}
+  ) {
+    console.log('master form constructor called');
+  }
 
   protected _beforeNgOnInit() {}
 

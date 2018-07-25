@@ -285,7 +285,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 
   dropComplete(componentObj, index, value) {
     this.createComponentFunc(componentObj, index, value[2], value);
-    this.openModal();
+    //this.openModal();
   }
 
   openModal() {
@@ -329,9 +329,8 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     }
 
     const componentRef = viewContainerRef.createComponent(componentFactory, null, viewContainerRef.injector);
-    console.log(componentRef);
+    console.log('componentRef instantiated');
     this.moveDOMNode(target, value[4], componentRef.location.nativeElement);
-    console.log(componentObj);
     this._fieldControlService.setFieldRef(componentRef, this, componentObj.component.name);
     this._formJsonService.addComponentToMasterJSON(
       key,
@@ -339,6 +338,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
       target.id,
       index
     );
+    console.log('added to master json')
     target.children[index].generatedKey = key;
     target.children[index].parentComponent = target.id;
     this._formJsonService.updateMasterJSONOnDrop(target, key, false);
@@ -721,7 +721,8 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
   reset() { }
 
   renderPreview() {
-    this.finalJSON = this._formJsonService.buildFinalJSON();
+    this._formJsonService.buildFinalJSON();
+    this.finalJSON = this._formJsonService.getFinalJSON();
     console.log("this.finalJSON", this.finalJSON);
     this._bootstrapService.openModal(this.preview, { size: "lg" });
   }

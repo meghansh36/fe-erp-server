@@ -42,6 +42,7 @@ export class FeFormMasterService {
     // }
 
     // this.masterJsonService.setMasterJSON(masterJSON);
+    console.log('props set in MasterJson');
     this.masterJsonService.setMasterJSON(props, key);
   }
 

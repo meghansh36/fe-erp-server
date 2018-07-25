@@ -6,7 +6,8 @@ import {
   Renderer2,
   ElementRef,
   DoCheck,
-  AfterViewInit
+  AfterViewInit,
+  OnChanges
 } from "@angular/core";
 import { FormJsonService } from "@L3Process/system/modules/formBuilder/services/formJson.service";
 import { UtilityService } from "@L3Process/system/services/utility.service";
@@ -14,7 +15,7 @@ import { DefaultsService } from "@L3Process/system/services/defaults.service";
 import * as _ from "lodash";
 
 @Injectable()
-export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
+export class FeBaseField implements OnInit, DoCheck, AfterViewInit, OnChanges {
   showEdit = true;
   uniqueKey: string;
   refObj: any;
@@ -170,6 +171,7 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     protected _utility: UtilityService,
     protected _defaults: DefaultsService
   ) {
+    console.log('constructor called');
     this._utility.renderer = this._render;
     this.systemValidations = this._defaults.VALIDATIONS;
   }
@@ -178,7 +180,12 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
 
   protected _afterNgOnInit() {}
 
+  ngOnChanges() {
+    console.log('on changes called');
+  }
+
   ngOnInit() {
+    console.log('on init called');
     this._beforeNgOnInit();
     this._init();
     this._afterNgOnInit();
@@ -187,8 +194,7 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
   _init() {
     this.setRef(this._fieldControlService.getFieldRef().ref);
     this.uniqueKey = this._masterFormService.getCurrentKey();
-   // this.properties = _.assign({}, this._formJsonService.getMasterJSON().components[this.uniqueKey].instance.properties);
-    console.log('base props', this.properties, this.uniqueKey);
+   // console.log('base props ', this.properties, this.uniqueKey);
     this._masterFormService.setProperties(this.properties, this.uniqueKey);
     this._initFieldStyle();
     this.systemValidations = this._defaults.VALIDATIONS;
@@ -240,7 +246,7 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
 
   openModal() {
     this._masterFormService.setCurrentKey(this.uniqueKey);
-    this._masterFormService.setProperties(this.properties, this.uniqueKey);
+    //this._masterFormService.setProperties(this.properties, this.uniqueKey);
     const parent = this._fieldControlService.getFieldRef().parent;
     this._fieldControlService.setFieldRef(this.refObj, parent, this.properties.componentName);
     parent.openModal();
