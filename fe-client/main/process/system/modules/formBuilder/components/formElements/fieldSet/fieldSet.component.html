@@ -1,7 +1,4 @@
-
-
-
-<div class="fieldWrapper container">
+<!-- <div class="fieldWrapper container">
     <span *ngIf='showEdit' class="fieldOptions">
         <ul>
           <li (click)='openModal()'><i class="material-icons icon-size">settings</i></li>
@@ -17,5 +14,30 @@
           <ng-template #fstContainer></ng-template>
         </div>
       </div>
-  
+</div> -->
+<div [ngClass]="defaultClasses.fieldMainWrapperClasses" [ngStyle]="style.fieldMainWrapperStyle">
+  <div class="field-tool-wrapper">
+      <span *ngIf='showEdit' class=" field-tool-container">
+          <ul class=" field-tool">
+            <li (click)='openModal()'>
+              <i class="material-icons icon-size">settings</i>
+            </li>
+            <li>
+              <i class="material-icons icon-size">open_with</i>
+            </li>
+            <li (click)="close($event)">
+              <i class="material-icons icon-size">clear</i>
+            </li>
+          </ul>
+        </span>
+  </div>
+  <div class="card">
+    <div class="card-header" [class.hidden]="hideLabel">
+      {{properties.label}}
+    </div>
+    <div class="FSTdropZone card-body flex-container" [dragula]='"bag-one"' id={{uniqueKey}}>
+      <ng-template #fstContainer></ng-template>
+    </div>
+  </div>
 </div>
+

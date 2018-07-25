@@ -36,7 +36,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 	basic: String = "basic";
 	advanced: String = "advanced";
 	modalRef: any;
-
+	previewJSON: any;
 	rootDrop: any;
 	component: any;
 	finalJSON;
@@ -126,6 +126,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 	ngDoCheck() {
 		this._beforeNgDoCheck();
 		this._formJsonService.buildFinalJSON();
+		this.finalJSON = this._formJsonService.getFinalJSON();
 		this._afterNgDoCheck();
 	}
 
@@ -430,7 +431,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 
 			setTimeout(() => {
 				res();
-			}, 100);
+			}, 10);
 		});
 	}
 
@@ -446,7 +447,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 			if (components[i].components !== undefined) {
 				setTimeout(() => {
 					this.populateFormBuilder(components[i].components);
-				}, 100);
+				}, 10);
 			}
 		}
 		return;
@@ -746,7 +747,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 		this.populateFormBuilder(json.components);
 		setTimeout(() => {
 			this.populateFormBuilder(json.buttons);
-		}, 1000);
+		}, 10);
 	}
 
 	save() {
@@ -766,6 +767,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 	renderPreview() {
 		this._formJsonService.buildFinalJSON();
 		this.finalJSON = this._formJsonService.getFinalJSON();
+		this.previewJSON = _.assign({}, this.finalJSON);
 		this._bootstrapService.openModal(this.preview, { size: "lg" });
 	}
 
