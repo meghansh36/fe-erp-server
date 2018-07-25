@@ -174,15 +174,15 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
       const form = this._formSchemaService
         .getFormSchemaById(formId)
         .subscribe(data => {
-          const form = data.body;
+          const form = data.body.data;
           if (form) {
-            for (var key in form) {
+            /* for (var key in form) {
               if (key !== 'components' && key !== 'buttons') {
                 this.formJson[key] = form[key];
               }
-            }
+            } */
             console.log(form)
-            this.populateFormBuilder(form.components, 0);
+            this.populateFormBuilder(form.components);
             /* setTimeout(() => {
               this.populateFormBuilder(form.buttons);
             },2000); */
@@ -394,7 +394,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
     });
   }
 
-  async populateFormBuilder(components, index = 0) {
+  async populateFormBuilder(components) {
     console.log('input compProps', components);
     for (let i = 0; i < components.length; i++) {
       await this.createComponentsFromJSON(components[i]);
@@ -698,9 +698,9 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
       ],
       "buttons": []
     };
-    this.populateFormBuilder(json.components, 0);
+    this.populateFormBuilder(json.components);
     setTimeout(() => {
-      this.populateFormBuilder(json.buttons, 0);
+      this.populateFormBuilder(json.buttons);
     }, 1000);
 
   }
