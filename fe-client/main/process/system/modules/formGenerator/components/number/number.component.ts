@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TextComponent } from '@L3Process/system/modules/formGenerator/components/text/text.component';
-//import createNumberMask from 'text-mask-addons/dist/createNumberMask';
+import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import * as _ from 'lodash';
 
 
