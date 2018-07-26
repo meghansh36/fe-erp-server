@@ -360,6 +360,7 @@ a.disabled {
 	padding-right: 10px;
 }
 
+
 .field-label-right .fe-ANC-wrapper, .field-label-left .fe-ANC-wrapper {
     padding-top: 10px
 }
@@ -373,6 +374,13 @@ a.disabled {
 }
 
 .dp-picker-input {
-    border: none;
+	border: none;
+}
+
+.SEL-container {
+    width: 100%;
+}
+.field-help-container .card.border-info {
+	border: unset;
 }
 /*-------------------------}          */
