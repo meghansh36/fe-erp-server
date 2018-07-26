@@ -147,7 +147,7 @@ export class FeUtilityService {
 		fieldClasses = this.makeCssClassesObj(classesStr);
 
 		let nestedFieldContainerClasses = {};
-		classesStr = `fe-field-container fe-${type}-wrapper`;
+		classesStr = `feFld-container fe-field-container fe-${type}-wrapper`;
 		nestedFieldContainerClasses = this.makeCssClassesObj(classesStr);
 
 		let classes: any = {
