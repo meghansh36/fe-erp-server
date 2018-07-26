@@ -192,8 +192,8 @@
                           <i class="material-icons" (click)="deleteInput(i)">close</i>
                         </td>
                       </tr>
-                    </tbody>    
-                  </table> 
+                    </tbody>
+                  </table>
                   <button class="btn btn-primary" (click)="addInput($event)">Add Field</button>
                 </div>
 
@@ -233,7 +233,7 @@
                       </div> -->
 
 
-                     
+
 
 
 
@@ -613,7 +613,7 @@
                           [(ngModel)]="componentData.parentName" name='parentName' ngModel >
                       </div>
 
-                     
+
 
                       <!-- Text Area for sql query -->
 
@@ -687,8 +687,8 @@
                     <div class="col-md-10">
                       <div *ngIf='instance.applicableProperties.appliedValidations'>
                         <label for="appliedValidations" class="mt-3">Applied Validation</label>
-                        
-                       
+
+
                         <ngx-select [multiple]="true" name='appliedValidations' [(ngModel)]="componentData.appliedValidations" [items]="instance.systemValidations" id="appliedValidations" placeholder="Select Validations">
                           </ngx-select>
                       </div>
@@ -895,7 +895,7 @@
                         <div class="alert alert-danger" *ngIf='formClassValidation.touched && formClassValidation.invalid'>Please provide json string value.</div>
                       </div>
 
-                      
+
                     </div>
                   </div>
                 </div>
@@ -949,7 +949,7 @@
             </ngb-tab>
             <!--
             <!-- **************************
-            <!-- tabs for conditional 
+            <!-- tabs for conditional
             **************************** -->
 
             <ngb-tab title='Conditional'>
@@ -971,7 +971,7 @@
 
                       <!-- text area for custom Function -->
 
-                      <div class="txa-container" *ngIf="instance.applicableProperties.showCondition">
+                      <div class="txa-container" *ngIf="instance.applicableProperties.hideCondition">
                         <div class="json-help-container">
                           <ng-template #conditionHelp>
                             <div class="json-help-wrapper">
@@ -981,18 +981,16 @@
                             </div>
                           </ng-template>
                         </div>
-                        <label for="custom-func" class='mt-3'>Field Conditional Show/Hide JSON&nbsp;&nbsp;
+                        <label for="custom-func" class='mt-3'>Field Conditional Hide JSON&nbsp;&nbsp;
                           <span class='help-icon-container'>
                             <a class='card-tooltip mt-2' placement="right" [ngbPopover]="conditionHelp" popoverTitle="Custom Validations JSON Structure ('control' will be passed to function.)">
                               <i style='font-size: 16px;' class="material-icons"> help </i>
                             </a>
                           </span>
                         </label>
-                        <!-- <textarea class="form-control" rows="3" id="condition" placeholder='JSON' [(ngModel)]='componentData.condition'
-                          ngModel name='condition'>
-                        </textarea> -->
-                        <json-editor id="showCondition" [(ngModel)]="componentData.showCondition" jsonModal name="showCondition" [config]="jsonEditorConfig"
-                          #showCondition='ngModel'>
+
+                        <json-editor id="hideCondition" [(ngModel)]="componentData.hideCondition" jsonModal name="hideCondition" [config]="jsonEditorConfig"
+                          #hideCondition='ngModel'>
                         </json-editor>
                       </div>
 
@@ -1026,7 +1024,7 @@
 
 
 
-                      <!-- 
+                      <!--
                       <!-- text area for json logic  -/->
                       <div *ngIf="conditionType.value=='customJsonLogic'">
                       <label for="json-logic" class='mt-3'> custom JSON Logic</label>

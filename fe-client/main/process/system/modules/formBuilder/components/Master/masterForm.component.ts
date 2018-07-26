@@ -5,8 +5,8 @@ import {
   OnInit,
   ComponentFactoryResolver,
   ViewContainerRef,
-  ViewChild,
-  DoCheck
+  ViewChild
+
 } from "@angular/core";
 import { NgBootstrapService } from "@L3Process/system/services/NgBootstrap.service";
 import { NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
@@ -88,7 +88,7 @@ export class FeMasterFormComponent implements OnInit {
     console.log("Form reset.");
     //this.instance.properties = this.backupProps;
     this.componentData = this.backupProps;
-    
+
   }
 
   onSubmit(form) {

@@ -73,56 +73,60 @@ export class FeDefaultsService {
       }
     },
     conditionHelp: {
-      simple: {
-        show: true,
-        when: "field-flexilabel",
-        value: "rathor",
-        operator: "=="
-      },
-      advanced: [
-        "var show; return show = controls.number.value == 150 ? true : false;",
-        "var show1; return show1 = controls.otherControl.value == 150 ? true : false;"
-      ],
-      json: {
-        showCondition: {
-          and: [
-            { "===": [{ var: "username.value" }, "apple"] },
-            { "===": [{ var: "number.value" }, 15] }
-          ]
-        },
-        condition1: {
-          and: [
-            { "===": [{ var: "someControl.value" }, "someValue"] },
-            { "===": [{ var: "someOtherControl.value" }, "value"] }
-          ]
-        }
-      }
+		flag: false,
+      condition: {
+		simple: {
+			when: "field-flexilabel",
+			value: "rathor",
+			operator: "=="
+		  },
+		  advanced: [
+			"var show; return show = controls.number.value == 150 ? true : false;",
+			"var show1; return show1 = controls.otherControl.value == 150 ? true : false;"
+		  ],
+		  json: {
+			hideCondition: {
+			  and: [
+				{ "===": [{ var: "username.value" }, "apple"] },
+				{ "===": [{ var: "number.value" }, 15] }
+			  ]
+			},
+			condition1: {
+			  and: [
+				{ "===": [{ var: "someControl.value" }, "someValue"] },
+				{ "===": [{ var: "someOtherControl.value" }, "value"] }
+			  ]
+			}
+		  }
+	  }
     },
     fldDisabledConditionHelp: {
-      simple: {
-        disable: true,
-        when: "field-flexilabel",
-        value: "rathor",
-        operator: "=="
-      },
-      advanced: [
-        "var disable; return disable = controls.number.value == 150 ? true : false;",
-        "var disable; return disable = controls.otherControl.value == 150 ? true : false;"
-      ],
-      json: {
-        showCondition: {
-          and: [
-            { "===": [{ var: "username.value" }, "apple"] },
-            { "===": [{ var: "number.value" }, 15] }
-          ]
-        },
-        condition1: {
-          and: [
-            { "===": [{ var: "someControl.value" }, "someValue"] },
-            { "===": [{ var: "someOtherControl.value" }, "value"] }
-          ]
-        }
-      }
+		flag: false,
+      condition: {
+		simple: {
+			when: "field-flexilabel",
+			value: "rathor",
+			operator: "=="
+		  },
+		  advanced: [
+			"var show; return show = controls.number.value == 150 ? true : false;",
+			"var show1; return show1 = controls.otherControl.value == 150 ? true : false;"
+		  ],
+		  json: {
+			hideCondition: {
+			  and: [
+				{ "===": [{ var: "username.value" }, "apple"] },
+				{ "===": [{ var: "number.value" }, 15] }
+			  ]
+			},
+			condition1: {
+			  and: [
+				{ "===": [{ var: "someControl.value" }, "someValue"] },
+				{ "===": [{ var: "someOtherControl.value" }, "value"] }
+			  ]
+			}
+		  }
+	  }
     }
   };
 

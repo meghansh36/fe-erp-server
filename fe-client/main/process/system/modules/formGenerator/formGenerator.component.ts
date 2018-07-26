@@ -38,7 +38,6 @@ export class FeFormGeneratorComponent implements OnInit {
   }
 
   protected _handleRouteParams(params) {
-    console.log("_handleRouteParams params", params);
     this._initFormSchema(Number(params.formId));
   }
 
@@ -48,6 +47,7 @@ export class FeFormGeneratorComponent implements OnInit {
         const form = { ...data.body.data };
         if (form) {
           this.schema = form;
+          console.log(this.schema);
         } else {
           console.log("No schema found");
         }

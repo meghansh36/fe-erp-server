@@ -113,8 +113,10 @@ export class FeFieldDirective implements Field, OnChanges, OnInit {
   }
 
   ngOnInit() {
-    this._beforeNgOnInit();
-    this._createFieldComponent();
+	this._beforeNgOnInit();
+	if ( this.config && this.config.type ) {
+		this._createFieldComponent();
+	}
     this._afterNgOnInit();
   }
 
@@ -125,10 +127,9 @@ export class FeFieldDirective implements Field, OnChanges, OnInit {
   }
 
   protected _createFieldComponent() {
-    
+
     this._beforeCreateField();
-    
-    if (!components[this.config.type]) {
+	if (!components[this.config.type]) {
       const supportedTypes = Object.keys(components).join(', ');
       console.log(
         `Trying to use an unsupported type (${this.config.type}).

@@ -20,6 +20,7 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit, OnChanges {
   uniqueKey: string;
   refObj: any;
   componentname: string;
+
   public formDisabled: boolean;
   public formHidden: boolean;
   public defaultClasses: any;
@@ -51,7 +52,7 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit, OnChanges {
     jsonLogicVal: true,
     formClassValidation: true,
     events: true,
-    showCondition: true,
+    hideCondition: true,
     type: true,
     disableCondition: true,
     active: true,
@@ -99,7 +100,7 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit, OnChanges {
 		minimumLength: true,
 		maximumLength: true,
 		events: true,
-		showCondition: true,
+		hideCondition: true,
 		type: true,
 		disableCondition: true,
 		active: true,
@@ -148,7 +149,7 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit, OnChanges {
     minimumLength: undefined,
     maximumLength: undefined,
     events: "",
-    showCondition: "",
+    hideCondition: "",
     disableCondition: "",
     active: true,
     required: false,
@@ -381,8 +382,8 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit, OnChanges {
     return this.properties.events;
   }
 
-  get showCondition() {
-    return this.properties.showCondition;
+  get hideCondition() {
+    return this.properties.hideCondition;
   }
 
   get type() {
@@ -549,8 +550,8 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit, OnChanges {
     this.properties.events = events;
   }
 
-  set showCondition(showCondition) {
-    this.properties.showCondition = showCondition;
+  set hideCondition(hideCondition) {
+    this.properties.hideCondition = hideCondition;
   }
 
   set type(type) {
