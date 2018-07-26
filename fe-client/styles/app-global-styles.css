@@ -44,6 +44,10 @@
     padding-right: 10px; */
 }
 
+.feFld-container {
+	flex-grow: 1;
+}
+
 .field-label-left .field-label-container,
 .field-label-right .field-label-container {
     display: flex;
