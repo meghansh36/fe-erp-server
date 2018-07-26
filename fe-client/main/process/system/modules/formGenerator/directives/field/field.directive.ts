@@ -28,6 +28,7 @@ import { FieldConfig } from '@L1Process/system/modules/formGenerator/models/fiel
 import { CurrencyComponent } from '@L3Process/system/modules/formGenerator/components/currency/currency.component';
 import { PhoneComponent } from '@L3Process/system/modules/formGenerator/components/phone/phone.component';
 import { AddressComponent } from '@L3Process/system/modules/formGenerator/components/address/address.component';
+import { DateTimeComponent } from '@L3Process/system/modules/formGenerator/components/dateTime/dateTime.component';
 
 
 const components: { [type: string]: Type<Field> } = {
@@ -54,6 +55,7 @@ const components: { [type: string]: Type<Field> } = {
   PHN: PhoneComponent,
   CUR: CurrencyComponent,
   ADR: AddressComponent,
+  DTI: DateTimeComponent
 };
 
 @Directive({
