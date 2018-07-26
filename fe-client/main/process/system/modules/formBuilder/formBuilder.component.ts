@@ -305,6 +305,10 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 
 	dropComplete(componentObj, index, value) {
 		this.createComponentFunc(componentObj, index, value[2], value);
+		console.log('drop complete', componentObj, value)
+		if ((componentObj.component.name !== 'FieldSetComponent' && value[2].id === 'root_drop') || value[2].id === 'button_drop') {
+			this.openModal();
+		}
 	}
 
 	openModal() {
