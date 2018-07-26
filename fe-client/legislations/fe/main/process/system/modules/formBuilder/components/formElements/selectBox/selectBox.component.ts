@@ -1,3 +1,3 @@
-import { FeSelectBoxesComponent } from "@L1Process/system/modules/formBuilder/components/formElements/selectBox/selectBox.component";
+import { FeSelectBoxComponent } from "@L1Process/system/modules/formBuilder/components/formElements/selectBox/selectBox.component";
 
-export class LgSelectBoxesComponent extends FeSelectBoxesComponent {}
+export class LgSelectBoxComponent extends FeSelectBoxComponent {}

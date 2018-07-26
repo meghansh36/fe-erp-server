@@ -39,6 +39,7 @@ import { CurrencyComponent } from '@L3Process/system/modules/formGenerator/compo
 import { PhoneComponent } from '@L3Process/system/modules/formGenerator/components/phone/phone.component';
 import { AddressComponent } from '@L3Process/system/modules/formGenerator/components/address/address.component';
 import { DateTimeComponent } from '@L3Process/system/modules/formGenerator/components/dateTime/dateTime.component';
+import { SelectBoxComponent } from "@L3Process/system/modules/formGenerator/components/selectBox/selectBox.component";
 
 import { routes } from '@L3Process/system/modules/formGenerator/formGenerator.routing';
 
@@ -90,7 +91,8 @@ const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more
     CurrencyComponent,
     PhoneComponent,
 	AddressComponent,
-	DateTimeComponent
+	DateTimeComponent,
+	SelectBoxComponent
   ],
   exports: [
     FormComponent,
@@ -114,7 +116,8 @@ const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more
     PhoneComponent,
     AddressComponent,
 	HtmlEditorComponent,
-	DateTimeComponent
+	DateTimeComponent,
+	SelectBoxComponent
   ],
   entryComponents: [
     ButtonComponent,
@@ -142,7 +145,9 @@ const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more
     CurrencyComponent,
     PhoneComponent,
 	AddressComponent,
-	DateTimeComponent
+	DateTimeComponent,
+	SelectBoxComponent
+
   ],
   providers: [ DefaultsService ],
   schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
