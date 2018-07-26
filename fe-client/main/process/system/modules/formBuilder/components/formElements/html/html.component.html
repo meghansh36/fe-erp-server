@@ -40,10 +40,15 @@
       </span> -->
     <div [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
       <ckeditor [attr.flexilabel]="flexiLabel"   [ngClass]="defaultClasses.fieldClasses" [ngStyle]="style.fieldStyle"
-            [attr.placeholder]="placeholder"   
-               [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" 
+            [attr.placeholder]="placeholder"
+               [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder"
                [attr.id]="id">
             </ckeditor>
     </div>
   </div>
+  <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+	<small [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+		{{ description }}
+	</small>
+</div>
 </div>

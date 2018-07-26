@@ -65,12 +65,14 @@ export class FeBaseComponent
 	_init() {
 		this._config = _.assign({}, this.config);
 		if (!this.control) {
+			console.log("Not control found for", this.label);
 			return;
 		}
 		this._applyValidations();
 		this._initFieldStyle();
 		this._applyObservers();
 		this._setValues();
+		console.log("Rendering", this.label);
 	}
 
 	protected _beforeNgAfterViewInit() {}

@@ -29,11 +29,16 @@
         </div>
         <div [ngClass]="defaultClasses.nestedFieldContainerClasses" [ngStyle]="style.nestedFieldContainerStyle">
             <div [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
-                <a [attr.href]="defaultValueString" target="_blank" [ngClass]="defaultClasses.fieldClasses" [attr.flexilabel]="flexiLabel"  [ngStyle]="style.fieldStyle" [class.disabled]="disabled" [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" 
+                <a [attr.href]="defaultValueString" target="_blank" [ngClass]="defaultClasses.fieldClasses" [attr.flexilabel]="flexiLabel"  [ngStyle]="style.fieldStyle" [class.disabled]="disabled" [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder"
                 [attr.id]="id">
                 {{label}}
                 </a>
             </div>
         </div>
-    </div>
+	</div>
+	<div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+		<small [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+			{{ description }}
+		</small>
+	</div>
 </div>

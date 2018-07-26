@@ -51,10 +51,13 @@
 .field-label-left .field-label-container,
 .field-label-right .field-label-container {
     display: flex;
-    padding-top: 10px;
+	padding-top: 10px;
+	/* padding-right:10px */
 }
 
-
+.ANC-field {
+	color: #007bff !important;
+}
 
 .fe-field-component {
     padding-left: 10px;
@@ -374,7 +377,9 @@ a.disabled {
 }
 
 .dp-picker-input {
-	border: none;
+    border: none;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .SEL-container {

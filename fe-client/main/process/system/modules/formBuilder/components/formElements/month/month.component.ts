@@ -8,6 +8,7 @@ import { FeBaseField } from '../baseField/baseField.component';
 export class FeMonthComponent extends FeBaseField {
   selectedDate;
   config = {
+    disableKeyPress: true
   };
   public properties = {
     type: 'MON',

@@ -1,44 +1,47 @@
-
-
 <div [ngClass]="defaultClasses.fieldMainWrapperClasses" [ngStyle]="style.fieldMainWrapperStyle">
-  <div class="field-tool-wrapper">
-      <span *ngIf='showEdit' class=" field-tool-container">
-          <ul class=" field-tool">
-            <li (click)='openModal()'>
-              <i class="material-icons icon-size">settings</i>
-            </li>
-            <li>
-              <i class="material-icons icon-size">open_with</i>
-            </li>
-            <li (click)="close($event)">
-              <i class="material-icons icon-size">clear</i>
-            </li>
-          </ul>
-        </span>
-  </div>
-  <div [ngClass]="defaultClasses.fieldWrapperClasses" [ngStyle]="style.fieldWrapperStyle">
-      <div [ngClass]="defaultClasses.fieldLabelContainerClasses" [ngStyle]="style.fieldLabelContainerStyle">
-          <div class="label">
-              <label for="{{ id }}" [ngClass]="defaultClasses.labelClasses" [ngStyle]="defaultClasses.labelStyle">{{ label }}</label>
-          </div>
-          <div [ngClass]="defaultClasses.fieldTooltipWrapperClasses" [ngStyle]="style.fieldTooltipWrapperStyle" *ngIf="tooltip">
-              <span [ngClass]="defaultClasses.fieldTooltipContainerClasses" [ngStyle]="defaultClasses.fieldTooltipContainerStyle">
-                  <i class="material-icons " placement="right" [ngbTooltip]="tooltip"> help</i>
-              </span>
-          </div>
-      </div>
-      <div [ngClass]="defaultClasses.nestedFieldContainerClasses" [ngStyle]="style.nestedFieldContainerStyle">
-          <div [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
-              <div class="input-group-prepend" *ngIf="prefix">
-                  <span class="input-group-text"> {{ prefix }} </span>
-              </div>
-              <!-- [textMask]="maskConfig" attribute creating problem. -->
-              <input type="text"   [attr.flexilabel]="flexiLabel" class="form-control" [ngClass]="defaultClasses.fieldClasses" [ngStyle]="style.fieldStyle"
-                  [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder"  [attr.id]="id" [disabled]="disabled">
-              <div class="input-group-append" *ngIf="suffix ">
-                  <span class="input-group-text"> {{ suffix }} </span>
-              </div>
-          </div>
-      </div>
-  </div>
+	<div class="field-tool-wrapper">
+		<span *ngIf='showEdit' class=" field-tool-container">
+			<ul class=" field-tool">
+				<li (click)='openModal()'>
+					<i class="material-icons icon-size">settings</i>
+				</li>
+				<li>
+					<i class="material-icons icon-size">open_with</i>
+				</li>
+				<li (click)="close($event)">
+					<i class="material-icons icon-size">clear</i>
+				</li>
+			</ul>
+		</span>
+	</div>
+	<div [ngClass]="defaultClasses.fieldWrapperClasses" [ngStyle]="style.fieldWrapperStyle">
+		<div [ngClass]="defaultClasses.fieldLabelContainerClasses" [ngStyle]="style.fieldLabelContainerStyle">
+			<div class="label">
+				<label for="{{ id }}" [ngClass]="defaultClasses.labelClasses" [ngStyle]="defaultClasses.labelStyle">{{ label }}</label>
+			</div>
+			<div [ngClass]="defaultClasses.fieldTooltipWrapperClasses" [ngStyle]="style.fieldTooltipWrapperStyle" *ngIf="tooltip">
+				<span [ngClass]="defaultClasses.fieldTooltipContainerClasses" [ngStyle]="defaultClasses.fieldTooltipContainerStyle">
+					<i class="material-icons " placement="right" [ngbTooltip]="tooltip"> help</i>
+				</span>
+			</div>
+		</div>
+		<div [ngClass]="defaultClasses.nestedFieldContainerClasses" [ngStyle]="style.nestedFieldContainerStyle">
+			<div [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
+				<div class="input-group-prepend" *ngIf="prefix">
+					<span class="input-group-text"> {{ prefix }} </span>
+				</div>
+				<!-- [textMask]="maskConfig" attribute creating problem. -->
+				<input type="text" [attr.flexilabel]="flexiLabel" class="form-control" [ngClass]="defaultClasses.fieldClasses" [ngStyle]="style.fieldStyle"
+				    [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" [attr.id]="id" [disabled]="disabled">
+				<div class="input-group-append" *ngIf="suffix ">
+					<span class="input-group-text"> {{ suffix }} </span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+		<small [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+			{{ description }}
+		</small>
+	</div>
 </div>

@@ -29,7 +29,7 @@
         </div>
         <!-- <div class="form-check" [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
             <div class ="checkbox-fields-container display-flex"  *ngFor="let field of properties.inputPropsArray; let i = index;">
-                <input type="checkbox" class="form-check-input checkbox" [ngClass]="defaultClasses.fieldClasses" [attr.flexilabel]="flexiLabel" 
+                <input type="checkbox" class="form-check-input checkbox" [ngClass]="defaultClasses.fieldClasses" [attr.flexilabel]="flexiLabel"
                 [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" [disabled]="disabled"
                 [attr.id]="id+'_'+i" value={{field.code}}>
                 <label class="form-check-label" for="{{id}}'_'{{i}}">
@@ -39,10 +39,15 @@
         </div> -->
         <div class="form-check" [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
             <div class ="checkbox-fields-container display-flex"  >
-                <input type="checkbox" class="form-check-input checkbox" [ngClass]="defaultClasses.fieldClasses" [attr.flexilabel]="flexiLabel" 
+                <input type="checkbox" class="form-check-input checkbox" [ngClass]="defaultClasses.fieldClasses" [attr.flexilabel]="flexiLabel"
                 [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" [disabled]="disabled"
                 [attr.id]="id+'_'+i" value={{value}}>
             </div>
         </div>
-    </div>
+	</div>
+	<div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+		<small [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+			{{ description }}
+		</small>
+	</div>
 </div>

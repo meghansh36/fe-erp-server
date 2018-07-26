@@ -31,12 +31,18 @@
                     <span class="input-group-text"> {{ prefix }} </span>
                 </div>
                 <!-- [textMask]="maskConfig" attribute creating problem. -->
-                <input type="datetime"   [attr.flexilabel]="flexiLabel" class="form-control" [ngClass]="defaultClasses.fieldClasses" [ngStyle]="style.fieldStyle"
-                    [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder"  [attr.id]="id" [disabled]="disabled">
+                <dp-date-picker [(ngModel)]="selectedDate" [config]="config" [mode]="'daytime'" [theme]="'dp-material form-control'" [attr.flexilabel]="flexiLabel" [ngClass]="defaultClasses.fieldClasses" [ngStyle]="style.fieldStyle"
+                [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder"  [attr.id]="id" [disabled]="disabled"></dp-date-picker>
+
                 <div class="input-group-append" *ngIf="suffix ">
                     <span class="input-group-text"> {{ suffix }} </span>
                 </div>
             </div>
         </div>
-    </div>
+	</div>
+	<div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+		<small [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+			{{ description }}
+		</small>
+	</div>
   </div>

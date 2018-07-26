@@ -15,11 +15,6 @@
           </span>
     </div>
   <div [ngClass]="defaultClasses.fieldWrapperClasses">
-      <!-- <span class="text-length-info-container" *ngIf="hasTextLenghtLimit">
-          <span class="badge text-length-info min-length-info" *ngIf="len>0" [ngClass]="_Class">
-              {{ len }}/{{ maxLength }}
-          </span>
-      </span> -->
       <div [ngClass]="defaultClasses.fieldLabelContainerClasses" [ngStyle]="style.fieldLabelContainerStyle">
           <div class="label">
               <label for="{{ id }}" [ngClass]="defaultClasses.labelClasses">{{ label }}</label>
@@ -30,19 +25,15 @@
               </span>
           </div>
       </div>
-      <!-- <span class="text-length-info-container" *ngIf="hasTextLenghtLimitation">
-          <span class="badge badge-info text-length-info min-length-info" *ngIf="minLength">
-              Min:&nbsp;{{minLength}}
-          </span>
-          <span class="badge badge-info text-length-info max-length-info" *ngIf="maxLength">
-              Max:&nbsp;{{maxLength}}
-          </span>
-      </span> -->
       <div [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
           <textarea class="form-control" cols="50" rows="8" [attr.flexilabel]="flexiLabel" [attr.disabled]="disabled" [ngClass]="defaultClasses.fieldClasses" [ngStyle]="style.fieldStyle"
-              [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" 
+              [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder"
               [attr.id]="id"></textarea>
       </div>
   </div>
-
+  <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+	<small [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+		{{ description }}
+	</small>
+</div>
 </div>

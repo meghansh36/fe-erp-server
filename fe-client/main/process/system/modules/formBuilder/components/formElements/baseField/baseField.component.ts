@@ -196,7 +196,7 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
   _init() {
     this.setRef(this._fieldControlService.getFieldRef().ref);
     this.uniqueKey = this._masterFormService.getCurrentKey();
-   // console.log('base props ', this.properties, this.uniqueKey);
+   // console.log('base props unique key ', this.properties, this.uniqueKey);
     this._masterFormService.setProperties(this.properties, this.uniqueKey);
     this._initFieldStyle();
 	this.systemValidations = this._defaults.VALIDATIONS;

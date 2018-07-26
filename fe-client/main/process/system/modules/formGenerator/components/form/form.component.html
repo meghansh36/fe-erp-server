@@ -18,12 +18,12 @@
         </form>
       </div>
     </div>
-    <div class="card-footer text-muted" >
-      <div class="form-buttons-container display-flex space-around" *ngIf="buttons">
-        <ng-container *ngFor="let btn of buttons">
-          <feFormButton [buttonConfig]="btn" [group]="group" [form]="formInstance"></feFormButton>
-        </ng-container>
-       </div>
+    <div class="card-footer" >
+      <div class="form-buttons-container  flex-container"  *ngIf="buttons">
+		<ng-container *ngFor="let btn of buttons;" feField [form]="formInstance" [schema]="schema" [config]="btn" [group]="group"
+            [formComponent]="instance">
+          </ng-container>
+		</div>
     </div>
   </div>
 </div>

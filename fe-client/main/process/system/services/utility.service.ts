@@ -289,9 +289,13 @@ export class FeUtilityService {
 		);
 	}
 
-	addButtonProps(fieldComponent, classesObj) {
+	addButtonProps(fieldComponent, classesObj?: any) {
 		const buttonThemeClasses = this._defaults.BUTTON_THEMES;
 		let themeClass = buttonThemeClasses[fieldComponent.theme];
+		if (!classesObj) {
+			classesObj = {};
+			classesObj.fieldClasses = {};
+		}
 		if (!themeClass) {
 			themeClass = buttonThemeClasses[this._defaults.BUTTON_THEME];
 		}

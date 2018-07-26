@@ -6,7 +6,10 @@ import { FeBaseField } from '../baseField/baseField.component';
   styleUrls: ['./dateTime.component.css', '../baseField/baseField.component.css']
 })
 export class FeDateTimeComponent extends FeBaseField {
-
+  selectedDate;
+  config = {
+    disableKeyPress: true
+  };
   public properties = {
 	  ...this.properties,
 	  type: 'DTI'
