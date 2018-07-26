@@ -374,7 +374,9 @@ a.disabled {
 }
 
 .dp-picker-input {
-	border: none;
+    border: none;
+    width: inherit;
+    height: inherit;
 }
 
 .SEL-container {
