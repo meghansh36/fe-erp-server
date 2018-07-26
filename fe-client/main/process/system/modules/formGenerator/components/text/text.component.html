@@ -4,8 +4,8 @@
             <div class="label">
                 <label for="{{ id }}" [ngClass]="defaultClasses.labelClasses" [ngStyle]="defaultClasses.labelStyle">{{ label }}</label>
             </div>
-            <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="tooltip">
-                <span [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+            <div [ngClass]="defaultClasses.fieldTooltipWrapperClasses" [ngStyle]="style.fieldTooltipWrapperStyle" *ngIf="tooltip">
+                <span [ngClass]="defaultClasses.fieldTooltipContainerClasses" [ngStyle]="defaultClasses.fieldTooltipContainerStyle">
                     <i class="material-icons " placement="right" [ngbTooltip]="tooltip"> help</i>
                 </span>
             </div>
@@ -20,7 +20,7 @@
                 <div class="input-group-append" *ngIf="suffix ">
                     <span class="input-group-text"> {{ suffix }} </span>
                 </div>
-                
+
             </div>
             <span class="text-length-info-container" *ngIf="hasTextLenghtLimit">
                 <span class="badge text-length-info min-length-info" *ngIf="len>0" [ngClass]="_Class">
@@ -35,16 +35,11 @@
                     </small>
                 </span>
             </div>
-            <div class="field-help-container  mt-1" *ngIf="description">
-                <div class="card border-info " >
-                  <div class="card-body text-info">
-                    <p class="card-text">  
-                        <small  class="form-text text-muted">
-                            {{ description }}
-                        </small></p>
-                  </div>                
-                </div>
-            </div>
         </div>
-    </div>
+	</div>
+	<div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+		<small  [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+			{{ description }}
+		</small>
+	</div>
 </div>

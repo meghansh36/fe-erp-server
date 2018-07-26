@@ -21,8 +21,8 @@ jalsdjflsjdflsd
             <div class="label">
                 <label for="{{ id }}" [ngClass]="defaultClasses.labelClasses" [ngStyle]="defaultClasses.labelStyle">{{ label }}</label>
             </div>
-            <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="tooltip">
-                <span [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+            <div [ngClass]="defaultClasses.fieldTooltipWrapperClasses" [ngStyle]="style.fieldTooltipWrapperStyle" *ngIf="tooltip">
+                <span [ngClass]="defaultClasses.fieldTooltipContainerClasses" [ngStyle]="defaultClasses.fieldTooltipContainerStyle">
                     <i class="material-icons " placement="right" [ngbTooltip]="tooltip"> help</i>
                 </span>
             </div>

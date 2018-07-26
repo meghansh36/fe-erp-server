@@ -67,7 +67,6 @@ export class FeBaseComponent
 		if (!this.control) {
 			return;
 		}
-
 		this._applyValidations();
 		this._initFieldStyle();
 		this._applyObservers();
@@ -192,12 +191,10 @@ export class FeBaseComponent
 	}
 
 	protected _applyConditionalHide() {
-		//this.hideField(!this.hideCondition.flag);
 		this._applyCondition(this.hideCondition, "hide");
 	}
 
 	protected _applyConditionalDisable() {
-		//this.disableField(!this.disableCondition.flag);
 		this._applyCondition(this.disableCondition, "disable");
 	}
 

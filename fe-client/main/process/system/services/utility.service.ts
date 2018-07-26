@@ -120,12 +120,20 @@ export class FeUtilityService {
 		classesStr = `field-wrapper ${type}-field-wrapper field-label-${labelPosition}`;
 		fieldWrapperClasses = this.makeCssClassesObj(classesStr);
 
+		let fieldTooltipWrapperClasses = {};
+		classesStr = `field-tooltip-wrapper ${type}-tooltip-wrapper`;
+		fieldTooltipWrapperClasses = this.makeCssClassesObj(classesStr);
+
+		let fieldTooltipContainerClasses = {};
+		classesStr = `field-tooltip ${type}-tooltip`;
+		fieldTooltipContainerClasses = this.makeCssClassesObj(classesStr);
+
 		let fieldDescWrapperClasses = {};
-		classesStr = `field-desc-container ${type}-desc-cont`;
+		classesStr = `field-desc-wapper ${type}-description-wapper`;
 		fieldDescWrapperClasses = this.makeCssClassesObj(classesStr);
 
 		let fieldDescContainerClasses = {};
-		classesStr = `form-text text-muted field-desc ${type}-desc`;
+		classesStr = `field-description-container form-text text-muted ${type}-description-container`;
 		fieldDescContainerClasses = this.makeCssClassesObj(classesStr);
 
 		let labelClasses = {};
@@ -136,7 +144,7 @@ export class FeUtilityService {
 		labelClasses = this.makeCssClassesObj(classesStr);
 
 		let fieldErrorWrapperClasses = {};
-		classesStr = `field-error-wrapper ${type}-error-wrapper`;
+		classesStr = `field-error-wrapper mt-1 ${type}-error-wrapper`;
 		fieldErrorWrapperClasses = this.makeCssClassesObj(classesStr);
 
 		let fieldClasses = {};
@@ -155,6 +163,8 @@ export class FeUtilityService {
 			fieldWrapperClasses,
 			fieldLabelContainerClasses,
 			fieldContainerClasses,
+			fieldTooltipWrapperClasses,
+			fieldTooltipContainerClasses,
 			fieldDescWrapperClasses,
 			fieldDescContainerClasses,
 			labelClasses,
@@ -252,6 +262,8 @@ export class FeUtilityService {
 		let inlineStyle = {
 			fieldMainWrapperStyle,
 			fieldWrapperStyle: {},
+			fieldTooltipWrapperStyle: {},
+			fieldTooltipContainerStyle: {},
 			fieldDescWrapperStyle: {},
 			fieldDescContainerStyle: {},
 			fieldLabelContainerStyle,
