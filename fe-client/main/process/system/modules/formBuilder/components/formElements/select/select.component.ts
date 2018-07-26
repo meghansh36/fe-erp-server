@@ -7,7 +7,7 @@ import { FeBaseField } from '../baseField/baseField.component';
   styleUrls: ['./select.component.css', '../baseField/baseField.component.css']
 })
 export class FeSelectComponent extends FeBaseField {
-  
+
   public properties = {
     type: 'SEL',
     ...this.properties
@@ -15,13 +15,7 @@ export class FeSelectComponent extends FeBaseField {
 
   public applicableProperties: any = {
     lovType: true,
-  	lovSqlQuery:true,
-  	lovJson:true,
+  	lov:true,
     ...this.applicableProperties
   };
-
-  get options() {
-    return this.properties.lovJson || [];
-  }
-
 }

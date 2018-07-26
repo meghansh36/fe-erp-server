@@ -28,6 +28,7 @@ export class FeBaseComponent
 	public errors = [];
 	public style: any = {};
 	public defaultClasses: any = {};
+	protected _options: any = [];
 
 	protected _$statusChange: any;
 	protected _$valueChange: any;
@@ -38,8 +39,8 @@ export class FeBaseComponent
 	//Copy config in its prop
 	protected _config: FieldConfig;
 
-	protected _disableConditionFlags : boolean[] = [];
-	protected _hideConditionFlags : boolean[] = [];
+	protected _disableConditionFlags: boolean[] = [];
+	protected _hideConditionFlags: boolean[] = [];
 
 	constructor(
 		protected _elemRef: ElementRef,
@@ -51,9 +52,9 @@ export class FeBaseComponent
 		this._utility.renderer = this._render;
 	}
 
-	protected _beforeNgOnInit() { }
+	protected _beforeNgOnInit() {}
 
-	protected _afterNgOnInit() { }
+	protected _afterNgOnInit() {}
 
 	ngOnInit(): void {
 		this._beforeNgOnInit();
@@ -63,15 +64,17 @@ export class FeBaseComponent
 
 	_init() {
 		this._config = _.assign({}, this.config);
-		if ( !this.control ) {
+		if (!this.control) {
 			return;
 		}
+
 		this._applyValidations();
 		this._initFieldStyle();
 		this._applyObservers();
+		this._setValues();
 	}
 
-	protected _beforeNgAfterViewInit() { }
+	protected _beforeNgAfterViewInit() {}
 
 	ngAfterViewInit() {
 		this._beforeNgAfterViewInit();
@@ -83,11 +86,11 @@ export class FeBaseComponent
 		this._afterNgAfterViewInit();
 	}
 
-	protected _afterNgAfterViewInit() { }
+	protected _afterNgAfterViewInit() {}
 
-	protected _beforeNgOnDestroy() { }
+	protected _beforeNgOnDestroy() {}
 
-	protected _afterNgOnDestroy() { }
+	protected _afterNgOnDestroy() {}
 
 	ngOnDestroy() {
 		this._beforeNgOnDestroy();
@@ -119,16 +122,34 @@ export class FeBaseComponent
 		this._afterNgOnDestroy();
 	}
 
-	/* protected _beforeNgOnChanges() {}
-	protected _afterNgOnChanges() {}
+	protected _setDefaultValue() {
+		if ( this.defaultValue ) {
+			if ( this.defaultValueType == 'string' ) {
+				this.value = this.defaultValue;
+			} else if ( this.defaultValueType == 'sqlQuery' ) {
+				//fetch data from server
+			}
+		}
+	}
 
-	ngOnChanges() {
-		this._beforeNgOnChanges();
-		this._applyValidations();
-		this._initFieldStyle();
-		this._applyObservers();
-		this._afterNgOnChanges();
-	} */
+	protected _setValues() {
+		if ( _.includes( ['SEL', 'ACS', 'MSL'], this.type ) ) {
+			this._setLov();
+		} else {
+			this._setDefaultValue();
+		}
+	}
+
+	protected _setLov() {
+		if ( this.lov ) {
+			if ( this.lovType == 'json' ) {
+				this.options = this.lov;
+				this._setDefaultValue();
+			} else if ( this.defaultValueType == 'sqlQuery' ) {
+				//fetch data from server
+			}
+		}
+	}
 
 	protected _bindEvents() {
 		try {
@@ -171,7 +192,6 @@ export class FeBaseComponent
 	}
 
 	protected _applyConditionalHide() {
-
 		//this.hideField(!this.hideCondition.flag);
 		this._applyCondition(this.hideCondition, "hide");
 	}
@@ -191,10 +211,10 @@ export class FeBaseComponent
 				this[conditionHandlerName] &&
 				typeof this[conditionHandlerName] == "function"
 			) {
-				if ( !this[ `_${action}ConditionFlags` ][ i ] === undefined ) {
-					!this[ `_${action}ConditionFlags` ].push(false);
+				if (!this[`_${action}ConditionFlags`][i] === undefined) {
+					!this[`_${action}ConditionFlags`].push(false);
 				}
-				this[ `_${action}ConditionFlags` ][ i ] = false;
+				this[`_${action}ConditionFlags`][i] = false;
 				this[conditionHandlerName](condition, action, i);
 				i++;
 			}
@@ -216,36 +236,41 @@ export class FeBaseComponent
 	protected _simpleConditionHandler(condition: any, action, flagIndex) {
 		let resFlag = false;
 		const self = this;
-		let handler = (data) => {
+		let handler = data => {
 			(<any>window).leftValue = data;
 			(<any>window).rightValue = condition["value"];
 			(<any>window).operator = condition["operator"];
 			(<any>window).result = false;
 			const evalStr = `window.result = window.leftValue ${
 				(<any>window).operator
-				} window.rightValue `;
+			} window.rightValue `;
 			eval(evalStr);
-			resFlag = (<any>window).result
-			this[ `_${action}ConditionFlags` ][flagIndex] = resFlag;
-			if (action == 'disable') {
+			resFlag = (<any>window).result;
+			this[`_${action}ConditionFlags`][flagIndex] = resFlag;
+			if (action == "disable") {
 				this.disableField(resFlag && this.disableCondition.flag);
-
-			} else if(action == 'hide') {
+			} else if (action == "hide") {
 				this.hideField(resFlag && this.hideCondition.flag);
 			}
 			return resFlag;
-		}
+		};
 		if (action === "hide") {
 			this._$simpleHideConditonChange = this.group
 				.get(condition.when)
 				.valueChanges.subscribe(data => {
-					this[ `_${action}ConditionFlags` ][flagIndex] = handler.call( self, data);
+					this[`_${action}ConditionFlags`][flagIndex] = handler.call(
+						self,
+						data
+					);
 				});
 		} else if (action === "disable") {
 			this._$simpleDisableConditionChange = this.group
 				.get(condition.when)
 				.valueChanges.subscribe(data => {
-					this[ `_${action}ConditionFlags` ][flagIndex] = handler.call(self, data);
+					this[`_${action}ConditionFlags`][flagIndex] = handler.call(
+						self,
+						data
+					);
 				});
 		}
 	}
@@ -282,24 +307,32 @@ export class FeBaseComponent
 
 	protected _hideConditionHandler(conditionObj, flagIndex) {
 		const flag = this._conditionHandler(conditionObj);
-		this._hideConditionFlags[ flagIndex ] = flag;
+		this._hideConditionFlags[flagIndex] = flag;
 		this.hideField(flag && this.hideCondition.flag);
 	}
 
 	protected _disableConditionHandler(conditionObj, flagIndex) {
 		const flag = this._conditionHandler(conditionObj);
-		this._hideConditionFlags[ flagIndex ] = flag;
-		this.disableField( flag && this.disableCondition.flag);
+		this._hideConditionFlags[flagIndex] = flag;
+		this.disableField(flag && this.disableCondition.flag);
 	}
 
-	protected _advancedConditionHandler(condition: string, action: string, flagIndex) {
+	protected _advancedConditionHandler(
+		condition: string,
+		action: string,
+		flagIndex
+	) {
 		const conditionObj = {
 			condition,
 			type: "function"
 		};
 		const handlerFn = `_${action}ConditionHandler`;
 		if (this[handlerFn]) {
-			this._detectGroupValueChange(this[handlerFn], conditionObj, flagIndex);
+			this._detectGroupValueChange(
+				this[handlerFn],
+				conditionObj,
+				flagIndex
+			);
 		} else {
 			console.log(
 				`Advanced conditional handler ${handlerFn} does not exist.`
@@ -307,14 +340,22 @@ export class FeBaseComponent
 		}
 	}
 
-	protected _jsonConditionHandler(condition: object, action: string, flagIndex) {
+	protected _jsonConditionHandler(
+		condition: object,
+		action: string,
+		flagIndex
+	) {
 		const conditionObj = {
 			condition,
 			type: "jsonLogic"
 		};
 		const handlerFn = `_${action}ConditionHandler`;
 		if (this[handlerFn]) {
-			this._detectGroupValueChange(this[handlerFn], conditionObj, flagIndex);
+			this._detectGroupValueChange(
+				this[handlerFn],
+				conditionObj,
+				flagIndex
+			);
 		} else {
 			console.log(
 				`Advanced conditional handler ${handlerFn} does not exist.`
@@ -322,16 +363,16 @@ export class FeBaseComponent
 		}
 	}
 
-	disableField( flag?: boolean ) {
-		if ( flag ) {
+	disableField(flag?: boolean) {
+		if (flag) {
 			this.disable();
 		} else {
 			this.enable();
 		}
 	}
 
-	hideField( flag?: boolean ) {
-		if ( flag ) {
+	hideField(flag?: boolean) {
+		if (flag) {
 			this.hide();
 		} else {
 			this.show();
@@ -437,7 +478,7 @@ export class FeBaseComponent
 		if (this.jsonLogicVal) {
 			this._applyJsonValidations();
 		}
-		if ( this.control && this.validators.length >0 ) {
+		if (this.control && this.validators.length > 0) {
 			this.control.setValidators(this.validators);
 		}
 	}
@@ -514,7 +555,7 @@ export class FeBaseComponent
 				} else {
 					console.log(
 						`Given _validator is not a function for validation ${name} for field ${
-						this.flexiLabel
+							this.flexiLabel
 						}`
 					);
 				}
@@ -529,7 +570,7 @@ export class FeBaseComponent
 			if (!this.form) {
 				console.log(
 					`Form class instance not found in field for applying form class validations for field ${
-					this.code
+						this.code
 					}`
 				);
 				return;
@@ -554,7 +595,7 @@ export class FeBaseComponent
 				} else {
 					console.log(
 						`Form class _validator function ${validatorFunc} does not exist for ${validationName} custom validation for field ${
-						this.code
+							this.code
 						}.`
 					);
 				}
@@ -567,7 +608,8 @@ export class FeBaseComponent
 	protected _applyJsonValidations() {
 		const json = this.jsonLogicVal;
 		//const validationName:string = "json_"+(parseInt(Math.random()*10000)).toString();
-		let fn = function (formControls: any,
+		let fn = function(
+			formControls: any,
 			control: AbstractControl
 		): { [key: string]: boolean } | null {
 			if (jsonLogic.apply(json["json"], formControls) != true) {
@@ -577,7 +619,7 @@ export class FeBaseComponent
 		};
 		this.validators.push(fn.bind(this, this.group.controls));
 		const errorObj = {
-			name: 'json',
+			name: "json",
 			message: json["message"]
 		};
 		this.errors.push(errorObj);
@@ -801,6 +843,10 @@ export class FeBaseComponent
 		return this._config.defaultValue;
 	}
 
+	get defaultValueType() {
+		return this._config.defaultValueType;
+	}
+
 	get components() {
 		return this._config.components;
 	}
@@ -1015,4 +1061,33 @@ export class FeBaseComponent
 	set spellcheck(spellcheck) {
 		this._config.spellcheck = spellcheck;
 	}
+
+	set defaultValueType(defaultValueType) {
+		this._config.defaultValueType = defaultValueType;
+	}
+
+	get lovType() {
+		return this._config.lovType;
+	}
+
+	set lovType(lovType) {
+		this._config.lovType = lovType;
+	}
+
+	get labelAlignment() {
+		return this._config.labelAlignment;
+	}
+
+	set labelAlignment(labelAlignment) {
+		this._config.labelAlignment = labelAlignment;
+	}
+
+	get options() {
+		return this._options;
+	}
+
+	set options( options ) {
+		this._options = options;
+	}
+
 }

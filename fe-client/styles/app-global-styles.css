@@ -47,21 +47,10 @@
 .field-label-left .field-label-container,
 .field-label-right .field-label-container {
     display: flex;
-    justify-content: center;
     padding-top: 10px;
 }
 
-/* .field-label-left .field-label-container, .field-label-right .field-label-container {
-    padding-top: 25px;
-  }
 
-  .fieldset-container  .field-label-left .field-label-container, .fieldset-container .field-label-right .field-label-container {
-    padding-top:0px !important;
-  } */
-
-/* .left-labeled-field,.right-labeled-field {
-    padding-top: 32px !important;
-  } */
 
 .fe-field-component {
     padding-left: 10px;
@@ -349,5 +338,21 @@ a.disabled {
 
 .radio-label {
     padding-left: 5px;
+}
+
+.align-center {
+	justify-content: center !important;
+}
+
+.align-left {
+    justify-content: flex-start !important;
+}
+
+.align-right {
+	justify-content: flex-end !important;
+}
+
+.align-right .field-label-container {
+	padding-right: 10px;
 }
 /*-------------------------}          */

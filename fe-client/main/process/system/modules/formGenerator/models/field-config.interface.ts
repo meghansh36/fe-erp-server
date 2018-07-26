@@ -11,6 +11,7 @@ export interface FieldConfig {
   description?: string;
   code: string;
   flexiLabel: string;
+  lovType: string,
   lov?: any[];
   isParent?: any;
   placeholder?: string;
@@ -62,6 +63,8 @@ export interface FieldConfig {
   maximumDate?: any,
   inputPropsArray?: any,
   submit?: any,
-  spellcheck?: any
+  spellcheck?: any,
+  labelAlignment?: any,
+  defaultValueType?: any
 }
 

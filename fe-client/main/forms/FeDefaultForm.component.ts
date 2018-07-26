@@ -75,107 +75,8 @@ export class FeDefaultFormComponent implements OnInit, AfterViewInit {
     }
 
     public init() {
-        console.log("this.code", this.code);
-
-        //const formSchema = this.formSchemaService.getFormSchema(this.code);
-        //this._originalSchema = formSchema;
         this.schema = _.assign({}, this._originalSchema);
         this._hideLabel = this.schema.hideLabel;
-        this._dummyObject = {
-            name: 'Harish'
-        };
-        this._dummyField = [
-            {
-                "type": "TXT",
-                "label": "User Name",
-                "hideLabel": false,
-                "labelPosition": "top",
-                "marginTop": "",
-                description: `We'll never share your email with anyone else. We'll never share your email with anyone else. We'll never share your email with anyone else. We'll never share your email with anyone else. We'll never share your email with anyone else.`,
-                "marginRight": "",
-                "marginLeft": "",
-                "marginBottom": "",
-                "defaultValueType": "none",
-                "defaultValueSqlQuery": "",
-                "defaultValueString": "",
-                "lovType": "none",
-                "lovSqlQuery": "",
-                "lovJson": "",
-                "nonPersistent": false,
-                "hidden": false,
-                "clearWhenHidden": false,
-                "disabled": false,
-                appliedValidations: ['required'],
-                "flexiLabel": "username1",
-                "prefix": "@",
-                "suffix": "",
-                "validations": "",
-                "customFuncValidation": "",
-                "jsonLogicVal": "",
-                "formClassValidation": "",
-                "events": "",
-                "hideCondition": "",
-                "disableCondition": "",
-                "active": true,
-                "required": true,
-                "labelWidth": "",
-                "labelMargin": "",
-                "width": "50%",
-                "mask": [],
-                "icon": "",
-                "key": "_xhawl6mlx",
-                "order": 0,
-                "parent": "root_drop",
-                "componentName": "TextComponent"
-            }/* ,
-            {
-                "type": "DAT",
-                "label": "Date",
-                "hideLabel": false,
-                "labelPosition": "top",
-                "marginTop": "",
-                "marginRight": "",
-                "marginLeft": "",
-                "marginBottom": "",
-                "defaultValueType": "none",
-                "defaultValueSqlQuery": "",
-                "defaultValueString": "",
-                "lovType": "none",
-                "lovSqlQuery": "",
-                "lovJson": "",
-                "nonPersistent": false,
-                "hidden": false,
-                "clearWhenHidden": false,
-                "disabled": false,
-                appliedValidations: [],
-                "flexiLabel": "dob1",
-                "prefix": "",
-                "suffix": "$",
-                description: `We'll never share your email with anyone else. We'll never share your email with anyone else. We'll never share your email with anyone else. We'll never share your email with anyone else. We'll never share your email with anyone else.`,
-                "validations": "",
-                minimumDate: '01-Jul-2010',
-                maximumDate: '01-Jul-2011',
-                "customFuncValidation": "",
-                "jsonLogicVal": "",
-                "formClassValidation": "",
-                "events": "",
-                "hideCondition": "",
-                "disableCondition": "",
-                "active": true,
-                "required": true,
-                "labelWidth": "",
-                "labelMargin": "",
-                "width": "50%",
-                "mask": [],
-                "description": "",
-                "icon": "",
-                "key": "_xhawl6mlx",
-                "order": 0,
-                "parent": "root_drop",
-                "componentName": "TextComponent"
-            } */
-        ];
-        console.log("this.dummyField", this.dummyField);
     }
 
 
@@ -233,14 +134,6 @@ export class FeDefaultFormComponent implements OnInit, AfterViewInit {
 
     set originalSchema(originalSchema) {
         this._originalSchema = originalSchema;
-    }
-
-    get dummyField() {
-        return this._dummyField;
-    }
-
-    get dummyObject() {
-        return this._dummyObject;
     }
 
 }

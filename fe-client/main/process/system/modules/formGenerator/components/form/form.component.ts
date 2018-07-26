@@ -164,7 +164,7 @@ export class FeFormComponent
 
 	ngAfterViewInit() {
 		this._beforeNgAfterViewInit();
-		this.setDefaultValue();
+		//this.setDefaultValue();
 		const container = document.querySelector(
 			`#${this.code}_HELP_CONTAINER`
 		);
