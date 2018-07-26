@@ -9,8 +9,8 @@ import * as _ from 'lodash';
 export class FeCurrencyComponent extends TextComponent {
 
   public properties = {
-	  ...this.properties
-	  type: 'CUR',
+	  ...this.properties,
+	  type: 'CUR'
   };
 
 }

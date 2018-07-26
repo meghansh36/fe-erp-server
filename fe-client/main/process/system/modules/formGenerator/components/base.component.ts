@@ -132,7 +132,7 @@ export class FeBaseComponent
 	}
 
 	protected _setValues() {
-		if ( _.includes( ['SEL', 'ACS', 'MSL'], this.type ) ) {
+		if ( _.includes( ['SEL', 'ACS', 'MSL', 'MCH'], this.type ) ) {
 			this._setLov();
 		} else {
 			this._setDefaultValue();

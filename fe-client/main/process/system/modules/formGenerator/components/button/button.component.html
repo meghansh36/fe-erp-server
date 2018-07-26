@@ -5,6 +5,11 @@
             <i *ngIf="!!btnLeftIcon" [ngClass]="btnLeftIcon" ></i> &nbsp;&nbsp;{{ label }} &nbsp;&nbsp;<i *ngIf="!!btnRightIcon" [ngClass]="btnRightIcon" ></i>
             </button>
         </div>
-    </div>
+	</div>
+	<div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+		<small  [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+			{{ description }}
+		</small>
+	</div>
 </div>
 

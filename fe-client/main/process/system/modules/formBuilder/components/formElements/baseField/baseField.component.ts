@@ -187,12 +187,7 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
 
   protected _afterNgOnInit() {}
 
-  ngOnChanges() {
-    console.log('on changes called');
-  }
-
   ngOnInit() {
-    console.log('on init called');
     this._beforeNgOnInit();
     this._init();
     this._afterNgOnInit();
@@ -210,7 +205,11 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
 	}
 
 	if (!this.flexiLabel) {
-		this.flexiLabel = `${this._defaults.FIELD_TYPE_LABEL_MAP[ this.type ]}_${FeBaseField.fieldCount.toString()}`;
+		let flexiLabelPrefix = this._defaults.FIELD_TYPE_LABEL_MAP[ this.type ];
+		if ( flexiLabelPrefix ) {
+			flexiLabelPrefix = flexiLabelPrefix.toLowerCase().replace(' ', '_');
+		}
+		this.flexiLabel = `${flexiLabelPrefix}_${FeBaseField.fieldCount.toString()}`;
 	}
   }
 
