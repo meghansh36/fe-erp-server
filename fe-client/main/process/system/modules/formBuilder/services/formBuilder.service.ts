@@ -26,7 +26,7 @@ import { IconicButtonComponent } from '@L3Process/system/modules/formBuilder/com
 import { AutoCompleteComponent } from '@L3Process/system/modules/formBuilder/components/formElements/autoComplete/autoComplete.component';
 import { HTMLComponent } from "@L3Process/system/modules/formBuilder/components/formElements/html/html.component";
 import { FileComponent } from "@L3Process/system/modules/formBuilder/components/formElements/file/file.component";
-import { SelectBoxesComponent } from '@L3Process/system/modules/formBuilder/components/formElements/selectBox/selectBox.component';
+import { SelectBoxComponent } from '@L3Process/system/modules/formBuilder/components/formElements/selectBox/selectBox.component';
 
 @Injectable()
 export class FeFormBuilderService {
@@ -76,10 +76,10 @@ export class FeFormBuilderService {
     },
     {
       name: 'input',
-     component: SelectBoxesComponent,
+     component: SelectBoxComponent,
       label: 'Select Boxes',
       icon: 'done',
-      componentName: 'SelectBoxesComponent'
+      componentName: 'SelectBoxComponent'
     },
     {
       name: 'input',
@@ -227,7 +227,7 @@ export class FeFormBuilderService {
   ];
 
   layoutElements = [
-    
+
   ];
 
   component = {
@@ -236,8 +236,8 @@ export class FeFormBuilderService {
       name: 'input',
       type:'text'
     },
-    'SelectBoxesComponent': {
-      component: SelectBoxesComponent,
+    'SelectBoxComponent': {
+      component: SelectBoxComponent,
        name: 'input',
        type:'checkbox'
      },
@@ -397,7 +397,7 @@ export class FeFormBuilderService {
         "formLabel": data.formLabel
       })
     }
-    
+
   }
 
 }

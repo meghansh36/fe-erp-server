@@ -1,0 +1,48 @@
+
+<div [ngClass]="defaultClasses.fieldMainWrapperClasses"  [ngStyle]="style.fieldMainWrapperStyle">
+    <div class="field-tool-wrapper">
+        <span *ngIf='showEdit' class=" field-tool-container">
+            <ul class=" field-tool">
+              <li (click)='openModal()'>
+                <i class="material-icons icon-size">settings</i>
+              </li>
+              <li>
+                <i class="material-icons icon-size">open_with</i>
+              </li>
+              <li (click)="close($event)">
+                <i class="material-icons icon-size">clear</i>
+              </li>
+            </ul>
+          </span>
+    </div>
+    <div [ngClass]="defaultClasses.fieldWrapperClasses">
+
+        <div [ngClass]="defaultClasses.fieldLabelContainerClasses" [ngStyle]="style.fieldLabelContainerStyle">
+            <div class="label">
+                <label   for="{{ id }}" class="form-check-label" [ngClass]="defaultClasses.labelClasses"  >{{ label }}</label>
+            </div>
+            <div [ngClass]="defaultClasses.fieldTooltipWrapperClasses" [ngStyle]="style.fieldTooltipWrapperStyle" *ngIf="tooltip">
+                <span [ngClass]="defaultClasses.fieldTooltipContainerClasses">
+                    <i class="material-icons " placement="right" [ngbTooltip]="tooltip"> help</i>
+                </span>
+            </div>
+        </div>
+        <!-- <div class="form-check" [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
+            <div class ="checkbox-fields-container display-flex"  *ngFor="let field of properties.inputPropsArray; let i = index;">
+                <input type="checkbox" class="form-check-input checkbox" [ngClass]="defaultClasses.fieldClasses" [attr.flexilabel]="flexiLabel" 
+                [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" [disabled]="disabled"
+                [attr.id]="id+'_'+i" value={{field.code}}>
+                <label class="form-check-label" for="{{id}}'_'{{i}}">
+                  {{field.meaning}}
+                </label>
+            </div>
+        </div> -->
+        <div class="form-check" [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
+            <div class ="checkbox-fields-container display-flex"  >
+                <input type="checkbox" class="form-check-input checkbox" [ngClass]="defaultClasses.fieldClasses" [attr.flexilabel]="flexiLabel" 
+                [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" [disabled]="disabled"
+                [attr.id]="id+'_'+i" value={{value}}>
+            </div>
+        </div>
+    </div>
+</div>

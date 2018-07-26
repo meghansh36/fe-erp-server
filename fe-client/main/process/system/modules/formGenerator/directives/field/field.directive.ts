@@ -29,6 +29,7 @@ import { CurrencyComponent } from '@L3Process/system/modules/formGenerator/compo
 import { PhoneComponent } from '@L3Process/system/modules/formGenerator/components/phone/phone.component';
 import { AddressComponent } from '@L3Process/system/modules/formGenerator/components/address/address.component';
 import { DateTimeComponent } from '@L3Process/system/modules/formGenerator/components/dateTime/dateTime.component';
+import { SelectBoxComponent } from "@L3Process/system/modules/formGenerator/components/selectBox/selectBox.component";
 
 
 const components: { [type: string]: Type<Field> } = {
@@ -55,7 +56,8 @@ const components: { [type: string]: Type<Field> } = {
   PHN: PhoneComponent,
   CUR: CurrencyComponent,
   ADR: AddressComponent,
-  DTI: DateTimeComponent
+  DTI: DateTimeComponent,
+  MCH: SelectBoxComponent
 };
 
 @Directive({
