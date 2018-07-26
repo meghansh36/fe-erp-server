@@ -96,4 +96,18 @@
     cursor: pointer;
 }
 
+.pl-11 {
+    padding-left: 15px;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.progress-linear {
+    position: relative !important;
+    z-index: 1000;
+  
+}
+
 

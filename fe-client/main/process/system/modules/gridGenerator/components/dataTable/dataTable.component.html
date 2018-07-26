@@ -4,7 +4,7 @@
 			<div class="card-header">
 				<span *ngIf="!selected?.length;else alternate">
 					<b>{{title}}</b>
-					<small> | {{subTitle}}</small>
+					<small> {{subTitle}}</small>
 				</span>
 				<ng-template #alternate>
 					<b>{{selected?.length}}</b>
@@ -56,48 +56,56 @@
 				</div>
 			</div>
 		</div>
-		<ngx-datatable #table [id]="formCode" class='material' [rows]='rows' [limit]="limit" [rowHeight]="rowHeight" [scrollbarH]="scrollbarH"
-		 [headerHeight]="headerHeight" [offset]="offset" [footerHeight]="footerHeight" [emptyMessage]="emptyMessage" [selected]="selected"
-		 [selectionType]="selectionType" [selectAllRowsOnPage]="selectAllRowsOnPage" (select)='onSelect($event)' (reorder)="reorderColumn($event)"
-		 (sort)="filterOnSorting($event)">
+		<ngx-datatable #table [id]="formCode" class='material' [rows]='rows' [limit]="limit" [count]="count" [rowHeight]="rowHeight"
+		 [scrollbarH]="scrollbarH" [headerHeight]="headerHeight" [columnMode]="columnMode" [offset]="offset" [footerHeight]="footerHeight"
+		 [emptyMessage]="emptyMessage" [selected]="selected" [selectionType]="selectionType" [loadingIndicator]="loadingIndicator"
+		 [selectAllRowsOnPage]="selectAllRowsOnPage" (select)='onSelect($event)' (reorder)="reorderColumn($event)" (sort)="filterOnSorting($event)">
+
+			<!-- <ngx-datatable-progress *ngIf="loadingIndicator == 'true'">
+			</ngx-datatable-progress> -->
 
 			<ngx-datatable-column [width]="50" *ngIf="checkboxable" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false"
 			 [headerCheckboxable]="headerCheckboxable" [checkboxable]="checkboxable" [frozenLeft]="true">
 			</ngx-datatable-column>
 
-			<ngx-datatable-column *ngFor="let col of columns" [columnMode]="'force'" [prop]="col.prop" [name]="col.name" [cellClass]="col.align"
-			 [width]="col.width" [sortable]="col.sortable" [frozenLeft]="col.frozenLeft" [resizeable]="col.resizeable"></ngx-datatable-column>
+			<ngx-datatable-column *ngFor="let col of columns" [prop]="col.prop" [name]="col.name" [cellClass]="col.align" [width]="col.width"
+			 [sortable]="col.sortable" [frozenLeft]="col.frozenLeft" [resizeable]="col.resizeable"></ngx-datatable-column>
 
-			<ngx-datatable-column *ngFor="let action of rowActions" [width]="action.width" [name]="action.name" [prop]="action.prop">
+			<ngx-datatable-column *ngFor="let action of rowActions" [width]="auto" [name]="action.name" [prop]="action.prop">
 				<ng-template let-column="column" ngx-datatable-header-template>
+					{{action.name}}
 				</ng-template>
 				<ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-					<div class="float-right">
-						<i [ngClass]="[action.icon , action.customCssClass]" (click)="onAction(action,row)"></i>
-					</div>
+					<i [ngClass]="[action.icon , action.customCssClass]" (click)="onAction(action,row)"></i>
 				</ng-template>
 			</ngx-datatable-column>
+
+			<ngx-datatable-row-detail [rowHeight]="getHeight" #myDetailRow (toggle)="onDetailToggle($event)">
+				<ng-template let-row="row" ngx-datatable-row-detail-template>
+					{{row}}
+				</ng-template>
+			</ngx-datatable-row-detail>
 
 			<ngx-datatable-footer>
 				<ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize" let-selectedCount="selectedCount"
 				 let-curPage="curPage" let-offset="offset" let-isVisible="isVisible">
-					<div class="page-limit" [hidden]="!limitShow">
-						<div class="input-group mb-3">
+					<div class="page-limit pl-10" [hidden]="!limitShow">
+						<div class="input-group mb-3 pl-11 mt-15">
 							<div class="input-group-prepend">
 								<label class="input-group-text" for="inputGroupSelect01">limit</label>
 							</div>
 							<select class="custom-select" (change)="getLimitedData($event)">
-								<option value="{{limit}}" selected>{{limit}}</option>
+								<option value="{{initialLimit}}" selected>{{initialLimit}}</option>
 								<option value="10">10</option>
-								<option value="10">15</option>
-								<option value="10">20</option>
-								<option value="10">30</option>
+								<option value="15">15</option>
+								<option value="20">20</option>
+								<option value="30">30</option>
 							</select>
 						</div>
 					</div>
 					<datatable-pager [pagerLeftArrowIcon]="'datatable-icon-left'" [pagerRightArrowIcon]="'datatable-icon-right'" [pagerPreviousIcon]="'datatable-icon-prev'"
-					 [pagerNextIcon]="'datatable-icon-skip'" [page]="curPage" [size]="pageSize" [count]="rowCount" [hidden]="pagerShowHideCondition"
-					 (change)="table.onFooterPage($event)">
+					 [pagerNextIcon]="'datatable-icon-skip'" [page]="curPage" [size]="pageSize" [count]="count" [hidden]="pagerShowHideCondition"
+					 (change)="table.onFooterPage($event);onPageChange($event)">
 					</datatable-pager>
 				</ng-template>
 			</ngx-datatable-footer>

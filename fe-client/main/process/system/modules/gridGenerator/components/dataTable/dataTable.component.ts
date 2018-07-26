@@ -26,10 +26,13 @@ export class FeDataTableComponent implements OnInit {
 
 	protected _gridDef = {};
 	protected temp = [];
+	protected _loadingIndicator: boolean;
 	protected _allColumns = [];
 	protected selected = [];
 	public filterableCol = [];
 	public filterJsonData = [];
+	public count: any;
+	public initialLimit: any;
 	public sortedData = [];
 	protected openOrClose: boolean = true;
 	protected checked: boolean = false;
@@ -41,6 +44,16 @@ export class FeDataTableComponent implements OnInit {
 		protected filterService: FilteredDataService,
 		protected dependent: DependentFieldService) {
 		config.autoClose = false;
+	}
+
+	protected newData_for_filter_forting_paging = {
+		filter: undefined,
+		sorting: undefined,
+		limit: undefined,
+		offset: undefined,
+		formCode: undefined,
+		prevLimit: undefined,
+		newLimit: undefined
 	}
 
 	protected _beforeNgOnInit() { }
@@ -72,20 +85,24 @@ export class FeDataTableComponent implements OnInit {
 
 	protected _initializeGrid(gridDefination) {
 		this._setGrid(gridDefination);
-		this.dataTableService.fetchRowData().subscribe((data) => {
+		this.loadingIndicator = true;
+		this.dataTableService.fetchRowData(this.formCode,this.limit,this.offset).subscribe((data) => {
 			this._setRowData(data);
 		})
 	}
 
 	protected _setGrid(gridDefination) {
 		this._gridDef = _.assign({}, gridDefination);
+		this.initialLimit = this._gridDef['limit'];
 		this.allColumns = this._gridDef['columns'];
 	}
 
 	protected _setRowData(data) {
 		console.log(data);
-		this.rows = [...data.body.data];
-		this.temp = [...data.body.data];
+		this.rows = [...data.body.row];
+		this.temp = [...data.body.row];
+		this.count = data.body.count;
+		this.loadingIndicator = false;
 	}
 
 	public toggle(col) {
@@ -110,11 +127,28 @@ export class FeDataTableComponent implements OnInit {
 		this.modalService.open(content, { centered: true });
 	}
 
-	protected _getLimitedData(event) {
-		let limit = event.target.value;
-		let pageNumber = this.table.offset;
-		let prevLimit = this.limit;
-		this.dataTableService.fetchLimitData(limit, pageNumber, prevLimit);
+	public getLimitedData(event) {
+		this.newData_for_filter_forting_paging.limit = Number(event.target.value);
+		this.newData_for_filter_forting_paging.offset = Number(this.table.offset);
+		this.newData_for_filter_forting_paging.prevLimit = this.limit;
+		this.newData_for_filter_forting_paging.sorting = this.sortedData;
+		this.newData_for_filter_forting_paging.filter = this.filterJsonData;
+		this.newData_for_filter_forting_paging.formCode = this.formCode;
+
+		let row = this.dataTableService.fetchLimitData(this.newData_for_filter_forting_paging).subscribe((data) => {
+			this._setNewDataAfterLimit(data, event);
+		});
+	}
+
+	protected _setNewDataAfterLimit(data, event) {
+		if (data) {
+			console.log(data);
+			this.rows = [...data.body.row];
+			this.temp = [...data.body.row];
+			this.count = data.body.count;
+			this.limit = Number(event.target.value);
+			//this.offset = this.table.offset;
+		}
 	}
 
 	public onSelect({ selected }) {
@@ -133,6 +167,24 @@ export class FeDataTableComponent implements OnInit {
 	public remove() {
 		this.selected = [];
 	}
+
+	onPageChange(event: any) {
+		this.table.limit = this.limit;
+		this.offset = event.page;
+		console.log("offset is",this.offset);
+		this.newData_for_filter_forting_paging.offset = Number(this.offset) -1 ;
+		this.newData_for_filter_forting_paging.sorting = this.sortedData;
+		this.newData_for_filter_forting_paging.filter = this.filterJsonData;
+		this.newData_for_filter_forting_paging.formCode = this.formCode;
+		this.newData_for_filter_forting_paging.limit = Number(this.limit);
+		this.dataTableService.fetchNewDataAfterPaging(this.newData_for_filter_forting_paging).subscribe((data) => {
+			console.log("data is",data);
+			this.rows = [...data.body.row];
+			this.temp = [...data.body.row];
+			this.count = data.body.count;
+		});
+	}
+
 	//----------------------buttons actions ----------------------------
 	public dropDownOpenClose() {
 		if (this.openOrClose) {
@@ -317,14 +369,13 @@ export class FeDataTableComponent implements OnInit {
 	//-------------------------- *********** ---------------------------------
 
 	protected _applyFilter() {
-		let obj = {
-			page: this.table.offset,
-			recordsPerPage: this.limit,
-			filters: this.filterJsonData,
-			formCode: this.formCode,
-			sorting: this.sortedData
-		}
-		this.filterService.sendFilterOption(obj);
+		this.newData_for_filter_forting_paging.limit = this.limit;
+		this.newData_for_filter_forting_paging.filter = this.filterJsonData;
+		this.newData_for_filter_forting_paging.sorting = this.sortedData;
+		this.newData_for_filter_forting_paging.formCode = this.formCode;
+		this.newData_for_filter_forting_paging.offset = this.table.offset;
+
+		this.filterService.sendFilterOption(this.newData_for_filter_forting_paging);
 	}
 
 
@@ -340,6 +391,14 @@ export class FeDataTableComponent implements OnInit {
 
 	set rows(rows) {
 		this._gridDef['rows'] = rows;
+	}
+
+	get loadingIndicator() {
+		return this._loadingIndicator;
+	}
+
+	set loadingIndicator(loadingIndicator) {
+		this._loadingIndicator = loadingIndicator;
 	}
 
 	get formCode() {
@@ -423,7 +482,7 @@ export class FeDataTableComponent implements OnInit {
 	}
 
 	get pagerShowHideCondition() {
-		if (((this.table.rowCount / this.table.pageSize) > 1) && this.pager) {
+		if ((Math.ceil(this.count / this.table.pageSize) > 1) && this.pager) {
 			return false;
 		}
 		else return true;
@@ -531,6 +590,10 @@ export class FeDataTableComponent implements OnInit {
 
 	set filteredCol(filteredCol) {
 		this._gridDef['filteredCol'] = filteredCol;
+	}
+
+	get columnMode() {
+		return this._gridDef['columnMode'];
 	}
 
 	/* get filterableCol() {

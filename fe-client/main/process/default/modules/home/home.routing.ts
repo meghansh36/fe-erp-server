@@ -32,6 +32,6 @@ export const routesL1: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'login'
+    redirectTo: 'forms'
   }
 ];

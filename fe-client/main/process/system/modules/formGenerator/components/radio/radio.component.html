@@ -17,9 +17,10 @@
                     </div>
                 </div> -->
                 <div class ="checkbox-fields-container display-flex"  *ngFor="let field of inputPropsArray; let i = index;">
-                    <div class="radio-field">
+                    <div class="radio-field radio">
                         <input type="radio" [attr.flexilabel]="flexiLabel" [attr.option-index]="i" [formControlName]="flexiLabel" class="form-check-input"
                         [attr.id]="id+'_'+i" value={{field.value}}>
+                        <span class="checkmark"></span>
                     </div>
                     <div class="radio-label">
                         <label class="form-check-label" for="{{id}}'_'{{i}}">
