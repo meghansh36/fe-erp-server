@@ -262,7 +262,6 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     this.properties = _.assignIn({}, propsFromMasterForm);
   }
 
-  //Properties getters
   get label() {
     return this.properties.label;
   }
