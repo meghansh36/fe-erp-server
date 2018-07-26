@@ -295,6 +295,17 @@ export class FeUtilityService {
 				buttonSizeClasses[this._defaults.BUTTON_SIZE]
 			] = true;
 		}
+		classesObj["btnDefaultClasses"] = {};
+		classesObj["btnDefaultClasses"]["display-flex"] = true;
+		let btnAlignment = fieldComponent.labelAlignment;
+		if (fieldComponent.labelAlignment) {
+			btnAlignment = fieldComponent.labelAlignment;
+		}
+
+		if(btnAlignment) {
+			classesObj["btnDefaultClasses"][`align-${btnAlignment}`] = true;
+		}
+
 		return classesObj;
 	}
 
