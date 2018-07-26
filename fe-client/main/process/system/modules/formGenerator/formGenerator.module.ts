@@ -40,7 +40,7 @@ import { PhoneComponent } from '@L3Process/system/modules/formGenerator/componen
 import { AddressComponent } from '@L3Process/system/modules/formGenerator/components/address/address.component';
 import { DateTimeComponent } from '@L3Process/system/modules/formGenerator/components/dateTime/dateTime.component';
 import { SelectBoxComponent } from "@L3Process/system/modules/formGenerator/components/selectBox/selectBox.component";
-
+import {DpDatePickerModule} from 'ng2-date-picker';
 import { routes } from '@L3Process/system/modules/formGenerator/formGenerator.routing';
 
 const routing: ModuleWithProviders = RouterModule.forChild(routes);
@@ -61,6 +61,7 @@ const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more
     EditorModule,
     CKEditorModule,
     NgxSelectModule.forRoot(CustomSelectOptions),
+    DpDatePickerModule
   ],
   declarations: [
     FormGeneratorComponent,

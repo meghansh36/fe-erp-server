@@ -8,5 +8,8 @@ import { DateComponent } from '@L3Process/system/modules/formGenerator/component
   templateUrl: 'dateTime.component.html',
 })
 export class FeDateTimeComponent extends DateComponent {
-
+  selectedDate;
+  configPicker = {
+    disableKeyPress: true
+  };
 }

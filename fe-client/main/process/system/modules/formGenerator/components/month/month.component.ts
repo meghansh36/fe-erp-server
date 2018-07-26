@@ -7,5 +7,8 @@ import { BaseComponent } from '@L3Process/system/modules/formGenerator/component
   templateUrl: './month.component.html'
 })
 export class FeMonthComponent extends BaseComponent {
-
+  selectedDate;
+  config = {
+    disableKeyPress: true
+  };
 }
