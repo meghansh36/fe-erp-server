@@ -355,4 +355,20 @@ a.disabled {
 .align-right .field-label-container {
 	padding-right: 10px;
 }
+
+.field-label-right .fe-ANC-wrapper, .field-label-left .fe-ANC-wrapper {
+    padding-top: 10px
+}
+
+.BTN-container {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.dp-picker-input {
+    border: none;
+}
 /*-------------------------}          */

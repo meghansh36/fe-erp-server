@@ -80,8 +80,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 				const fieldClassesArr = el.className.trim().split(" ");
 				if (
 					_.includes(targetClassesArr, "buttonDropZone") &&
-					(_.includes(fieldClassesArr, "button") ||
-						_.includes(fieldClassesArr, "button-input"))
+				    _.includes(fieldClassesArr, "button-input")
 				) {
 					return true;
 				} else if (

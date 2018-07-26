@@ -46,6 +46,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { FormGeneratorModule } from '@L3Process/system/modules/formGenerator/formGenerator.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectBoxesComponent } from '@L3Process/system/modules/formBuilder/components/formElements/selectBox/selectBox.component';
+import {DpDatePickerModule} from 'ng2-date-picker';
 
 const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more options
   optionValueField: 'code',
@@ -97,7 +98,8 @@ const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more
     JSONEditorModule,
     TextMaskModule,
     CKEditorModule,
-    FormGeneratorModule
+    FormGeneratorModule,
+    DpDatePickerModule
   ],
   entryComponents: [TextComponent, TextAreaComponent, TimeComponent, PasswordComponent, PhoneComponent,
                     NumberComponent, MonthComponent, HiddenComponent, EmailComponent, DateTimeComponent,

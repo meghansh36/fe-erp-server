@@ -6,6 +6,9 @@ import { FeBaseField } from '../baseField/baseField.component';
   styleUrls: ['./month.component.css', '../baseField/baseField.component.css']
 })
 export class FeMonthComponent extends FeBaseField {
+  selectedDate;
+  config = {
+  };
   public properties = {
     type: 'MON',
     ...this.properties

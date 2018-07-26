@@ -1,6 +1,10 @@
 <div class="feField feButton" [ngClass]="defaultClasses.fieldMainWrapperClasses"  [ngStyle]="style.fieldMainWrapperStyle">
-    <button [disabled]="disabled" [attr.placement]="tooltipPlacement" [ngbTooltip]="tooltip" [ngClass]="defaultClasses.fieldClasses" [attr.id]="id" [ngStyle]="defaultClasses.fieldStyle" [attr.flexilabel]="flexiLabel">
-        <i *ngIf="!!icon" [ngClass]="icon" ></i> {{ label }}
-    </button>
+    <div [ngClass]="defaultClasses.btnDefaultClasses">
+        <div [ngClass]="defaultClasses.btnDefaultContainerClasses">
+            <button [disabled]="disabled" [attr.flexilabel]="flexiLabel" [attr.placement]="tooltipPlacement" [ngbTooltip]="tooltip" [ngClass]="defaultClasses.fieldClasses" [attr.id]="id" [ngStyle]="style.fieldStyle" >
+            <i *ngIf="!!btnLeftIcon" [ngClass]="btnLeftIcon" ></i> &nbsp;&nbsp;{{ label }} &nbsp;&nbsp;<i *ngIf="!!btnRightIcon" [ngClass]="btnRightIcon" ></i>
+            </button>
+        </div>
+    </div>
 </div>
 

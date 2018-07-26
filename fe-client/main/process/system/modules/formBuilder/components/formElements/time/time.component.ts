@@ -6,7 +6,8 @@ import { FeBaseField } from '../baseField/baseField.component';
   styleUrls: ['./time.component.css', '../baseField/baseField.component.css']
 })
 export class FeTimeComponent extends FeBaseField {
-  
+
+  time = {hour: 0, minute: 0};
   public properties = {
     type: 'TIM',
     ...this.properties
