@@ -171,34 +171,6 @@
                           ngModel [(ngModel)]="componentData.btnRightIcon" />
                       </div>
 
-                <!-- input fields for checkboxes  -->
-                <div class="mt-2" *ngIf='instance.applicableProperties.multipleInputs'>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Label</th>
-                        <th scope="col">Value</th>
-                      </tr>
-                    </thead>
-                    <tbody *ngFor="let field of componentData.inputPropsArray; let i = index">
-                      <tr>
-                        <td>
-                          <input ngModel [(ngModel)]="field.label" class="form-control" type="text" placeholder="Add Label" name="field.label{{i}}" />
-                        </td>
-                        <td>
-                          <input ngModel [(ngModel)]="field.value" class="form-control" type="text" placeholder="Add Value" name="field.value{{i}}" />
-                        </td>
-                        <td>
-                          <i class="material-icons" (click)="deleteInput(i)">close</i>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <button class="btn btn-primary" (click)="addInput($event)">Add Field</button>
-                </div>
-
-
-
                       <!-- input field for date time format       -->
 
                       <div class='mt-2' *ngIf='instance.applicableProperties.dateTimeFormat'>

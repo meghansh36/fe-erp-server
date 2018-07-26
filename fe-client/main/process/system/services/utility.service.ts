@@ -72,8 +72,10 @@ export class FeUtilityService {
 		let labelPosition = this.defaults.LABEL_POSITION;
 		const customCssClass = fieldComponent.customCssClass || "";
 
-		if (!fieldComponent.hideLabel && fieldComponent.labelPosition) {
+		if (fieldComponent.labelPosition) {
 			labelPosition = fieldComponent.labelPosition;
+		} else {
+			fieldComponent.labelPosition = labelPosition;	
 		}
 
 		if (fieldComponent.type === "HID" && !editMode) {
@@ -284,6 +286,17 @@ export class FeUtilityService {
 				buttonSizeClasses[this.defaults.BUTTON_SIZE]
 			] = true;
 		}
+		classesObj["btnDefaultClasses"] = {};
+		classesObj["btnDefaultClasses"]["display-flex"] = true;
+		let btnAlignment = fieldComponent.labelAlignment;
+		if (fieldComponent.labelAlignment) {
+			btnAlignment = fieldComponent.labelAlignment;
+		}
+
+		if(btnAlignment) {
+			classesObj["btnDefaultClasses"][`align-${btnAlignment}`] = true;
+		}
+
 		return classesObj;
 	}
 

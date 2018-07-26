@@ -3,20 +3,14 @@ import { FeBaseField } from '../baseField/baseField.component';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
-  selector: 'chk-input',
-  templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.css', '../baseField/baseField.component.css']
+  selector: 'selectbox-input',
+  templateUrl: './selectBox.component.html',
+  styleUrls: ['./selectBox.component.css', '../baseField/baseField.component.css']
 })
-export class FeCheckboxComponent extends FeBaseField  {
+export class FeSelectBoxesComponent extends FeBaseField  {
 
   public properties = {
-    type: 'CHK',
-    /* inputPropsArray: [
-      {
-        label: 'checkbox',
-        value: ''
-      }
-    ], */
+    type: 'MCH',
     ...this.properties
   };
 
@@ -25,3 +19,4 @@ export class FeCheckboxComponent extends FeBaseField  {
   }
 
 }
+

@@ -126,16 +126,6 @@ export class FeMasterFormComponent implements OnInit {
     this.componentData = this.instance.properties;
   }
 
-  deleteInput(index) {
-    this.instance.deleteInput(index);
-  }
-
-  addInput(event) {
-    event.preventDefault();
-    this.instance.addInput();
-    console.log(this.componentData);
-  }
-
   update(event) {
     console.log(this.componentData);
   }

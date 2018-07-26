@@ -43,9 +43,9 @@ import { JSONEditorModule } from 'ngx-jsoneditor';
 import { HTMLComponent } from "@L3Process/system/modules/formBuilder/components/formElements/html/html.component";
 import { FileComponent } from "@L3Process/system/modules/formBuilder/components/formElements/file/file.component";
 import { CKEditorModule } from 'ng2-ckeditor';
-import { FormGeneratorModule } from '../../../../../legislations/fe/clients/fe/main/process/system/modules/formGenerator/formGenerator.module';
+import { FormGeneratorModule } from '@L3Process/system/modules/formGenerator/formGenerator.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { SelectBoxesComponent } from '@L3Process/system/modules/formBuilder/components/formElements/selectBox/selectBox.component';
 
 const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more options
   optionValueField: 'code',
@@ -80,7 +80,8 @@ const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more
     IconicButtonComponent,
     AutoCompleteComponent,
     HTMLComponent,
-    FileComponent
+    FileComponent,
+    SelectBoxesComponent
   ],
   imports: [
     CommonModule,
@@ -103,7 +104,7 @@ const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more
                     DateComponent, CurrencyComponent, AddressComponent, CheckboxComponent,
                     AnchorComponent, BlankComponent, ButtonComponent, RadioComponent,
                     AutoCompleteComponent, FieldSetComponent, IconicButtonComponent, SelectComponent,
-                    MultiSelectComponent, HTMLComponent, FileComponent],
+                    MultiSelectComponent, HTMLComponent, FileComponent, SelectBoxesComponent],
   providers: [FormBuilderService, FormMasterService, FieldControlService, FormJsonService, DefaultsService],
   bootstrap: [FormBuilderComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
