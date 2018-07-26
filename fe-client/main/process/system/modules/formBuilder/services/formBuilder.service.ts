@@ -380,8 +380,8 @@ export class FeFormBuilderService {
     })
     } else {
       return this.httpClient.post('http://fe.localhost:3000/api/fe/fe/default/forms_data/save_form_data', {
-        "json_data": data,
-       // "formLabel": data.formLabel
+        "form_json": data,
+        "formLabel": data.formLabel
       })
     }
     

@@ -29,14 +29,13 @@ module.exports = class FeFormsData {
     }
 
     save_form_data(req, res, done) {
-        var json_data = req.body.json;
+        var json_data = req.body.form_json;
         console.log(json_data);
         //json_data = JSON.parse(json_data);
         var form_label = req.body.formLabel;
         var clientName = req.params.client;
         FE.clients[clientName].models.FormsData.create({
-            FORM_CODE: 'FRM' + (Math.random() * 10),
-            FORM_JSON: JSON.stringify(req.body.json_data),
+            FORM_JSON: JSON.stringify(json_data),
             LABEL: form_label
         }).then(form => {
             res.send(form);

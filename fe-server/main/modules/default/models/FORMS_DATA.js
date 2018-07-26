@@ -10,7 +10,7 @@ module.exports =  class FeFormsData extends Sequelize.Model {
 			primaryKey: true
 		},
 		FORM_CODE: {  //formCode
-            type: Sequelize.INTEGER(7),
+            type: Sequelize.STRING(10),
 			allowNull: true
 		},
 		LABEL: { //label
