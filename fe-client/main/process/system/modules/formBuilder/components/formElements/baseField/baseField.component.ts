@@ -197,9 +197,12 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     this._masterFormService.setProperties(this.properties, this.uniqueKey);
     this._initFieldStyle();
 	this.systemValidations = this._defaults.VALIDATIONS;
-	console.log("Field No", FeBaseField.fieldCount);
 	if (!this.label) {
 		this.label = `${this._defaults.FIELD_TYPE_LABEL_MAP[ this.type ]} ${FeBaseField.fieldCount.toString()}`;
+	}
+
+	if (!this.flexiLabel) {
+		this.flexiLabel = `${this._defaults.FIELD_TYPE_LABEL_MAP[ this.type ]}_${FeBaseField.fieldCount.toString()}`;
 	}
   }
 
