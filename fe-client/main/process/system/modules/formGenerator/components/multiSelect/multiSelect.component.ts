@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { BaseComponent } from '@L3Process/system/modules/formGenerator/components/base.component';
+import { SelectComponent } from '@L3Process/system/modules/formGenerator/components/select/select.component';
 
 @Component({
   selector: 'feMultiSelect',
-  styleUrls: ['./multiSelect.component.css'],
+  styleUrls: ['./multiSelect.component.css', '../select/select.component.css'],
   templateUrl: './multiSelect.component.html'
 })
-export class FeMultiSelectComponent extends BaseComponent {
+export class FeMultiSelectComponent extends SelectComponent {
 }

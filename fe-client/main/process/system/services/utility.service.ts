@@ -3,12 +3,13 @@ import { DefaultsService } from "@L3Process/system/services/defaults.service";
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { FieldConfig } from "@L1Process/system/modules/formGenerator/models/field-config.interface";
 
+
 @Injectable({
 	providedIn: "root"
 })
 export class FeUtilityService {
 	public renderer: Renderer2; //initialized from field components
-	constructor(public defaults: DefaultsService) {}
+	constructor(protected _defaults: DefaultsService) {}
 
 	evalFnArgs(argsStr) {
 		try {
@@ -69,12 +70,7 @@ export class FeUtilityService {
 
 	getFieldClasses(fieldComponent, editMode?: boolean) {
 		const type = fieldComponent.type;
-		let labelPosition = this.defaults.LABEL_POSITION;
 		const customCssClass = fieldComponent.customCssClass || "";
-
-		if (!fieldComponent.hideLabel && fieldComponent.labelPosition) {
-			labelPosition = fieldComponent.labelPosition;
-		}
 
 		if (fieldComponent.type === "HID" && !editMode) {
 			this.renderer.addClass(
@@ -90,15 +86,28 @@ export class FeUtilityService {
 		}
 		fieldContainerClasses = this.makeCssClassesObj(classesStr);
 
+		let labelPosition = this._defaults.LABEL_POSITION;
+		if (fieldComponent.labelPosition) {
+			labelPosition = fieldComponent.labelPosition;
+		}
+
+		let labelAlignment = this._defaults.LABEL_ALIGNMENT[ labelPosition ];
+		if (fieldComponent.labelAlignment) {
+			labelAlignment = fieldComponent.labelAlignment;
+		} else {
+			fieldComponent.labelAlignment = labelAlignment;
+		}
+
 		let fieldMainWrapperClasses = {};
-		classesStr = `fe-field ${type}-container form-group ${labelPosition}-labeled-field`;
+		classesStr = `fe-field ${type}-container form-group  ${labelPosition}-labeled-field`;
 		if (fieldComponent.hidden && !editMode) {
 			classesStr += " hidden";
 		}
+
 		fieldMainWrapperClasses = this.makeCssClassesObj(classesStr);
 
 		let fieldLabelContainerClasses = {};
-		classesStr = `fe-field-container field-label-container ${type}-label-container`;
+		classesStr = `fe-field-container field-label-container align-${labelAlignment} ${type}-label-container`;
 		if (fieldComponent.hideLabel) {
 			classesStr += " hidden";
 		}
@@ -180,9 +189,11 @@ export class FeUtilityService {
 			fieldLabelContainerStyle.width = `${labelWidth}`;
 		}
 
-		let fieldWidth = this.defaults.FIELD_WIDTH;
+		let fieldWidth = this._defaults.FIELD_WIDTH;
 		if (fieldComponent.width) {
 			fieldWidth = fieldComponent.width;
+		} else {
+			fieldComponent.width  = fieldWidth;
 		}
 		if (fieldWidth) {
 			this.renderer.setStyle(
@@ -267,13 +278,13 @@ export class FeUtilityService {
 	}
 
 	addButtonProps(fieldComponent, classesObj) {
-		const buttonThemeClasses = this.defaults.BUTTON_THEMES;
+		const buttonThemeClasses = this._defaults.BUTTON_THEMES;
 		let themeClass = buttonThemeClasses[fieldComponent.theme];
 		if (!themeClass) {
-			themeClass = buttonThemeClasses[this.defaults.BUTTON_THEME];
+			themeClass = buttonThemeClasses[this._defaults.BUTTON_THEME];
 		}
 		classesObj["fieldClasses"][themeClass] = true;
-		const buttonSizeClasses = this.defaults.BUTTON_SIZES;
+		const buttonSizeClasses = this._defaults.BUTTON_SIZES;
 
 		if (fieldComponent.size) {
 			classesObj["fieldClasses"][
@@ -281,7 +292,7 @@ export class FeUtilityService {
 			] = true;
 		} else {
 			classesObj["fieldClasses"][
-				buttonSizeClasses[this.defaults.BUTTON_SIZE]
+				buttonSizeClasses[this._defaults.BUTTON_SIZE]
 			] = true;
 		}
 		return classesObj;

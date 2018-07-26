@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-//import { HttpClient } from '@angular/common/http';  
+//import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 //import { Observable } from 'rxjs/Observable';
@@ -13,16 +13,16 @@ import { LoginService } from '@L3Process/default/modules/login/services/login.se
 })
 
 export class FeLoginComponent implements OnInit {
-  
+
   @ViewChild('f') loginForm : NgForm;
 
-  userData = { 
+  userData = {
       username:'',
-      password:'' 
+      password:''
     };
 
   submitted:boolean = false;
-  
+
   constructor(private _auth: LoginService, private _router: Router) { }
 
   ngOnInit() {
@@ -40,7 +40,7 @@ export class FeLoginComponent implements OnInit {
         res =>{
           console.log(res);
           console.log('resHit');
-          this._router.navigate(['/formBuilder'])
+          this._router.navigate(['/forms'])
         },
         err => {
           console.log(err)
@@ -57,5 +57,5 @@ export class FeLoginComponent implements OnInit {
       }
     );
   }
-    
+
 }
