@@ -2,20 +2,14 @@ module.exports = class DefaultAction{
 
     constructor(accepts){
         this._accepts = accepts;
-        err
-        errcode
-        msg
-        msgcode
-        data
-        html
+        this._appObj = FE.getClientApp(req);
     }
 
-    initialize(){
-        _handlesRequest(req, res, next);
+    initialize(req, res, next){
+       this._handlesRequest(req, res, next);
     }
 
     _handleRequest(req, res, next) {
-        this._appObj = FE.getClientApp(req);
 
         if(!this._validateRequestType(req)) {
             res.send('INVALID REQUEST');
@@ -38,22 +32,6 @@ module.exports = class DefaultAction{
         });
     }
 
-    _preDispatch(req, res, next) {
-        this.preDispatch(req, res, next);
-    }
-
-    _postDispatch(req, res, next) {
-        this.postDispatch(req, res, next);
-    }
-
-    preDispatch(req, res, next) {
-        return true;
-    }
-
-    postDispatch(req, res, next) {
-        return true;
-    }
-    
     _dispatch(req, res, next) {
         if(req.type == 'PUT') {
             this._handlePutRequest();
@@ -66,16 +44,32 @@ module.exports = class DefaultAction{
         this._sendResponse(req, res, next);
     }
 
-    _handlePutRequest(req, res, mext) {
-        this.handlePutRequest(req, res, mext);
+    _preDispatch(req, res, next) {
+        this.preDispatch(req, res, next);
+    }
+
+    preDispatch(req, res, next) {
+        return true;
+    }
+
+    _postDispatch(req, res, next) {
+        this.postDispatch(req, res, next);
+    }
+
+    postDispatch(req, res, next) {
+        return true;
+    }
+    
+    _handlePutRequest(req, res, next) {
+        this.handlePutRequest(req, res, next);
     }
 
     _sendResponse(req, res, next) {
-        this.sendResponse(req, res, mext);
+        this.sendResponse(req, res, next);
     }
 
     _sendJsonResponse(req, res, next) {
-        this.sendJsonResponse(req, res, mext);
+        this.sendJsonResponse(req, res, next);
     }
 
     sendJsonResponse() {
@@ -88,7 +82,7 @@ module.exports = class DefaultAction{
     }
 
     _sendHtmlResponse(req, res, next) {
-        this.sendHtmlResponse(req, res, mext);
+        this.sendHtmlResponse(req, res, next);
     }
 
     sendHtmlResponse() {

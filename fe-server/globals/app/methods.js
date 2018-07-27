@@ -22,6 +22,10 @@ function configLoader(appObj) {
 			var legislation = req.params.legislation;
 			var L3Path = FE.SERVER_APP_PATH + '/legislations/' + legislation + '/clients/' + client + '/main' + path;
 			return require(L3Path);
+		},
+		getClientObj: function(req){
+			var client = req.params.client;
+			return FE.clients[client].app;
 		}
 	};
 	return config;
