@@ -35,4 +35,4 @@ FE.initialize();
 module.exports = FE.app;
 
 //console.log(FE.clients.fe);
-FE.clients.fe.helpers.tracerDb._log('ERROR','UncaughtException', 'UncaughtException', 5);
+//FE.clients.fe.helpers.tracerDb._log('ERROR','UncaughtException', 'UncaughtException', 5);
