@@ -76,6 +76,9 @@ class LoggerHelper extends BaseHelper {
 		logMsg.line = line || 'Not Found';
 		//var logStr = JSON.stringify(logMsg);
 		// var logModel = ;
+		
+		
+		//write log into db
 		this._appObj.models[this._props.tableName].create({
 			//attribute2: req.userDetails.empId,
 			//attribute3: req.UUID,	

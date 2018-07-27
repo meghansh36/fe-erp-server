@@ -1,6 +1,6 @@
 function configLoader(appObj) {
     let traceDbConfigs = {
-        table_name: 'SystemDebuggerLogModel',
+        table_name: 'SystemDebuggerLogModel',           //sequelize model name
         
         logsFolder: FE.APP_PATH + '/logs/app/trace',
         filenameConvention: "Exception"+'%DATE%.log',
@@ -10,7 +10,7 @@ function configLoader(appObj) {
         timestamp:true,
         prettyPrint:true,
 
-        type: 'EXCEPTION'
+        type: 'EXCEPTION'           //level
     };
     return traceDbConfigs;
 }

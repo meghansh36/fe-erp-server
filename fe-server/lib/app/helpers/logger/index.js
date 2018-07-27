@@ -28,7 +28,8 @@ class LoggerHelper extends BaseHelper {
 	}
 
 	_createTransportObj() {
-        var DailyRotateFile = winston.transports.DailyRotateFile;
+		//create new winston transport daily rotate file
+		var DailyRotateFile = winston.transports.DailyRotateFile;
 		this._transport = new DailyRotateFile(this._props);
 	}
 

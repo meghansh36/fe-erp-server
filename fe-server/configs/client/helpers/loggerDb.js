@@ -1,6 +1,6 @@
 function configLoader(appObj) {
     let dbLoggerConfigs = {
-        table_name: 'SystemDebuggerLogModel',
+        table_name: 'SystemDebuggerLogModel',      //sequelize model name
         
         logsFolder: FE.APP_PATH + '/logs/app/exceptions',
         filenameConvention: "Exception"+'%DATE%.log',
@@ -11,7 +11,7 @@ function configLoader(appObj) {
         prettyPrint:true,
         
         //user_name: 'manjeet',
-        type: 'EXCEPTION'
+        type: 'EXCEPTION'       //level
     };
     return dbLoggerConfigs;
 }

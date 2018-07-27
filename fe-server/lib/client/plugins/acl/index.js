@@ -15,27 +15,29 @@ class AclPlugin extends BasePlugin{
 		this._props.dbUrl = this._configs.dbUrl
 		this._props.prefix = this._configs.prefix;
 		var acl;
+
+		//connect to a mongo db and creat acl backend
 		FE.ACL = this.connectMongo(this._props.dbUrl, this._props.prefix)
 		.then((mongoBackend)=>{
 		//get acl with a mongo backend
 			acl = new node_acl(mongoBackend);
+			//define user roles  and functions
 			this.set_roles(acl);	//will be changed to fetch roles from mySQL and inject into mongo
-			return acl;		//this will be used inside dispatcher to authorize requests
+			return acl;				//this will be used inside dispatcher to authorize requests via FE.ACL
 		})
 		.catch((err)=> console.error(err));
 		console.log('acl plugin initialized!');
   	}
 
-  	//connect to mongoose
+  	//connect to a mongo db using mongoose
  	connectMongo(url, prefix){
-    	var prom = new Promise(function(resolve, reject) {
+    	return new Promise(function(resolve, reject) {
         	mongoose.connect(url, function(err, db) {
             	var mongoBackend = 	new node_acl.mongodbBackend(mongoose.connection.db, prefix);
             	resolve(mongoBackend);
             	reject(err);
         	});
     	});
-    	return prom;
 	}
 
 	//hardcorded set_roles function (to be handled later)
@@ -69,6 +71,7 @@ class AclPlugin extends BasePlugin{
 	        }
 		]);
 
+		// assign roles to users
 		acl.addUserRoles(420, 'b').then( ()=> console.log('added user'))
 	    .catch(err => console.error(err));
 	   
@@ -76,16 +79,6 @@ class AclPlugin extends BasePlugin{
 	    .catch(err => console.error(err));
 	}
 
-	//middleware to validate user
-	// validateUser(req, res, next, acl){
-	// 	acl.isAllowed(req.userId, req.url, req.method, (err, allowed)=>{
-	// 		if(allowed){
-	// 			next();
-	// 		} else {
-	// 			res.send('Access Denied'); //handle denied access
-	// 		}
-	// 	});
-	//}
 };
 
 module.exports = AclPlugin;
