@@ -76,11 +76,11 @@ export class FeFormComponent
     this.group = this._fb.group({});
     if (!this.schema) {
       this.schema = {};
-    }
+	}
     if (this.schema && this.schema.constructor === Object) {
-      this._schema = _.assign({}, this.schema);
+		this._schema = _.assign({}, this.schema);
     } else {
-      this._schema = this.schema;
+		this._schema = this.schema;
     }
     if (!_.isEmpty(this._schema)) {
       this.buttons = this._schema.buttons;
@@ -100,7 +100,8 @@ export class FeFormComponent
 
   ngOnChanges() {
     this._beforeNgOnChanges();
-    this._init();
+	this._init();
+	this._addDisplayProps();
     this._afterNgOnChanges();
   }
 
@@ -157,26 +158,33 @@ export class FeFormComponent
     );
   }
 
-
-
   protected _beforeNgAfterViewInit() { }
 
   protected _afterNgAfterViewInit() { }
 
   ngAfterViewInit() {
-    this._beforeNgAfterViewInit();
-    //this.setDefaultValue();
-    const container = document.querySelector(
-      `#${this.code}_HELP_CONTAINER`
-    );
+	this._beforeNgAfterViewInit();
+	setTimeout(() => {//Used this in very extreme case
+		this._addDisplayProps();
+	}, 4000);
+    this._afterNgAfterViewInit();
+  }
+
+  protected _addDisplayProps() {
+	let formCode = this.code;
+	if ( !formCode ) {
+		formCode = '';
+	}
+    let container = document.querySelector(`#${formCode}_FORM_HELP`);
     if (container) {
       container.innerHTML = this.help;
     }
-
     if (this.disabled) {
       this.disable();
-    }
-    this._afterNgAfterViewInit();
+	}
+	if ( this.hidden ) {
+		this.hide();
+	}
   }
 
   protected _createGroup() {
@@ -509,7 +517,10 @@ export class FeFormComponent
   }
 
   get code() {
-    return this._schema.code || "feFormCode";
+	  if ( this._schema.code ) {
+		  return this._schema.code;
+	  }
+    return 'FORMXXXXXXX';
   }
 
   get label() {

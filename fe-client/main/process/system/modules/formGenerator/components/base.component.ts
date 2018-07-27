@@ -72,7 +72,6 @@ export class FeBaseComponent
 		this._initFieldStyle();
 		this._applyObservers();
 		this._setValues();
-		console.log("Rendering", this.label);
 	}
 
 	protected _beforeNgAfterViewInit() {}
@@ -85,7 +84,7 @@ export class FeBaseComponent
 			this.hide();
 		}
 		this._afterNgAfterViewInit();
-		
+
 	}
 
 	protected _afterNgAfterViewInit() {}
@@ -143,13 +142,22 @@ export class FeBaseComponent
 	}
 
 	protected _setLov() {
-		if ( this.lov ) {
+		const lov = this.lov;
+		const firstOption = this._defaults.DROPDOWN_DEFAULT_OPTION;
+		let options = [];
+		if ( lov ) {
 			if ( this.lovType == 'json' ) {
-				this.options = this.lov;
+				if ( this.type === 'SEL' ) {
+					this.options = [  ...firstOption, ...lov];
+				} else {
+					this.options = lov;
+				}
 				this._setDefaultValue();
 			} else if ( this.defaultValueType == 'sqlQuery' ) {
 				//fetch data from server
 			}
+		} else {
+			this.lov = firstOption ;
 		}
 	}
 
@@ -474,13 +482,12 @@ export class FeBaseComponent
 		if (this.formClassValidation) {
 			this._applyFormClassValidation();
 		}
-		console.log("this.jsonLogicVal", this.label, this.jsonLogicVal);
+
 		if (this.jsonLogicVal) {
 			this._applyJsonValidations();
 		}
-		console.log('this.validators', this.validators);
+
 		if (this.control && this.validators.length > 0) {
-			console.log('Setting validators');
 			this.control.setValidators(this.validators);
 		}
 	}
@@ -512,6 +519,7 @@ export class FeBaseComponent
 				this._validator.getCustomValidation("max", this.maximumValue)
 			);
 		}
+
 		if (
 			this.appliedValidations &&
 			this.appliedValidations.constructor == Array &&
@@ -614,9 +622,7 @@ export class FeBaseComponent
 			formControls: any,
 			control: AbstractControl
 		): { [key: string]: boolean } | null {
-			console.log("JSON Logic Val", control, formControls);
 			if (jsonLogic.apply(json["json"], formControls) != true) {
-				console.log('JSON error should come.');
 				return { json: true };
 			}
 			return null;
@@ -630,9 +636,7 @@ export class FeBaseComponent
 	}
 
 	protected _initFieldStyle() {
-		console.log('called field style')
 		this.defaultClasses = this._utility.getFieldClasses(this);
-		console.log(this.defaultClasses);
 		this.style = this._utility.getFieldStyles(this);
 	}
 
@@ -704,9 +708,7 @@ export class FeBaseComponent
 	}
 
 	get hasTextLenghtLimit() {
-		return (
-			this.hasValidation("maxLength") || this.hasValidation("minLength")
-		);
+		return (this.minLength || this.maxLength);
 	}
 
 	get resource() {
@@ -1094,6 +1096,22 @@ export class FeBaseComponent
 
 	set options( options ) {
 		this._options = options;
+	}
+
+	get minLength() {
+		return this._config.minLength;
+	}
+
+	set minLength(minLength) {
+		this._config.minLength = minLength;
+	}
+
+	get maxLength() {
+		return this._config.maxLength;
+	}
+
+	set maxLength(maxLength) {
+		this._config.maxLength = maxLength;
 	}
 
 }

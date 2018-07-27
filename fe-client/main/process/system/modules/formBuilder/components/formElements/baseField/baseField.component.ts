@@ -100,8 +100,8 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
 		customFuncValidation: true,
 		jsonLogicVal: true,
 		formClassValidation: true,
-		minimumLength: true,
-		maximumLength: true,
+		minLength: true,
+		maxLength: true,
 		events: true,
 		hideCondition: true,
 		type: true,
@@ -150,8 +150,8 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     customFuncValidation: "",
     jsonLogicVal: "",
     formClassValidation: "",
-    minimumLength: undefined,
-    maximumLength: undefined,
+    minLength: undefined,
+    maxLength: undefined,
     events: "",
     hideCondition: "",
     disableCondition: "",
@@ -385,12 +385,12 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     return this.properties.formClassValidation;
   }
 
-  get minimumLength() {
-    return this.properties.minimumLength;
+  get minLength() {
+    return this.properties.minLength;
   }
 
-  get maximumLength() {
-    return this.properties.maximumLength;
+  get maxLength() {
+    return this.properties.maxLength;
   }
 
   get events() {
@@ -553,12 +553,12 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     this.properties.formClassValidation = formClassValidation;
   }
 
-  set minimumLength(minimumLength) {
-    this.properties.minimumLength = minimumLength;
+  set minLength(minLength) {
+    this.properties.minLength = minLength;
   }
 
-  set maximumLength(maximumLength) {
-    this.properties.maximumLength = maximumLength;
+  set maxLength(maxLength) {
+    this.properties.maxLength = maxLength;
   }
 
   set events(events) {

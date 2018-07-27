@@ -457,4 +457,10 @@ a.disabled {
 .field-help-container .card.border-info {
 	border: unset;
 }
+.text-length-info-container {
+	height: min-content;
+}
+.form-label-container {
+	text-align: center;
+}
 /*-------------------------}          */
