@@ -107,7 +107,7 @@
 .progress-linear {
     position: relative !important;
     z-index: 1000;
-  
+    transform: rotate(180deg);
 }
 
 
