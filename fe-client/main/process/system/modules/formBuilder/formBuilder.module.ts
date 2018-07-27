@@ -5,12 +5,11 @@ import { FormBuilderService } from '@L3Process/system/modules/formBuilder/servic
 import { FormMasterService } from '@L3Process/system/modules/formBuilder/services/formMaster.service';
 import { FieldControlService } from '@L3Process/system/modules/formBuilder/services/fieldControl.service';
 import { FormJsonService } from '@L3Process/system/modules/formBuilder/services/formJson.service';
-import { DndModule } from 'ng2-dnd';
+
 import { FormBuilderComponent } from '@L3Process/system/modules/formBuilder/formBuilder.component';
 import { FormBuilderRoutes } from '@L3Process/system/modules/formBuilder/formBuilder.routing';
 import { CommonModule } from '@angular/common';
 import { MasterFormComponent } from '@L3Process/system/modules/formBuilder/components/Master/masterForm.component';
-import { SortablejsModule } from 'angular-sortablejs/dist';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TextMaskModule } from 'angular2-text-mask';
 import { DefaultsService } from '@L3Process/system/services/defaults.service';
@@ -88,10 +87,8 @@ const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more
     CommonModule,
     NgxSelectModule.forRoot(CustomSelectOptions),
     NgbModule,
-    DndModule.forRoot(),
     FormBuilderRoutes,
     FormsModule,
-    SortablejsModule.forRoot({ animation: 500 }),
     DragulaModule,
     HttpClientModule,
     ReactiveFormsModule,

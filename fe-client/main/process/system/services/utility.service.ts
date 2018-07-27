@@ -152,7 +152,6 @@ export class FeUtilityService {
 		if (fieldComponent.required) {
 			classesStr += ` mandatory-field`;
 		}
-		console.log('field classes', classesStr);
 		fieldClasses = this.makeCssClassesObj(classesStr);
 
 		let nestedFieldContainerClasses = {};
