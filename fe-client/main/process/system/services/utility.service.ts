@@ -3,12 +3,13 @@ import { DefaultsService } from "@L3Process/system/services/defaults.service";
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { FieldConfig } from "@L1Process/system/modules/formGenerator/models/field-config.interface";
 
+
 @Injectable({
 	providedIn: "root"
 })
 export class FeUtilityService {
 	public renderer: Renderer2; //initialized from field components
-	constructor(public defaults: DefaultsService) {}
+	constructor(protected _defaults: DefaultsService) {}
 
 	evalFnArgs(argsStr) {
 		try {
@@ -69,12 +70,7 @@ export class FeUtilityService {
 
 	getFieldClasses(fieldComponent, editMode?: boolean) {
 		const type = fieldComponent.type;
-		let labelPosition = this.defaults.LABEL_POSITION;
 		const customCssClass = fieldComponent.customCssClass || "";
-
-		if (!fieldComponent.hideLabel && fieldComponent.labelPosition) {
-			labelPosition = fieldComponent.labelPosition;
-		}
 
 		if (fieldComponent.type === "HID" && !editMode) {
 			this.renderer.addClass(
@@ -90,15 +86,28 @@ export class FeUtilityService {
 		}
 		fieldContainerClasses = this.makeCssClassesObj(classesStr);
 
+		let labelPosition = this._defaults.LABEL_POSITION;
+		if (fieldComponent.labelPosition) {
+			labelPosition = fieldComponent.labelPosition;
+		}
+
+		let labelAlignment = this._defaults.LABEL_ALIGNMENT[ labelPosition ];
+		if (fieldComponent.labelAlignment) {
+			labelAlignment = fieldComponent.labelAlignment;
+		} else {
+			fieldComponent.labelAlignment = labelAlignment;
+		}
+
 		let fieldMainWrapperClasses = {};
-		classesStr = `fe-field ${type}-container form-group ${labelPosition}-labeled-field`;
+		classesStr = `fe-field ${type}-container form-group  ${labelPosition}-labeled-field`;
 		if (fieldComponent.hidden && !editMode) {
 			classesStr += " hidden";
 		}
+
 		fieldMainWrapperClasses = this.makeCssClassesObj(classesStr);
 
 		let fieldLabelContainerClasses = {};
-		classesStr = `fe-field-container field-label-container ${type}-label-container`;
+		classesStr = `fe-field-container field-label-container align-${labelAlignment} ${type}-label-container`;
 		if (fieldComponent.hideLabel) {
 			classesStr += " hidden";
 		}
@@ -111,12 +120,20 @@ export class FeUtilityService {
 		classesStr = `field-wrapper ${type}-field-wrapper field-label-${labelPosition}`;
 		fieldWrapperClasses = this.makeCssClassesObj(classesStr);
 
+		let fieldTooltipWrapperClasses = {};
+		classesStr = `field-tooltip-wrapper ${type}-tooltip-wrapper`;
+		fieldTooltipWrapperClasses = this.makeCssClassesObj(classesStr);
+
+		let fieldTooltipContainerClasses = {};
+		classesStr = `field-tooltip ${type}-tooltip`;
+		fieldTooltipContainerClasses = this.makeCssClassesObj(classesStr);
+
 		let fieldDescWrapperClasses = {};
-		classesStr = `field-desc-container ${type}-desc-cont`;
+		classesStr = `field-desc-wapper ${type}-description-wapper`;
 		fieldDescWrapperClasses = this.makeCssClassesObj(classesStr);
 
 		let fieldDescContainerClasses = {};
-		classesStr = `form-text text-muted field-desc ${type}-desc`;
+		classesStr = `field-description-container form-text text-muted ${type}-description-container`;
 		fieldDescContainerClasses = this.makeCssClassesObj(classesStr);
 
 		let labelClasses = {};
@@ -127,7 +144,7 @@ export class FeUtilityService {
 		labelClasses = this.makeCssClassesObj(classesStr);
 
 		let fieldErrorWrapperClasses = {};
-		classesStr = `field-error-wrapper ${type}-error-wrapper`;
+		classesStr = `field-error-wrapper mt-1 ${type}-error-wrapper`;
 		fieldErrorWrapperClasses = this.makeCssClassesObj(classesStr);
 
 		let fieldClasses = {};
@@ -138,7 +155,7 @@ export class FeUtilityService {
 		fieldClasses = this.makeCssClassesObj(classesStr);
 
 		let nestedFieldContainerClasses = {};
-		classesStr = `fe-field-container fe-${type}-wrapper`;
+		classesStr = `feFld-container fe-field-container fe-${type}-wrapper`;
 		nestedFieldContainerClasses = this.makeCssClassesObj(classesStr);
 
 		let classes: any = {
@@ -146,6 +163,8 @@ export class FeUtilityService {
 			fieldWrapperClasses,
 			fieldLabelContainerClasses,
 			fieldContainerClasses,
+			fieldTooltipWrapperClasses,
+			fieldTooltipContainerClasses,
 			fieldDescWrapperClasses,
 			fieldDescContainerClasses,
 			labelClasses,
@@ -180,9 +199,11 @@ export class FeUtilityService {
 			fieldLabelContainerStyle.width = `${labelWidth}`;
 		}
 
-		let fieldWidth = this.defaults.FIELD_WIDTH;
+		let fieldWidth = this._defaults.FIELD_WIDTH;
 		if (fieldComponent.width) {
 			fieldWidth = fieldComponent.width;
+		} else {
+			fieldComponent.width  = fieldWidth;
 		}
 		if (fieldWidth) {
 			this.renderer.setStyle(
@@ -241,6 +262,8 @@ export class FeUtilityService {
 		let inlineStyle = {
 			fieldMainWrapperStyle,
 			fieldWrapperStyle: {},
+			fieldTooltipWrapperStyle: {},
+			fieldTooltipContainerStyle: {},
 			fieldDescWrapperStyle: {},
 			fieldDescContainerStyle: {},
 			fieldLabelContainerStyle,
@@ -266,14 +289,18 @@ export class FeUtilityService {
 		);
 	}
 
-	addButtonProps(fieldComponent, classesObj) {
-		const buttonThemeClasses = this.defaults.BUTTON_THEMES;
+	addButtonProps(fieldComponent, classesObj?: any) {
+		const buttonThemeClasses = this._defaults.BUTTON_THEMES;
 		let themeClass = buttonThemeClasses[fieldComponent.theme];
+		if (!classesObj) {
+			classesObj = {};
+			classesObj.fieldClasses = {};
+		}
 		if (!themeClass) {
-			themeClass = buttonThemeClasses[this.defaults.BUTTON_THEME];
+			themeClass = buttonThemeClasses[this._defaults.BUTTON_THEME];
 		}
 		classesObj["fieldClasses"][themeClass] = true;
-		const buttonSizeClasses = this.defaults.BUTTON_SIZES;
+		const buttonSizeClasses = this._defaults.BUTTON_SIZES;
 
 		if (fieldComponent.size) {
 			classesObj["fieldClasses"][
@@ -281,9 +308,20 @@ export class FeUtilityService {
 			] = true;
 		} else {
 			classesObj["fieldClasses"][
-				buttonSizeClasses[this.defaults.BUTTON_SIZE]
+				buttonSizeClasses[this._defaults.BUTTON_SIZE]
 			] = true;
 		}
+		classesObj["btnDefaultClasses"] = {};
+		classesObj["btnDefaultClasses"]["display-flex"] = true;
+		let btnAlignment = fieldComponent.labelAlignment;
+		if (fieldComponent.labelAlignment) {
+			btnAlignment = fieldComponent.labelAlignment;
+		}
+
+		if(btnAlignment) {
+			classesObj["btnDefaultClasses"][`align-${btnAlignment}`] = true;
+		}
+
 		return classesObj;
 	}
 

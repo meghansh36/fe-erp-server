@@ -17,7 +17,7 @@ export class FeRadioComponent extends FeBaseField  {
       }
     ],
     ...this.properties,
-    type: 'CHK',
+    type: 'RAD',
   };
 
   public applicableProperties = {

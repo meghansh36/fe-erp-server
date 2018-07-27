@@ -43,9 +43,10 @@ import { JSONEditorModule } from 'ngx-jsoneditor';
 import { HTMLComponent } from "@L3Process/system/modules/formBuilder/components/formElements/html/html.component";
 import { FileComponent } from "@L3Process/system/modules/formBuilder/components/formElements/file/file.component";
 import { CKEditorModule } from 'ng2-ckeditor';
-import { FormGeneratorModule } from '../../../../../legislations/fe/clients/fe/main/process/system/modules/formGenerator/formGenerator.module';
+import { FormGeneratorModule } from '@L3Process/system/modules/formGenerator/formGenerator.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { SelectBoxComponent } from '@L3Process/system/modules/formBuilder/components/formElements/selectBox/selectBox.component';
+import {DpDatePickerModule} from 'ng2-date-picker';
 
 const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more options
   optionValueField: 'code',
@@ -80,7 +81,8 @@ const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more
     IconicButtonComponent,
     AutoCompleteComponent,
     HTMLComponent,
-    FileComponent
+    FileComponent,
+    SelectBoxComponent
   ],
   imports: [
     CommonModule,
@@ -96,14 +98,15 @@ const CustomSelectOptions: INgxSelectOptions = { // Check the interface for more
     JSONEditorModule,
     TextMaskModule,
     CKEditorModule,
-    FormGeneratorModule
+    FormGeneratorModule,
+    DpDatePickerModule
   ],
   entryComponents: [TextComponent, TextAreaComponent, TimeComponent, PasswordComponent, PhoneComponent,
                     NumberComponent, MonthComponent, HiddenComponent, EmailComponent, DateTimeComponent,
                     DateComponent, CurrencyComponent, AddressComponent, CheckboxComponent,
                     AnchorComponent, BlankComponent, ButtonComponent, RadioComponent,
                     AutoCompleteComponent, FieldSetComponent, IconicButtonComponent, SelectComponent,
-                    MultiSelectComponent, HTMLComponent, FileComponent],
+                    MultiSelectComponent, HTMLComponent, FileComponent, SelectBoxComponent],
   providers: [FormBuilderService, FormMasterService, FieldControlService, FormJsonService, DefaultsService],
   bootstrap: [FormBuilderComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

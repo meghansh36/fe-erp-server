@@ -31,8 +31,6 @@ export class FeButtonComponent extends FeBaseField implements OnInit {
     label: true
   };
 
-  //9627233491
-
   get tooltipPlacement() {
     return this._defaults.BTN_TOOLTIP_PLACEMENT;
   }

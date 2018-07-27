@@ -164,7 +164,7 @@ export class FeFormComponent
 
 	ngAfterViewInit() {
 		this._beforeNgAfterViewInit();
-		this.setDefaultValue();
+		//this.setDefaultValue();
 		const container = document.querySelector(
 			`#${this.code}_HELP_CONTAINER`
 		);
@@ -182,6 +182,11 @@ export class FeFormComponent
 		this.group = this._utility.createFormGroup(
 			this._fb,
 			this.schemaControls
+		);
+		this.group = this._utility.createFormGroup(
+			this._fb,
+			this.buttons,
+			this.group
 		);
 	}
 

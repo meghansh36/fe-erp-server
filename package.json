@@ -59,6 +59,7 @@
     "mysql": "^2.15.0",
     "mysql2": "^1.5.3",
     "ng2-ckeditor": "^1.2.1",
+    "ng2-date-picker": "^2.10.1",
     "ng2-dnd": "^5.0.2",
     "ng2-dragula": "^1.5.0",
     "ng2-select": "^2.0.0",

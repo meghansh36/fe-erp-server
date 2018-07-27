@@ -53,19 +53,26 @@
                       <!-- Drop down Menu of Label Position -->
                       <div *ngIf='instance.applicableProperties.labelPosition'>
                         <label for="labelPosition" class='requiredClass'>Label Position</label>
-                        <select [(ngModel)]='componentData.labelPosition' ngModel id="labelPosition" class="form-control" name='labelPosition' required
+                        <select [(ngModel)]='componentData.labelPosition' ngModel id="labelPosition" class="form-control" name='labelPosition'
                           ngModel #labelPosition='ngModel' change-event='replace'>
-                          <option value='none'>--Select--</option>
+                          <option value=''>--Select--</option>
                           <option value='top'>Top</option>
                           <option value='bottom'>Bottom</option>
-                          <!-- <option value='left-L'>Left(Left Aligned)</option>
-                          <option value='left-R'>Left(Right Aligned)</option>
-                          <option value='right-R'>Right(Right Aligned)</option>
-                          <option value='right-L'>Right(Left Aligned)</option> -->
                           <option value="left">Left</option>
                           <option value="right">Right</option>
                         </select>
-                        <div class="alert alert-danger" *ngIf='labelPosition.touched && labelPosition.invalid'>Label Position is required.</div>
+					  </div>
+
+					   <!-- Drop down Menu of Label Alignment -->
+					   <div *ngIf='instance.applicableProperties.labelAlignment'>
+                        <label for="labelPosition" class='requiredClass'>Label Alignment</label>
+                        <select [(ngModel)]='componentData.labelAlignment' ngModel id="labelAlignment" class="form-control" name='labelAlignment'
+                          ngModel #labelAlignment='ngModel' change-event='replace'>
+                          <option value=''>--Select--</option>
+                          <option value='center'>Center</option>
+                          <option value="left">Left</option>
+                          <option value="right">Right</option>
+                        </select>
 
                       </div>
 
@@ -115,7 +122,7 @@
                           Button Theme
                         </label>
                         <select id='theme' ngModel name='theme' class='form-control' [(ngModel)]='componentData.theme' change-event='replace'>
-                          <option value="none">--Select--</option>
+                          <option value="">--Select--</option>
                           <option value="default" selected>Default</option>
                           <option value='primary'>Primary</option>
                           <option value="secondary">Secondary</option>
@@ -132,7 +139,7 @@
                           Button Size
                         </label>
                         <select ngModel name="size" id="size" ngModel class='form-control' [(ngModel)]='componentData.size' change-event='replace'>
-                          <option value="none">--Select--</option>
+                          <option value="">--Select--</option>
                           <option value="large">Large</option>
                           <option value="medium">Medium</option>
                           <option value="small" selected>Small</option>
@@ -170,34 +177,6 @@
                         <input type='text' class='form-control' id='btnRightIcon' placeholder="Material Icon Class e.g. md-icon_content" name='btnRightIcon'
                           ngModel [(ngModel)]="componentData.btnRightIcon" />
                       </div>
-
-                <!-- input fields for checkboxes  -->
-                <div class="mt-2" *ngIf='instance.applicableProperties.multipleInputs'>
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Label</th>
-                        <th scope="col">Value</th>
-                      </tr>
-                    </thead>
-                    <tbody *ngFor="let field of componentData.inputPropsArray; let i = index">
-                      <tr>
-                        <td>
-                          <input ngModel [(ngModel)]="field.label" class="form-control" type="text" placeholder="Add Label" name="field.label{{i}}" />
-                        </td>
-                        <td>
-                          <input ngModel [(ngModel)]="field.value" class="form-control" type="text" placeholder="Add Value" name="field.value{{i}}" />
-                        </td>
-                        <td>
-                          <i class="material-icons" (click)="deleteInput(i)">close</i>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <button class="btn btn-primary" (click)="addInput($event)">Add Field</button>
-                </div>
-
-
 
                       <!-- input field for date time format       -->
 
@@ -459,7 +438,7 @@
                         <label for="defaultValueType" class='mt-3'>Default Value Type</label>
                         <select id="defaultValueType" class="form-control" name='defaultValueType' [(ngModel)]='componentData.defaultValueType' ngModel
                           #defaultValueType='ngModel'>
-                          <option value="none">--Select--</option>
+                          <option value="">--Select--</option>
                           <option value='string'>String</option>
                           <option value='sqlQuery'>Sql Query</option>
                         </select>
@@ -523,7 +502,7 @@
                           List of Value Type
                         </label>
                         <select ngModel name='lovType' id='lovType' class='form-control' [(ngModel)]='componentData.lovType' ngModel #lovType='ngModel'>
-                          <option value="none">--Select--</option>
+                          <option value="">--Select--</option>
                           <option value="sqlQuery"> SQL Query </option>
                           <option value="json">JSON</option>
                         </select>

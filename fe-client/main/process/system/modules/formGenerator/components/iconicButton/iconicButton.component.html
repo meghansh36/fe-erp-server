@@ -4,10 +4,16 @@
     <div class="label">
         <label></label>
     </div>
-    <div [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
-        <button [disabled]="disabled"  [attr.placement]="tooltipPlacement" [ngbTooltip]="tooltip" [attr.flexilabel]="flexiLabel" [ngClass]="defaultClasses.fieldClasses" [attr.id]="id" [ngStyle]="defaultClasses.fieldStyle">
-            <i *ngIf="!!icon" [ngClass]="icon"></i>
-        </button>
-    </div>
-
+    <div [ngClass]="defaultClasses.btnDefaultClasses">
+        <div [ngClass]="defaultClasses.btnDefaultContainerClasses">
+            <button [disabled]="disabled" [attr.flexilabel]="flexiLabel" [attr.placement]="tooltipPlacement" [ngbTooltip]="tooltip" [ngClass]="defaultClasses.fieldClasses" [attr.id]="id" [ngStyle]="style.fieldStyle" >
+                <i *ngIf="!!icon" [ngClass]="icon" ></i>
+            </button>
+            </div>
+        </div>
+		<div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+			<small  [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+				{{ description }}
+			</small>
+		</div>
 </div>

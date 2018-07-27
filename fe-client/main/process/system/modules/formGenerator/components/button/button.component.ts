@@ -8,6 +8,7 @@ import { BaseComponent } from '@L3Process/system/modules/formGenerator/component
 })
 export class FeButtonComponent extends BaseComponent {
 
+
   get tooltipPlacement() {
     return this._defaults.BTN_TOOLTIP_PLACEMENT;
   }

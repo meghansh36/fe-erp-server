@@ -6,15 +6,18 @@ import {
   Renderer2,
   ElementRef,
   DoCheck,
-  AfterViewInit
+  AfterViewInit,
+  OnChanges
 } from "@angular/core";
 import { FormJsonService } from "@L3Process/system/modules/formBuilder/services/formJson.service";
 import { UtilityService } from "@L3Process/system/services/utility.service";
 import { DefaultsService } from "@L3Process/system/services/defaults.service";
 import * as _ from "lodash";
+import { FeBaseComponent } from "../../../../formGenerator/components/base.component";
 
 @Injectable()
 export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
+  static fieldCount = 0;
   showEdit = true;
   uniqueKey: string;
   refObj: any;
@@ -62,7 +65,8 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     description: true,
     hasParent: true,
     parentName: true,
-    filterSqlQuery: true
+	filterSqlQuery: true,
+	labelAlignment: true
   };
 
   //All properties
@@ -109,9 +113,10 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
 		width: true,
 		icon: true,
 		parentName: true,
-		filterSqlQuery: true
-
-	}; */
+		filterSqlQuery: true,
+		labelAlignment: true
+	};
+	 */
 
   public properties: any = {
     hasParent: false,
@@ -159,7 +164,8 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     description: "",
     icon: "",
     parentName: "",
-    filterSqlQuery: ""
+	filterSqlQuery: "",
+	labelAlignment: ""
   };
 
   constructor(
@@ -171,8 +177,10 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     protected _utility: UtilityService,
     protected _defaults: DefaultsService
   ) {
+    console.log('constructor called');
     this._utility.renderer = this._render;
-    this.systemValidations = this._defaults.VALIDATIONS;
+	this.systemValidations = this._defaults.VALIDATIONS;
+	FeBaseField.fieldCount++;
   }
 
   protected _beforeNgOnInit() {}
@@ -188,11 +196,21 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
   _init() {
     this.setRef(this._fieldControlService.getFieldRef().ref);
     this.uniqueKey = this._masterFormService.getCurrentKey();
-   // this.properties = _.assign({}, this._formJsonService.getMasterJSON().components[this.uniqueKey].instance.properties);
-    console.log('base props', this.properties, this.uniqueKey);
+   // console.log('base props unique key ', this.properties, this.uniqueKey);
     this._masterFormService.setProperties(this.properties, this.uniqueKey);
     this._initFieldStyle();
-    this.systemValidations = this._defaults.VALIDATIONS;
+	this.systemValidations = this._defaults.VALIDATIONS;
+	if (!this.label) {
+		this.label = `${this._defaults.FIELD_TYPE_LABEL_MAP[ this.type ]} ${FeBaseField.fieldCount.toString()}`;
+	}
+
+	if (!this.flexiLabel) {
+		let flexiLabelPrefix = this._defaults.FIELD_TYPE_LABEL_MAP[ this.type ];
+		if ( flexiLabelPrefix ) {
+			flexiLabelPrefix = flexiLabelPrefix.toLowerCase().replace(' ', '_');
+		}
+		this.flexiLabel = `${flexiLabelPrefix}_${FeBaseField.fieldCount.toString()}`;
+	}
   }
 
   protected _beforeNgAfterViewInit() {}
@@ -241,7 +259,7 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
 
   openModal() {
     this._masterFormService.setCurrentKey(this.uniqueKey);
-    this._masterFormService.setProperties(this.properties, this.uniqueKey);
+    //this._masterFormService.setProperties(this.properties, this.uniqueKey);
     const parent = this._fieldControlService.getFieldRef().parent;
     this._fieldControlService.setFieldRef(this.refObj, parent, this.properties.componentName);
     parent.openModal();
@@ -251,9 +269,12 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     this.properties = _.assignIn({}, propsFromMasterForm);
   }
 
-  //Properties getters
   get label() {
     return this.properties.label;
+  }
+
+  set label( label ) {
+    this.properties.label = label;
   }
 
   get hideLabel() {
@@ -576,7 +597,11 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     this.properties.width = width;
   }
 
-  /* set cssClasses( classes ) {
-		this._cssClasses = classes;
-	} */
+  get labelAlignment() {
+    return this.properties.labelAlignment;
+  }
+
+  set labelAlignment(labelAlignment) {
+    this.properties.labelAlignment = labelAlignment;
+  }
 }

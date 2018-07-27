@@ -57,7 +57,9 @@ export class FeMasterFormComponent implements OnInit {
     protected _ngBootstrap: NgBootstrapService,
     protected _defaults: DefaultsService,
     protected _formBuilderService: FormBuilderService
-  ) {}
+  ) {
+    console.log('master form constructor called');
+  }
 
   protected _beforeNgOnInit() {}
 
@@ -122,16 +124,6 @@ export class FeMasterFormComponent implements OnInit {
     this.backupProps = propsFromBuilder;
     this.instance.properties = _.assignIn({}, propsFromBuilder);
     this.componentData = this.instance.properties;
-  }
-
-  deleteInput(index) {
-    this.instance.deleteInput(index);
-  }
-
-  addInput(event) {
-    event.preventDefault();
-    this.instance.addInput();
-    console.log(this.componentData);
   }
 
   update(event) {

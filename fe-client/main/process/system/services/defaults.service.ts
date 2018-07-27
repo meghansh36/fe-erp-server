@@ -15,6 +15,43 @@ export class FeDefaultsService {
     mode: "code"
   };
 
+
+  public LABEL_ALIGNMENT = {
+	  top: 'left',
+	  left: 'left',
+	  right: 'center',
+	  bottom: 'right'
+  };
+
+  public FIELD_TYPE_LABEL_MAP = {
+	BTN: 'Button',
+	TXT: 'Text',
+	SEL: 'Select',
+	TXA: 'TextArea',
+	DAT: 'Date',
+	TIM: 'Time',
+	ACS: 'Auto Complete',
+	NUM: 'Number',
+	CHK: 'CheckBox',
+	RAD: 'Radio',
+	MSL: 'Multiselect',
+	EML: 'Email',
+	FILE: 'File',
+	FST: 'FieldSet',
+	ANC: 'Anchor',
+	BLK: 'Blank',
+	HID: 'Hidden',
+	ICB: 'IconicButton',
+	HTML: 'Html Editor',
+	PWD: 'Password',
+	PHN: 'Phone',
+	CUR: 'Currency',
+	ADR: 'Address',
+	MON: 'Month',
+	DTI: 'Date Time',
+	MCH: 'Multiple Checkboxes'
+  };
+
   protected _formBuilderJsonHelp = {
     lovHelp: [
       {

@@ -20,8 +20,8 @@
             <div class="label">
                 <label for="{{ id }}" [ngClass]="defaultClasses.labelClasses">{{ label }}</label>
             </div>
-            <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="tooltip">
-                <span [ngClass]="defaultClasses.fieldDescContainerClasses">
+            <div [ngClass]="defaultClasses.fieldTooltipWrapperClasses" [ngStyle]="style.fieldTooltipWrapperStyle" *ngIf="tooltip">
+                <span [ngClass]="defaultClasses.fieldTooltipContainerClasses">
                     <i class="material-icons " placement="right" [ngbTooltip]="tooltip"> help</i>
                 </span>
             </div>
@@ -36,5 +36,10 @@
                 <span class="input-group-text"> {{ suffix }} </span>
             </div>
         </div>
-    </div>
+	</div>
+	<div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+		<small [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+			{{ description }}
+		</small>
+	</div>
 </div>

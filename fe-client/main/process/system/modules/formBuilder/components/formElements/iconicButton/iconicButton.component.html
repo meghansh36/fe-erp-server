@@ -15,8 +15,17 @@
             </ul>
           </span>
     </div>
-    <button [disabled]="disabled" [attr.flexilabel]="flexiLabel" [attr.placement]="tooltipPlacement" [ngbTooltip]="tooltip" [ngClass]="defaultClasses.fieldClasses" [attr.id]="id" [ngStyle]="style.fieldStyle" >
-      <i *ngIf="!!icon" [ngClass]="icon" ></i> 
-    </button>
+    <div [ngClass]="defaultClasses.btnDefaultClasses">
+        <div [ngClass]="defaultClasses.btnDefaultContainerClasses">
+          <button [disabled]="disabled" [attr.flexilabel]="flexiLabel" [attr.placement]="tooltipPlacement" [ngbTooltip]="tooltip" [ngClass]="defaultClasses.fieldClasses" [attr.id]="id" [ngStyle]="style.fieldStyle" >
+            <i *ngIf="!!icon" [ngClass]="icon" ></i>
+          </button>
+        </div>
+	  </div>
+	  <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+		<small [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+			{{ description }}
+		</small>
+	</div>
 </div>
 

@@ -10,30 +10,12 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class FeCheckboxComponent extends FeBaseField  {
 
   public properties = {
-    type: 'CHK',
-    inputPropsArray: [
-      {
-        label: 'test',
-        value: ''
-      }
-    ],
-    ...this.properties
+	...this.properties,
+	type: 'CHK',
   };
 
   public applicableProperties = {
-    multipleInputs: true,
     ...this.applicableProperties
-  }
-
-  deleteInput(index) {
-    console.log('delete clicked', index);
-    this.properties.inputPropsArray.splice(index, 1);
-    console.log(this.properties);
-  }
-
-  addInput() {
-    console.log('add clicked');
-    this.properties.inputPropsArray.push({label: '', value: ''});
   }
 
 }

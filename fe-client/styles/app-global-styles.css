@@ -47,24 +47,20 @@
     padding-right: 10px; */
 }
 
+.feFld-container {
+	flex-grow: 1;
+}
+
 .field-label-left .field-label-container,
 .field-label-right .field-label-container {
     display: flex;
-    justify-content: center;
-    padding-top: 10px;
+	padding-top: 10px;
+	/* padding-right:10px */
 }
 
-/* .field-label-left .field-label-container, .field-label-right .field-label-container {
-    padding-top: 25px;
-  }
-
-  .fieldset-container  .field-label-left .field-label-container, .fieldset-container .field-label-right .field-label-container {
-    padding-top:0px !important;
-  } */
-
-/* .left-labeled-field,.right-labeled-field {
-    padding-top: 32px !important;
-  } */
+.ANC-field {
+	color: #007bff !important;
+}
 
 .fe-field-component {
     padding-left: 10px;
@@ -380,6 +376,7 @@ a.disabled {
     padding-left: 5px;
 }
 
+<<<<<<< HEAD
 .radio input[type="radio"] {
     display: none;
 }
@@ -420,3 +417,47 @@ a.disabled {
 
 
 /*-------------------------}          */
+=======
+.align-center {
+	justify-content: center !important;
+}
+
+.align-left {
+    justify-content: flex-start !important;
+}
+
+.align-right {
+	justify-content: flex-end !important;
+}
+
+.align-right .field-label-container {
+	padding-right: 10px;
+}
+
+
+.field-label-right .fe-ANC-wrapper, .field-label-left .fe-ANC-wrapper {
+    padding-top: 10px
+}
+
+.BTN-container {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.dp-picker-input {
+    border: none;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.SEL-container {
+    width: 100%;
+}
+.field-help-container .card.border-info {
+	border: unset;
+}
+/*-------------------------}          */
+>>>>>>> a50b6f5af3082b467f3fdda7cda5c226c4b535da
