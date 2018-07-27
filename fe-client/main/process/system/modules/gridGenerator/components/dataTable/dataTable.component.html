@@ -71,7 +71,7 @@
 			<ngx-datatable-column *ngFor="let col of columns" [prop]="col.prop" [name]="col.name" [cellClass]="col.align" [width]="col.width"
 			 [sortable]="col.sortable" [frozenLeft]="col.frozenLeft" [resizeable]="col.resizeable"></ngx-datatable-column>
 
-			<ngx-datatable-column *ngFor="let action of rowActions" [width]="auto" [name]="action.name" [prop]="action.prop">
+			<ngx-datatable-column *ngFor="let action of rowActions" [width]="80" [name]="action.name" [prop]="action.prop">
 				<ng-template let-column="column" ngx-datatable-header-template>
 					{{action.name}}
 				</ng-template>
