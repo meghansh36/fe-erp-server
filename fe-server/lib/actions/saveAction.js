@@ -16,6 +16,7 @@ module.exports = class saveDefaultAction extends DefaultAction {
  
     handlePutRequest(req,res,done) {
         var sucessMessage = '';//Save My Data
+        // creatingDataStructure();
 
         if(!sucessMessage) {
             this._error = 'My Data was not saved';
