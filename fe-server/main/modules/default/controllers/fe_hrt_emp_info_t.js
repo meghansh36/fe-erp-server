@@ -119,5 +119,7 @@ module.exports = class FeEmpDetails{
               // Send created customer to client
               res.send(emp);
           });
-      };
+      }
+
+      
 }
