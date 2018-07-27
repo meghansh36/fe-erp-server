@@ -85,8 +85,12 @@ export class FeDataTableComponent implements OnInit {
 
 	protected _initializeGrid(gridDefination) {
 		this._setGrid(gridDefination);
+		this.newData_for_filter_forting_paging.formCode = this.formCode;
+		this.newData_for_filter_forting_paging.limit = Number(this.limit);
+		this.newData_for_filter_forting_paging.offset = Number(this.offset);
+		this.offset +=1;
 		this.loadingIndicator = true;
-		this.dataTableService.fetchRowData(this.formCode,this.limit,this.offset).subscribe((data) => {
+		this.dataTableService.fetchRowData(this.newData_for_filter_forting_paging).subscribe((data) => {
 			this._setRowData(data);
 		})
 	}
@@ -129,13 +133,14 @@ export class FeDataTableComponent implements OnInit {
 
 	public getLimitedData(event) {
 		this.newData_for_filter_forting_paging.limit = Number(event.target.value);
-		this.newData_for_filter_forting_paging.offset = Number(this.table.offset);
+		this.newData_for_filter_forting_paging.offset = Number(this.offset) - 1;
 		this.newData_for_filter_forting_paging.prevLimit = this.limit;
 		this.newData_for_filter_forting_paging.sorting = this.sortedData;
 		this.newData_for_filter_forting_paging.filter = this.filterJsonData;
 		this.newData_for_filter_forting_paging.formCode = this.formCode;
 
-		let row = this.dataTableService.fetchLimitData(this.newData_for_filter_forting_paging).subscribe((data) => {
+		this.loadingIndicator = true;
+		let row = this.dataTableService.fetchRowData(this.newData_for_filter_forting_paging).subscribe((data) => {
 			this._setNewDataAfterLimit(data, event);
 		});
 	}
@@ -147,6 +152,7 @@ export class FeDataTableComponent implements OnInit {
 			this.temp = [...data.body.row];
 			this.count = data.body.count;
 			this.limit = Number(event.target.value);
+			this.loadingIndicator = false;
 			//this.offset = this.table.offset;
 		}
 	}
@@ -177,11 +183,14 @@ export class FeDataTableComponent implements OnInit {
 		this.newData_for_filter_forting_paging.filter = this.filterJsonData;
 		this.newData_for_filter_forting_paging.formCode = this.formCode;
 		this.newData_for_filter_forting_paging.limit = Number(this.limit);
-		this.dataTableService.fetchNewDataAfterPaging(this.newData_for_filter_forting_paging).subscribe((data) => {
-			console.log("data is",data);
+
+		this.loadingIndicator = true;
+		this.dataTableService.fetchRowData(this.newData_for_filter_forting_paging).subscribe((data) => {
+			console.log(data);
 			this.rows = [...data.body.row];
 			this.temp = [...data.body.row];
 			this.count = data.body.count;
+			this.loadingIndicator = false;
 		});
 	}
 
@@ -373,7 +382,7 @@ export class FeDataTableComponent implements OnInit {
 		this.newData_for_filter_forting_paging.filter = this.filterJsonData;
 		this.newData_for_filter_forting_paging.sorting = this.sortedData;
 		this.newData_for_filter_forting_paging.formCode = this.formCode;
-		this.newData_for_filter_forting_paging.offset = this.table.offset;
+		this.newData_for_filter_forting_paging.offset = Number(this.offset)-1;
 
 		this.filterService.sendFilterOption(this.newData_for_filter_forting_paging);
 	}

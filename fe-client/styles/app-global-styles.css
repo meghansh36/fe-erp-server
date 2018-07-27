@@ -5,6 +5,8 @@
 @import '~@swimlane/ngx-datatable/release/index.css';
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 .hidden {
     display: none !important;
 }
@@ -412,6 +414,9 @@ a.disabled {
     -moz-transition: background-color 0.24s linear;
     transition: background-color 0.24s linear;
 }
+
+
+
 
 
 /*-------------------------}          */

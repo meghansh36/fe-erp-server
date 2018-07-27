@@ -87,21 +87,18 @@ export class FeDataTableService {
 		]
 	}
 
-	fetchRowData(formCode: string, limit: string, offset: number): Observable<HttpResponse<any>> {
-		let page = Number(offset);
-		console.log(offset);
-		let rowPerPage = Number(limit);
+	fetchRowData(object: any): Observable<HttpResponse<any>> {
 		return this.http.post(
-			'http://fe.localhost:3000/api/fe/fe/default/forms_data/forms_data', { "formCode": formCode, "limit": rowPerPage, "offset": page }, { observe: 'response' });
+			'http://fe.localhost:3000/api/fe/fe/default/forms_data/forms_data', object, { observe: 'response' });
 	}
 
-	fetchLimitData(object: any): Observable<HttpResponse<any>> {
+	/* fetchLimitData(object: any): Observable<HttpResponse<any>> {
 		return this.http.post<any>('http://fe.localhost:3000/api/fe/fe/default/forms_data/forms_data', object, { observe: 'response' });
 	}
 
 	fetchNewDataAfterPaging(object: any): Observable<HttpResponse<any>> {
 		return this.http.post<any>('http://fe.localhost:3000/api/fe/fe/default/forms_data/forms_data', object, { observe: 'response' });
-	}
+	} */
 
 	getGridDefinationByCode(code: string): Observable<HttpResponse<any>> {
 		return this.http.get<any>(
