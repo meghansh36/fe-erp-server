@@ -14,6 +14,7 @@ class TracerHelper extends BaseHelper {
 		this._prepareConfigs();
 		this._createTransportObj();
 		this._createLoggerObj();
+		console.log('models: ', this._appObj.models);
 	}
 
 	_prepareConfigs() {
