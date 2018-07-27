@@ -87,18 +87,18 @@ export class FeDataTableService {
 		]
 	}
 
-	fetchRowData(): Observable<HttpResponse<any>> {
-		return this.http.get(
-			'http://fe.localhost:3000/api/fe/fe/default/forms_data/forms_data', { observe: 'response' });
+	fetchRowData(object: any): Observable<HttpResponse<any>> {
+		return this.http.post(
+			'http://fe.localhost:3000/api/fe/fe/default/forms_data/forms_data', object, { observe: 'response' });
 	}
 
-	fetchLimitData(limit, pageNumber, prevLimit) {
-		this.http.post('/api/fetchLimitData', { 'limit': limit, 'pageNumber': pageNumber, 'prevLimit': prevLimit }).subscribe((res) => {
-			console.log(res);
-		}, (err) => {
-			console.log(err);
-		})
+	/* fetchLimitData(object: any): Observable<HttpResponse<any>> {
+		return this.http.post<any>('http://fe.localhost:3000/api/fe/fe/default/forms_data/forms_data', object, { observe: 'response' });
 	}
+
+	fetchNewDataAfterPaging(object: any): Observable<HttpResponse<any>> {
+		return this.http.post<any>('http://fe.localhost:3000/api/fe/fe/default/forms_data/forms_data', object, { observe: 'response' });
+	} */
 
 	getGridDefinationByCode(code: string): Observable<HttpResponse<any>> {
 		return this.http.get<any>(

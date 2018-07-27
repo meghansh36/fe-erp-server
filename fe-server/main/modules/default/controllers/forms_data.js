@@ -5,23 +5,22 @@ module.exports = class FeFormsData {
     //reading emplyee details frm all the tables.
     forms_data(req, res, done) {
         var clientName = req.params.client;
+        var offset = req.body.offset * req.body.limit ;
         FE.clients[clientName].models.FormsData.findAll({
-            attributes: ['ID', 'FORM_CODE', 'LABEL']
+            attributes: ['ID', 'FORM_CODE', 'LABEL'],
+            offset: offset,
+            limit:req.body.limit
         }).then(function (formsData) {
-
             var data = {};
-            // var formsArray = [];
-            // formsData.forEach(data => {
-            //     var formObj = {};
-            //     formObj.formcode = data.FORM_CODE;
-            //     formObj.label = data.LABEL;
-            //     formObj.id = data.ID;
-            //     formsArray.push(formObj);
-            // });  
-            data.data = formsData;
-
-            // console.log(formsData);
-            res.json(data);
+            data.row = formsData;
+            return data;
+        }).then(function (data) {
+            FE.clients[clientName].models.FormsData.findAll({
+                attributes: ['ID'],
+            }).then(function(count){
+                data.count = count.length;
+                res.send(data);
+            })  
         }).catch(function (err) {
             console.log(err);
             res.send(err);
