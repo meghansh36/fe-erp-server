@@ -41,10 +41,10 @@ class DbPlugin extends BasePlugin {
 		this._models = {};
 		fs.readdirSync(modulesPath).forEach(module => {
 			var modelFolderName = modulesPath + '/' + module + '/models';
-			fs.access(modelFolderName, fs.constants.R_OK, (err) => {
-				if (err) {
+			// fs.access(modelFolderName, fs.constants.R_OK, (err) => {
+			// 	if (err) {
 
-				} else {
+			// 	} else {
 					Object.assign(
 						this._models, ...fs.readdirSync(modelFolderName)
 						.filter(file => (file.indexOf(".") !== 0) && (file !== "index.js"))
@@ -55,8 +55,8 @@ class DbPlugin extends BasePlugin {
 							};
 						})
 					);
-				}
-			});
+				
+			
 		})
 
 		for (const model of Object.keys(this._models)) {
