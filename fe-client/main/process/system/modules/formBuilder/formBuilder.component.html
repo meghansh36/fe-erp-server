@@ -39,8 +39,8 @@
               <ng-template #formHiddenContditionHelp>
                 <div class="json-help-wrapper">
                   <pre class="json-help">
-                                                    {{ formJsonHelp.show | json }}
-                                                </pre>
+                      {{ formJsonHelp.hide | json }}
+                  </pre>
                 </div>
               </ng-template>
             </div>
@@ -170,17 +170,17 @@
       <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
         <ngb-panel title="Basic Fields">
           <ng-template ngbPanelContent>
-            <form-drag [elementListToLoad]="basic"></form-drag>
+            <form-drag [elementListName]="'basic'"></form-drag>
           </ng-template>
         </ngb-panel>
         <ngb-panel title="Advanced Fields">
           <ng-template ngbPanelContent>
-            <form-drag [elementListToLoad]="advanced"></form-drag>
+            <form-drag [elementListName]="'advanced'"></form-drag>
           </ng-template>
         </ngb-panel>
         <ngb-panel title="Layout">
           <ng-template ngbPanelContent>
-            <form-drag [elementListToLoad]="layoutFields"></form-drag>
+            <form-drag [elementListName]="'layout'"></form-drag>
           </ng-template>
         </ngb-panel>
       </ngb-accordion>

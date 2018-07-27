@@ -9,12 +9,13 @@ import { FormBuilderService } from '@L3Process/system/modules/formBuilder/servic
 export class FeFormDragComponent implements OnInit {
 
   elementList: Object  = null;
-  @Input() elementListToLoad: string;
+  @Input() elementListName: any;
 
   constructor(private formService: FormBuilderService) {
   }
   ngOnInit() {
-    this.elementList = this.formService.getElementList(this.elementListToLoad);
+    console.log(this.elementListName);
+    this.elementList = this.formService.getElementList(this.elementListName);
    }
 
 

@@ -204,13 +204,6 @@ export class FeFormBuilderService {
       componentName: 'TimeComponent'
     },
     {
-      name: 'fieldset',
-     component: FieldSetComponent,
-      label: 'FieldSet',
-      icon: 'access_time',
-      componentName: 'FieldSetComponent'
-    },
-    {
       name: 'autocomplete',
      component: FieldSetComponent,
       label: 'Auto Complete',
@@ -227,7 +220,13 @@ export class FeFormBuilderService {
   ];
 
   layoutElements = [
-
+    {
+      name: 'fieldset',
+      component: FieldSetComponent,
+      label: 'FieldSet',
+      icon: 'access_time',
+      componentName: 'FieldSetComponent'
+    }
   ];
 
   component = {
@@ -374,7 +373,7 @@ export class FeFormBuilderService {
       console.log('returning adv')
       return this.advancedElements;
     }
-    if (elementListToLoad === 'layoutFields') {
+    if (elementListToLoad === 'layout') {
       console.log('returning')
       return this.layoutElements;
     }
