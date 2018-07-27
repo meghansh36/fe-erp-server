@@ -88,7 +88,7 @@ export class FeDataTableComponent implements OnInit {
 		this.newData_for_filter_forting_paging.formCode = this.formCode;
 		this.newData_for_filter_forting_paging.limit = Number(this.limit);
 		this.newData_for_filter_forting_paging.offset = Number(this.offset);
-		this.offset +=1;
+		this.offset += 1;
 		this.loadingIndicator = true;
 		this.dataTableService.fetchRowData(this.newData_for_filter_forting_paging).subscribe((data) => {
 			this._setRowData(data);
@@ -177,8 +177,8 @@ export class FeDataTableComponent implements OnInit {
 	onPageChange(event: any) {
 		this.table.limit = this.limit;
 		this.offset = event.page;
-		console.log("offset is",this.offset);
-		this.newData_for_filter_forting_paging.offset = Number(this.offset) -1 ;
+		console.log("offset is", this.offset);
+		this.newData_for_filter_forting_paging.offset = Number(this.offset) - 1;
 		this.newData_for_filter_forting_paging.sorting = this.sortedData;
 		this.newData_for_filter_forting_paging.filter = this.filterJsonData;
 		this.newData_for_filter_forting_paging.formCode = this.formCode;
@@ -275,7 +275,7 @@ export class FeDataTableComponent implements OnInit {
 	protected _manipulateStructureOfFilter(event: any) {
 		this._convertToValidFilterJson(event);
 		this._checkIfParentHasChild(event);
-		this._applyFilter();
+		this._applyFilterAndSorting();
 	}
 
 
@@ -363,7 +363,7 @@ export class FeDataTableComponent implements OnInit {
 
 	public filterOnSorting({ sorts, column, prevValue, newValue }) {
 		this._convertToValidSortingJson(sorts);
-		this._applyFilter();
+		this._applyFilterAndSorting();
 	}
 
 	protected _convertToValidSortingJson(sorts: any) {
@@ -377,14 +377,21 @@ export class FeDataTableComponent implements OnInit {
 
 	//-------------------------- *********** ---------------------------------
 
-	protected _applyFilter() {
+	protected _applyFilterAndSorting() {
 		this.newData_for_filter_forting_paging.limit = this.limit;
 		this.newData_for_filter_forting_paging.filter = this.filterJsonData;
 		this.newData_for_filter_forting_paging.sorting = this.sortedData;
 		this.newData_for_filter_forting_paging.formCode = this.formCode;
-		this.newData_for_filter_forting_paging.offset = Number(this.offset)-1;
+		this.newData_for_filter_forting_paging.offset = Number(this.offset) - 1;
 
-		this.filterService.sendFilterOption(this.newData_for_filter_forting_paging);
+		this.filterService.sendFilterOption(this.newData_for_filter_forting_paging).subscribe((data) => this.setNewRowAfterApplyingFiltersAndSorting(data));
+	}
+
+	setNewRowAfterApplyingFiltersAndSorting(data: any) {
+		console.log(data);
+		this.rows = [...data.body.row];
+		this.temp = [...data.body.row];
+		this.count = data.body.count;
 	}
 
 

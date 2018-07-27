@@ -37,6 +37,7 @@ export class FePopUpComponent implements OnInit {
 
 	public dependent_field_object = {};
 	public dependent_field_data_array = [];
+	public dependent_operator: any;
 
 	set filter(filter) {
 		this._filter = filter;
@@ -146,7 +147,7 @@ export class FePopUpComponent implements OnInit {
 		this.filter = this.value;
 		this.operatorValue = this.operator;
 		this.checkForParent();
-		this.checkForChildDefault();
+		this.checkForParentDefault();
 	}
 
 	checkForParent() {
@@ -160,10 +161,11 @@ export class FePopUpComponent implements OnInit {
 			let lov = this.lov;
 			this.dependent_field_object[label] = lov;
 			this.initiallyAddFirstParent();
+			this.flexiLabel = parentFieldOfSelectedField[0].flexiLabel
 		}
 		/* this.conditionalLov = this.lov;
 		this.conditionalLabel = this.label;
-		if (this.parent) {
+		if (this.hasParent) {
 			this.Parentfield = this.columnsFiltersTobeApplied.filter((ele) => ele.code == this.parent);
 			setTimeout(() => {
 				this.conditionalLabel = this.Parentfield[0].label;
@@ -178,7 +180,7 @@ export class FePopUpComponent implements OnInit {
 		this.conditionalLov = this.dependent_field_object[Object.keys(this.dependent_field_object)[0]];
 	}
 
-	checkForChildDefault() {
+	checkForParentDefault() {
 		if (this.parent) {
 			let temp = this.dependent.getChildCode(this.parent);
 			if (temp) {
@@ -199,7 +201,7 @@ export class FePopUpComponent implements OnInit {
 			let parent = this.columnsFiltersTobeApplied.filter((fld) => fld.code == parentFieldOfSelectedField[0].parent);
 			this.setDependentFieldObject(parent);
 		}
-		let label = parentFieldOfSelectedField[0].flexiLabel;
+		let label = parentFieldOfSelectedField[0].label;
 		let lov = parentFieldOfSelectedField[0].lov;
 		this.dependent_field_object[label] = lov;
 	}
@@ -220,9 +222,9 @@ export class FePopUpComponent implements OnInit {
 		if (event.target.value) {
 			if (element == undefined) {
 				if (this.hasParent == 'Y') {
-					let label = this.conditionalLov.filter((ele) => ele.code == event.target.value);
+					let label = Object.keys(this.dependent_field_object)[0];  //this.conditionalLov.filter((ele) => ele.code == event.target.value);
 					this.filterValue = event.target.value;
-					this.filter = label[0].meaning;
+					this.filter = label;
 					this.children = this.dependent.getChild(this.filterValue);
 					this.createChildren();
 				}
@@ -234,7 +236,7 @@ export class FePopUpComponent implements OnInit {
 			}
 			else {
 				this.element = element;
-				if (element.hasParent == 'Y') {
+				if (element.hasChild) {
 					let val = event.target.value;
 					this.createObject(event, element);
 					this.children = this.dependent.getChild(val);
@@ -250,7 +252,7 @@ export class FePopUpComponent implements OnInit {
 		}
 	}
 
-	slectItemForChild(event: any, element: any) {
+	/* slectItemForChild(event: any, element: any) {
 		this.element = element;
 		if (element.hasParent == 'Y') {
 			let val = event.target.value;
@@ -262,7 +264,7 @@ export class FePopUpComponent implements OnInit {
 			this.createObject(event, element);
 		}
 	}
-
+ */
 
 	createObject(event: any, element: any) {
 		let flexi = element[0]['flexiLabel'];
@@ -276,7 +278,7 @@ export class FePopUpComponent implements OnInit {
 
 	objectStructure(event: any, element: any) {
 		let obj = {
-			operator: this.selectOperatorForChild(),
+			operator: this.dependent_operator,
 			value: event.target.value,
 			label: this.childMeaning,
 			flexi: element[0]['flexiLabel']
@@ -331,7 +333,7 @@ export class FePopUpComponent implements OnInit {
 			this.selectOperatorForChild(element);
 		}
 		else {
-			oprFieldRef.addEventListener('change', this.selectOperatorForChild.bind(this));
+			oprFieldRef.addEventListener('change', this.selectOperatorForChild.bind(this, [element]));
 		}
 	}
 
@@ -339,13 +341,24 @@ export class FePopUpComponent implements OnInit {
 		this.selectItem(event, element);
 	}
 
-	selectOperatorForChild(event?: any) {
-		if (this.type == "SEL") {
-			return "equals";
+	selectOperatorForChild(element?: any, event?: any) {
+		if (element[0].type == "SEL") {
+			this.dependent_operator = "equals";
 		}
 		else {
-			return event.target.value;
+			this.dependent_operator = event.target.value;
+			if (this.dependentField.length) {
+				this.dependentField.forEach((obj) => {
+					if (obj.flexi == element[0].flexiLabel) {
+						obj.operator = this.dependent_operator;
+					}
+				});
+			}
 		}
+	}
+
+	selectOperator(event: any) {
+		this.operator = event.target.value;
 	}
 
 	closePopUp() {

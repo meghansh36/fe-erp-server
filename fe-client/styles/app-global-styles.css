@@ -376,7 +376,6 @@ a.disabled {
     padding-left: 5px;
 }
 
-<<<<<<< HEAD
 .radio input[type="radio"] {
     display: none;
 }
@@ -417,7 +416,6 @@ a.disabled {
 
 
 /*-------------------------}          */
-=======
 .align-center {
 	justify-content: center !important;
 }
@@ -460,4 +458,3 @@ a.disabled {
 	border: unset;
 }
 /*-------------------------}          */
->>>>>>> a50b6f5af3082b467f3fdda7cda5c226c4b535da
