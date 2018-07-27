@@ -376,44 +376,13 @@ a.disabled {
     padding-left: 5px;
 }
 
-.radio input[type="radio"] {
-    display: none;
-}
-
-.radio input[type="radio"] {
-    font-weight: 400;
-    font-size: 14px;
-}
-
 .radio input[type="radio"]{
-    display: inline-block;
     width: 18px;
     height: 18px;
-    margin: -2px 10px 0 0;
-    vertical-align: middle;
     cursor: pointer;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    border: 3px solid #ffffff;
 }
-
-.radio input[type="radio"]{
-    background-color: #fff;
-}
-
-.radio input[type="radio"]:checked {
-    font-weight: 700;
-      background: #f56;
-      background-clip: content-box;
-      -webkit-transition: background-color 0.24s linear;
-    -o-transition: background-color 0.24s linear;
-    -moz-transition: background-color 0.24s linear;
-    transition: background-color 0.24s linear;
-}
-
-
-
-
 
 /*-------------------------}          */
 .align-center {

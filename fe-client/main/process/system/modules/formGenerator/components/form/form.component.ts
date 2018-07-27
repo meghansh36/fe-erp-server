@@ -166,7 +166,7 @@ export class FeFormComponent
 	this._beforeNgAfterViewInit();
 	setTimeout(() => {//Used this in very extreme case
 		this._addDisplayProps();
-	}, 4000);
+	}, 5000);
     this._afterNgAfterViewInit();
   }
 

@@ -27,7 +27,14 @@ class DispatcherPlugin extends BasePlugin {
 						next();
 					}
 		    });	
-		  });
+			});
+			
+			router.put('/:module/:controller/:action',(req,res,done)=>{
+					var actionClassPath = this._appObj.SUB_APP_MODULES_PATH+'/'+req.params.module+'/controllers/'+req.params.controller+'/'+req.params.action+'.js';
+					actionClass = FE.require(actionClassPath);
+					var actionClassObject =  new actionClass();
+					actionClassObject.initialize(req,res,done);
+			});
 			
 		  router.get('/:module/:controller/:action', (req, res, next)=>{
 		    var controller = this._appObj.SUB_APP_MODULES_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
@@ -60,5 +67,7 @@ class DispatcherPlugin extends BasePlugin {
 		console.log('Dispatcher plugin initialized');
 
 	}
+
 }
+
 module.exports = DispatcherPlugin;

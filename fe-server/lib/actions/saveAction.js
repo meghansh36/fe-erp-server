@@ -1,8 +1,7 @@
 const DefaultAction = require('./defaultAction');
 
 module.exports = class saveDefaultAction extends DefaultAction {
-    constructor(_appObj) {
-        this._appObj = _appObj;
+    constructor() {
         this.accepts = ["put"];
 
         this._error = '';
@@ -15,8 +14,9 @@ module.exports = class saveDefaultAction extends DefaultAction {
         super(this.accepts);
     }
  
-    handlePutRequest() {
+    handlePutRequest(req,res,done) {
         var sucessMessage = '';//Save My Data
+        // creatingDataStructure();
 
         if(!sucessMessage) {
             this._error = 'My Data was not saved';

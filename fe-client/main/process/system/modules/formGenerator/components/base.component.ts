@@ -52,9 +52,9 @@ export class FeBaseComponent
 		this._utility.renderer = this._render;
 	}
 
-	protected _beforeNgOnInit() {}
+	protected _beforeNgOnInit() { }
 
-	protected _afterNgOnInit() {}
+	protected _afterNgOnInit() { }
 
 	ngOnInit(): void {
 		this._beforeNgOnInit();
@@ -74,7 +74,7 @@ export class FeBaseComponent
 		this._setValues();
 	}
 
-	protected _beforeNgAfterViewInit() {}
+	protected _beforeNgAfterViewInit() { }
 
 	ngAfterViewInit() {
 		this._beforeNgAfterViewInit();
@@ -87,11 +87,11 @@ export class FeBaseComponent
 
 	}
 
-	protected _afterNgAfterViewInit() {}
+	protected _afterNgAfterViewInit() { }
 
-	protected _beforeNgOnDestroy() {}
+	protected _beforeNgOnDestroy() { }
 
-	protected _afterNgOnDestroy() {}
+	protected _afterNgOnDestroy() { }
 
 	ngOnDestroy() {
 		this._beforeNgOnDestroy();
@@ -124,10 +124,10 @@ export class FeBaseComponent
 	}
 
 	protected _setDefaultValue() {
-		if ( this.defaultValue ) {
-			if ( this.defaultValueType == 'string' ) {
+		if (this.defaultValue) {
+			if (this.defaultValueType == 'string') {
 				this.value = this.defaultValue;
-			} else if ( this.defaultValueType == 'sqlQuery' ) {
+			} else if (this.defaultValueType == 'sqlQuery') {
 				//fetch data from server
 			}
 		}
@@ -144,7 +144,6 @@ export class FeBaseComponent
 	protected _setLov() {
 		const lov = this.lov;
 		const firstOption = this._defaults.DROPDOWN_DEFAULT_OPTION;
-		let options = [];
 		if ( lov ) {
 			if ( this.lovType == 'json' ) {
 				if ( this.type === 'SEL' ) {
@@ -153,7 +152,7 @@ export class FeBaseComponent
 					this.options = lov;
 				}
 				this._setDefaultValue();
-			} else if ( this.defaultValueType == 'sqlQuery' ) {
+			} else if (this.defaultValueType == 'sqlQuery') {
 				//fetch data from server
 			}
 		} else {
@@ -251,7 +250,7 @@ export class FeBaseComponent
 			(<any>window).result = false;
 			const evalStr = `window.result = window.leftValue ${
 				(<any>window).operator
-			} window.rightValue `;
+				} window.rightValue `;
 			eval(evalStr);
 			resFlag = (<any>window).result;
 			this[`_${action}ConditionFlags`][flagIndex] = resFlag;
@@ -565,7 +564,7 @@ export class FeBaseComponent
 				} else {
 					console.log(
 						`Given _validator is not a function for validation ${name} for field ${
-							this.flexiLabel
+						this.flexiLabel
 						}`
 					);
 				}
@@ -580,7 +579,7 @@ export class FeBaseComponent
 			if (!this.form) {
 				console.log(
 					`Form class instance not found in field for applying form class validations for field ${
-						this.code
+					this.code
 					}`
 				);
 				return;
@@ -605,7 +604,7 @@ export class FeBaseComponent
 				} else {
 					console.log(
 						`Form class _validator function ${validatorFunc} does not exist for ${validationName} custom validation for field ${
-							this.code
+						this.code
 						}.`
 					);
 				}
@@ -617,17 +616,17 @@ export class FeBaseComponent
 
 	protected _applyJsonValidations() {
 		const json = this.jsonLogicVal;
-		//const validationName:string = "json_"+(parseInt(Math.random()*10000)).toString();
-		let fn = function(
-			formControls: any,
+		let fn = (
 			control: AbstractControl
-		): { [key: string]: boolean } | null {
-			if (jsonLogic.apply(json["json"], formControls) != true) {
+		): { [key: string]: boolean } | null => {
+			this.control.markAsDirty({onlySelf: true});
+			if (jsonLogic.apply(json["json"], this.group.controls) != true) {
 				return { json: true };
 			}
 			return null;
 		};
-		this.validators.push(fn.bind(this, this.group.controls));
+
+		this.validators.push(fn);
 		const errorObj = {
 			name: "json",
 			message: json["message"]
@@ -1094,7 +1093,7 @@ export class FeBaseComponent
 		return this._options;
 	}
 
-	set options( options ) {
+	set options(options) {
 		this._options = options;
 	}
 
