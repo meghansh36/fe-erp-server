@@ -8,4 +8,14 @@ import { BaseComponent } from '@L3Process/system/modules/formGenerator/component
 })
 export class FeEmailComponent extends BaseComponent {
 
+  _addExtraValidations () {
+    super._addExtraValidations();
+    this._addNgValidation(
+      this._validator.getCustomValidation.call(
+        this._validator,
+        'email',
+        true
+      )
+    );
+  }
 }

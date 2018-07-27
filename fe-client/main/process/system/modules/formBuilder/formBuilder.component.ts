@@ -6,7 +6,8 @@ import {
 	DoCheck,
 	Renderer2,
 	OnInit,
-	AfterViewInit
+	AfterViewInit,
+	OnDestroy
 } from "@angular/core";
 import { NgBootstrapService } from "@L3Process/system/services/NgBootstrap.service";
 import { FormMasterService } from "@L3Process/system/modules/formBuilder/services/formMaster.service";
@@ -25,7 +26,7 @@ import { FormSchemaService } from "@L3Main/services/formSchema.service";
 	templateUrl: "./formBuilder.component.html",
 	styleUrls: ["./formBuilder.component.css"]
 })
-export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
+export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit, OnDestroy {
 	@ViewChild("host", { read: ViewContainerRef })
 	host: ViewContainerRef;
 	@ViewChild("buttonHost", { read: ViewContainerRef })
@@ -91,6 +92,10 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 				}
 			}
 		});
+	}
+
+	ngOnDestroy() {
+		console.log("destroyed")
 	}
 
 	protected _onComponentDrop(value) {
