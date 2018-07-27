@@ -135,7 +135,11 @@ export class FeBaseComponent
 	}
 
 	protected _setValues() {
+<<<<<<< HEAD
 		if (_.includes(['SEL', 'ACS', 'MSL', 'MCH'], this.type)) {
+=======
+		if ( _.includes( ['SEL', 'ACS', 'MSL', 'MCH', 'RAD'], this.type ) ) {
+>>>>>>> b69642817cc9b203c6db0cf3309efc7f8fa13e3b
 			this._setLov();
 		} else {
 			this._setDefaultValue();
@@ -474,11 +478,13 @@ export class FeBaseComponent
 		if (this.formClassValidation) {
 			this._applyFormClassValidation();
 		}
-
+		console.log("this.jsonLogicVal", this.label, this.jsonLogicVal);
 		if (this.jsonLogicVal) {
 			this._applyJsonValidations();
 		}
+		console.log('this.validators', this.validators);
 		if (this.control && this.validators.length > 0) {
+			console.log('Setting validators');
 			this.control.setValidators(this.validators);
 		}
 	}
@@ -611,9 +617,16 @@ export class FeBaseComponent
 		//const validationName:string = "json_"+(parseInt(Math.random()*10000)).toString();
 		let fn = (
 			control: AbstractControl
+<<<<<<< HEAD
 		): { [key: string]: boolean } | null => {
 			this.control.markAsDirty({onlySelf: true});
 			if (jsonLogic.apply(json["json"], this.group.controls) != true) {
+=======
+		): { [key: string]: boolean } | null {
+			console.log("JSON Logic Val", control, formControls);
+			if (jsonLogic.apply(json["json"], formControls) != true) {
+				console.log('JSON error should come.');
+>>>>>>> b69642817cc9b203c6db0cf3309efc7f8fa13e3b
 				return { json: true };
 			}
 			return null;

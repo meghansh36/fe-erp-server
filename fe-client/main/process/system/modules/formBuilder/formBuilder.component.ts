@@ -1,3 +1,8 @@
+/*
+ *@Component Desription
+ *This is the main component for form builder.
+ */
+
 import {
 	Component,
 	ViewChild,
@@ -7,110 +12,151 @@ import {
 	Renderer2,
 	OnInit,
 	AfterViewInit
-} from "@angular/core";
-import { NgBootstrapService } from "@L3Process/system/services/NgBootstrap.service";
-import { FormMasterService } from "@L3Process/system/modules/formBuilder/services/formMaster.service";
-import { FieldControlService } from "@L3Process/system/modules/formBuilder/services/fieldControl.service";
-import { FormJsonService } from "@L3Process/system/modules/formBuilder/services/formJson.service";
-import { DragulaService } from "ng2-dragula";
-import { FormBuilderService } from "@L3Process/system/modules/formBuilder/services/formBuilder.service";
-import * as _ from "lodash";
-import { MasterFormComponent } from "@L3Process/system/modules/formBuilder/components/Master/masterForm.component";
-import { DefaultsService } from "@L3Process/system/services/defaults.service";
-import { ActivatedRoute } from "@angular/router";
-import { FormSchemaService } from "@L3Main/services/formSchema.service";
+} from '@angular/core';
+import { NgBootstrapService } from '@L3Process/system/services/NgBootstrap.service';
+import { FormMasterService } from '@L3Process/system/modules/formBuilder/services/formMaster.service';
+import { FieldControlService } from '@L3Process/system/modules/formBuilder/services/fieldControl.service';
+import { FormJsonService } from '@L3Process/system/modules/formBuilder/services/formJson.service';
+import { DragulaService } from 'ng2-dragula';
+import { FormBuilderService } from '@L3Process/system/modules/formBuilder/services/formBuilder.service';
+import * as _ from 'lodash';
+import { MasterFormComponent } from '@L3Process/system/modules/formBuilder/components/Master/masterForm.component';
+import { DefaultsService } from '@L3Process/system/services/defaults.service';
+import { ActivatedRoute } from '@angular/router';
+import { FormSchemaService } from '@L3Main/services/formSchema.service';
 
 @Component({
-	selector: "form-builder",
-	templateUrl: "./formBuilder.component.html",
-	styleUrls: ["./formBuilder.component.css"]
+	selector: 'form-builder',
+	templateUrl: './formBuilder.component.html',
+	styleUrls: ['./formBuilder.component.css']
 })
 export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
-	@ViewChild("host", { read: ViewContainerRef })
-	host: ViewContainerRef;
-	@ViewChild("buttonHost", { read: ViewContainerRef })
-	buttonHost: ViewContainerRef;
-	@ViewChild("content") content;
-	@ViewChild("preview") preview;
+	@ViewChild('host', { read: ViewContainerRef })
+		host: ViewContainerRef; // ng-template reference for the root-drop zone
+	@ViewChild('buttonHost', { read: ViewContainerRef })
+	buttonHost: ViewContainerRef; // ng-template reference for button dropzone
+	@ViewChild('content') content; // ng-template reference for master form modal(field options modal)
+	@ViewChild('preview') preview; // ng-template reference for preview window modal
 	cond: Boolean = false;
-	basic: String = "basic";
-	advanced: String = "advanced";
-	modalRef: any;
-	previewJSON: any;
-	rootDrop: any;
-	component: any;
-	finalJSON;
-	formJson: any;
-	jsonEditorConfig;
-	DOMArray: any = [];
+	modalRef: any; // stores the modal reference returned by the modal open function
+	previewJSON: any; // stores the final JSON which is used by the formGenerator in preview
+	finalJSON; // final JSON created in ngDoCheck
+	formJson: any; // JSON used to set form properties
+	jsonEditorConfig; // config for json editor in form options modal
 	protected _dragulaObservable$: any;
 
-	public formJsonHelp;
+public formJsonHelp;
 
-	constructor(
-		protected _bootstrapService: NgBootstrapService,
-		protected _masterFormService: FormMasterService,
-		protected _componentFactoryResolver: ComponentFactoryResolver,
-		protected _fieldControlService: FieldControlService,
-		protected _formJsonService: FormJsonService,
-		protected _dragulaService: DragulaService,
-		protected _formBuilderService: FormBuilderService,
-		protected _renderer: Renderer2,
-		protected _defaults: DefaultsService,
-		protected _route: ActivatedRoute,
-		protected _formSchemaService: FormSchemaService
-	) {
-		this._initialize();
-	}
+constructor(
+	protected _bootstrapService: NgBootstrapService,
+	protected _masterFormService: FormMasterService,
+	protected _componentFactoryResolver: ComponentFactoryResolver,
+	protected _fieldControlService: FieldControlService,
+	protected _formJsonService: FormJsonService,
+	protected _dragulaService: DragulaService,
+	protected _formBuilderService: FormBuilderService,
+	protected _renderer: Renderer2,
+	protected _defaults: DefaultsService,
+	protected _route: ActivatedRoute,
+	protected _formSchemaService: FormSchemaService ) {
+	this._initialize();
+}
 
-	protected _initialize() {
-		this.formJson = this._formJsonService.MasterJSON;
-		this._setDragulaOptions();
-		this._dragulaService.drop.subscribe(this._onComponentDrop.bind(this));
-	}
-
-	protected _setDragulaOptions() {
-		this._dragulaService.setOptions("bag-one", {
-			revertOnSpill: true,
-			copy: function(el, source) {
-				return source.id === "not_copy";
-			},
-			accepts: function(el, target, source, sibling) {
-				const targetClassesArr = target.className.trim().split(" ");
-				const fieldClassesArr = el.className.trim().split(" ");
-				if (
-					_.includes(targetClassesArr, "buttonDropZone") &&
-				    _.includes(fieldClassesArr, "button-input")
-				) {
-					return true;
-				} else if (
-					_.includes(targetClassesArr, "FSTdropZone") ||
-					_.includes(targetClassesArr, "customDropZone")
-				) {
-					return true;
-				}
+/*
+*@function Description
+*Intializes formJson, set Dragula(drag and drop library) configurations
+*subscribes to dragula drop events(fired on when drop is successfully completed) and calls
+*_.onComponentDrop function
+*/
+protected _initialize() {
+	this.formJson = this._formJsonService.MasterJSON;
+	this._setDragulaOptions();
+	this._dragulaService.drop.subscribe(this._onComponentDrop.bind(this));
+}
+/*
+*@function Description
+*Sets options for dragula drag and drop. All drop zones have the same bag name as 'bag-one'. This
+*enables the components to be dragged from one drop zone to another.
+*/
+protected _setDragulaOptions() {
+	this._dragulaService.setOptions('bag-one', {
+		revertOnSpill: true, // item not dropped outside of any drop zone - true
+		/*
+		*copy: @function Description
+		*@Arguments ==> el - the DOM node of the element that was dragged.
+		*				source - the DOM node of the source container(form-drag component)
+		*
+		*used so that the elements from the element List(list of elements that can be dragged)
+		*are copied and not removed from the form-drag container.
+		*/
+		copy: function(el, source) {
+			return source.id === 'not_copy'; // form-drag container has the not_copy id
+		},
+		/*
+		*accepts: @function Description
+		*@Arguments ==> el - the DOM node of the element that was dragged.
+		*				target - the DOM node of the target container. Can be root-drop,
+		*						 button-drop or fieldset.
+		*				source - the DOM node of the source container(form-drag component)
+		*				sibling - the DOM node of the sibling element in target
+		*
+		*used to ascertain which container can accept which elements. Root container
+		*and fieldset accepts all elements, button container only accepts the button elements.
+		*/
+		accepts: function(el, target, source, sibling) {
+			// creates array of classes on the target container
+			const targetClassesArr = target.className.trim().split(' ');
+			// creates array of classes on the dragged elements
+			const fieldClassesArr = el.className.trim().split(' ');
+			// if buttons are dropped in button container - true
+			if (
+				_.includes(targetClassesArr, 'buttonDropZone') &&
+				_.includes(fieldClassesArr, 'button-input')
+			) {
+				return true;
 			}
-		});
-	}
-
-	protected _onComponentDrop(value) {
-		if (this.rootDrop === undefined) {
-			this.rootDrop = value[2];
+			// accept all fields dropped in fieldset or root container.
+			else if (
+				_.includes(targetClassesArr, 'FSTdropZone') ||
+				_.includes(targetClassesArr, 'customDropZone')
+			) {
+				return true;
+			}
 		}
-		if (value[1].nodeName === "LI") {
+	});
+}
+
+/*@function Description
+* Arguments ==> value - array of DOM node of elements [bag name, dragged element, target, source, sibling ]
+*						passed by dragula
+*Called when drop complete event fires.
+*/
+	protected _onComponentDrop(value) {
+		// checks if the source of the element is form-drag component. Means new component is to be created.
+		if (value[1].nodeName === 'LI') {
+			// gets the component name that is to be rendered from the dragged element.
 			const componentName = value[1].attributes.getNamedItem(
-				"componentName"
+				'componentName'
 			).nodeValue;
+			// calculates the index where the element is to be created
 			const index = this.calculateIndex(value);
+			// !important. Removes the LI element dropped by the dragula from the DOM.
+			// In its place, dynamic components are rendered
 			value[1].remove();
 			this.dropComplete(
 				this._formBuilderService.getComponent(componentName),
 				index,
 				value
 			);
-		} else {
+		} 
+		// checks if the elements are moved within the drop-zones. No new component is generated.
+		// Only the order of the components in JSON is to be updated
+		else {
+			// calculates new index of the element within its container
 			const newIndex = this.calculateIndex(value);
+			// updates the parent component of the element if it is moved between different containers
 			value[1].parentComponent = value[2].id;
+			// updates the order of the components in Master Json
 			this._formJsonService.updateMasterJSONOnMove(
 				value[2],
 				value[3],
@@ -124,6 +170,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 
 	ngDoCheck() {
 		this._beforeNgDoCheck();
+		// rebuilds final Json on every change(element dropped or moved)
 		this._formJsonService.buildFinalJSON();
 		this.finalJSON = this._formJsonService.getFinalJSON();
 		this._afterNgDoCheck();
@@ -455,22 +502,6 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 		}
 		return;
 	}
-	/* async populateFormBuilder(components, i) {
-    console.log('total comp', components, i);
-    if (i > components.length) {
-      return;
-    }
-    console.log('components[i].components', components[i].components);
-    if (components[i].components === undefined) {
-      await this.createComponentsFromJSON(components[i]);
-      console.log('next iter', components);
-      this.populateFormBuilder(components, i + 1);
-    } else if(components[i].components !== undefined){
-      await this.createComponentsFromJSON(components[i]);
-      console.log('next recur', components[i].components)
-      this.populateFormBuilder(components[i].components, 0)
-    }
-  } */
 
 	runBuilder() {
 		this.host.clear();
@@ -486,7 +517,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit {
 	save() {
 		this._formBuilderService.postData(this.finalJSON).subscribe(
 			res => {
-				alert("data received");
+				alert("FORM SAVED");
 				console.log(res);
 			},
 			err => {

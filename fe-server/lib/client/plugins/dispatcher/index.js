@@ -16,7 +16,7 @@ class DispatcherPlugin extends BasePlugin {
 		 FE.ACL.then((acl)=>{
 		  
 		  //just testing acl
-		  console.log(acl);
+		  //console.log(acl);
 		  router.get('/api/', (req, res, next)=>{
 		    acl.isAllowed(420, '/api/', 'post', (err, allowed)=>{
 		      if(allowed){
@@ -27,32 +27,22 @@ class DispatcherPlugin extends BasePlugin {
 						next();
 					}
 		    });	
-		  });
+			});
+			
+			router.put('/:module/:controller/:action',(req,res,done)=>{
+					var actionClassPath = this._appObj.SUB_APP_MODULES_PATH+'/'+req.params.module+'/controllers/'+req.params.controller+'/'+req.params.action+'.js';
+					actionClass = FE.require(actionClassPath);
+					var actionClassObject =  new actionClass();
+					actionClassObject.initialize(req,res,done);
+			});
 			
 		  router.get('/:module/:controller/:action', (req, res, next)=>{
-		    // acl.isAllowed(420, 'fe/api', 'get', (err, allowed)=>{
-		    //   if(allowed){
-		    //     next();
-		    //   } else {
-		    //     res.send('Access Denied');
-		    //   }
-		    // })
-		  // }, (req, res, next) => {
 		    var controller = this._appObj.SUB_APP_MODULES_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
 		    var controller_class = require(controller);
 		    var controllerObj = new controller_class();
 		    var action = req.params.action;
 		    controllerObj[action](req,res);
 			});
-			
-			// router.get('/:module/:controller/:action/:id', (req, res, next)=>{
-		  //   var controller = this._appObj.SUB_APP_MODULES_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
-		  //   var controller_class = require(controller);
-		  //   var controllerObj = new controller_class();
-		  //   var action = req.params.action;
-		  //   controllerObj[action](req,res);
-		  // });
-
 
 		  router.post('/:module/:controller/:action', (req, res, next)=>{
 		    var controller = this._appObj.SUB_APP_MODULES_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
@@ -77,5 +67,7 @@ class DispatcherPlugin extends BasePlugin {
 		console.log('Dispatcher plugin initialized');
 
 	}
+
 }
+
 module.exports = DispatcherPlugin;

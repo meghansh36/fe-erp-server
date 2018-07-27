@@ -1,4 +1,4 @@
-const BaseHelper = FE.requireLib('/app/helperBaseClass.js');
+const BaseHelper = FE.requireLib('/client/helperBaseClass.js');
 const winston = require('winston');
 require('winston-daily-rotate-file');
 
@@ -6,8 +6,7 @@ class LoggerHelper extends BaseHelper {
 
 	constructor(_appObj) {
 		super(_appObj);
-		this._appObj = _appObj;
-		this._configs = this._appObj.configs.helpers.logger;
+		this._configs = this._appObj.configs.helpers.loggerDb;
 		this._props = {};
 	}
 
@@ -15,6 +14,7 @@ class LoggerHelper extends BaseHelper {
 		this._prepareConfigs();
 		this._createTransportObj();
 		this._createLoggerObj();
+		//console.log('Db Logger initialized!:', this._configs);
 	}
 
 	_prepareConfigs() {
@@ -25,11 +25,12 @@ class LoggerHelper extends BaseHelper {
 		this._props.level = this._configs.level;
 		this._props.timestamp = this._configs.timestamp;
 		this._props.prettyPrint = this._configs.prettyPrint;
+		this._props.tableName = this._configs.table_name;
+		this._props.type = this._configs.type;
 	}
 
 	_createTransportObj() {
-		//create new winston transport daily rotate file
-		var DailyRotateFile = winston.transports.DailyRotateFile;
+        var DailyRotateFile = winston.transports.DailyRotateFile;
 		this._transport = new DailyRotateFile(this._props);
 	}
 
@@ -40,7 +41,7 @@ class LoggerHelper extends BaseHelper {
 		});
 	}
 
-	_log(type, error, description, stage, vars) {
+	_log(req, type, error, description, stage, vars) {
 		var logMsg = {};
 
 		var msg = '';
@@ -73,8 +74,36 @@ class LoggerHelper extends BaseHelper {
 		logMsg.file = index || 'Not Found';
 		logMsg.stack = err.stack || 'Not Found';
 		logMsg.line = line || 'Not Found';
-		var logStr = JSON.stringify(logMsg);
-		this._logger.log(type, logMsg);
+		//var logStr = JSON.stringify(logMsg);
+		// var logModel = ;
+		
+		
+		//write log into db
+		this._appObj.models[this._props.tableName].create({
+			//attribute2: req.userDetails.empId,
+			//attribute3: req.UUID,	
+			//attribute4: req.userDetails.uName,
+			attribute5: this._props.type,
+			attribute7: error,
+			attribute8: msg,
+			attribute9: description,
+			//attribute10: user description
+			attribute11: logMsg.stack,
+			attribute12: logMsg.file,
+			attribute13: line,
+			attribute21: logMsg.time,
+			// attribute14: req.params.module,
+			// attribute15: req.params.controller,
+			// attribute16: req.params.action,
+			//attribute17: req.userDetails.roleId,
+			// attribute18: req.userDetails.roleCode,
+			// attribute19: req.userDetails.roleType,
+			// attribute20: req.sessionId,
+			when_created: logMsg.time
+		})
+		.then(()=> console.log('inserted log into db'))
+		.catch((err)=> console.error(err));
+		//this._logger.log(type, logMsg);
 	}
 
 	info(error, description, stage, vars) {
