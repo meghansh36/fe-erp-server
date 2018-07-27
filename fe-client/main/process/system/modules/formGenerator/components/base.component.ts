@@ -135,7 +135,7 @@ export class FeBaseComponent
 	}
 
 	protected _setValues() {
-		if ( _.includes( ['SEL', 'ACS', 'MSL', 'MCH'], this.type ) ) {
+		if ( _.includes( ['SEL', 'ACS', 'MSL', 'MCH', 'RAD'], this.type ) ) {
 			this._setLov();
 		} else {
 			this._setDefaultValue();
@@ -474,11 +474,13 @@ export class FeBaseComponent
 		if (this.formClassValidation) {
 			this._applyFormClassValidation();
 		}
-
+		console.log("this.jsonLogicVal", this.label, this.jsonLogicVal);
 		if (this.jsonLogicVal) {
 			this._applyJsonValidations();
 		}
+		console.log('this.validators', this.validators);
 		if (this.control && this.validators.length > 0) {
+			console.log('Setting validators');
 			this.control.setValidators(this.validators);
 		}
 	}
@@ -612,7 +614,9 @@ export class FeBaseComponent
 			formControls: any,
 			control: AbstractControl
 		): { [key: string]: boolean } | null {
+			console.log("JSON Logic Val", control, formControls);
 			if (jsonLogic.apply(json["json"], formControls) != true) {
+				console.log('JSON error should come.');
 				return { json: true };
 			}
 			return null;

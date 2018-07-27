@@ -491,7 +491,7 @@ export class FeFormBuilderComponent implements DoCheck, OnInit, AfterViewInit, O
 	save() {
 		this._formBuilderService.postData(this.finalJSON).subscribe(
 			res => {
-				alert("data received");
+				alert("FORM SAVED");
 				console.log(res);
 			},
 			err => {
