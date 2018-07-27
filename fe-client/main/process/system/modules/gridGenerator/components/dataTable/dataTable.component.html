@@ -59,7 +59,7 @@
 		<ngx-datatable #table [id]="formCode" class='material' [rows]='rows' [limit]="limit" [count]="count" [rowHeight]="rowHeight"
 		 [scrollbarH]="scrollbarH" [headerHeight]="headerHeight" [columnMode]="columnMode" [offset]="offset" [footerHeight]="footerHeight"
 		 [emptyMessage]="emptyMessage" [selected]="selected" [selectionType]="selectionType" [loadingIndicator]="loadingIndicator"
-		 [selectAllRowsOnPage]="selectAllRowsOnPage" (select)='onSelect($event)' (reorder)="reorderColumn($event)" (sort)="filterOnSorting($event)">
+		 [selectAllRowsOnPage]="selectAllRowsOnPage" (page)="onChangingPage($event)" (select)='onSelect($event)' (reorder)="reorderColumn($event)" (sort)="filterOnSorting($event)">
 
 			<!-- <ngx-datatable-progress *ngIf="loadingIndicator == 'true'">
 			</ngx-datatable-progress> -->
@@ -96,15 +96,12 @@
 							</div>
 							<select class="custom-select" (change)="getLimitedData($event)">
 								<option value="{{initialLimit}}" selected>{{initialLimit}}</option>
-								<option value="10">10</option>
-								<option value="15">15</option>
-								<option value="20">20</option>
-								<option value="30">30</option>
+								<option *ngFor="let opt of limits" value="{{opt}}">{{opt}}</option>
 							</select>
 						</div>
 					</div>
 					<datatable-pager [pagerLeftArrowIcon]="'datatable-icon-left'" [pagerRightArrowIcon]="'datatable-icon-right'" [pagerPreviousIcon]="'datatable-icon-prev'"
-					 [pagerNextIcon]="'datatable-icon-skip'" [page]="curPage" [size]="pageSize" [count]="count" [hidden]="pagerShowHideCondition"
+					 [pagerNextIcon]="'datatable-icon-skip'" [page]="currentPage" [size]="limit" [count]="count" [hidden]="pagerShowHideCondition"
 					 (change)="table.onFooterPage($event);onPageChange($event)">
 					</datatable-pager>
 				</ng-template>

@@ -169,6 +169,7 @@ export class FeFormComponent
     const container = document.querySelector(
       `#${this.code}_HELP_CONTAINER`
     );
+    console.log("Form Help Container:", container);
     if (container) {
       container.innerHTML = this.help;
     }
