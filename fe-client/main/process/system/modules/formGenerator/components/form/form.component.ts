@@ -183,6 +183,11 @@ export class FeFormComponent
 			this._fb,
 			this.schemaControls
 		);
+		this.group = this._utility.createFormGroup(
+			this._fb,
+			this.buttons,
+			this.group
+		);
 	}
 
 	protected _applyConditions() {

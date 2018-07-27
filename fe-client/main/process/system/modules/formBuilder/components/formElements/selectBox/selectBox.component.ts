@@ -1,22 +1,16 @@
 import { Component } from '@angular/core';
-import { FeBaseField } from '../baseField/baseField.component';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { SelectComponent } from "@L3Process/system/modules/formBuilder/components/formElements/select/select.component";
 
 @Component({
   selector: 'selectbox-input',
   templateUrl: './selectBox.component.html',
-  styleUrls: ['./selectBox.component.css', '../baseField/baseField.component.css']
+  styleUrls: ['./selectBox.component.css']
 })
-export class FeSelectBoxesComponent extends FeBaseField  {
+export class FeSelectBoxComponent extends SelectComponent  {
 
   public properties = {
-    type: 'MCH',
-    ...this.properties
+	  ...this.properties,
+	  type: 'MCH'
   };
-
-  public applicableProperties = {
-    ...this.applicableProperties
-  }
-
 }
 

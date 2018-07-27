@@ -51,10 +51,13 @@
 .field-label-left .field-label-container,
 .field-label-right .field-label-container {
     display: flex;
-    padding-top: 10px;
+	padding-top: 10px;
+	/* padding-right:10px */
 }
 
-
+.ANC-field {
+	color: #007bff !important;
+}
 
 .fe-field-component {
     padding-left: 10px;

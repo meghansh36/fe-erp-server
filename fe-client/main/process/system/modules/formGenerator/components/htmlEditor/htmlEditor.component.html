@@ -11,7 +11,7 @@
             </div>
             <div [ngClass]="defaultClasses.fieldTooltipWrapperClasses" [ngStyle]="style.fieldTooltipWrapperStyle" *ngIf="description">
                 <span [ngClass]="defaultClasses.fieldTooltipContainerClasses">
-                    <i class="material-icons " placement="right" [ngbTooltip]="description"> help</i>
+                    <i class="material-icons " placement="right" [ngbTooltip]="tooltip"> help</i>
                 </span>
             </div>
         </div>
@@ -25,8 +25,8 @@
         </span>
         <div [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
             <ckeditor [formControlName]="flexiLabel" (change)="_onChange($event)" [attr.flexilabel]="flexiLabel"   [ngClass]="defaultClasses.fieldClasses" [ngStyle]="defaultClasses.fieldStyle"
-            [attr.placeholder]="placeholder"   
-               [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" 
+            [attr.placeholder]="placeholder"
+               [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder"
                [attr.id]="id">
             </ckeditor>
         </div>
@@ -38,5 +38,10 @@
                 <br>
             </small>
         </span>
-    </div>
+	</div>
+	<div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+		<small  [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+			{{ description }}
+		</small>
+	</div>
 </div>

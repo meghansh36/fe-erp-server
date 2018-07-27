@@ -7,7 +7,12 @@ import { FeBaseField } from '../baseField/baseField.component';
 })
 export class FeTimeComponent extends FeBaseField {
 
-  time = {hour: 0, minute: 0};
+  selectedDate;
+  config = {
+    disableKeyPress: true,
+    showMultipleYearsNavigation: true,
+    drops: 'down'
+  };
   public properties = {
     type: 'TIM',
     ...this.properties

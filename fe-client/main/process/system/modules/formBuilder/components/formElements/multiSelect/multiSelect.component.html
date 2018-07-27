@@ -36,5 +36,10 @@
                 <span class="input-group-text"> {{ suffix }} </span>
             </div>
         </div>
-    </div>
+	</div>
+	<div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+		<small [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+			{{ description }}
+		</small>
+	</div>
 </div>

@@ -13,7 +13,11 @@ import { DefaultsService } from '@L3Process/system/services/defaults.service';
   templateUrl: 'time.component.html'
 })
 export class FeTimeComponent  extends BaseComponent{
-  time: NgbTimeStruct = { hour: 0, minute: 0, second: 0 };
+  configPicker = {
+    disableKeyPress: true,
+    showMultipleYearsNavigation: true,
+    drops: 'down'
+  };
 
   constructor(public elemRef: ElementRef, config: NgbTimepickerConfig,public validator: ValidatorsService, public dependent: DependentService, public render: Renderer2,public utility: UtilityService , public defaults: DefaultsService) {
     super(elemRef, validator, render, utility, defaults);

@@ -152,6 +152,7 @@ export class FeUtilityService {
 		if (fieldComponent.required) {
 			classesStr += ` mandatory-field`;
 		}
+		console.log('field classes', classesStr);
 		fieldClasses = this.makeCssClassesObj(classesStr);
 
 		let nestedFieldContainerClasses = {};
@@ -289,9 +290,13 @@ export class FeUtilityService {
 		);
 	}
 
-	addButtonProps(fieldComponent, classesObj) {
+	addButtonProps(fieldComponent, classesObj?: any) {
 		const buttonThemeClasses = this._defaults.BUTTON_THEMES;
 		let themeClass = buttonThemeClasses[fieldComponent.theme];
+		if (!classesObj) {
+			classesObj = {};
+			classesObj.fieldClasses = {};
+		}
 		if (!themeClass) {
 			themeClass = buttonThemeClasses[this._defaults.BUTTON_THEME];
 		}

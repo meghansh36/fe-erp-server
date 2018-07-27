@@ -12,7 +12,12 @@ import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
   }]
 })
 export class FeDateComponent extends FeBaseField {
-
+  selectedDate;
+  config = {
+    disableKeyPress: true,
+    showMultipleYearsNavigation: true,
+    drops: 'down'
+  };
   public properties = {
     minimumDate: '',
     maximumDate: '',

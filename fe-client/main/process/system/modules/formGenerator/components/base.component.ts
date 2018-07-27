@@ -65,12 +65,14 @@ export class FeBaseComponent
 	_init() {
 		this._config = _.assign({}, this.config);
 		if (!this.control) {
+			console.log("Not control found for", this.label);
 			return;
 		}
 		this._applyValidations();
 		this._initFieldStyle();
 		this._applyObservers();
 		this._setValues();
+		console.log("Rendering", this.label);
 	}
 
 	protected _beforeNgAfterViewInit() {}
@@ -83,6 +85,7 @@ export class FeBaseComponent
 			this.hide();
 		}
 		this._afterNgAfterViewInit();
+		
 	}
 
 	protected _afterNgAfterViewInit() {}
@@ -132,7 +135,7 @@ export class FeBaseComponent
 	}
 
 	protected _setValues() {
-		if ( _.includes( ['SEL', 'ACS', 'MSL'], this.type ) ) {
+		if ( _.includes( ['SEL', 'ACS', 'MSL', 'MCH'], this.type ) ) {
 			this._setLov();
 		} else {
 			this._setDefaultValue();
@@ -623,7 +626,9 @@ export class FeBaseComponent
 	}
 
 	protected _initFieldStyle() {
+		console.log('called field style')
 		this.defaultClasses = this._utility.getFieldClasses(this);
+		console.log(this.defaultClasses);
 		this.style = this._utility.getFieldStyles(this);
 	}
 

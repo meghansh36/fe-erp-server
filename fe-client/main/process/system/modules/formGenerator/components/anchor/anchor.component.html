@@ -7,16 +7,21 @@
                 </div>
                 <div [ngClass]="defaultClasses.fieldTooltipWrapperClasses" [ngStyle]="style.fieldTooltipWrapperStyle" *ngIf="description">
                     <span [ngClass]="defaultClasses.fieldTooltipContainerClasses" [ngStyle]="defaultClasses.fieldTooltipContainerStyle">
-                        <i class="material-icons " placement="right" [ngbTooltip]="description"> help</i>
+                        <i class="material-icons " placement="right" [ngbTooltip]="tooltip"> help</i>
                     </span>
                 </div>
             </div>
             <div [ngClass]="defaultClasses.nestedFieldContainerClasses" [ngStyle]="style.nestedFieldContainerStyle">
                 <div [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle">
-                    <a [attr.href]="defaultValue" [attr.flexilabel]="flexiLabel" target="_blank" [class.disabled]="disabled" [ngClass]="defaultClasses.fieldClasses"  [ngStyle]="defaultClasses.fieldStyle" 
-                    [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" 
+                    <a [attr.href]="defaultValue" [attr.flexilabel]="flexiLabel" target="_blank" [class.disabled]="disabled" [ngClass]="defaultClasses.fieldClasses"  [ngStyle]="defaultClasses.fieldStyle"
+                    [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder"
                     [attr.id]="id">{{label}}</a>
                 </div>
             </div>
-        </div>
+		</div>
+		<div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+			<small  [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+				{{ description }}
+			</small>
+		</div>
     </div>

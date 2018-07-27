@@ -8,7 +8,9 @@ import { FeBaseField } from '../baseField/baseField.component';
 export class FeDateTimeComponent extends FeBaseField {
   selectedDate;
   config = {
-    disableKeyPress: true
+    disableKeyPress: true,
+    showMultipleYearsNavigation: true,
+    drops: 'down'
   };
   public properties = {
 	  ...this.properties,

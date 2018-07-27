@@ -15,6 +15,7 @@ export class FeDefaultsService {
     mode: "code"
   };
 
+
   public LABEL_ALIGNMENT = {
 	  top: 'left',
 	  left: 'left',
@@ -29,11 +30,11 @@ export class FeDefaultsService {
 	TXA: 'TextArea',
 	DAT: 'Date',
 	TIM: 'Time',
-	ACS: 'AutoComplete',
+	ACS: 'Auto Complete',
 	NUM: 'Number',
 	CHK: 'CheckBox',
 	RAD: 'Radio',
-	MSL: 'MultiSelect',
+	MSL: 'Multiselect',
 	EML: 'Email',
 	FILE: 'File',
 	FST: 'FieldSet',
@@ -41,13 +42,15 @@ export class FeDefaultsService {
 	BLK: 'Blank',
 	HID: 'Hidden',
 	ICB: 'IconicButton',
-	HTML: 'HtmlEditor',
+	HTML: 'Html Editor',
 	PWD: 'Password',
 	PHN: 'Phone',
 	CUR: 'Currency',
-  ADR: 'Address',
-  MON: 'Month'
-  };;
+	ADR: 'Address',
+	MON: 'Month',
+	DTI: 'Date Time',
+	MCH: 'Multiple Checkboxes'
+  };
 
   protected _formBuilderJsonHelp = {
     lovHelp: [

@@ -17,6 +17,12 @@ import { DefaultsService } from '@L3Process/system/services/defaults.service';
 })
 export class FeDateComponent extends BaseComponent {
 
+  configPicker = {
+    disableKeyPress: true,
+    showMultipleYearsNavigation: true,
+    drops: 'down'
+  };
+  
   constructor(protected  _elemRef: ElementRef, protected  _validator: ValidatorsService, protected  _render: Renderer2, protected  _utility: UtilityService, protected  _defaults: DefaultsService, protected  _date: FeDateFormatterService) {
     super(_elemRef, _validator, _render, _utility, _defaults);
   }
@@ -28,6 +34,7 @@ export class FeDateComponent extends BaseComponent {
     } else if (this.maximumDate) {
         this._addNgValidation(this._validator.getCustomValidation('maxDate', this.maximumDate));
     }
+    console.log(this.defaultClasses);
   }
 
   get minDate() {

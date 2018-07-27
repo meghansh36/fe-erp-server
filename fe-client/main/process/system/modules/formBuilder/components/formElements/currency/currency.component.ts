@@ -10,7 +10,7 @@ export class FeCurrencyComponent extends TextComponent {
 
   public properties = {
 	  ...this.properties,
-	  type: 'CUR',
+	  type: 'CUR'
   };
 
 }

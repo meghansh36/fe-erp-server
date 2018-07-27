@@ -7,7 +7,7 @@
             </div>
             <div [ngClass]="defaultClasses.fieldTooltipWrapperClasses" [ngStyle]="style.fieldTooltipWrapperStyle" *ngIf="description">
                 <span [ngClass]="defaultClasses.fieldTooltipContainerClasses">
-                    <i class="material-icons " placement="right" [ngbTooltip]="description"> help</i>
+                    <i class="material-icons " placement="right" [ngbTooltip]="tooltip"> help</i>
                 </span>
             </div>
         </div>
@@ -15,7 +15,7 @@
             <div class="input-group-prepend" *ngIf="prefix">
                 <span class="input-group-text"> {{ prefix }} </span>
             </div>
-            <input type="email" class="form-control" [ngClass]="defaultClasses.fieldClasses" 
+            <input type="email" class="form-control" [ngClass]="defaultClasses.fieldClasses"
                 [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" [formControlName]="flexiLabel"
                 [attr.id]="id" [attr.flexilabel]="flexiLabel">
             <div class="input-group-append" *ngIf="suffix ">
@@ -31,5 +31,10 @@
                 <br>
             </small>
         </span>
-    </div>
+	</div>
+	<div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+		<small  [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+			{{ description }}
+		</small>
+	</div>
 </div>

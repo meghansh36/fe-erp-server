@@ -30,11 +30,18 @@
           <div class="input-group-prepend" *ngIf="prefix">
               <span class="input-group-text"> {{ prefix }} </span>
           </div>
-          <ngb-timepicker [(ngModel)]="time" class="form-control"  [attr.flexilabel]="flexiLabel"  [attr.id]="id" [attr.tabindex]="tabIndex" [ngClass]="defaultClasses.fieldClasses" [ngStyle]="style.fieldStyle" [disabled]="disabled"></ngb-timepicker>
+          <!-- <ngb-timepicker [(ngModel)]="time" class="form-control"  [attr.flexilabel]="flexiLabel"  [attr.id]="id" [attr.tabindex]="tabIndex" [ngClass]="defaultClasses.fieldClasses" [ngStyle]="style.fieldStyle" [disabled]="disabled"></ngb-timepicker> -->
+          <dp-date-picker [(ngModel)]="selectedDate"  [mode]="'time'" [theme]="'dp-material form-control'" [attr.flexilabel]="flexiLabel" [ngClass]="defaultClasses.fieldClasses" [ngStyle]="style.fieldStyle"
+            [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder"  [attr.id]="id" [disabled]="disabled"></dp-date-picker>
+
           <div class="input-group-append" *ngIf="suffix ">
               <span class="input-group-text"> {{ suffix }} </span>
           </div>
       </div>
   </div>
- 
+  <div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+	<small [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+		{{ description }}
+	</small>
+</div>
 </div>

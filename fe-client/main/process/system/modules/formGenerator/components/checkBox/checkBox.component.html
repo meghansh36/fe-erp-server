@@ -7,17 +7,19 @@
             </div>
             <div [ngClass]="defaultClasses.fieldTooltipWrapperClasses" [ngStyle]="style.fieldTooltipWrapperStyle" *ngIf="description">
                 <span [ngClass]="defaultClasses.fieldTooltipContainerClasses">
-                    <i class="material-icons " placement="right" [ngbTooltip]="description"> help</i>
+                    <i class="material-icons " placement="right" [ngbTooltip]="tooltip"> help</i>
                 </span>
             </div>
         </div>
-        <div class="form-check display-flex" [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle"  *ngFor="let field of inputPropsArray; let i = index;">
+        <div class="form-check display-flex" [ngClass]="defaultClasses.fieldContainerClasses" [ngStyle]="style.fieldContainerStyle"  >
                 <input type="checkbox" [attr.flexilabel]="flexiLabel" class="form-check-input checkbox" [ngClass]="defaultClasses.fieldClasses"
                 [attr.tabindex]="tabIndex" [attr.placeholder]="placeholder" [formControlName]="flexiLabel"
-                [attr.id]="id" value="{{field.value}}">
-                <label class="form-check-label" for="{{id}}'_'{{i}}">
-                  {{field.label}}
-                </label>
+                [attr.id]="id" value="{{value}}">
             </div>
-    </div>
+	</div>
+	<div [ngClass]="defaultClasses.fieldDescWrapperClasses" [ngStyle]="style.fieldDescWrapperStyle" *ngIf="description">
+		<small  [ngClass]="defaultClasses.fieldDescContainerClasses" [ngStyle]="defaultClasses.fieldDescContainerStyle">
+			{{ description }}
+		</small>
+	</div>
 </div>
