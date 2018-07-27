@@ -33,12 +33,26 @@ module.exports = class FeFormsData {
         //json_data = JSON.parse(json_data);
         var form_label = req.body.formLabel;
         var clientName = req.params.client;
-        FE.clients[clientName].models.FormsData.create({
-            FORM_JSON: JSON.stringify(json_data),
-            LABEL: form_label
-        }).then(form => {
-            res.send(form);
-        });
+    
+        FE.clients[clientName].models.FormsData.findAll({
+            attributes:['ID']
+        }).then(function(forms){
+            var formCode = '';
+            if(forms.length<10){
+                formCode = 'FRM000000' + (forms.length + 1)
+            }else if(forms.length>=10 && forms.length<100){
+                formCode = 'FRM00000' + (forms.length + 1) 
+            }else if(forms.length>=100 && forms.length<1000){
+                formCode = 'FRM0000' + (forms.length + 1) 
+            }
+            FE.clients[clientName].models.FormsData.create({
+                FORM_JSON: JSON.stringify(json_data),
+                LABEL: form_label,
+                FORM_CODE: formCode
+            }).then(form => {
+                res.send(form);
+            });           
+        })
     };
 
 
