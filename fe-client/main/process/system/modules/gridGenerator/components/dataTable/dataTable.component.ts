@@ -38,6 +38,8 @@ export class FeDataTableComponent implements OnInit {
 	protected checked: boolean = false;
 	protected allColumnsForFilter: any;
 
+	currentPage = 1;
+
 	constructor(protected dataTableService: DataTableService,
 		protected modalService: NgbModal,
 		protected config: NgbDropdownConfig,
@@ -133,7 +135,7 @@ export class FeDataTableComponent implements OnInit {
 
 	public getLimitedData(event) {
 		this.newData_for_filter_forting_paging.limit = Number(event.target.value);
-		this.newData_for_filter_forting_paging.offset = Number(this.offset) - 1;
+		this.newData_for_filter_forting_paging.offset = 0;
 		this.newData_for_filter_forting_paging.prevLimit = this.limit;
 		this.newData_for_filter_forting_paging.sorting = this.sortedData;
 		this.newData_for_filter_forting_paging.filter = this.filterJsonData;
@@ -150,11 +152,17 @@ export class FeDataTableComponent implements OnInit {
 			console.log(data);
 			this.rows = [...data.body.row];
 			this.temp = [...data.body.row];
-			this.count = data.body.count;
 			this.limit = Number(event.target.value);
+			this.table.offset = 0;
+			this.offset = 0;
+			this.currentPage = 1;
+			console.log(this.table.offset , this.currentPage);
 			this.loadingIndicator = false;
-			//this.offset = this.table.offset;
 		}
+	}
+
+	public onChangingPage(event: any) {
+		this.table.offset = event.offset;
 	}
 
 	public onSelect({ selected }) {
@@ -177,6 +185,7 @@ export class FeDataTableComponent implements OnInit {
 	onPageChange(event: any) {
 		this.table.limit = this.limit;
 		this.offset = event.page;
+		this.currentPage = event.page;
 		console.log("offset is", this.offset);
 		this.newData_for_filter_forting_paging.offset = Number(this.offset) - 1;
 		this.newData_for_filter_forting_paging.sorting = this.sortedData;
@@ -431,6 +440,10 @@ export class FeDataTableComponent implements OnInit {
 
 	set limit(limit) {
 		this._gridDef['limit'] = limit;
+	}
+
+	get limits() {
+		return this._gridDef['limits'];
 	}
 
 	get columns() {

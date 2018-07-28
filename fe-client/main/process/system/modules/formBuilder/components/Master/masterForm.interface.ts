@@ -32,8 +32,8 @@ export interface builderFieldCompInterface{
   nonPersistent: string;
   dbColumn: string;
   validations: string;
-  minimumLength: number;
-  maximumLength: number;
+  minLength: number;
+  maxLength: number;
   regularExpression: string;
   customErrorFunction: string;
   JSONLogic: string;

@@ -65,6 +65,8 @@ export interface FieldConfig {
   submit?: any,
   spellcheck?: any,
   labelAlignment?: any,
-  defaultValueType?: any
+  defaultValueType?: any,
+  minLength?: any,
+  maxLength?: any
 }
 

@@ -4,39 +4,38 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class FeFormJsonService {
 
-    MasterJSON = {
-        id: '',
-        code: '',
-        formLabel: '',
-        name: '',
-        type: '',
-        disabled: false,
-        hidden: false,
-        disableCondition: '',
-        hideCondition: '',
-        active: true,
-        help: '',
-        components: {},
-        buttons: {}
-    };
+MasterJSON = {
+    id: '',
+    code: '',
+    formLabel: '',
+    name: '',
+    type: '',
+    disabled: false,
+    hidden: false,
+    disableCondition: '',
+    hideCondition: '',
+    active: true,
+    help: '',
+    components: {},
+    buttons: {}
+};
 
-    finalJSON;
-    DOMComponentArray: any = [];
+finalJSON;
+DOMComponentArray: any = [];
 
-    getMasterJSON() {
-        return this.MasterJSON;
+getMasterJSON() {
+    return this.MasterJSON;
+}
+
+setMasterJSON(newProps, key) {
+    if (newProps.parent === 'root_drop') {
+        this.MasterJSON.components[key].instance.properties = newProps;
+    } else if (newProps.parent === 'button_drop') {
+        this.MasterJSON.buttons[key].instance.properties = newProps;
+    } else {
+        this.MasterJSON.components[key].instance.properties = newProps;
     }
-
-    setMasterJSON(newProps, key) {
-        console.log('props updated');
-        if (newProps.parent === 'root_drop') {
-            this.MasterJSON.components[key].instance.properties = newProps;
-        } else if (newProps.parent === 'button_drop') {
-            this.MasterJSON.buttons[key].instance.properties = newProps;
-        } else {
-            this.MasterJSON.components[key].instance.properties = newProps;
-        }
-    }
+}
 
     addComponentToMasterJSON(key, componentRef, parent, index) {
         console.log('component added');
