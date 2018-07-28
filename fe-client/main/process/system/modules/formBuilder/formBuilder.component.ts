@@ -589,9 +589,9 @@ protected _setDragulaOptions() {
 			// get the DOM node of the target container
 			const target: any = document.querySelector(`#${copy.parent}`);
 			// adds the key of the created component on its DOM node.
-			target.children[componentProps.order].generatedKey = key;
+			target.children[copy.order].generatedKey = key;
 			// adds the key of the parent Container on the created component DOM element.
-			target.children[componentProps.order].parentComponent = target.id;
+			target.children[copy.order].parentComponent = target.id;
 			// resolves the promise after some delay. This delay is set so that all the
 			// tasks involving the services get completed before creating a new component.
 			setTimeout(() => {
