@@ -447,9 +447,7 @@ protected _setDragulaOptions() {
 	*Generates a unique key for every field dropped in the containers.
 	*/
 	generateNewKey() {
-		return (
-			'_' + Math.random().toString(36).substr(2, 9);
-		);
+		return '_' + Math.random().toString(36).substr(2, 9);
 	}
 
 	/*
@@ -591,9 +589,9 @@ protected _setDragulaOptions() {
 			// get the DOM node of the target container
 			const target: any = document.querySelector(`#${copy.parent}`);
 			// adds the key of the created component on its DOM node.
-			target.children[index].generatedKey = key;
+			target.children[componentProps.order].generatedKey = key;
 			// adds the key of the parent Container on the created component DOM element.
-			target.children[index].parentComponent = target.id;
+			target.children[componentProps.order].parentComponent = target.id;
 			// resolves the promise after some delay. This delay is set so that all the
 			// tasks involving the services get completed before creating a new component.
 			setTimeout(() => {
