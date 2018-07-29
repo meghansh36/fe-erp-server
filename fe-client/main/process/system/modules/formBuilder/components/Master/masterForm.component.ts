@@ -1,3 +1,8 @@
+/*
+ *@Component Description
+ *This the form properties modal component.
+*/
+
 import { FieldControlService } from "@L3Process/system/modules/formBuilder/services/fieldControl.service";
 import {
   Component,
@@ -126,11 +131,4 @@ export class FeMasterFormComponent implements OnInit {
     this.componentData = this.instance.properties;
   }
 
-  update(event) {
-    console.log(this.componentData);
-  }
-
-  // ngOnDestroy() {
-  //   this.instance.showEdit = true;
-  // }
 }

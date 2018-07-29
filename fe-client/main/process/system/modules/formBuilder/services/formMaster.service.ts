@@ -1,7 +1,14 @@
+/*
+*@Service Description
+*This service is responsible for Master Form functions. It sets the modal reference and returns
+*it so that it can be used by other components to close the modal.
+*It also gets and sets the field properties.
+*/
+
 import { Injectable } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import * as _ from 'lodash';
 import { FormJsonService } from '@L3Process/system/modules/formBuilder/services/formJson.service';
+
 @Injectable()
 export class FeFormMasterService {
 
@@ -10,9 +17,9 @@ export class FeFormMasterService {
   currentEventType;
   key;
   Json;
-  formLabel:string;
-  name :string;
-  display: string ='conventional';
+  formLabel: string;
+  name: string;
+  display: 'conventional';
   disabled: boolean;
   hidden: boolean;
   conditionalHidden: string;
@@ -21,44 +28,70 @@ export class FeFormMasterService {
   help: string;
 
 
-  constructor(private masterJsonService: FormJsonService) {
-   }
+  constructor(private masterJsonService: FormJsonService) {}
 
-  setModalRef(temp) {
-    this.modalReference = temp;
+  /*
+  *@function Description
+  *Arguments ==> modalRef - bootstrap modal reference
+  *
+  * This function sets the modal reference of bootstrap modal.
+  */
+  setModalRef(modalRef) {
+    this.modalReference = modalRef;
   }
 
+  /*
+  *@function Description
+  *
+  * Returns the modal reference
+  */
   getModalRef() {
     return this.modalReference;
   }
 
+  /*
+  *@function Description
+  *Arguments ==> props - field properties
+  *              key - unique key of the field component
+  *
+  * This function sets the properties of the field components in the masterJSON
+  */
   setProperties(props, key) {
-    // const masterJSON = this.masterJsonService.getMasterJSON();
-    // console.log("master json", masterJSON);
-    // if (masterJSON.components[key] === undefined) {
-    //   masterJSON.buttons[key].instance.properties = _.assignIn({}, props);
-    // } else {
-    //   masterJSON.components[key].instance.properties = _.assignIn({}, props);
-    // }
-
-    // this.masterJsonService.setMasterJSON(masterJSON);
-    console.log('props set in MasterJson');
     this.masterJsonService.setMasterJSON(props, key);
   }
 
+  /*
+  *@function Description
+  *Arguments ==> key - unique key of the field components
+  *
+  * This function returns the properties of the components in the MasterJSON
+  */
   getProperties(key) {
+    // get masterjson from the service
     const masterJSON = this.masterJsonService.getMasterJSON();
+    // if the component is not found in the components object in MasterJSON, look in buttons object
     if (masterJSON.components[key] === undefined) {
       return masterJSON.buttons[key].instance.properties;
     }
     return masterJSON.components[key].instance.properties;
   }
 
+  /*
+  *@function Description
+  *Arguments ==> key - unique key of the field component.
+  *
+  * This function sets the key of the component whose Field properties modal is opened.
+  */
   setCurrentKey(key) {
     this.key = key;
   }
 
+  /*
+  *@function Description
+  *
+  * This function returns the current key.
+  */
   getCurrentKey() {
-   return this.key;
+    return this.key;
   }
 }

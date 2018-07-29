@@ -1,3 +1,10 @@
+/*
+*@Service Description
+*This service is responsible for Master Form functions. It sets the modal reference and returns
+*it so that it can be used by other components to close the modal.
+*It also gets and sets the field properties.
+*/
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TextComponent } from '@L3Process/system/modules/formBuilder/components/formElements/text/text.component';
@@ -13,7 +20,6 @@ import { TimeComponent } from '@L3Process/system/modules/formBuilder/components/
 import { HiddenComponent } from '@L3Process/system/modules/formBuilder/components/formElements/hidden/hidden.component';
 import { DateComponent } from '@L3Process/system/modules/formBuilder/components/formElements/date/date.component';
 import { MonthComponent } from '@L3Process/system/modules/formBuilder/components/formElements/month/month.component';
-import { componentFactoryName } from '@angular/compiler';
 import { CheckboxComponent } from '@L3Process/system/modules/formBuilder/components/formElements/checkbox/checkbox.component';
 import { AnchorComponent } from '@L3Process/system/modules/formBuilder/components/formElements/anchor/anchor.component';
 import { BlankComponent } from '@L3Process/system/modules/formBuilder/components/formElements/blank/blank.component';
@@ -31,10 +37,7 @@ import { SelectBoxComponent } from '@L3Process/system/modules/formBuilder/compon
 @Injectable()
 export class FeFormBuilderService {
 
-
-
-  referenceArray: Object[];
-
+  // array of basic elements used by form-drag component to render the list of draggable fields
   basicElements = [
     {
       name: 'input',
@@ -160,6 +163,7 @@ export class FeFormBuilderService {
     }
   ];
 
+  // array of advanced elements used by form-drag component to render the list of draggable fields
   advancedElements = [
     {
       name: 'email',
@@ -219,6 +223,7 @@ export class FeFormBuilderService {
     }
   ];
 
+  // array of layout elements used by form-drag component to render the list of draggable fields
   layoutElements = [
     {
       name: 'fieldset',
@@ -229,6 +234,7 @@ export class FeFormBuilderService {
     }
   ];
 
+  // object containing the mapping of component name to the component class
   component = {
     'TextComponent': {
      component: TextComponent,
@@ -365,6 +371,12 @@ export class FeFormBuilderService {
 
   constructor(public httpClient:HttpClient) { }
 
+  /*
+  *@function Description
+  *Arguments ==> elementListToLoad - name of the list of elements to show
+  *
+  * This function returns the list of draggable elements based on the argument.
+  */
   getElementList(elementListToLoad) {
     if (elementListToLoad === 'basic') {
       return this.basicElements;
@@ -379,24 +391,39 @@ export class FeFormBuilderService {
     }
   }
 
+  /*
+  *@function Description
+  *Arguments ==> name - name of the component class to load.
+  *
+  * Returns object containing the component class instance used by angular to create dynamic
+  * components
+  */
   getComponent(name) {
     return this.component[name];
   }
 
+  /*
+  *@function Description
+  *Arguments ==> data - final nested JSON(finalJSON)
+  *
+  * This function makes a post request on the server to save or update the data.
+  */
   postData(data) {
+    // update data
     if(data.id) {
       return this.httpClient.post('/api/fe/fe/default/forms_data/update_form_data', {
       "form_json":data,
       "id":data.id,
       "formLabel":data.formLabel
-    })
-    } else {
+      })
+    } 
+    // save data
+    else {
       return this.httpClient.post('/api/fe/fe/default/forms_data/save_form_data', {
         "form_json": data,
         "formLabel": data.formLabel
       })
     }
-
   }
 
 }
