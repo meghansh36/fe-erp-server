@@ -1,5 +1,16 @@
+/**
+ * 
+ * 
+ * @class ClientBaseApp
+ */
 class ClientBaseApp {
 
+	/**
+	 * Creates an instance of ClientBaseApp.
+	 * @param {any} appObj 
+	 * 
+	 * @memberOf ClientBaseApp
+	 */
 	constructor(appObj) {
 		this.app = appObj;
 		this.configs = {};
