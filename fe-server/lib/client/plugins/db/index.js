@@ -39,6 +39,12 @@ class DbPlugin extends BasePlugin {
 
 	}
 
+	/**
+	 * Initializes the  Sequelize Plugin
+	 * 
+	 * 
+	 * @memberOf DbPlugin
+	 */
 	initializeSequelize(){
 		const sequelize = new Sequelize(
 			this._props.dbName,
@@ -56,6 +62,13 @@ class DbPlugin extends BasePlugin {
 		this.registeringModels(sequelize);
 	}
 
+	/**
+	 * Register all the model classes in sequelize models
+	 * 
+	 * @param {any} sequelize 
+	 * 
+	 * @memberOf DbPlugin
+	 */
 	registeringModels(sequelize){
 		var modulesPath = this._appObj.SUB_APP_MODULES_PATH;
 		this._models = {};

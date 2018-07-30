@@ -15,10 +15,16 @@ module.exports = class saveDefaultAction extends DefaultAction {
     }
  
     handlePutRequest(req,res,done) {
-        var sucessMessage = '';//Save My Data
+        // TODO  find form code from the
+        var action = req.params.action;
+        var formClassPath = FORMS_PATH + '/' + req.data.formCode;
+        const formClass = require(formClassPath);
+        const formClassObject =  new formClass();
+        formClassObject[action](req,res);
+        var successMessage = '';//Save My Data
         // creatingDataStructure();
 
-        if(!sucessMessage) {
+        if(!successMessage) {
             this._error = 'My Data was not saved';
             this._errorCode = 'ERR000001';
         } else {
