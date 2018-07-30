@@ -51,7 +51,8 @@ export class FeMasterFormComponent implements OnInit {
   jsonHelp;
   jsonEditorConfig;
 
-  @ViewChild("preview", { read: ViewContainerRef })
+  // ng-template reference of the Preview component container
+  @ViewChild('preview', { read: ViewContainerRef })
   preview: ViewContainerRef;
 
   constructor(
@@ -62,9 +63,7 @@ export class FeMasterFormComponent implements OnInit {
     protected _ngBootstrap: NgBootstrapService,
     protected _defaults: DefaultsService,
     protected _formBuilderService: FormBuilderService
-  ) {
-    console.log('master form constructor called');
-  }
+  ) {}
 
   protected _beforeNgOnInit() {}
 
@@ -76,58 +75,99 @@ export class FeMasterFormComponent implements OnInit {
     this._afterNgOnInit();
   }
 
+ /*
+  * @function Description
+  *
+  * This function initializes the jsoneditor properties and also calls the createComponentFunc()
+  * which creates the preview component.
+  */
   _init() {
+    // set modalRef from service (used to close the modal)
     this.modalRef = this._masterFormService.getModalRef();
+    // Get component name from the fieldControl service
     const componentName = this._fieldControlService.getFieldRef().component;
+    // get component class from formBuilder service
     const component = this._formBuilderService.getComponent(componentName).component;
+    // call create component function
     this._createComponentFunc(component);
+    // set json editor properties
     this.jsonEditorConfig = this._defaults.JSON_EDITOR_CONFIG;
     this.jsonHelp = this._defaults.FORM_BUILDER_JSON_HELP;
   }
 
+ /* @function Description
+  *
+  * Function fires on click event. Closes the modal.
+  */
   close() {
     this._ngBootstrap.closeModal(this.modalRef);
   }
 
+ /* @function Description
+  *
+  * Function fires on click event. Resets form properties from backup props.
+  */
   onReset() {
-    console.log("Form reset.");
     //this.instance.properties = this.backupProps;
     this.componentData = this.backupProps;
 
   }
 
+ /* @function Description
+  *
+  * function fires on click event. Saves the field properties in the MasterJSON
+  */
   onSubmit(form) {
-    console.log("Component data in submit", this.componentData);
     //form.name = this.instance.fieldControlService.component.name;
     //form.type = this.instance.fieldControlService.component.type;
+
     this._masterFormService.setCurrentKey(this.currentKey);
     this._masterFormService.setProperties(this.instance.properties, this.currentKey);
     this._formJsonService.buildFinalJSON();
     this.close();
   }
 
+ /* @function Description
+  * Arguments ==> component - class of the component to be shown in the preview window.
+  *
+  * This function creates a new component.
+  */
   protected _createComponentFunc(component) {
+    // create componentFactory
     const componentFactory = this._componentFactoryResolver.resolveComponentFactory(
       component
     );
+    // get ng-template ref for preview container.
     const view = this.preview;
+    // angular function to create a dynamic component.
     const componentRef = view.createComponent(
       componentFactory,
       0,
       view.injector
     );
+    // store the instance of the new component in a variable.
     this.instance = componentRef.instance;
     this._initInstance();
   }
 
+ /* @function Description
+  *
+  * This function sets the properites of the newly created component.
+  */
   protected _initInstance() {
+    // get the key from service.
     this.currentKey = this._masterFormService.getCurrentKey();
+    // get properties from masterJSON
     const propsFromBuilder = this._masterFormService.getProperties(
       this.currentKey
     );
+    // set showEdit to false. Disables the field toolbar in the preview window.
     this.instance.showEdit = false;
+    // create a backup of the properties for reset.
     this.backupProps = propsFromBuilder;
+    // set field properties
     this.instance.properties = _.assignIn({}, propsFromBuilder);
+    // bind ngModel to the instance properties
     this.componentData = this.instance.properties;
   }
 
