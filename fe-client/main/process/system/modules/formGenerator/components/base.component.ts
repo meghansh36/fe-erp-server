@@ -144,13 +144,13 @@ export class FeBaseComponent
 	protected _setLov() {
 		const lov = this.lov;
 		const firstOption = this._defaults.DROPDOWN_DEFAULT_OPTION;
+		let options = [];
+		if ( this.type === 'SEL' ) {
+			options = [  ...firstOption, ...lov];
+		}
 		if ( lov ) {
 			if ( this.lovType == 'json' ) {
-				if ( this.type === 'SEL' ) {
-					this.options = [  ...firstOption, ...lov];
-				} else {
-					this.options = lov;
-				}
+				this.options = options;
 				this._setDefaultValue();
 			} else if (this.defaultValueType == 'sqlQuery') {
 				//fetch data from server
