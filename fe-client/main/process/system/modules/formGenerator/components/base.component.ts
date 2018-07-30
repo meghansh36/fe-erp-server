@@ -52,9 +52,9 @@ export class FeBaseComponent
 		this._utility.renderer = this._render;
 	}
 
-	protected _beforeNgOnInit() {}
+	protected _beforeNgOnInit() { }
 
-	protected _afterNgOnInit() {}
+	protected _afterNgOnInit() { }
 
 	ngOnInit(): void {
 		this._beforeNgOnInit();
@@ -72,10 +72,9 @@ export class FeBaseComponent
 		this._initFieldStyle();
 		this._applyObservers();
 		this._setValues();
-		console.log("Rendering", this.label);
 	}
 
-	protected _beforeNgAfterViewInit() {}
+	protected _beforeNgAfterViewInit() { }
 
 	ngAfterViewInit() {
 		this._beforeNgAfterViewInit();
@@ -85,14 +84,14 @@ export class FeBaseComponent
 			this.hide();
 		}
 		this._afterNgAfterViewInit();
-		
+
 	}
 
-	protected _afterNgAfterViewInit() {}
+	protected _afterNgAfterViewInit() { }
 
-	protected _beforeNgOnDestroy() {}
+	protected _beforeNgOnDestroy() { }
 
-	protected _afterNgOnDestroy() {}
+	protected _afterNgOnDestroy() { }
 
 	ngOnDestroy() {
 		this._beforeNgOnDestroy();
@@ -125,10 +124,10 @@ export class FeBaseComponent
 	}
 
 	protected _setDefaultValue() {
-		if ( this.defaultValue ) {
-			if ( this.defaultValueType == 'string' ) {
+		if (this.defaultValue) {
+			if (this.defaultValueType == 'string') {
 				this.value = this.defaultValue;
-			} else if ( this.defaultValueType == 'sqlQuery' ) {
+			} else if (this.defaultValueType == 'sqlQuery') {
 				//fetch data from server
 			}
 		}
@@ -143,13 +142,21 @@ export class FeBaseComponent
 	}
 
 	protected _setLov() {
-		if ( this.lov ) {
+		const lov = this.lov;
+		const firstOption = this._defaults.DROPDOWN_DEFAULT_OPTION;
+		if ( lov ) {
 			if ( this.lovType == 'json' ) {
-				this.options = this.lov;
+				if ( this.type === 'SEL' ) {
+					this.options = [  ...firstOption, ...lov];
+				} else {
+					this.options = lov;
+				}
 				this._setDefaultValue();
-			} else if ( this.defaultValueType == 'sqlQuery' ) {
+			} else if (this.defaultValueType == 'sqlQuery') {
 				//fetch data from server
 			}
+		} else {
+			this.lov = firstOption ;
 		}
 	}
 
@@ -243,7 +250,7 @@ export class FeBaseComponent
 			(<any>window).result = false;
 			const evalStr = `window.result = window.leftValue ${
 				(<any>window).operator
-			} window.rightValue `;
+				} window.rightValue `;
 			eval(evalStr);
 			resFlag = (<any>window).result;
 			this[`_${action}ConditionFlags`][flagIndex] = resFlag;
@@ -474,13 +481,12 @@ export class FeBaseComponent
 		if (this.formClassValidation) {
 			this._applyFormClassValidation();
 		}
-		console.log("this.jsonLogicVal", this.label, this.jsonLogicVal);
+
 		if (this.jsonLogicVal) {
 			this._applyJsonValidations();
 		}
-		console.log('this.validators', this.validators);
+
 		if (this.control && this.validators.length > 0) {
-			console.log('Setting validators');
 			this.control.setValidators(this.validators);
 		}
 	}
@@ -512,6 +518,7 @@ export class FeBaseComponent
 				this._validator.getCustomValidation("max", this.maximumValue)
 			);
 		}
+
 		if (
 			this.appliedValidations &&
 			this.appliedValidations.constructor == Array &&
@@ -557,7 +564,7 @@ export class FeBaseComponent
 				} else {
 					console.log(
 						`Given _validator is not a function for validation ${name} for field ${
-							this.flexiLabel
+						this.flexiLabel
 						}`
 					);
 				}
@@ -572,7 +579,7 @@ export class FeBaseComponent
 			if (!this.form) {
 				console.log(
 					`Form class instance not found in field for applying form class validations for field ${
-						this.code
+					this.code
 					}`
 				);
 				return;
@@ -597,7 +604,7 @@ export class FeBaseComponent
 				} else {
 					console.log(
 						`Form class _validator function ${validatorFunc} does not exist for ${validationName} custom validation for field ${
-							this.code
+						this.code
 						}.`
 					);
 				}
@@ -609,19 +616,17 @@ export class FeBaseComponent
 
 	protected _applyJsonValidations() {
 		const json = this.jsonLogicVal;
-		//const validationName:string = "json_"+(parseInt(Math.random()*10000)).toString();
-		let fn = function(
-			formControls: any,
+		let fn = (
 			control: AbstractControl
-		): { [key: string]: boolean } | null {
-			console.log("JSON Logic Val", control, formControls);
-			if (jsonLogic.apply(json["json"], formControls) != true) {
-				console.log('JSON error should come.');
+		): { [key: string]: boolean } | null => {
+			this.control.markAsDirty({onlySelf: true});
+			if (jsonLogic.apply(json["json"], this.group.controls) != true) {
 				return { json: true };
 			}
 			return null;
 		};
-		this.validators.push(fn.bind(this, this.group.controls));
+
+		this.validators.push(fn);
 		const errorObj = {
 			name: "json",
 			message: json["message"]
@@ -630,9 +635,7 @@ export class FeBaseComponent
 	}
 
 	protected _initFieldStyle() {
-		console.log('called field style')
 		this.defaultClasses = this._utility.getFieldClasses(this);
-		console.log(this.defaultClasses);
 		this.style = this._utility.getFieldStyles(this);
 	}
 
@@ -704,9 +707,7 @@ export class FeBaseComponent
 	}
 
 	get hasTextLenghtLimit() {
-		return (
-			this.hasValidation("maxLength") || this.hasValidation("minLength")
-		);
+		return (this.minLength || this.maxLength);
 	}
 
 	get resource() {
@@ -1092,8 +1093,24 @@ export class FeBaseComponent
 		return this._options;
 	}
 
-	set options( options ) {
+	set options(options) {
 		this._options = options;
+	}
+
+	get minLength() {
+		return this._config.minLength;
+	}
+
+	set minLength(minLength) {
+		this._config.minLength = minLength;
+	}
+
+	get maxLength() {
+		return this._config.maxLength;
+	}
+
+	set maxLength(maxLength) {
+		this._config.maxLength = maxLength;
 	}
 
 }

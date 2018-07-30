@@ -11,15 +11,18 @@ import { BaseComponent } from '@L3Process/system/modules/formGenerator/component
 })
 export class FeTextComponent extends BaseComponent implements OnInit {
 
-  public length: number = 0;
+  public len: number = 0;
   protected _$changeObserver: any;
   protected _conditionClass: string;
+
   _onKeypress(e) {
-    if (this.hasMaxLength) {
-      const limit = +this.len;
-      if (e.target.value.length === this.maxLength) e.preventDefault();
+    if (this.maxLength) {
+      if (e.target.value.length === this.maxLength) {
+		e.preventDefault();
+		}
     }
   }
+
 
   protected _afterNgOnDestroy() {
     super._afterNgOnDestroy();
@@ -34,7 +37,7 @@ export class FeTextComponent extends BaseComponent implements OnInit {
   changeLength(data: string) {
     if (data != undefined) {
       this.len = data.length;
-      if (this.len < this.minLength) {
+      if (this.len < this.minLength || this.len >= this.maxLength ) {
         this._Class = 'badge-danger';
       } else {
         this._Class = 'badge-success';
@@ -42,26 +45,6 @@ export class FeTextComponent extends BaseComponent implements OnInit {
     }
   }
 
-  get hasMinLength() {
-    return this.hasValidation('minLength');
-  }
-
-  get hasMaxLength() {
-    return this.hasValidation('maxLength');
-  }
-  get minLength() {
-    if (this.hasMinLength) {
-      return this._config.validations.minLength.value;
-    }
-    return 0;
-  }
-
-  get maxLength() {
-    if (this.hasMaxLength) {
-      return this._config.validations.maxLength.value;
-    }
-    return 0;
-  }
 
   get maskConfig() {
     //console.log("maskConfig", this.mask);
@@ -69,13 +52,6 @@ export class FeTextComponent extends BaseComponent implements OnInit {
       return { mask: this.mask };
     }
     return { mask: false };
-  }
-
-  get len() {
-    return this.length;
-  }
-  set len(len) {
-    this.length = len;
   }
 
   set _Class(changeClass) {

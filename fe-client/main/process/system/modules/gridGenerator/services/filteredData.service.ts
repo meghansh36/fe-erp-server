@@ -12,7 +12,7 @@ export class FeFilteredDataService {
 
     sendFilterOption(object: any): Observable<HttpResponse<any>> {
         return this.http.post(
-			'http://fe.localhost:3000/api/fe/fe/default/forms_data/forms_data', object, { observe: 'response' });
+			'/api/fe/fe/default/forms_data/forms_data', object, { observe: 'response' });
     }
 
 }

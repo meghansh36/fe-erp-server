@@ -1,3 +1,7 @@
+ /* @Component Description
+  *
+  * BaseField Component is the parent class of all the field components.
+  */
 import { FormMasterService } from "@L3Process/system/modules/formBuilder/services/formMaster.service";
 import { FieldControlService } from "@L3Process/system/modules/formBuilder/services/fieldControl.service";
 import {
@@ -17,7 +21,9 @@ import { FeBaseComponent } from "../../../../formGenerator/components/base.compo
 
 @Injectable()
 export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
+  // uses fieldcount to append to default labels of each field component.
   static fieldCount = 0;
+  // set showEdit to true. Displays the toolbar over field components.
   showEdit = true;
   uniqueKey: string;
   refObj: any;
@@ -29,6 +35,7 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
   public style: any;
   protected _systemValidations: any;
 
+  // list of all the common applicable properties that will be shown in the form properties modal
   public applicableProperties: any = {
     label: true,
     hideLabel: true,
@@ -69,65 +76,17 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
 	labelAlignment: true
   };
 
-  //All properties
-  /* public applicableProperties: any = {
-		hasParent:true,
-		label: true,
-		hideLabel: true,
-		labelPosition: true,
-		tooltip: true,
-		customCssClass: true,
-		tabIndex: true,
-		marginTop: true,
-		marginRight: true,
-		marginLeft: true,
-		marginBottom: true,
-		defaultValueType: true,
-		defaultValueSqlQuery: true,
-		defaultValueString: true,
-		lovType: true,
-		lovSqlQuery: true,
-		lovJson: true,
-		nonPersistent: true,
-		dbColumn: true,
-		hidden: true,
-		clearWhenHidden: true,
-		disabled: true,
-		flexiLabel: true,
-		prefix: true,
-		suffix: true,
-		appliedValidations: true,
-		customFuncValidation: true,
-		jsonLogicVal: true,
-		formClassValidation: true,
-		minimumLength: true,
-		maximumLength: true,
-		events: true,
-		hideCondition: true,
-		type: true,
-		disableCondition: true,
-		active: true,
-		required: true,
-		labelWidth: true,
-		labelMargin: true,
-		width: true,
-		icon: true,
-		parentName: true,
-		filterSqlQuery: true,
-		labelAlignment: true
-	};
-	 */
-
+  // list of all the common field properties that can be set in form properties modal.
   public properties: any = {
     hasParent: false,
     label: undefined,
     hideLabel: false,
-    labelPosition: "top",
+    labelPosition: 'top',
     tooltip: undefined,
     errorLabel: undefined,
     customCssClass: undefined,
     tabIndex: undefined,
-    marginTop: "",
+    marginTop: '',
     marginRight: "",
     marginLeft: "",
     marginBottom: "",
@@ -135,8 +94,8 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     defaultValueSqlQuery: "",
     defaultValueString: "",
     lovType: "none",
-    lovSqlQuery: "",
-    lovJson: "",
+    lovSqlQuery: '',
+    lovJson: '',
     nonPersistent: false,
     dbColumn: undefined,
     componentname: undefined,
@@ -144,28 +103,28 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     clearWhenHidden: false,
     disabled: false,
     flexiLabel: undefined,
-    prefix: "",
-    suffix: "",
-    appliedValidations: "",
-    customFuncValidation: "",
-    jsonLogicVal: "",
-    formClassValidation: "",
-    minimumLength: undefined,
-    maximumLength: undefined,
-    events: "",
-    hideCondition: "",
-    disableCondition: "",
+    prefix: '',
+    suffix: '',
+    appliedValidations: '',
+    customFuncValidation: '',
+    jsonLogicVal: '',
+    formClassValidation: '',
+    minLength: undefined,
+    maxLength: undefined,
+    events: '',
+    hideCondition: '',
+    disableCondition: '',
     active: true,
     required: false,
-    labelWidth: "",
-    labelMargin: "",
-    width: "",
+    labelWidth: '',
+    labelMargin: '',
+    width: '',
     mask: [],
-    description: "",
-    icon: "",
-    parentName: "",
-	filterSqlQuery: "",
-	labelAlignment: ""
+    description: '',
+    icon: '',
+    parentName: '',
+	  filterSqlQuery: '',
+	  labelAlignment: ''
   };
 
   constructor(
@@ -177,9 +136,11 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     protected _utility: UtilityService,
     protected _defaults: DefaultsService
   ) {
-    console.log('constructor called');
-    this._utility.renderer = this._render;
-	this.systemValidations = this._defaults.VALIDATIONS;
+  // set the renderer in the utility service
+  this._utility.renderer = this._render;
+  // get default validations
+  this.systemValidations = this._defaults.VALIDATIONS;
+  // increase the fieldcount value
 	FeBaseField.fieldCount++;
   }
 
@@ -193,17 +154,27 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     this._afterNgOnInit();
   }
 
+ /* @function Description
+  *
+  * This function initializes the styles and properties of the field component.
+  */
   _init() {
+    // set field reference from the service
     this.setRef(this._fieldControlService.getFieldRef().ref);
+    // get component key
     this.uniqueKey = this._masterFormService.getCurrentKey();
-   // console.log('base props unique key ', this.properties, this.uniqueKey);
+    // set intial defualt properties in the masterJSON
     this._masterFormService.setProperties(this.properties, this.uniqueKey);
+    // call function to set field styles
     this._initFieldStyle();
-	this.systemValidations = this._defaults.VALIDATIONS;
-	if (!this.label) {
+    // set validations
+    this.systemValidations = this._defaults.VALIDATIONS;
+    // set intial default label
+	  if (!this.label) {
 		this.label = `${this._defaults.FIELD_TYPE_LABEL_MAP[ this.type ]} ${FeBaseField.fieldCount.toString()}`;
 	}
 
+  // set intial default flexiLabel
 	if (!this.flexiLabel) {
 		let flexiLabelPrefix = this._defaults.FIELD_TYPE_LABEL_MAP[ this.type ];
 		if ( flexiLabelPrefix ) {
@@ -233,9 +204,14 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     this._utility.addDisplayProps(this);
     this._afterNgDoCheck();
   }
-
+ /* @function Description
+  *
+  * sets ngClass and ngStyle properties for each field
+  */
   protected _initFieldStyle() {
+    // get classes for ngClass
     this.defaultClasses = this._utility.getFieldClasses(this, true);
+    // get styles for ngStyle
     this.style = this._utility.getFieldStyles(this, true);
   }
 
@@ -246,25 +222,48 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
   protected _beforeSetDefaultStyle(styleObj) {
     return styleObj;
   }
-
+ /* @function Description
+  * Arguments ==> reference - component reference
+  * 
+  * Sets refObj which contains the component reference returned by angular when a dynamic
+  * component is created
+  */
   public setRef(reference) {
     this.refObj = reference;
   }
 
+ /* @function Description
+  *
+  * fires on click event(close button in field toolbar). The component is removed from view 
+  * and is also removed from the MasterJson
+  */
   protected close() {
+    // angular function to destroy component from view.
     this.refObj.destroy();
+    // removes component from the MasterJSON
     this._formJsonService.removeComponent(this.uniqueKey);
+    // builds new finalJSON
     this._formJsonService.buildFinalJSON();
   }
 
+ /* @function Description
+  *
+  * This function opens the modal when settings button in toolbar is clicked.
+  */
   openModal() {
+    // set current key in formMaster service
     this._masterFormService.setCurrentKey(this.uniqueKey);
-    //this._masterFormService.setProperties(this.properties, this.uniqueKey);
+    // get the instance of formBuilder component
     const parent = this._fieldControlService.getFieldRef().parent;
     this._fieldControlService.setFieldRef(this.refObj, parent, this.properties.componentName);
+    // calls the openModal function in the formBuilder
     parent.openModal();
   }
 
+ /* @function Description
+  *
+  * Updates field properties
+  */
   protected update(propsFromMasterForm) {
     this.properties = _.assignIn({}, propsFromMasterForm);
   }
@@ -385,12 +384,12 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     return this.properties.formClassValidation;
   }
 
-  get minimumLength() {
-    return this.properties.minimumLength;
+  get minLength() {
+    return this.properties.minLength;
   }
 
-  get maximumLength() {
-    return this.properties.maximumLength;
+  get maxLength() {
+    return this.properties.maxLength;
   }
 
   get events() {
@@ -553,12 +552,12 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     this.properties.formClassValidation = formClassValidation;
   }
 
-  set minimumLength(minimumLength) {
-    this.properties.minimumLength = minimumLength;
+  set minLength(minLength) {
+    this.properties.minLength = minLength;
   }
 
-  set maximumLength(maximumLength) {
-    this.properties.maximumLength = maximumLength;
+  set maxLength(maxLength) {
+    this.properties.maxLength = maxLength;
   }
 
   set events(events) {

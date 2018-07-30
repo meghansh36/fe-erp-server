@@ -14,6 +14,12 @@ export class FeDefaultsService {
   protected _jsonEditorConfig = {
     mode: "code"
   };
+  protected _dropDownDefaultOption = [
+	  {
+		  code: '',
+		  meaning: '--Select--'
+	  }
+  ];
 
 
   public LABEL_ALIGNMENT = {
@@ -293,4 +299,9 @@ export class FeDefaultsService {
   get FORM_BUILDER_JSON_HELP() {
     return this._formBuilderJsonHelp;
   }
+
+  get DROPDOWN_DEFAULT_OPTION() {
+	  return this._dropDownDefaultOption;
+  }
+
 }

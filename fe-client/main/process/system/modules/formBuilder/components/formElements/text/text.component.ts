@@ -18,8 +18,8 @@ export class FeTextComponent extends FeBaseField  {
   public applicableProperties: any = {
     prefix: true,
     suffix: true,
-    minimumLength:true,
-    maximumLength:true,
+    minLength:true,
+    maxLength:true,
     mask: true,
     ...this.applicableProperties
   };

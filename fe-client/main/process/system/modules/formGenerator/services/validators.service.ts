@@ -54,7 +54,9 @@ export class FeValidatorsService {
         'alphanumeric': this.alphanumericValidation.bind(this),
         'alphabet': this.alphabetValidation.bind(this),
         email: this.emailValidation.bind(this),
-        commaseperatedemail: this.commaseperatedemailValidation.bind(this)
+		commaseperatedemail: this.commaseperatedemailValidation.bind(this),
+		minLength: this.minLengthValidation.bind(this),
+		maxLength: this.maxLengthValidation.bind(this)
     };
 
     constructor( protected _defaults: DefaultsService ) {
@@ -62,7 +64,6 @@ export class FeValidatorsService {
     }
 
     emailValidation(value?: any) {
-
         const message = 'Please provide valid mail address';
         if (!value) {
             value = true;
@@ -119,8 +120,20 @@ export class FeValidatorsService {
     }
 
     requiredValidation(value?: any) {
-        const message = `Please provide appropriate value.`;
+        const message = `Please provide some value.`;
         const name ='required';
+        return FeValidatorsService.getValidation(name,  value, message);
+	}
+
+	minLengthValidation(value?: any) {
+        const message = `Minimum length should be ${value}.`;
+        const name ='minLength';
+        return FeValidatorsService.getValidation(name,  value, message);
+	}
+
+	maxLengthValidation(value?: any) {
+        const message = `Maximum length should be ${value}.`;
+        const name ='maxLength';
         return FeValidatorsService.getValidation(name,  value, message);
     }
 

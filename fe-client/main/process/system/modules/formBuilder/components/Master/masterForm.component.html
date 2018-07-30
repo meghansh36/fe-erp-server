@@ -710,17 +710,17 @@
                       </div>
 
                       <!-- input text for minimum length -->
-                      <div *ngIf='instance.applicableProperties.minimumLength'>
+                      <div *ngIf='instance.applicableProperties.minLength'>
                         <label for='min-length' class='mt-3'>Minimum Length</label>
-                        <input type="number" class="form-control" id='min-lenght' placeholder='e.g. 100' [(ngModel)]='componentData.minimumLength'
+                        <input type="number" class="form-control" id='min-lenght' placeholder='e.g. 100' [(ngModel)]='componentData.minLength'
                           ngModel name='minimumLenght'>
                       </div>
 
                       <!-- input text for maximum length -->
-                      <div *ngIf='instance.applicableProperties.maximumLength'>
+                      <div *ngIf='instance.applicableProperties.maxLength'>
                         <label for='max-length' class='mt-3'>Maximum Length</label>
-                        <input type="number" class="form-control" id='max-lenght' placeholder='e.g. 1000' ngModel [(ngModel)]='componentData.maximumLength'
-                          name='maximumLength'>
+                        <input type="number" class="form-control" id='max-lenght' placeholder='e.g. 1000' ngModel [(ngModel)]='componentData.maxLength'
+                          name='maxLength'>
                       </div>
 
                       <!-- input text for Regular Expression -->
