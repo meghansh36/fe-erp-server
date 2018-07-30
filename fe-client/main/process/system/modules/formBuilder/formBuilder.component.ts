@@ -524,7 +524,7 @@ protected _setDragulaOptions() {
 		// adds the key of the parent Container on the created component DOM element.
 		target.children[index].parentComponent = target.id;
 		// updates the indexes of all the other components in the parent container.
-		this._formJsonService.updateMasterJSONOnDrop(target, key, false);
+		this._formJsonService.updateMasterJSONOnDrop(target);
 	}
 
 	/*
