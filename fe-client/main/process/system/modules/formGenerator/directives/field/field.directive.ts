@@ -65,6 +65,7 @@ const components: { [type: string]: Type<Field> } = {
 @Directive({
   selector: '[feField]'
 })
+/** Directive class to create a field component. */
 export class FeFieldDirective implements Field, OnChanges, OnInit {
 
   @Input()

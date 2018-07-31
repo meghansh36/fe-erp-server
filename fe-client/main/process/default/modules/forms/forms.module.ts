@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsComponent } from '@L3Process/default/modules/forms/forms.component';
 import { GridGeneratorModule } from '@L3Process/system/modules/gridGenerator/gridGenerator.module';

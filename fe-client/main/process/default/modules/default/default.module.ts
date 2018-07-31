@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { DefaultComponent } from '@L3Process/default/modules/default/default.component';
 import { FRM0000001Component } from '@L3Forms/FRM0000001.component';
