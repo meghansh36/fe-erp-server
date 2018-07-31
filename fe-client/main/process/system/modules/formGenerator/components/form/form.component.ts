@@ -17,7 +17,6 @@ import * as jsonLogic from "json-logic-js";
 import { UtilityService } from "@L3Process/system/services/utility.service";
 import { DefaultsService } from "@L3Process/system/services/defaults.service";
 import * as _ from "lodash";
-import { DefaultsService } from "../../../../../../../legislations/fe/clients/fe/main/process/system/services/defaults.service";
 
 /**
  * Creates a from using the given JSON Schema
@@ -161,7 +160,7 @@ export class FeFormComponent
 		protected _renderer: Renderer2,
 		protected _eleRef: ElementRef,
 		protected _utility: UtilityService,
-		protected _defualts: DefaultsService
+		protected _defaults: DefaultsService
 	) {
 		this.initialize();
 	}
@@ -174,6 +173,7 @@ export class FeFormComponent
 	public initialize() {
 		this.instance = this;
 		this.componentInstances = [];
+		/** <----------------For future reference */
 		const html = `<div [attr.id]="code+'_CONTAINER'" class="form-container">
 		<div class="card ">
 		  <div class="card-header" *ngIf="label">
@@ -205,7 +205,13 @@ export class FeFormComponent
 	  </div>
 	  `;
 	  console.log("Form container html", html);
-		this._renderer.appendChild( this._eleRef.nativeElement, html );
+		//this._renderer.appendChild( this._eleRef.nativeElement, html );
+		/* let containerDiv = this.renderer.createElement('div');
+		const id = `${code}_CONTAINER`;
+		containerDiv.setAttribute('id', id);
+		this.renderer.appendChild( this._eleRef.nativeElement, containerDiv ); */
+		//this._eleRef.nativeElement.innerHTML = html;
+		/** ---------------> */
 	}
 
 	/**
@@ -775,8 +781,8 @@ export class FeFormComponent
 		for( let flexiLabel in this.componentInstances ) {
 			var instance = this.componentInstances[flexiLabel];
 			let lovs = [];
-			let defaultValues = [];
-			if ( _.includes( this._defualts.LIST_TYPE_FIELDS_ARR, instance.type ) ) {
+			let defaultValues:string = '';
+			if ( _.includes( this._defaults.LIST_TYPE_FIELDS_ARR, instance.type ) ) {
 				for ( let i = 120; i<125; i++ ) {
 					lovs.push({
 						code: i,
@@ -805,9 +811,10 @@ export class FeFormComponent
 			const fieldInstance = this.getFieldInstance( flexiLabel );
 			if ( fieldInstance ) {
 				if ( fieldData.l && _.includes( this._defaults.LIST_TYPE_FIELDS_ARR, fieldInstance.type) ) { //l = lov
+
 					let lov = [ ...fieldData.l ];
 					if ( _.includes( this._defaults.LIST_TYPE_FIELDS_ARR, 'SEL' ) ) {
-						lov = [ ...this._defualts.DROPDOWN_DEFAULT_OPTION, lov ];
+						lov = [ ...this._defaults.DROPDOWN_DEFAULT_OPTION, lov ];
 					}
 					this.setFieldOptions( flexiLabel, lov );
 				}

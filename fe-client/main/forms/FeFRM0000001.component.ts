@@ -10,13 +10,7 @@ import { DependentService } from '@L3Process/system/modules/formGenerator/servic
 })
 export class FeFRM0000001Component extends DefaultFormComponent {
     public code = 'FRM0000001';
-    /* public instance;
-    constructor(public formSchemaService: FormSchemaService, public dependent: DependentService, protected _elemRef: ElementRef, protected _renderer: Renderer2) {
-        super( formSchemaService, this._elemRef, this._renderer );
-        this.instance = this;
-       // this.code = 'FRM0000001';
 
-    } */
     constructor(public formSchemaService: FormSchemaService, public dependent: DependentService, protected _elemRef: ElementRef, protected _renderer: Renderer2) {
         super( formSchemaService, dependent, _elemRef, _renderer );
         this.instance = this;

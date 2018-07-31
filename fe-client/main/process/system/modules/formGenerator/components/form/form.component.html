@@ -1,0 +1,29 @@
+<div [attr.id]="code+'_CONTAINER'" class="form-container">
+	<div class="card ">
+	  <div class="card-header" *ngIf="label">
+		<div class="form-label-container" >
+		  <h5 class="card-title">{{label}}</h5>
+		</div>
+		<small class="text-muted" [attr.id]="code+'_FORM_HELP'">
+		</small>
+
+	  </div>
+	  <div class="card-body">
+		<div class="form-fields-container">
+		  <form [attr.id]="code" class="feForm flex-container" [formGroup]="group" (submit)="handleSubmit($event)">
+			<ng-container *ngFor="let field of components;" feField [form]="formInstance" [schema]="schema" [config]="field" [group]="group"
+			  [formComponent]="instance">
+			</ng-container>
+
+		  </form>
+		</div>
+	  </div>
+	  <div class="card-footer"  >
+		<div class="form-buttons-container  flex-container"  *ngIf="buttons">
+		  <ng-container *ngFor="let btn of buttons;" feField [form]="formInstance" [schema]="schema" [config]="btn" [group]="group"
+			  [formComponent]="instance">
+			</ng-container>
+		  </div>
+	  </div>
+	</div>
+  </div>

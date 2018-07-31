@@ -1,6 +1,6 @@
 const DefaultAction = require('./defaultAction');
 
-module.exports = class populateDefaultAction extends DefaultAction {
+module.exports = class PopulateDefaultAction extends DefaultAction {
     constructor() {
         this.accepts = ["get"];
     }

@@ -1,6 +1,6 @@
 const DefaultAction = require('./defaultAction');
 
-module.exports = class saveDefaultAction extends DefaultAction {
+module.exports = class SaveDefaultAction extends DefaultAction {
     constructor() {
         this.accepts = ["put"];
 
@@ -13,7 +13,7 @@ module.exports = class saveDefaultAction extends DefaultAction {
 
         super(this.accepts);
     }
- 
+
     handlePutRequest(req,res,done) {
         // TODO  find form code from the
         var action = req.params.action;
@@ -34,5 +34,5 @@ module.exports = class saveDefaultAction extends DefaultAction {
         }
     }
 
-    
+
 }
