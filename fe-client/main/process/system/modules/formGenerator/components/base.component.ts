@@ -71,7 +71,6 @@ export class FeBaseComponent
 		this._applyValidations();
 		this._initFieldStyle();
 		this._applyObservers();
-		this._setValues();
 	}
 
 	protected _beforeNgAfterViewInit() { }
@@ -130,33 +129,6 @@ export class FeBaseComponent
 			} else if (this.defaultValueType == 'sqlQuery') {
 				//fetch data from server
 			}
-		}
-	}
-
-	protected _setValues() {
-		if ( _.includes( ['SEL', 'ACS', 'MSL', 'MCH', 'RAD'], this.type ) ) {
-			this._setLov();
-		} else {
-			this._setDefaultValue();
-		}
-	}
-
-	protected _setLov() {
-		const lov = this.lov;
-		const firstOption = this._defaults.DROPDOWN_DEFAULT_OPTION;
-		let options = [];
-		if ( this.type === 'SEL' ) {
-			options = [  ...firstOption, ...lov];
-		}
-		if ( lov ) {
-			if ( this.lovType == 'json' ) {
-				this.options = options;
-				this._setDefaultValue();
-			} else if (this.defaultValueType == 'sqlQuery') {
-				//fetch data from server
-			}
-		} else {
-			this.lov = firstOption ;
 		}
 	}
 
@@ -899,6 +871,7 @@ export class FeBaseComponent
 	}
 
 	set lov(lov) {
+		this.options = lov;
 		this._config.lov = lov;
 	}
 
@@ -1095,6 +1068,7 @@ export class FeBaseComponent
 
 	set options(options) {
 		this._options = options;
+		this.lov = options;
 	}
 
 	get minLength() {

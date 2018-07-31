@@ -205,6 +205,9 @@ export class FeUtilityService {
 		} else {
 			fieldComponent.width  = fieldWidth;
 		}
+		if ( fieldComponent.type === 'BTN'  ) {
+			fieldWidth = this._defaults.BTN_DEFAULT_WIDTH;
+		}
 		if (fieldWidth) {
 			this.renderer.setStyle(
 				fieldComponent._elemRef.nativeElement,

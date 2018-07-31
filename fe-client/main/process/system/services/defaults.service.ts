@@ -20,6 +20,9 @@ export class FeDefaultsService {
 		  meaning: '--Select--'
 	  }
   ];
+  protected _listTypeFields = [ 'SEL', 'MSL', 'MCH', 'RAD' ];
+
+  protected _defaultBtnWidth = 'auto';
 
 
   public LABEL_ALIGNMENT = {
@@ -304,4 +307,11 @@ export class FeDefaultsService {
 	  return this._dropDownDefaultOption;
   }
 
+  get BTN_DEFAULT_WIDTH() {
+	return this._btnDefaultWidth;
+  }
+
+  get LIST_TYPE_FIELDS_ARR() {
+	  return this._listTypeFields;
+  }
 }
