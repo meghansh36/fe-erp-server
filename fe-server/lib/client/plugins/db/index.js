@@ -3,7 +3,19 @@ var path = require('path');
 var Sequelize = require('sequelize');
 const BasePlugin = FE.requireLib('/client/pluginBaseClass.js');
 
+/**
+ * 
+ * 
+ * @class DbPlugin
+ * @extends {BasePlugin}
+ */
 class DbPlugin extends BasePlugin {
+	/**
+	 * Creates an instance of DbPlugin.
+	 * @param {any} _appObj 
+	 * 
+	 * @memberOf DbPlugin
+	 */
 	constructor(_appObj) {
 		super(_appObj);
 		this._configs = this._appObj.configs.plugins.db;
@@ -23,6 +35,17 @@ class DbPlugin extends BasePlugin {
 		this._props.sync = this._configs.sync;
 		this._props.define = this._configs.define;
 
+		this.initializeSequelize();
+
+	}
+
+	/**
+	 * Initializes the  Sequelize Plugin
+	 * 
+	 * 
+	 * @memberOf DbPlugin
+	 */
+	initializeSequelize(){
 		const sequelize = new Sequelize(
 			this._props.dbName,
 			this._props.dbUser,
@@ -36,7 +59,17 @@ class DbPlugin extends BasePlugin {
 			});
 
 		FE.DBOBJECT = sequelize;
+		this.registeringModels(sequelize);
+	}
 
+	/**
+	 * Register all the model classes in sequelize models
+	 * 
+	 * @param {any} sequelize 
+	 * 
+	 * @memberOf DbPlugin
+	 */
+	registeringModels(sequelize){
 		var modulesPath = this._appObj.SUB_APP_MODULES_PATH;
 		this._models = {};
 		fs.readdirSync(modulesPath).forEach(module => {
@@ -64,9 +97,6 @@ class DbPlugin extends BasePlugin {
 		}
 
 		this._appObj.models = this._models;
-
-	//	console.log(FE.clients.fe);
-
 	}
 
 }
