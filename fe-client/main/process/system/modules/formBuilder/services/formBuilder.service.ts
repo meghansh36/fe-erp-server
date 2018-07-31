@@ -1,8 +1,8 @@
 /*
 *@Service Description
-*This service is responsible for Master Form functions. It sets the modal reference and returns
-*it so that it can be used by other components to close the modal.
-*It also gets and sets the field properties.
+*This service is responsible for returning the list of components that can be dragged in basic,
+*advanced or layout tabs. It also returns the class instance of the component. It also makes
+* post requests on the server
 */
 
 import { HttpClient } from '@angular/common/http';
@@ -369,7 +369,7 @@ export class FeFormBuilderService {
 
   };
 
-  constructor(public httpClient:HttpClient) { }
+  constructor(public httpClient: HttpClient) { }
 
   /*
   *@function Description

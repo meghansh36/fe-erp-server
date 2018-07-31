@@ -17,7 +17,6 @@ import { FormJsonService } from "@L3Process/system/modules/formBuilder/services/
 import { UtilityService } from "@L3Process/system/services/utility.service";
 import { DefaultsService } from "@L3Process/system/services/defaults.service";
 import * as _ from "lodash";
-import { FeBaseComponent } from "../../../../formGenerator/components/base.component";
 
 @Injectable()
 export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
@@ -72,8 +71,8 @@ export class FeBaseField implements OnInit, DoCheck, AfterViewInit {
     description: true,
     hasParent: true,
     parentName: true,
-	filterSqlQuery: true,
-	labelAlignment: true
+	  filterSqlQuery: true,
+	  labelAlignment: true
   };
 
   // list of all the common field properties that can be set in form properties modal.

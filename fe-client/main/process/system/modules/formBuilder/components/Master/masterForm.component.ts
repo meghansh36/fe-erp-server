@@ -42,14 +42,14 @@ export class FeMasterFormComponent implements OnInit {
     help: "",
     components: []
   };
-  backupProps;
-  componentData = <builderFieldCompInterface>{};
-  modalRef: NgbModalRef;
-  instance;
-  showEdit: boolean;
-  currentKey;
+  backupProps; // used to set backup properties. used in reset
+  componentData = <builderFieldCompInterface>{}; // bound to ngModel
+  modalRef: NgbModalRef; // modalRef returned by bootstrap
+  instance; // copy of instance of the the preview component created
+  showEdit: boolean; // true/false to display field toolbar 
+  currentKey; // key of component
   jsonHelp;
-  jsonEditorConfig;
+  jsonEditorConfig; // configs for json editor
 
   // ng-template reference of the Preview component container
   @ViewChild('preview', { read: ViewContainerRef })
