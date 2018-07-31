@@ -1,6 +1,18 @@
 const BasePlugin = FE.requireLib('/client/pluginBaseClass.js');
 
+/**
+ * 
+ * 
+ * @class DispatcherPlugin
+ * @extends {BasePlugin}
+ */
 class DispatcherPlugin extends BasePlugin {
+	/**
+	 * Creates an instance of DispatcherPlugin.
+	 * @param {any} _appObj 
+	 * 
+	 * @memberOf DispatcherPlugin
+	 */
 	constructor(_appObj) {
 		super(_appObj);
 		this._appObj = _appObj;
