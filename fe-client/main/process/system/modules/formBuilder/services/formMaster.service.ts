@@ -13,19 +13,7 @@ import { FormJsonService } from '@L3Process/system/modules/formBuilder/services/
 export class FeFormMasterService {
 
   modalReference: NgbModalRef;
-  properties;
-  currentEventType;
   key;
-  Json;
-  formLabel: string;
-  name: string;
-  display: 'conventional';
-  disabled: boolean;
-  hidden: boolean;
-  conditionalHidden: string;
-  conditionalDisabled: string;
-  active: boolean;
-  help: string;
 
 
   constructor(private masterJsonService: FormJsonService) {}
@@ -49,12 +37,12 @@ export class FeFormMasterService {
     return this.modalReference;
   }
 
-  /*
+ /*
   *@function Description
   *Arguments ==> props - field properties
   *              key - unique key of the field component
   *
-  * This function sets the properties of the field components in the masterJSON
+  *This function sets the properties of the field components in the masterJSON
   */
   setProperties(props, key) {
     this.masterJsonService.setMasterJSON(props, key);
