@@ -6,6 +6,72 @@ const request = FE.require('request');
 
 
 let credentials;
+/**
+ * 
+ * 
+ */
+function loginLocal(req, res, next){
+	if (credentials) {
+		console.log('token');
+		req.body = credentials;
+		console.log(req.body);
+	}
+
+	if (req.cookies.fe_session_id && req.session.username) {
+		return res.status(401).json({
+			success: "False",
+			message: 'Already Logged in'
+		})
+	}
+
+	console.log("POST LOGIN");
+	console.log(req.body);
+	passport.authenticate('local', (err, user, info) => {
+
+		console.log("PASSPORT AUTHENTICATE");
+		console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`);
+		console.log(`req.user: ${JSON.stringify(req.user)}`);
+
+		if (err) {
+			res.status(404).json(err);
+			return;
+		}
+		if (!user) {
+			console.log(req.get('Authorization'));
+			return res.render('default/views/login/index', {
+				message: info ? info.message : 'Login Failed'
+			});
+			
+		}
+		req.login(user, (err) => {
+			if (err) {
+				return next(err);
+			}
+			console.log("INSIDE LOGIN");
+			console.log(`req.user: ${JSON.stringify(req.user)}`);
+			console.log(`req.body: ${JSON.stringify(req.body)}`);
+			req.session.username = req.body.username;
+			console.log(`req.session: ${JSON.stringify(req.session)}`);
+			const token = jwt.sign({
+				user: user
+			}, 'ASDASDSADQWE16235laskjhdlkasdlAASDASDAS34534534', {
+				expiresIn: '60m'
+			});
+			const data = {
+				success: true,
+				message: 'Login Successful',
+				token
+			}
+			if (req.body.check) {
+				res.cookie('token', token);
+			}
+			// res.send('LOGIN_SUCCES')
+			res.redirect('/');
+			    
+		});
+		credentials = '';
+	})(req, res, next);
+}
 
 
 router.get('/google',
@@ -22,11 +88,8 @@ router.get('/googlecb', (req, res) => {
 			res.status(404).json(err);
 			return;
 		}
+
 		if (!user) {
-			// return res.status(401).json({
-			// success: false,
-			// message: info?info.message:'Login Failed' 
-			// });
 			return res.render('default/views/login/index', {
 				message: info ? info.message : 'Login Failed'
 			})
@@ -38,7 +101,7 @@ router.get('/googlecb', (req, res) => {
 			check: false
 		}
 
-		request.post('http://fe.localhost:3000/fe/api/login/login', {
+		request.post('http://localhost:3000/api/default/login/login', {
 			json: credentials
 		}, (err, res, body) => {
 			if (err) {
@@ -66,10 +129,6 @@ router.post('/samlcb',
 				throw err;
 			}
 			if (!user) {
-				// return res.json({
-				//   success:false,
-				//   message:info?info.message:"Login Failed"
-				// })
 				return res.render('default/views/login/index', {
 					message: info ? info.message : "Login Failed"
 				});
@@ -81,18 +140,20 @@ router.post('/samlcb',
 				username: user.username,
 				password: user.password
 			}
-			request.post('http://fe.localhost:3000/fe/api/login/login', {
-				json: credentials
-			}, (err, res, body) => {
-				if (err) {
-					console.log(err);
-				}
-				if (res.statusCode == 200) {
-					console.log("INSIDE POST SUCCESS");
-					console.log(body);
-				}
-			}).pipe(res);
-
+			
+			// request.post('http://fe.localhost:3000/api/default/login/login', {
+			// 	json: credentials
+			// }, (err, res, body) => {
+			// 	if (err) {
+			// 		console.log(err);
+			// 	}
+			// 	if (res.statusCode == 200) {
+			// 		console.log("INSIDE POST SUCCESS");
+			// 		console.log(body);
+			// 	}
+			// }).pipe(res);
+			
+			loginLocal(req, res, next);
 		})(req, res, next);
 	}
 );
@@ -128,69 +189,68 @@ router.post('/fing', (req, res) => {
 })
 
 router.post('/login', (req, res, next) => {
+	loginLocal(req, res, next);
 
-	if (credentials) {
-		console.log('token');
-		req.body = credentials;
-		console.log(req.body);
-	}
+	// if (credentials) {
+	// 	console.log('token');
+	// 	req.body = credentials;
+	// 	console.log(req.body);
+	// }
 
-	if (req.cookies.user_sid && req.session.username) {
-		return res.status(401).json({
-			success: "False",
-			message: 'Already Logged in'
-		})
-	}
+	// if (req.cookies.fe_session_id && req.session.username) {
+	// 	return res.status(401).json({
+	// 		success: "False",
+	// 		message: 'Already Logged in'
+	// 	})
+	// }
 
-	console.log("POST LOGIN");
-	console.log(req.body);
-	passport.authenticate('local', (err, user, info) => {
+	// console.log("POST LOGIN");
+	// console.log(req.body);
+	// passport.authenticate('local', (err, user, info) => {
 
-		console.log("PASSPORT AUTHENTICATE");
-		console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`);
-		console.log(`req.user: ${JSON.stringify(req.user)}`);
+	// 	console.log("PASSPORT AUTHENTICATE");
+	// 	console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`);
+	// 	console.log(`req.user: ${JSON.stringify(req.user)}`);
 
-		if (err) {
-			res.status(404).json(err);
-			return;
-		}
-		if (!user) {
-			console.log(req.get('Authorization'));
-			// return res.status(401).json({
-			// success: false,
-			// message: info?info.message:'Login Failed' 
-			// });
-			return res.render('default/views/login/index', {
-				message: info ? info.message : 'Login Failed'
-			});
-		}
-		req.login(user, (err) => {
-			if (err) {
-				return next(err);
-			}
-			console.log("INSIDE LOGIN");
-			console.log(`req.user: ${JSON.stringify(req.user)}`);
-			console.log(`req.body: ${JSON.stringify(req.body)}`);
-			req.session.username = req.body.username;
-			console.log(`req.session: ${JSON.stringify(req.session)}`);
-			const token = jwt.sign({
-				user: user
-			}, 'ASDASDSADQWE16235laskjhdlkasdlAASDASDAS34534534', {
-				expiresIn: '60m'
-			});
-			const data = {
-				success: true,
-				message: 'Login Successful',
-				token
-			}
-			if (req.body.check) {
-				res.cookie('token', token);
-			}
-			// res.send("LOGIN_SUCCESS");
-			res.redirect('/');    
-		});
-		credentials = '';
-	})(req, res, next);
+	// 	if (err) {
+	// 		res.status(404).json(err);
+	// 		return;
+	// 	}
+	// 	if (!user) {
+	// 		console.log(req.get('Authorization'));
+	// 		return res.render('default/views/login/index', {
+	// 			message: info ? info.message : 'Login Failed'
+	// 		});
+			
+	// 	}
+	// 	req.login(user, (err) => {
+	// 		if (err) {
+	// 			return next(err);
+	// 		}
+	// 		console.log("INSIDE LOGIN");
+	// 		console.log(`req.user: ${JSON.stringify(req.user)}`);
+	// 		console.log(`req.body: ${JSON.stringify(req.body)}`);
+	// 		req.session.username = req.body.username;
+	// 		console.log(`req.session: ${JSON.stringify(req.session)}`);
+	// 		const token = jwt.sign({
+	// 			user: user
+	// 		}, 'ASDASDSADQWE16235laskjhdlkasdlAASDASDAS34534534', {
+	// 			expiresIn: '60m'
+	// 		});
+	// 		const data = {
+	// 			success: true,
+	// 			message: 'Login Successful',
+	// 			token
+	// 		}
+	// 		if (req.body.check) {
+	// 			res.cookie('token', token);
+	// 		}
+	// 		// res.send('LOGIN_SUCCES')
+	// 		res.redirect('/');
+			    
+	// 	});
+	// 	credentials = '';
+	// })(req, res, next);
 });
 
 
@@ -210,6 +270,5 @@ router.get('/logout', (req, res) => {
 		success: req.session.username
 	});
 });
-
 
 module.exports = router;
