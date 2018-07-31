@@ -1,46 +1,55 @@
 module.exports = class DefaultAction{
 
-    constructor(accepts){
-        this._accepts = accepts;
-        this._appObj = FE.getClientApp(req);
+	constructor(){
+		this._accepts = this.getAccepts();
+		//this._appObj = FE.getClientApp(req);
+		this._error = '';
+        this._errorCode = '';
+        this._message = '';
+        this._messageCode = '';
+        this._data = '';
+        this._html = '';
     }
 
     initialize(req, res, next){
-       this._handlesRequest(req, res, next);
+	   this._handleRequest(req, res, next);
     }
 
     _handleRequest(req, res, next) {
 
         if(!this._validateRequestType(req)) {
-            res.send('INVALID REQUEST');
+            console.log('INVALID REQUEST');
         } else {
-            res.send('REQUEST VALIDATED');
+            console.log('REQUEST VALIDATED');
         }
         this._preDispatch(req, res, next);
 
         this._dispatch(req, res, next);
 
         this._postDispatch(req, res, next);
-        
+
     }
 
     _validateRequestType(req){
-        this._accepts.forEach(requestType => {
+		var flag = false;
+		this._accepts.forEach(requestType => {
            if(requestType == req.method){
-               return true;
+			   flag = true;
+               return false;
            }
-        });
+		});
+		return flag;
     }
 
     _dispatch(req, res, next) {
-        if(req.type == 'PUT') {
-            this._handlePutRequest();
-        } else if(req.type == 'POST') {
-            this._handlePostRequest();
-        } else if(req.type == 'GET') {
-            this._handleGetRequest();
+		console.log('req.type', req.type);
+        if(req.method == 'PUT') {
+            this._handlePutRequest(req, res, next);
+        } else if(req.method == 'POST') {
+            this._handlePostRequest(req, res, next);
+        } else if(req.method == 'GET') {
+            this._handleGetRequest(req, res, next);
         }
-
         this._sendResponse(req, res, next);
     }
 
@@ -59,8 +68,9 @@ module.exports = class DefaultAction{
     postDispatch(req, res, next) {
         return true;
     }
-    
+
     _handlePutRequest(req, res, next) {
+		console.log("_handlePutRequest");
         this.handlePutRequest(req, res, next);
     }
 
@@ -97,5 +107,9 @@ module.exports = class DefaultAction{
             response = this._sendHtmlResponse();
         }
         res.send(response);
-    }
+	}
+
+	getAccepts() {
+		return [];
+	}
 }

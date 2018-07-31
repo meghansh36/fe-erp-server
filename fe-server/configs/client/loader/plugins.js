@@ -5,7 +5,7 @@ function configLoader(appObj) {
 			"session"       : true,
 			"db"            : true,
 			//"reqHooks"      : true,
-			"auth"          : true,
+			"auth"          : false,
 			"acl"           : true,
 			"dispatcher"    : true
 		},

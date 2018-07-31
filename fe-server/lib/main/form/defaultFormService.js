@@ -1,3 +1,3 @@
-class DefaultFormService{
-    
+module.exports = class DefaultFormService{
+
 }

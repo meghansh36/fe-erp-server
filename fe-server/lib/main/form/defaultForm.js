@@ -1,6 +1,7 @@
-class DefaultForm{
+module.exports = class DefaultForm {
+
     constructor(){
-        this._code = '';
+		this._code = this.getFormCode();
         this._helperObject;
         this._serviceObject;
         this._setServieObject();
@@ -8,18 +9,22 @@ class DefaultForm{
     }
 
     _setHelperObject(){
-        const defaultHelperClass = require('./defaultFormHelper');
+        const defaultHelperClass = require(FE.FORMS_PATH+'/helpers/'+this._code);
         let defaultHelperObject = new defaultHelperClass();
         this._helperObject = defaultHelperObject;
     };
 
     _setServieObject(){
-        const defaultServiceClass = require('./defaultFormService');
+        const defaultServiceClass = require(FE.FORMS_PATH+'/services/'+this._code);
         let defaultServiceObject = new defaultServiceClass();
         this._serviceObject = defaultServiceObject;
     };
 
-	save(){
+	save( req, res ){
 
+	}
+
+	getFormCode() {
+		return '';
 	}
 }

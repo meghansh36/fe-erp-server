@@ -1,3 +1,3 @@
-class DefaultFormHelper{
-    
+module.exports = class DefaultFormHelper{
+
 }

@@ -1,29 +1,24 @@
 const DefaultAction = require('./defaultAction');
+const path = require('path');
 
 module.exports = class SaveDefaultAction extends DefaultAction {
-    constructor() {
-        this.accepts = ["put"];
 
-        this._error = '';
-        this._errorCode = '';
-        this._message = '';
-        this._messageCode = '';
-        this._data = '';
-        this._html = '';
-
-        super(this.accepts);
-    }
+	getAccepts() {
+		return [ "PUT" ];
+	}
 
     handlePutRequest(req,res,done) {
-        // TODO  find form code from the
+		// TODO  check multiple forms codes and save handle them accordingly
+		console.log("handlePutRequest");
         var action = req.params.action;
-        var formClassPath = FORMS_PATH + '/' + req.data.formCode;
+		var formClassPath = path.join( FE.FORMS_PATH, 'forms' , req.body.data.formCode+'.js');
+		console.log('formClassPath');
         const formClass = require(formClassPath);
         const formClassObject =  new formClass();
         formClassObject[action](req,res);
-        var successMessage = '';//Save My Data
+        //var successMessage = '';//Save My Data
         // creatingDataStructure();
-
+/*
         if(!successMessage) {
             this._error = 'My Data was not saved';
             this._errorCode = 'ERR000001';
@@ -31,7 +26,7 @@ module.exports = class SaveDefaultAction extends DefaultAction {
             this._message = 'My data was saved successfully';
             this._messageCode = 'MSG00001';
             this._data = {id: 56};
-        }
+        } */
     }
 
 

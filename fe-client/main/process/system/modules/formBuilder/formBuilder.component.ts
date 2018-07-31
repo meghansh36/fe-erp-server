@@ -20,7 +20,6 @@ import { FormJsonService } from '@L3Process/system/modules/formBuilder/services/
 import { DragulaService } from 'ng2-dragula';
 import { FormBuilderService } from '@L3Process/system/modules/formBuilder/services/formBuilder.service';
 import * as _ from 'lodash';
-import { MasterFormComponent } from '@L3Process/system/modules/formBuilder/components/Master/masterForm.component';
 import { DefaultsService } from '@L3Process/system/services/defaults.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormSchemaService } from '@L3Main/services/formSchema.service';
@@ -64,7 +63,7 @@ constructor(
 
 /*
 *@function Description
-*Intializes formJson, set Dragula(drag and drop library) configurations
+*Sets formJson, set Dragula(drag and drop library) configurations
 *subscribes to dragula drop events(fired on when drop is successfully completed) and calls
 *_.onComponentDrop function
 */
@@ -140,8 +139,9 @@ protected _setDragulaOptions() {
 			).nodeValue;
 			// calculates the index where the element is to be created
 			const index = this.calculateIndex(value);
-			// !important. Removes the LI element dropped by the dragula from the DOM.
-			// In its place, dynamic components are rendered
+			// !important. dragula duplicates the element that is dropped and hence drops the
+			// list item that was dragged. We have to remove the the dropped element and insert
+			// angular component at its place
 			value[1].remove();
 			// FormBuilder service returns the object containing the class instance of the component that is to be created
 			this.dropComplete(
@@ -413,7 +413,8 @@ protected _setDragulaOptions() {
 	*/
 	dropComplete(componentObj, index, value) {
 		this.createComponentFunc(componentObj, index, value[2], value);
-		// Temporary fix to resolve the open modal problem. The modal only opens when the element dropped is not a fieldset.
+		// Temporary fix to resolve the open modal problem. The modal only opens when the
+		// element dropped is not a fieldset or the parent is not fieldset.
 		if ((componentObj.component.name !== 'FieldSetComponent' && value[2].id === 'root_drop') || value[2].id === 'button_drop') {
 			this.openModal();
 		}
@@ -436,7 +437,7 @@ protected _setDragulaOptions() {
 	*@function Description
 	*Arguments ==> content - reference of the ng-template containing the modal.
 	*
-	*Opens the modal on clicking the settings button on the field toolbar.
+	*Opens the modal on clicking the settings button on form Builder.
 	*/
 	openFormSettingModal(content) {
 		this._bootstrapService.openModal(content, { size: 'lg' });
@@ -544,6 +545,9 @@ protected _setDragulaOptions() {
 			const parentID = copy.parent;
 			let viewContainerRef;
 			// empties the components array in the properties in case of fieldset component.
+			// This is done as MasterJSON accepts fieldset with empty components []. The child
+			// components are pushed in subsequent recursive iterations. Only the copy of the
+			// properties is modified, the original JSON from server remains unchanged.
 			if (copy.componentName === 'FieldSetComponent') {
 				copy.components = [];
 			}

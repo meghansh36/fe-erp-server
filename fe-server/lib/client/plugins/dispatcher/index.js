@@ -1,16 +1,17 @@
 const BasePlugin = FE.requireLib('/client/pluginBaseClass.js');
+const path = require('path');
 
 /**
- * 
- * 
+ *
+ *
  * @class DispatcherPlugin
  * @extends {BasePlugin}
  */
 class DispatcherPlugin extends BasePlugin {
 	/**
 	 * Creates an instance of DispatcherPlugin.
-	 * @param {any} _appObj 
-	 * 
+	 * @param {any} _appObj
+	 *
 	 * @memberOf DispatcherPlugin
 	 */
 	constructor(_appObj) {
@@ -26,7 +27,7 @@ class DispatcherPlugin extends BasePlugin {
 		});
 		//the router/dispatcher will function here
 		 FE.ACL.then((acl)=>{
-		  
+
 		  //just testing acl
 		  //console.log(acl);
 		  router.get('/api/', (req, res, next)=>{
@@ -38,16 +39,17 @@ class DispatcherPlugin extends BasePlugin {
 		      } else if(err){
 						next();
 					}
-		    });	
+		    });
 			});
-			
+
 			router.put('/:module/:controller/:action',(req,res,done)=>{
-					var actionClassPath = this._appObj.SUB_APP_MODULES_PATH+'/'+req.params.module+'/controllers/'+req.params.controller+'/'+req.params.action+'.js';
-					actionClass = FE.require(actionClassPath);
+					var actionClassPath = path.join(FE.SERVER_APP_PATH, '/main/modules/'+req.params.module+'/controllers/'+req.params.controller+'/'+req.params.action+'Action.js');
+					//res.send(actionClassPath);
+					var actionClass = FE.require(actionClassPath);
 					var actionClassObject =  new actionClass();
 					actionClassObject.initialize(req,res,done);
 			});
-			
+
 		  router.get('/:module/:controller/:action', (req, res, next)=>{
 		    var controller = this._appObj.SUB_APP_MODULES_PATH +'/'+ req.params.module + "/controllers/" + req.params.controller+'.js';
 		    var controller_class = require(controller);
@@ -63,7 +65,7 @@ class DispatcherPlugin extends BasePlugin {
 		    var action = req.params.action;
 		    controllerObj[action](req,res);
 		  });
-		});     
+		});
 
 		// this._appObj.app.use('/:module/:controller/:action', (req, res, next) => {
 		// 	var controller = this._appObj.SUB_APP_MODULES_PATH + '/' + req.params.module + "/controllers/" + req.params.controller + '.js';
