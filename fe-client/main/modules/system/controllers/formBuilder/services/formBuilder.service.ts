@@ -408,22 +408,26 @@ export class FeFormBuilderService {
   *
   * This function makes a post request on the server to save or update the data.
   */
-  postData(data) {
-    // update data
-    if(data.id) {
-      return this.httpClient.post('/api/fe/fe/default/forms_data/update_form_data', {
-      "form_json":data,
-      "id":data.id,
-      "formLabel":data.formLabel
-      })
-    } 
-    // save data
-    else {
-      return this.httpClient.post('/api/fe/fe/default/forms_data/save_form_data', {
-        "form_json": data,
-        "formLabel": data.formLabel
-      })
-    }
+  postData(nestedJson, flatJson) {
+	//save data
+	const jsonData: any = {
+		"flat_json": flatJson,
+		"nested_json": nestedJson,
+        "formLabel": flatJson.formLabel
+	  };
+	let action: string =  'save';
+	let method: string = 'put';
+	  // update data
+	if ( flatJson.id ) {
+		jsonData.id = flatJson.id;
+		action = 'update';
+		method = 'post';
+	}
+	const json = {
+		data: jsonData,
+		formCode: 'formBuilder'
+	};
+	return this.httpClient[method](`/api/fe/fe/system/form/${action}`, json);
   }
 
 }

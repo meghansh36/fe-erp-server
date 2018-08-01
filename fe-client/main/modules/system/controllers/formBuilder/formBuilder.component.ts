@@ -126,7 +126,7 @@ protected _setDragulaOptions() {
 }
 
 /*@function Description
-* Arguments ==> value - array of DOM node of elements [bag name, dragged element, target, 
+* Arguments ==> value - array of DOM node of elements [bag name, dragged element, target,
 *						source, sibling ] passed by dragula
 *Called when drop complete event fires.
 */
@@ -650,7 +650,7 @@ protected _setDragulaOptions() {
 	*This function posts the finalJSON via an api hit on the server.
 	*/
 	save() {
-		this._formBuilderService.postData(this.finalJSON).subscribe(
+		this._formBuilderService.postData(this.finalJSON, this._formJsonService.getMasterJSON()).subscribe(
 			res => {
 				alert('FORM SAVED');
 				console.log(res);

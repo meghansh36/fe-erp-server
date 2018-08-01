@@ -1,4 +1,7 @@
-const UpdateDefaultAction = require(FE.LIBRARY_PATH+'/lib/actions/updateAction.js');
+const path = require('path');
+const UpdateDefaultAction = require(path.join(FE.LIBRARY_PATH,'actions/updateAction.js'));
 
 
-module.exports = class UpdateAction extends UpdateDefaultAction { }
+module.exports = class UpdateAction extends UpdateDefaultAction {
+
+}
