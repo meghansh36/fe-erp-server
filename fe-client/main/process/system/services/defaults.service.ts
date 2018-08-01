@@ -308,7 +308,7 @@ export class FeDefaultsService {
   }
 
   get BTN_DEFAULT_WIDTH() {
-	return this._btnDefaultWidth;
+	return this._defaultBtnWidth;
   }
 
   get LIST_TYPE_FIELDS_ARR() {

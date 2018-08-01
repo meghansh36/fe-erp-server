@@ -59,7 +59,7 @@ class AuthPlugin extends BasePlugin {
 		this.deserialize();
 		this._appObj.app.use('/api/default/login', loginRouter);
 		this._appObj.app.use(this._passport.session());
-			this.redirectUser();
+		this.redirectUser();
 		console.log('auth plugin initialized');
 	}
 
