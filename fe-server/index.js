@@ -25,7 +25,19 @@ const appObj = express();
 appObj.use(bodyParser.json());
 appObj.use(bodyParser.urlencoded({'extended':'true'}));
 appObj.use(cookieParser());
-appObj.use(express.static(global.projectFolderPath + "/dist/fe"));
+
+// const path = require('path');
+
+// appObj.set('views',global.projectFolderPath + '/fe-server' + '/legislations/fe/clients/fe/main/modules/');
+// appObj.set('view engine', 'pug');
+// appObj.get(/^\/(?!api\/)(.*)$/, (req, res)=>{
+//     if(!req.session || !req.session.username){
+//       res.render('default/views/login/index');
+//     }
+//     // appObj.use(express.static(global.projectFolderPath + "/dist/fe"));
+//     // return res.sendFile(path.join(global.projectFolderPath, "dist", "fe", "index.html"));  
+// });
+// appObj.use(express.static(global.projectFolderPath + "/dist/fe"));
 /**
  * @description : Make FE Obj Global
  */
@@ -35,4 +47,3 @@ FE.initialize();
 module.exports = FE.app;
 
 //console.log(FE.clients.fe);
-//FE.clients.fe.helpers.tracerDb._log('ERROR','UncaughtException', 'UncaughtException', 5);

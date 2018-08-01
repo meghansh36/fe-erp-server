@@ -3,6 +3,8 @@ const jwt = FE.require('jsonwebtoken');
 const BasePlugin = FE.requireLib('/client/pluginBaseClass.js');
 const loginRouter = require('./login.js');
 const request = FE.require('request');
+const express = FE.require('express');
+
 
 class AuthPlugin extends BasePlugin {
 	constructor(_appObj) {
@@ -55,7 +57,7 @@ class AuthPlugin extends BasePlugin {
 		this.loadStrategies();
 		this.serialize();
 		this.deserialize();
-		this._appObj.app.use('/fe/api/login/', loginRouter);
+		this._appObj.app.use('/api/default/login', loginRouter);
 		this._appObj.app.use(this._passport.session());
 			this.redirectUser();
 		console.log('auth plugin initialized');
@@ -63,6 +65,7 @@ class AuthPlugin extends BasePlugin {
 
 	redirectUser() {
 		var thisObj = this;
+
 		/**
 		 * Checks if token is saved in cookies 
 		 * true: validate and login
@@ -73,98 +76,151 @@ class AuthPlugin extends BasePlugin {
 			}
 			next();
 		});
+
 		this._appObj.app.use((req, res, next) => {
 			console.log('in FE');
+			/**
+			 * checks token avl and login status
+			 */
 			if (req.cookies.token && !req.session.username) {
 
 				console.log(req.cookies.token);
 				const token = req.cookies.token;
 
 				console.log(token);
-				// jwt.verify(token, thisObj._configs.jwtSecretKey, thisObj.jwtVerificationCB.bind(thisObj, [res]));
+				/**
+				 * Validate token and return decoded form/error
+				 */
 				jwt.verify(token, thisObj._configs.jwtSecretKey, (err, decoded) => {
 
 					if (err) {
 						console.log('ERR_DECODING_TOKEN');
-						return res.status(500).send({
-							auth: false,
-							message: "Err Decoding Token"
-						})
+						return res.render('default/views/login/index', {
+							message: "Token Error"
+						});
 					}
 
 					console.log('Decoded');
 					console.log(decoded);
+					// const user = JSON.parse(decoded.user)[0]
 
+					/**
+					 * find user credentials from db
+					 */
+
+					// this._appObj.models.UserModel.findAll({
+														// attributes: [FE.DBOBJECT.cast( FE.DBOBJECT.fn('AES_DECRYPT',"("+user.attribute4.data+")",'(hanuabhi)'), 'char(50)')],
+														// attributes: [FE.DBOBJECT.fn('AES_DECRYPT',FE.DBOBJECT.cast(FE.DBOBJECT.col('attribute4')),'(hanuabhi)'),"password"],
+					// 									attributes: [FE.DBOBJECT.cast( FE.DBOBJECT.fn('AES_DECRYPT',FE.DBOBJECT.col('attribute4'),'(hanuabhi)'), 'char(50)')],	
+					// 									where:{
+					// 										attribute1:user.attribute1
+					// 									}
+					// 								},
+					// 							).then(pass =>{
+					// 								console.log(JSON.stringify(pass));
+					// 							}).catch(err=>{
+					// 								console.log(err);
+					// 							})
+
+
+					/**
+					 * set credentials and fire localLogin()
+					 * set check: false for not saving token again in cookies
+					 */
 					let credentials = {
 						username: decoded.user.username,
 						password: decoded.user.password,
-						check: false
+						// username: user.attribute3
+						// password: FE.DBOBJECT.query("SELECT	cast(aes_decrypt(attribute4,'(hanuabhi)') as char(40)) FROM fe_adm_user_t where attribute1=414811"),
+						// password: FE.DBOBJECT.cast(FE.DBOBJECT.fn('AES_DECRYPT',user.attribute4,'(hanuabhi)'),'char(50)'),
+						check: false   
 					};
-
-					request.post('http://fe.localhost:3000/fe/api/login/login', {
-						json: credentials
-					}, (err, res, body) => {
-
+					
+					if (credentials) {
+						console.log('token');
+						req.body = credentials;
+						console.log(req.body);
+					}
+					/**
+					 * Check whether user is already logged in
+					 */
+					if (req.cookies.fe_session_id && req.session.username) {
+						return res.status(401).json({
+							success: "False",
+							message: 'Already Logged in'
+						})
+					}
+				
+					console.log("POST LOGIN");
+					console.log(req.body);
+					this._passport.authenticate('local', (err, user, info) => {
+				
+						console.log("PASSPORT AUTHENTICATE");
+						console.log(`req.session.passport: ${JSON.stringify(req.session.passport)}`);
+						console.log(`req.user: ${JSON.stringify(req.user)}`);
+				
 						if (err) {
-							console.log(err);
+							res.status(404).json(err);
+							return;
 						}
-						if (res.statusCode === 200) {
-							console.log("INSIDE POST SUCCESS");
-							console.log(body);
-							// next();
+						if (!user) {
+							console.log(req.get('Authorization'));
+							return res.render('default/views/login/index', {
+								message: info ? info.message : 'Login Failed'
+							});
+							
 						}
-					}).pipe(res);
+						req.login(user, (err) => {
+							if (err) {
+								return next(err);
+							}
+							console.log("INSIDE LOGIN");
+							console.log(`req.user: ${JSON.stringify(req.user)}`);
+							console.log(`req.body: ${JSON.stringify(req.body)}`);
+							req.session.username = req.body.username;
+							console.log(`req.session: ${JSON.stringify(req.session)}`);
+							const token = jwt.sign({
+								user: user
+							}, 'ASDASDSADQWE16235laskjhdlkasdlAASDASDAS34534534', {
+								expiresIn: '60m'
+							});
+							const data = {
+								success: true,
+								message: 'Login Successful',
+								token
+							}
+							if (req.body.check) {
+								res.cookie('token', token);
+							}
+							console.log("BEF_RED");
+							// res.send('LOGIN_SUCCES')
+							res.redirect('/');
+								
+						});
+						credentials = '';
+					})(req, res, next);
+
 				});
 			}
-			next();
+			else {
+				next();
+			}
 			console.log("USER " + req.session.username);
 
 		});
 
+		/** 
+		 * for serving angular app 
+		 * static files
+		 */
+		this._appObj.app.use((express.static(global.projectFolderPath + "/dist/fe")));
 
 		this._appObj.app.get(/^\/(?!api\/)(.*)$/, (req, res)=>{
-			// console.log('before 1')
-			// //this._dynamicStatic.setPath(path.join(FE.APP_PATH, "dist", "fe"));
-			// console.log('after 1')
-			
-		  // if(req.session.username){
+			console.log("HHHKJKJ");
 		    return res.sendFile(path.join(FE.APP_PATH, "dist", "fe", "index.html"));  
-		    // res.send("LOGGED IN")
-		  // }
 		});
 	}
 
-	// jwtVerificationCB(response, err, decoded) {
-	// 	if (err) {
-	// 		console.log('ERR_DECODING_TOKEN');
-	// 		return res.status(500).send({
-	// 			auth: false,
-	// 			message: "Err Decoding Token"
-	// 		})
-	// 	}
-
-	// 	console.log('Decoded');
-	// 	console.log(decoded);
-
-	// 	let credentials = {
-	// 		username: decoded.user.username,
-	// 		password: decoded.user.password,
-	// 		check: false
-	// 	};
-
-	// 	request.post('http://localhost:3000/api/default/login/login', {
-	// 		json: credentials
-	// 	}, (err, res, body) => {
-
-	// 		if (err) {
-	// 			console.log(err);
-	//     }
-	// 		if (res.statusCode === 200) {
-	// 			console.log("INSIDE POST SUCCESS");
-	// 			console.log(body);
-	// 		}
-	//   }).pipe(response);
-	// }
 
 	serialize() {
 		/**
@@ -172,8 +228,10 @@ class AuthPlugin extends BasePlugin {
 		 */
 		this._passport.serializeUser((user, done) => {
 			console.log('SERIALIZE USER')
-			console.log(user);
-			done(null, user.id);
+			console.log(JSON.parse(user)[0].attribute1);
+			done(null, JSON.parse(user)[0].attribute1);
+			// console.log(user);
+			// done(null, user.id);
 		});
 	}
 
@@ -184,12 +242,30 @@ class AuthPlugin extends BasePlugin {
 		this._passport.deserializeUser((id, done) => {
 			console.log('Inside deserializeUser callback')
 			console.log(`The user id passport saved in the session file store is: ${id}`)
-			//find user by id
-			const index = this.users.findIndex(user => user.id === id)
-			done(null, this.users[index]);
+			/**
+			 * Find User from db using id/attr send by serialize func
+			 * 
+			 */
+			// console.log("DESERIALIZE");
+			// const index = this.users.findIndex(user => user.id === id)
+			// done(null, this.users[index]);
+			this._appObj.models.UserModel.findAll({
+				where: {
+					attribute1 : id,
+				}
+			}).then(users => {
+				console.log(JSON.stringify(users));
+				done(null, users);
+			}).catch(err=>{
+				console.log(err);
+			});
+
+
 		});
 	}
-
+	/**
+	 * load all strategies here
+	 */
 	loadStrategies() {
 		var strategies = this._configs.strategies;
 		if (strategies.local == true) {
@@ -208,7 +284,7 @@ class AuthPlugin extends BasePlugin {
 			this.loadLdapStrategy();
 		}
 	}
-
+	
 	loadLocalStrategy() {
 		let thisObj = this;
 		console.log("LOCALSTRATEGY ");
@@ -219,23 +295,50 @@ class AuthPlugin extends BasePlugin {
 
 		this._passport.use(new LocalStrategy((username, password, done) => {
 			console.log("INSIDE LOCAL")
-			const index = thisObj.users.findIndex(user => user.username === username);
-			const user = thisObj.users[index];
-			console.log(user)
-			//Check if user exists
-			if (index === -1) {
-				return done(null, false, {
-					message: 'Incorrect Username'
-				});
-			}
-			//validPassword method
-			else if (password !== user.password) {
-				return done(null, false, {
-					message: 'Incorrect Password'
-				});
-			}
-			console.log("BEFORE SERIALIZE");
-			return done(null, user);
+			
+			// const index = thisObj.users.findIndex(user => user.username === username);
+			
+			/**
+			 * Find User from db
+			 *  
+			 */
+
+			thisObj._appObj.models.UserModel.findAll({
+				where: {
+					attribute3 : username,
+					attribute4 : FE.DBOBJECT.fn('AES_ENCRYPT', password, '(hanuabhi)'),
+					attribute11 : 'Y',
+					attribute46 :2,
+					attribute47 :3	
+				}
+			}).then(user => {
+				console.log(JSON.stringify(user));
+				if(user.length==0){
+					return done(null, false, {
+								message: 'Incorrect Username/Password'
+							});
+				}
+				return done(null, JSON.stringify(user));
+			}).catch(err=>{
+				console.log(err);
+			});
+			// const user = thisObj.users[index];
+
+			// console.log(user)
+			// // Check if user exists
+			// if (index === -1) {
+			// 	return done(null, false, {
+			// 		message: 'Incorrect Username'
+			// 	});
+			// }
+			// //validPassword method
+			// else if (password !== user.password) {
+			// 	return done(null, false, {
+			// 		message: 'Incorrect Password'
+			// 	});
+			// }
+			// console.log("BEFORE SERIALIZE");
+			// return done(null, user);
 		}));
 	}
 
@@ -280,9 +383,9 @@ class AuthPlugin extends BasePlugin {
 			},
 			(profile, done) => {
 				console.log("SAML CALLBACK FIRED");
-				console.log(profile.UserID);
+				console.log(profile);
 				// find the User from db
-				const index = thisObj.users.findIndex(user => user.samlId === profile.UserID);
+				const index = thisObj.users.findIndex(user => user.samlId === profile.nameID);
 				if (index === -1) {
 					return done(null, false, {
 						message: 'No user found'
@@ -316,5 +419,6 @@ class AuthPlugin extends BasePlugin {
 		));
 	}
 }
+
 
 module.exports = AuthPlugin;
