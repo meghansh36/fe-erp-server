@@ -432,4 +432,7 @@ a.disabled {
 .form-label-container {
 	text-align: center;
 }
+.RAD-field-wrapper .frm-fld-container, .MCH-field-wrapper .frm-fld-container {
+	padding-left: 19px;
+}
 /*-------------------------}          */

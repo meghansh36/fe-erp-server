@@ -18,3 +18,4 @@ function configLoader(appObj) {
 	return appGlobals;
 }
 module.exports = configLoader;
+

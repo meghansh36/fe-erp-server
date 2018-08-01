@@ -1,11 +1,9 @@
 import { enableProdMode, NgModule } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import { HomeModule } from '@L3Process/default/modules/home/home.module';
-import { LoginModule } from '@L3Process/default/modules/login/login.module';
-import { LoginGuardService } from '@L3Process/default/modules/login/services/loginGuard.service';
-
-
+import { HomeModule } from '@L3Modules/default/controllers/home/home.module';
+import { LoginModule } from '@L3Modules/default/controllers/login/login.module';
+import { LoginGuardService } from '@L3Modules/default/controllers/login/services/loginGuard.service';
 import { environment } from '../environments/environment';
 
 

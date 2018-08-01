@@ -1,4 +1,4 @@
-import { LgHomeComponent } from '@L2Process/default/modules/home/home.component';
+import { LgHomeComponent } from '@L2Modules/default/controllers/home/home.component';
 
 export class HomeComponent extends LgHomeComponent {
 }

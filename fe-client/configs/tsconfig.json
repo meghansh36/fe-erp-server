@@ -20,15 +20,15 @@
     "paths": {
       "@L3Root/*" : ["./*"],
       "@L3Main/*" : ["./main/*"],
-      "@L3Process/*" : ["./main/process/*"],
+      "@L3Modules/*" : ["./main/modules/*"],
       "@L3Forms/*" : ["./main/forms/*"],
       "@L2Root/*" : ["../../*"],
       "@L2Main/*" : ["../../main/*"],
-      "@L2Process/*" : ["../../main/process/*"],
+      "@L2Modules/*" : ["../../main/modules/*"],
       "@L2Forms/*" : ["../../main/forms/*"],
       "@L1Root/*" : ["../../../../*"],
       "@L1Main/*" : ["../../../../main/*"],
-      "@L1Process/*" : ["../../../../main/process/*"],
+      "@L1Modules/*" : ["../../../../main/modules/*"],
       "@L1Forms/*" : ["../../../../main/forms/*"],
       "@L1Styles/*" : ["../../../../styles"],
     }

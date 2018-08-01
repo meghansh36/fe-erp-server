@@ -1,4 +1,4 @@
-import { FeFormBuilderModule } from '@L1Process/system/modules/form-builder/form-builder.module';
+import { FeFormBuilderModule } from '@L1Modules/system/controllers/form-builder/form-builder.module';
 
 export class LgFormBuilderModule extends FeFormBuilderModule {
 }
