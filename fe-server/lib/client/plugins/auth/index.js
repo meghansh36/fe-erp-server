@@ -59,7 +59,7 @@ class AuthPlugin extends BasePlugin {
 		this.deserialize();
 		this._appObj.app.use('/api/default/login', loginRouter);
 		this._appObj.app.use(this._passport.session());
-			this.redirectUser();
+		this.redirectUser();
 		console.log('auth plugin initialized');
 	}
 
@@ -228,10 +228,10 @@ class AuthPlugin extends BasePlugin {
 		 */
 		this._passport.serializeUser((user, done) => {
 			console.log('SERIALIZE USER')
-			console.log(JSON.parse(user)[0].attribute1);
-			done(null, JSON.parse(user)[0].attribute1);
-			// console.log(user);
-			// done(null, user.id);
+			//console.log(JSON.parse(user)[0].attribute1);
+			//done(null, JSON.parse(user)[0].attribute1);
+			 console.log(user);
+			 done(null, user.id);
 		});
 	}
 
@@ -246,19 +246,19 @@ class AuthPlugin extends BasePlugin {
 			 * Find User from db using id/attr send by serialize func
 			 * 
 			 */
-			// console.log("DESERIALIZE");
-			// const index = this.users.findIndex(user => user.id === id)
-			// done(null, this.users[index]);
-			this._appObj.models.UserModel.findAll({
-				where: {
-					attribute1 : id,
-				}
-			}).then(users => {
-				console.log(JSON.stringify(users));
-				done(null, users);
-			}).catch(err=>{
-				console.log(err);
-			});
+			console.log("DESERIALIZE");
+			const index = this.users.findIndex(user => user.id === id)
+			done(null, this.users[index]);
+			// this._appObj.models.UserModel.findAll({
+			// 	where: {
+			// 		attribute1 : id,
+			// 	}
+			// }).then(users => {
+			// 	console.log(JSON.stringify(users));
+			// 	done(null, users);
+			// }).catch(err=>{
+			// 	console.log(err);
+			// });
 
 
 		});
@@ -296,49 +296,51 @@ class AuthPlugin extends BasePlugin {
 		this._passport.use(new LocalStrategy((username, password, done) => {
 			console.log("INSIDE LOCAL")
 			
-			// const index = thisObj.users.findIndex(user => user.username === username);
+			const index = thisObj.users.findIndex(user => user.username === username);
 			
 			/**
 			 * Find User from db
 			 *  
 			 */
 
-			thisObj._appObj.models.UserModel.findAll({
-				where: {
-					attribute3 : username,
-					attribute4 : FE.DBOBJECT.fn('AES_ENCRYPT', password, '(hanuabhi)'),
-					attribute11 : 'Y',
-					attribute46 :2,
-					attribute47 :3	
-				}
-			}).then(user => {
-				console.log(JSON.stringify(user));
-				if(user.length==0){
-					return done(null, false, {
-								message: 'Incorrect Username/Password'
-							});
-				}
-				return done(null, JSON.stringify(user));
-			}).catch(err=>{
-				console.log(err);
-			});
-			// const user = thisObj.users[index];
+			// thisObj._appObj.models.UserModel.findAll({
+			// 	where: {
+			// 		attribute3 : username,
+			// 		attribute4 : FE.DBOBJECT.fn('AES_ENCRYPT', password, '(hanuabhi)'),
+			// 		attribute11 : 'Y',
+			// 		attribute46 :2,
+			// 		attribute47 :3	
+			// 	}
+			// }).then(user => {
+			// 	console.log(JSON.stringify(user));
+			// 	if(user.length==0){
+			// 		return done(null, false, {
+			// 					message: 'Incorrect Username/Password'
+			// 				});
+			// 	}
+			// 	return done(null, JSON.stringify(user));
+			// }).catch(err=>{
+			// 	console.log(err);
+			// });
 
-			// console.log(user)
-			// // Check if user exists
-			// if (index === -1) {
-			// 	return done(null, false, {
-			// 		message: 'Incorrect Username'
-			// 	});
-			// }
-			// //validPassword method
-			// else if (password !== user.password) {
-			// 	return done(null, false, {
-			// 		message: 'Incorrect Password'
-			// 	});
-			// }
-			// console.log("BEFORE SERIALIZE");
-			// return done(null, user);
+
+			const user = thisObj.users[index];
+
+			console.log(user)
+			// Check if user exists
+			if (index === -1) {
+				return done(null, false, {
+					message: 'Incorrect Username'
+				});
+			}
+			//validPassword method
+			else if (password !== user.password) {
+				return done(null, false, {
+					message: 'Incorrect Password'
+				});
+			}
+			console.log("BEFORE SERIALIZE");
+			return done(null, user);
 		}));
 	}
 
