@@ -18,7 +18,8 @@ module.exports = class DefaultAction{
     _handleRequest(req, res, next) {
 
         if(!this._validateRequestType(req)) {
-            console.log('INVALID REQUEST');
+			console.log('INVALID REQUEST');
+			res.send("INVALID REQUEST");
         } else {
             console.log('REQUEST VALIDATED');
         }
@@ -42,14 +43,7 @@ module.exports = class DefaultAction{
     }
 
     _dispatch(req, res, next) {
-		console.log('req.type', req.type);
-        if(req.method == 'PUT') {
-            this._handlePutRequest(req, res, next);
-        } else if(req.method == 'POST') {
-            this._handlePostRequest(req, res, next);
-        } else if(req.method == 'GET') {
-            this._handleGetRequest(req, res, next);
-        }
+		this[`_handle${req.method}Request`](req, res, next);
         this._sendResponse(req, res, next);
     }
 
@@ -67,12 +61,47 @@ module.exports = class DefaultAction{
 
     postDispatch(req, res, next) {
         return true;
-    }
+	}
 
-    _handlePutRequest(req, res, next) {
-		console.log("_handlePutRequest");
-        this.handlePutRequest(req, res, next);
-    }
+    _handlePUTRequest(req, res, next) {
+        this.handlePUTRequest(req, res, next);
+	}
+
+	handlePUTRequest(req, res, next) {
+		res.send("Default handlePUTRequest");
+	}
+
+	_handlePOSTRequest(req, res, next) {
+        this.handlePOSTRequest(req, res, next);
+	}
+
+	handlePOSTRequest(req, res, next) {
+		res.send("Default handlePOSTRequest");
+	}
+
+	_handleGETRequest(req, res, next) {
+        this.handleGETRequest(req, res, next);
+	}
+
+	handleGETRequest(req, res, next) {
+		res.send("Default handleGETRequest");
+	}
+
+	_handleDELETERequest(req, res, next) {
+        this.handleDELETERequest(req, res, next);
+	}
+
+	handleDELETERequest(req, res, next) {
+		res.send("Default handleDELETERequest");
+	}
+
+	_handlePATCHRequest(req, res, next) {
+        this.handlePATCHRequest(req, res, next);
+	}
+
+	handlePATCHRequest(req, res, next) {
+		res.send("Default handlePATCHRequest");
+	}
 
     _sendResponse(req, res, next) {
         this.sendResponse(req, res, next);

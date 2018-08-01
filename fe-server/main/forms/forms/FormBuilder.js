@@ -8,10 +8,11 @@ module.exports = class FormBuilder extends DefaultForm {
 	}
 
 	save( req, res )  {
-		res.send("Hello World from FormBuilder.");
+		res.json(req.body);
+		//res.send("Hello World from save FormBuilder.");
 	}
 
-	_saveFRM() {
-
+	update( req, res ) {
+		res.json(req.body);
 	}
 }
